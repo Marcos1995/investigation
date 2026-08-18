@@ -1,7 +1,5 @@
-# Tokens recien creados vs listing de prestigio
+# Como se hace el dinero
 
-Veredicto visual: `index.html`.
+No hay hora magica. Hay tres asientos: quien crea, quien dispara en el segundo 1, y quien llega al chart. El millon sale de extraer al tercero.
 
-La idea (0,1 → 0,5 en dos horas; o listing que multiplica) es real. No hay gran garantia de que no sea fraude ni de que triunfe. Quien gana suele estar en segundos/minutos o en el anuncio de un CEX, no en CMC despues.
-
-Numeros y fuentes estan en el HTML.
+En moneda nueva, −50% suele seguir (no rebota). Un pump visible, si lo compras, historicamente pierde. Ver `index.html`.

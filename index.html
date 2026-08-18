@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>La idea es real. La garantia no.</title>
+  <title>El dinero no se predice. Se extrae.</title>
   <style>
     :root {
       --bg: #f3eee4;
@@ -32,14 +32,14 @@
       line-height: 1.05;
       font-weight: 700;
       letter-spacing: -0.03em;
-      max-width: 14ch;
+      max-width: 16ch;
     }
     h2 {
       font-size: 1.15rem;
       margin-top: 2.6rem;
       letter-spacing: 0.02em;
     }
-    .lede { font-size: 1.15rem; color: var(--mute); max-width: 36ch; }
+    .lede { font-size: 1.15rem; color: var(--mute); max-width: 38ch; }
     .verdict {
       display: grid;
       gap: 0.7rem;
@@ -111,6 +111,8 @@
     .num { font-size: 2.1rem; line-height: 1; letter-spacing: -0.04em; }
     ul { padding-left: 1.15rem; }
     li { margin-bottom: 0.4rem; }
+    ol { padding-left: 1.2rem; }
+    ol li { margin-bottom: 0.55rem; }
     footer {
       margin-top: 3rem;
       padding-top: 1.2rem;
@@ -123,45 +125,79 @@
 </head>
 <body>
   <main>
-    <h1>La idea es real. La garantia no.</h1>
-    <p class="lede">Una moneda a 0,1 puede valer 0,5 en dos horas. Eso pasa. Luego suele desaparecer. No hay forma seria de asegurar que no sea fraude y que vaya a triunfar.</p>
+    <h1>El dinero no se predice. Se extrae.</h1>
+    <p class="lede">Si, hay gente que convierte 5.000 en un millon. No porque adivinen la hora. Porque ocupan el asiento que cobra cuando el resto entra.</p>
 
     <div class="verdict">
       <div>
-        <strong>Garantia de que no es fraude</strong>
-        No. Ni al 80%. Los filtros (honeypot, owner, liquidez bloqueada) quitan trampas de principiante. Un rug “limpio” las pasa y se lleva el dinero igual.
+        <strong>Como se hace el dinero</strong>
+        No hay un reloj magico. Hay tres asientos: quien crea la moneda y vende, quien compra en el primer segundo y vende a ti, y tu. El millon sale de los otros dos cobrandote el 0,50.
       </div>
       <div>
-        <strong>Garantia de que triunfe</strong>
-        No. Historicamente ~98 de cada 100 tokens nuevos mueren. Los que suben 5x en dos horas son el cebo, no la regla.
+        <strong>Hay una hora mejor</strong>
+        No. Asia 29% moons, Europa 26%, EEUU 24%. La diferencia no paga ni el slippage. El mercado no duerme; los bots tampoco.
       </div>
       <div>
-        <strong>Tiene sentido la idea</strong>
-        Si, como fenomeno. Gente gana con ella. Casi todos los que ganan son rapidos (segundos o minutos) o estan dentro del anuncio, no mirando CoinMarketCap despues.
+        <strong>Caida 50% vs subida fuerte</strong>
+        En moneda nueva, la caida suele seguir (no rebota). La subida vertical, si ya estas dentro, se vende; si la ves y compras, historicamente pierdes.
       </div>
     </div>
 
-    <h2>Tu ejemplo: 0,1 → 0,5 → ¿desaparece?</h2>
+    <h2>Los tres asientos</h2>
+    <ol>
+      <li><strong>El que fabrica.</strong> Crea el token, a veces lo promociona, vende a quien llega. Es la casa. No necesita predecir.</li>
+      <li><strong>El que dispara primero.</strong> Decenas o cientos de operaciones al dia, size pequeno, salida automatica. Gana en milisegundos, no en analisis. Ese perfil encaja con el caso 5.000 → 1M: volumen + un par de loterias, no un metodo de “comprar rebotes”.</li>
+      <li><strong>El que ve el movimiento.</strong> Entra cuando ya esta verde o cuando ya cayo “barato”. Es el combustible. Estadisticamente es la mayoria.</li>
+    </ol>
+    <p>Ese millon existe porque miles de wallets ponen el otro lado. No es un horario. Es una cola: quien esta delante cobra, quien llega despues paga. Ver a una persona no demuestra que el asiento 3 pueda copiar al 2. Es sesgo del superviviente.</p>
+
+    <h2>¿Hay un momento con mas probabilidad?</h2>
+    <p>El momento no es las 14:00. Es <em>en que lado del movimiento estas</em>.</p>
     <div class="path" aria-hidden="true">
-      <div><b>0,10</b><span>recien creada</span></div>
+      <div><b>0,10</b><span>asiento 1–2</span></div>
       <div class="arrow">→</div>
-      <div><b>0,50</b><span>~2 horas</span></div>
+      <div><b>0,50</b><span>aqui miras el chart</span></div>
       <div class="arrow">→</div>
-      <div class="dead"><b>~0</b><span>mismo dia, a menudo</span></div>
+      <div class="dead"><b>~0</b><span>asiento 3 se queda</span></div>
     </div>
-    <p>Esa curva es el negocio. Quien compra a 0,1 y vende a 0,5 gana. Quien ve el 0,5 y entra, financia la salida. Un estudio de 275 pumps midio exactamente eso: entrar en la primera hora, mediana +62% al dia siguiente; comprar el cierre del pump, mediana −18%.</p>
-    <p>Otro dato que encaja con “en dos horas”: en tokens Solana ya visibles (cap ≥ 250k USD), los de menos de 1 hora moons 32%… y rugs 63%. El premio y la trampa coinciden en el mismo minuto.</p>
+    <p>275 pumps medidos: entrar en la primera hora, mediana +62% al dia siguiente. Comprar el cierre del pump (cuando “ya se ve”), mediana −18%. Misma moneda. Solo cambia el minuto.</p>
+    <p>SwapHunt, 2.371 tokens ya visibles: rugs se hunden en 1–3 horas. Los que si suben marcan maximo a las 9–15 horas. Por eso no hay regla de “espero dos horas y compro el rebote”: el rug ya acabo y el moon todavia no, o al reves. La ventana se mueve.</p>
 
-    <h2>Historico: tokens recien creados</h2>
-    <p>CoinGecko, 18,7 millones de tokens en Pump.fun (ene 2024–jun 2026). Cuanto viven:</p>
+    <h2>Tus dos ideas de fluctuacion</h2>
+    <div class="split">
+      <article class="card">
+        <p class="num">−50%</p>
+        <p>Comprar una moneda nueva que acaba de caer 50–60% en minutos u horas. En este mercado eso casi nunca es “barato”. Un rug no rebota: la liquidez desaparece. Un bot con stop a −18% se ejecuto de media a −84%. Sin pool, no hay vuelta.</p>
+        <p>El rebote (“mean reversion”) existe en BTC/ETH y en alts liquidas, y solo cuando el mercado esta lateral. En tendencia bajista, comprar cada suelo es seguir cayendo. Una meme de dos horas no tiene media a la que volver.</p>
+      </article>
+      <article class="card">
+        <p class="num">+mucho</p>
+        <p>Si acaba de subir muchisimo: lo mas probable a continuacion, para quien llega tarde, es que caiga. No porque “siempre cae”, sino porque el que tenia 0,10 esta vendiendo en tu 0,50.</p>
+        <p>Vender tiene sentido si ya estabas dentro. Comprar el verde vertical es el trade perdedor del estudio de pumps. No puedes vender lo que no tienes; ponerse corto en una meme ilequida es otro juego, peor.</p>
+      </article>
+    </div>
+
+    <h2>Entonces, ¿que momento queda?</h2>
+    <p>Ordenado de menos estupido a mas, para alguien sin bot y sin cola privada:</p>
+    <ol>
+      <li>No intentar predecir el segundo 1. Ese asiento no se alquila a ojo.</li>
+      <li>No comprar la caida de una moneda recien creada. Ahi “barato” suele ser muerto.</li>
+      <li>No comprar el pump cuando ya es obvio. Ahi eres el 0,50.</li>
+      <li>Si algun dia estas dentro de algo que ya subio y todavia hay liquidez, el lado con mas historia a favor es vender fuerza, no anadir.</li>
+      <li>Si quieres fluctuacion de verdad (rebote tras −50%), eso es otro mercado: activos con libro de ordenes, no un token de dos horas. Aun ahi hace falta filtro de tendencia, no solo “ha caido mucho”.</li>
+    </ol>
+    <p>La unica “hora correcta” que el historico sostiene es: estar antes de que el movimiento se vea. Eso no se predice con el reloj. Se ocupa con velocidad, o no se ocupa.</p>
+
+    <h2>Horas del dia (por si acaso)</h2>
     <ul class="bars">
-      <li><em><span>Mismo dia</span><span>68,7%</span></em><div class="track"><div class="fill hot" style="width:68.7%"></div></div></li>
-      <li><em><span>1 dia mas</span><span>11,7%</span></em><div class="track"><div class="fill" style="width:11.7%"></div></div></li>
-      <li><em><span>2–7 dias</span><span>7,6%</span></em><div class="track"><div class="fill" style="width:7.6%"></div></div></li>
-      <li><em><span>8–90 dias</span><span>7,5%</span></em><div class="track"><div class="fill" style="width:7.5%"></div></div></li>
-      <li><em><span>90+ dias</span><span>4,6%</span></em><div class="track"><div class="fill" style="width:4.6%"></div></div></li>
+      <li><em><span>Sesion Asia — moons</span><span>28,7%</span></em><div class="track"><div class="fill" style="width:28.7%"></div></div></li>
+      <li><em><span>Sesion Europa</span><span>25,9%</span></em><div class="track"><div class="fill" style="width:25.9%"></div></div></li>
+      <li><em><span>Sesion EEUU</span><span>23,7%</span></em><div class="track"><div class="fill" style="width:23.7%"></div></div></li>
     </ul>
-    <p class="note">80% muertos en 24 h. Solidus Labs, misma fabrica: 98,6% acaban con liquidez &lt; 1.000 USD.</p>
+    <p class="note">SwapHunt. Jueves 23%, sabado 28%. Demasiado poco frente a un 8–12% de slippage ida y vuelta. No hay turno de trabajo que te ponga en el asiento 2.</p>
+
+    <h2>Lo de antes, en una linea</h2>
+    <p>80% de tokens Pump.fun muertos en 24 h (CoinGecko, 18,7M). 98,6% acaban con liquidez &lt; 1.000 USD (Solidus). CMC no es el evento; el anuncio de un CEX si mueve (+33% Coinbase el dia D) y ya llega tarde para quien lo ve en el timeline. Filtros de higiene quitan trampas de principiante. No eligen el millon.</p>
     <div class="grid" role="img" aria-label="98 de 100 tokens mueren, 2 sobreviven con liquidez">
       <i class="live"></i><i class="live"></i>
       <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
@@ -172,42 +208,15 @@
     </div>
     <p class="note">Verde: ~2 de 100 con liquidez real. El resto, gris.</p>
 
-    <p>Aunque filtres y solo mires tokens que ya “parecen serios” (cap 250k USD), SwapHunt (2.371 tokens, dic 2025–jun 2026) midio: 43% rug, 26% al menos x2, 12% dump, 19% plano. Probaron 100+ reglas publicas. Mejor resultado: +0,3% por trade. Cero estadistico. Quien gana no usa una lista de filtros en el telefono; usa milisegundos.</p>
-
-    <h2>Historico: publicada en una pagina grande</h2>
-    <p>Aqui hay dos cosas distintas. CoinMarketCap ya indexa decenas de millones de contratos solo. Salir ahi no es un sello y no hay cola secreta que anticipar. El evento que si mueve precio es listarse en un exchange grande (Binance, Coinbase), no el logo de CMC.</p>
-    <div class="split">
-      <article class="card">
-        <p class="num">+33%</p>
-        <p>Media el dia del anuncio en Coinbase. Binance +23%. Medianas mas bajas: +18% y +10%. El dia anterior ya sube (+3% / +6%): alguien se entera antes.</p>
-      </article>
-      <article class="card">
-        <p class="num">+5,7%</p>
-        <p>Media el dia de listing en 327 eventos, 22 exchanges. Al dia siguiente varios sitios ya dan negativo. El impulso es corto y desigual.</p>
-      </article>
-    </div>
-    <p>Eso demuestra que la idea “se publica → sube” existe. Tambien demuestra tu segunda duda: si lo ves cuando ya esta en todas partes, miles de bots y wallets enteradas se lo comieron en el anuncio. Llegar al listing visible suele ser llegar tarde.</p>
-
-    <h2>¿Puedes hacerlo tu?</h2>
-    <ul>
-      <li>Si: la idea es simple y real. Hay gente que la aprovecha.</li>
-      <li>No hay gran garantia de que no sea fraude. Solo higiene (puedes vender, el owner no imprime, la liquidez no esta suelta). Eso no elige ganadores.</li>
-      <li>En moneda recien creada, tu posicion natural sin infraestructura es comprar el 0,50, no el 0,10.</li>
-      <li>En “va a ser publicada”, el dinero historico esta en el anuncio de un CEX, no en CMC. Ese anuncio no se ve con ventaja desde casa.</li>
-      <li>Durante casi dos años, la mayoria de wallets en Pump.fun cerraban el mes en perdidas (minimo 30% en verde, jun 2025). Cuando mejoro en 2026, la mayoria de “ganadores” hizo entre 1 y 500 USD.</li>
-    </ul>
-    <p>Conclusion seca: tiene sentido como caceria de segundos, no como metodo con garantia. Sin bot, sin feed privado y sin estar en el segundo 1, el historico dice que eres el publico, no el que cobra.</p>
-
     <footer>
-      <p>Fuentes historicas, no consejo de inversion. No hay bot aqui: solo el analisis.</p>
+      <p>Fuentes historicas, no consejo de inversion. Sigue sin haber bot: solo el analisis.</p>
       <ul>
-        <li>CoinGecko — esperanza de vida Pump.fun, 18,7M tokens (2024–2026)</li>
-        <li>Solidus Labs — 98,6% Pump.fun con liquidez &lt; 1.000 USD</li>
-        <li>SwapHunt — 2.371 tokens Solana, 100+ estrategias, EV ~0</li>
+        <li>SwapHunt — 2.371 tokens; horas del dia; rugs 1–3 h; moons 9–15 h</li>
         <li>Unhosted — 275 pumps: early +62%, chasers −18%</li>
-        <li>Li (Coinbase/Binance) — +32,8% / +22,7% el dia del anuncio</li>
-        <li>Ante 2019 — +5,7% el dia de listing, 327 eventos</li>
-        <li>CoinGecko — % wallets Pump.fun en beneficio por mes</li>
+        <li>Sentinel (paper) — stop −18%, fill real mediana −84%</li>
+        <li>Coinquant — mean reversion en crypto liquida: funciona en rango, sangra en bear</li>
+        <li>CoinGecko / Solidus — mortalidad Pump.fun</li>
+        <li>Li — anuncio Coinbase +33%, Binance +23%</li>
       </ul>
     </footer>
   </main>
