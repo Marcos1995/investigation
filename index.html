@@ -141,6 +141,10 @@
         <strong>Caida 50% vs subida fuerte</strong>
         En moneda nueva, la caida suele seguir (no rebota). La subida vertical, si ya estas dentro, se vende; si la ves y compras, historicamente pierdes.
       </div>
+      <div>
+        <strong>Un bot Python que pide el precio</strong>
+        Si. Llegas tarde. Ese numero no es el precio “ahora”: es el ultimo trade que alguien ya hizo. Para el asiento 2, el movimiento acabo antes de que la funcion retorne.
+      </div>
     </div>
 
     <h2>Los tres asientos</h2>
@@ -150,6 +154,16 @@
       <li><strong>El que ve el movimiento.</strong> Entra cuando ya esta verde o cuando ya cayo “barato”. Es el combustible. Estadisticamente es la mayoria.</li>
     </ol>
     <p>Ese millon existe porque miles de wallets ponen el otro lado. No es un horario. Es una cola: quien esta delante cobra, quien llega despues paga. Ver a una persona no demuestra que el asiento 3 pueda copiar al 2. Es sesgo del superviviente.</p>
+
+    <h2>Aunque tengas un bot y una funcion de precio</h2>
+    <p>Una funcion Python que te devuelve el precio de “cualquier cripto en cualquier milisegundo” no ve el presente. Ve un eco: HTTP, cache del API, tu red, el interpretador, y luego todavia tienes que enviar la orden. El valor que retorna es verdad — como foto de un caballo que ya cruzo.</p>
+    <ul class="bars">
+      <li><em><span>Quien cobra el 0,10</span><span>dentro del mismo bloque</span></em><div class="track"><div class="fill hot" style="width:8%"></div></div></li>
+      <li><em><span>Tu get_price() (API / RPC publico)</span><span>cientos de ms → segundos</span></em><div class="track"><div class="fill" style="width:55%"></div></div></li>
+      <li><em><span>DexScreener / CoinGecko en pantalla</span><span>segundos → minutos</span></em><div class="track"><div class="fill" style="width:85%"></div></div></li>
+    </ul>
+    <p class="note">Las barras son orden de magnitud, no un cronometro. No hace falta un bot mas rapido para entenderlo: cuando existe un “precio” consultable, el asiento 2 ya compro y a menudo ya vendio.</p>
+    <p>Ese dato no es inutil del todo. Sirve para lo lento: BTC/ETH, algo que ya llevas, un chart de horas. Ahi 300 ms no cambian el trade. En moneda recien creada, 300 ms es el trade entero. El numero tiene sentido como historia. No como gatillo para llegar primero.</p>
 
     <h2>¿Hay un momento con mas probabilidad?</h2>
     <p>El momento no es las 14:00. Es <em>en que lado del movimiento estas</em>.</p>
@@ -178,7 +192,7 @@
     </div>
 
     <h2>Entonces, ¿que momento queda?</h2>
-    <p>Ordenado de menos estupido a mas, para alguien sin bot y sin cola privada:</p>
+    <p>Ordenado de menos estupido a mas, para alguien cuya arma es un bot que lee precios (no el mismo bloque que el que crea el pool):</p>
     <ol>
       <li>No intentar predecir el segundo 1. Ese asiento no se alquila a ojo.</li>
       <li>No comprar la caida de una moneda recien creada. Ahi “barato” suele ser muerto.</li>
