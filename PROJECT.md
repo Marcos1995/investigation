@@ -7,15 +7,13 @@
 
 ## Stack
 - Un HTML estatico (`index.html`)
-- Python stdlib opcional (`score.py`) — no es un bot
 
 ## Comandos utiles
 - Instalar: nada
-- Test: `python score.py --check`
+- Test: abrir el HTML
 - Dev: abrir `index.html`
 
 ## Notas para el agente
-- Investigacion, no bot ni sniper
-- No anadir dashboard, alertas, ni dependencias
+- Investigacion de inversion pasiva para un residente en España que no quiere mirar el mercado
+- No anadir bot, cripto, ni dashboard
 - Ponytail siempre activo (ver AGENTS.md)
-- Cosas que NO tocar: no convertir esto en bot de trading

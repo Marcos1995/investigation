@@ -1,7 +1,5 @@
-# Como se hace el dinero
+# Inversion pasiva (España)
 
-No hay hora magica. Hay tres asientos: quien crea, quien dispara en el segundo 1, y quien llega al chart. El millon sale de extraer al tercero.
+Si no quieres mirar el mercado: Indexa Capital (olvidarte) o MyInvestor carteras (mas barato, desde 150 €). Fondos indexados + rebalanceo, no ETFs ni cripto.
 
-En moneda nueva, −50% suele seguir (no rebota). Un pump visible, si lo compras, historicamente pierde.
-
-Un `get_price()` en Python llega tarde al asiento 2: el numero es el ultimo trade, no el presente. Ver `index.html`.
+Ver `index.html`.

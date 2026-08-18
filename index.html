@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>El dinero no se predice. Se extrae.</title>
+  <title>Lo unico rentable es aburrido.</title>
   <style>
     :root {
-      --bg: #f3eee4;
-      --ink: #1a1612;
-      --mute: #5c554c;
-      --line: #d9d0c2;
-      --accent: #9b3418;
-      --ok: #2d5a3d;
+      --bg: #f3f0e8;
+      --ink: #1b1a16;
+      --mute: #5c584f;
+      --line: #d8d2c6;
+      --accent: #1e5c45;
     }
     * { box-sizing: border-box; }
     html { color-scheme: light; }
@@ -26,18 +25,17 @@
       margin: 0 auto;
       padding: 3rem 1.4rem 5rem;
     }
-    h1, h2, p, ul, figure { margin: 0 0 1.1rem; }
+    h1, h2, p, ul, ol { margin: 0 0 1.1rem; }
     h1 {
-      font-size: clamp(2.1rem, 7vw, 3.4rem);
+      font-size: clamp(2.1rem, 7vw, 3.3rem);
       line-height: 1.05;
       font-weight: 700;
       letter-spacing: -0.03em;
-      max-width: 16ch;
+      max-width: 14ch;
     }
     h2 {
       font-size: 1.15rem;
       margin-top: 2.6rem;
-      letter-spacing: 0.02em;
     }
     .lede { font-size: 1.15rem; color: var(--mute); max-width: 38ch; }
     .verdict {
@@ -49,70 +47,41 @@
       border-top: 1px solid var(--line);
       padding-top: 0.7rem;
     }
-    .verdict strong { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .verdict strong {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
     a { color: var(--accent); }
     a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
-    .path {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr auto 1fr;
-      align-items: center;
-      gap: 0.4rem;
-      margin: 1.6rem 0 0.4rem;
-      text-align: center;
-    }
-    .path b {
-      display: block;
-      font-size: 1.6rem;
-      letter-spacing: -0.03em;
-    }
-    .path span { display: block; font-size: 0.78rem; color: var(--mute); }
-    .arrow { color: var(--mute); font-size: 1.4rem; }
-    .dead { color: var(--accent); }
-    .bars { list-style: none; padding: 0; margin: 1.2rem 0 0; }
-    .bars li { margin: 0 0 0.55rem; }
-    .bars em { display: flex; justify-content: space-between; font-style: normal; font-size: 0.88rem; }
-    .track {
-      height: 10px;
-      background: var(--line);
-      border-radius: 99px;
-      overflow: hidden;
-      margin-top: 0.25rem;
-    }
-    .fill { height: 100%; background: var(--ink); border-radius: 99px; }
-    .fill.hot { background: var(--accent); }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(20, 1fr);
-      gap: 4px;
-      margin: 1rem 0 0.5rem;
-    }
-    .grid i {
-      display: block;
-      aspect-ratio: 1;
-      background: var(--ink);
-      opacity: 0.18;
-      border-radius: 2px;
-    }
-    .grid i.live { background: var(--ok); opacity: 1; }
-    .note { font-size: 0.88rem; color: var(--mute); }
-    .split {
-      display: grid;
-      gap: 1rem;
-    }
+    .split { display: grid; gap: 1rem; }
     @media (min-width: 680px) {
-      .split { grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+      .split { grid-template-columns: 1fr 1fr; }
     }
     .card {
       border: 1px solid var(--line);
       padding: 1.1rem 1.15rem 0.9rem;
-      border-radius: 2px;
     }
     .card p:last-child { margin-bottom: 0; }
-    .num { font-size: 2.1rem; line-height: 1; letter-spacing: -0.04em; }
-    ul { padding-left: 1.15rem; }
-    li { margin-bottom: 0.4rem; }
-    ol { padding-left: 1.2rem; }
-    ol li { margin-bottom: 0.55rem; }
+    .num { font-size: 1.7rem; line-height: 1.1; letter-spacing: -0.03em; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin: 1.2rem 0;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.55rem 0.4rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); font-weight: 600; }
+    ul, ol { padding-left: 1.15rem; }
+    li { margin-bottom: 0.45rem; }
+    .note { font-size: 0.88rem; color: var(--mute); }
     footer {
       margin-top: 3rem;
       padding-top: 1.2rem;
@@ -125,112 +94,109 @@
 </head>
 <body>
   <main>
-    <h1>El dinero no se predice. Se extrae.</h1>
-    <p class="lede">Si, hay gente que convierte 5.000 en un millon. No porque adivinen la hora. Porque ocupan el asiento que cobra cuando el resto entra.</p>
+    <h1>Lo unico rentable es aburrido.</h1>
+    <p class="lede">Si no quieres mirar el mercado y quieres que se reajuste solo cuando un trozo vaya mal, la respuesta no es elegir acciones. Es un fondo global barato con rebalanceo automatico.</p>
 
     <div class="verdict">
       <div>
-        <strong>Como se hace el dinero</strong>
-        No hay un reloj magico. Hay tres asientos: quien crea la moneda y vende, quien compra en el primer segundo y vende a ti, y tu. El millon sale de los otros dos cobrandote el 0,50.
+        <strong>Para ti, en España, 2026</strong>
+        Indexa Capital si quieres cerrar la app y olvidarte. MyInvestor carteras indexadas si quieres el mismo invento mas barato y desde 150 €.
       </div>
       <div>
-        <strong>Hay una hora mejor</strong>
-        No. Asia 29% moons, Europa 26%, EEUU 24%. La diferencia no paga ni el slippage. El mercado no duerme; los bots tampoco.
+        <strong>Que es “auto-regularse”</strong>
+        No adivina el sector ganador. Cuando la bolsa cae, vende un poco de lo que aguantó (bonos) y compra lo barato. El indice mundial ya recorta solo el peso de una empresa o un sector que se hunde.
       </div>
       <div>
-        <strong>Caida 50% vs subida fuerte</strong>
-        En moneda nueva, la caida suele seguir (no rebota). La subida vertical, si ya estas dentro, se vende; si la ves y compras, historicamente pierdes.
-      </div>
-      <div>
-        <strong>Un bot Python que pide el precio</strong>
-        Si. Llegas tarde. Ese numero no es el precio “ahora”: es el ultimo trade que alguien ya hizo. Para el asiento 2, el movimiento acabo antes de que la funcion retorne.
+        <strong>ETFs vs roboadvisor</strong>
+        El ETF mundial es el mismo motor. En España el fondo indexado gana para no mirar: puedes traspasar sin pasar por Hacienda. El ETF, cada venta tributa.
       </div>
     </div>
 
-    <h2>Los tres asientos</h2>
-    <ol>
-      <li><strong>El que fabrica.</strong> Crea el token, a veces lo promociona, vende a quien llega. Es la casa. No necesita predecir.</li>
-      <li><strong>El que dispara primero.</strong> Decenas o cientos de operaciones al dia, size pequeno, salida automatica. Gana en milisegundos, no en analisis. Ese perfil encaja con el caso 5.000 → 1M: volumen + un par de loterias, no un metodo de “comprar rebotes”.</li>
-      <li><strong>El que ve el movimiento.</strong> Entra cuando ya esta verde o cuando ya cayo “barato”. Es el combustible. Estadisticamente es la mayoria.</li>
-    </ol>
-    <p>Ese millon existe porque miles de wallets ponen el otro lado. No es un horario. Es una cola: quien esta delante cobra, quien llega despues paga. Ver a una persona no demuestra que el asiento 3 pueda copiar al 2. Es sesgo del superviviente.</p>
+    <h2>Lo que realmente gana a largo plazo</h2>
+    <p>Nadie te garantiza un 8%. Lo que la historia sostiene, en decadas y despues de inflacion, es: poseer el mercado entero, pagar poco, no tocar. Un roboadvisor no “bate” a Wall Street. Es Wall Street menos un 0,4–0,7% al año. Los fondos del banco al 1,5–2% suelen perder contra eso mismo.</p>
+    <p>Cripto, acciones sueltas, “la hora buena”: eso exige estar encima. Lo desestimamos. Aqui el trabajo es no hacer nada.</p>
 
-    <h2>Aunque tengas un bot y una funcion de precio</h2>
-    <p>Una funcion Python que te devuelve el precio de “cualquier cripto en cualquier milisegundo” no ve el presente. Ve un eco: HTTP, cache del API, tu red, el interpretador, y luego todavia tienes que enviar la orden. El valor que retorna es verdad — como foto de un caballo que ya cruzo.</p>
-    <ul class="bars">
-      <li><em><span>Quien cobra el 0,10</span><span>dentro del mismo bloque</span></em><div class="track"><div class="fill hot" style="width:8%"></div></div></li>
-      <li><em><span>Tu get_price() (API / RPC publico)</span><span>cientos de ms → segundos</span></em><div class="track"><div class="fill" style="width:55%"></div></div></li>
-      <li><em><span>DexScreener / CoinGecko en pantalla</span><span>segundos → minutos</span></em><div class="track"><div class="fill" style="width:85%"></div></div></li>
-    </ul>
-    <p class="note">Las barras son orden de magnitud, no un cronometro. No hace falta un bot mas rapido para entenderlo: cuando existe un “precio” consultable, el asiento 2 ya compro y a menudo ya vendio.</p>
-    <p>Ese dato no es inutil del todo. Sirve para lo lento: BTC/ETH, algo que ya llevas, un chart de horas. Ahi 300 ms no cambian el trade. En moneda recien creada, 300 ms es el trade entero. El numero tiene sentido como historia. No como gatillo para llegar primero.</p>
+    <h2>España: quien hace el trabajo por ti</h2>
+    <table>
+      <thead>
+        <tr><th>Opcion</th><th>Minimo</th><th>Coste total orientativo</th><th>Para no mirar</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Indexa Capital</td>
+          <td>1.000 €</td>
+          <td>~0,5–0,6%</td>
+          <td>La referencia. Cuestionario, rebalanceo, fondos Vanguard, historial mas largo.</td>
+        </tr>
+        <tr>
+          <td>MyInvestor carteras</td>
+          <td>150 €</td>
+          <td>~0,41%</td>
+          <td>Mas barato al empezar. Misma idea. Banco + inversion en una app.</td>
+        </tr>
+        <tr>
+          <td>Finizens</td>
+          <td>1.000 €</td>
+          <td>~0,4–0,7% (baja cada año)</td>
+          <td>Fidelidad: la comision de gestion cae con el tiempo.</td>
+        </tr>
+        <tr>
+          <td>inbestMe</td>
+          <td>1.000 €</td>
+          <td>~0,4–0,8%</td>
+          <td>Mas sabores (ISR, ETF). Peor si tu objetivo es no elegir.</td>
+        </tr>
+        <tr>
+          <td>Openbank, Popcoin, Caixa…</td>
+          <td>varia</td>
+          <td>suele 0,6–1%+</td>
+          <td>Mismo producto, casi siempre mas caro. No aporta magia.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note">Costes 2026, aproximados (gestion + custodia + TER). Cambian; mira la ficha actual. Todos estos usan fondos, no hace falta “adivinar el sector”.</p>
 
-    <h2>¿Hay un momento con mas probabilidad?</h2>
-    <p>El momento no es las 14:00. Es <em>en que lado del movimiento estas</em>.</p>
-    <div class="path" aria-hidden="true">
-      <div><b>0,10</b><span>asiento 1–2</span></div>
-      <div class="arrow">→</div>
-      <div><b>0,50</b><span>aqui miras el chart</span></div>
-      <div class="arrow">→</div>
-      <div class="dead"><b>~0</b><span>asiento 3 se queda</span></div>
-    </div>
-    <p>275 pumps medidos: entrar en la primera hora, mediana +62% al dia siguiente. Comprar el cierre del pump (cuando “ya se ve”), mediana −18%. Misma moneda. Solo cambia el minuto.</p>
-    <p>SwapHunt, 2.371 tokens ya visibles: rugs se hunden en 1–3 horas. Los que si suben marcan maximo a las 9–15 horas. Por eso no hay regla de “espero dos horas y compro el rebote”: el rug ya acabo y el moon todavia no, o al reves. La ventana se mueve.</p>
-
-    <h2>Tus dos ideas de fluctuacion</h2>
+    <h2>El resto del mundo (y por que no te sirve igual)</h2>
     <div class="split">
       <article class="card">
-        <p class="num">−50%</p>
-        <p>Comprar una moneda nueva que acaba de caer 50–60% en minutos u horas. En este mercado eso casi nunca es “barato”. Un rug no rebota: la liquidez desaparece. Un bot con stop a −18% se ejecuto de media a −84%. Sin pool, no hay vuelta.</p>
-        <p>El rebote (“mean reversion”) existe en BTC/ETH y en alts liquidas, y solo cuando el mercado esta lateral. En tendencia bajista, comprar cada suelo es seguir cayendo. Una meme de dos horas no tiene media a la que volver.</p>
+        <p class="num">Misma receta</p>
+        <p>EEUU: Vanguard / Fidelity target-date, Betterment, Wealthfront. Reino Unido: Vanguard LifeStrategy, Nutmeg. Todo es indice global + bonos + rebalanceo.</p>
       </article>
       <article class="card">
-        <p class="num">+mucho</p>
-        <p>Si acaba de subir muchisimo: lo mas probable a continuacion, para quien llega tarde, es que caiga. No porque “siempre cae”, sino porque el que tenia 0,10 esta vendiendo en tu 0,50.</p>
-        <p>Vender tiene sentido si ya estabas dentro. Comprar el verde vertical es el trade perdedor del estudio de pumps. No puedes vender lo que no tienes; ponerse corto en una meme ilequida es otro juego, peor.</p>
+        <p class="num">No los uses desde España</p>
+        <p>Un robo de EEUU te mete en fiscalidad extranjera, modelo 720 y productos que Hacienda trata peor. El equivalente legal y barato ya esta en Indexa / MyInvestor / fondos UCITS.</p>
       </article>
     </div>
 
-    <h2>Entonces, ¿que momento queda?</h2>
-    <p>Ordenado de menos estupido a mas, para alguien cuya arma es un bot que lee precios (no el mismo bloque que el que crea el pool):</p>
+    <h2>Tres alturas, una sola logica</h2>
     <ol>
-      <li>No intentar predecir el segundo 1. Ese asiento no se alquila a ojo.</li>
-      <li>No comprar la caida de una moneda recien creada. Ahi “barato” suele ser muerto.</li>
-      <li>No comprar el pump cuando ya es obvio. Ahi eres el 0,50.</li>
-      <li>Si algun dia estas dentro de algo que ya subio y todavia hay liquidez, el lado con mas historia a favor es vender fuerza, no anadir.</li>
-      <li>Si quieres fluctuacion de verdad (rebote tras −50%), eso es otro mercado: activos con libro de ordenes, no un token de dos horas. Aun ahi hace falta filtro de tendencia, no solo “ha caido mucho”.</li>
+      <li><strong>Cero mantenimiento:</strong> Indexa o MyInvestor cartera. Ellos rebalancean. Tu aportas cada mes por domiciliacion y no entras.</li>
+      <li><strong>Casi cero (un click al año):</strong> tu mismo en MyInvestor, un fondo de bolsa mundial + uno de bonos. Traspaso una vez al año. Mas barato. Exige no toquetear el resto del tiempo.</li>
+      <li><strong>Un solo ETF tipo LifeStrategy:</strong> rebalancea por dentro. Barato. En España cada venta tributa; peor si un dia quieres cambiar el mix.</li>
     </ol>
-    <p>La unica “hora correcta” que el historico sostiene es: estar antes de que el movimiento se vea. Eso no se predice con el reloj. Se ocupa con velocidad, o no se ocupa.</p>
+    <p>Para “no quiero estar pendiente”, el 1 gana al 2. El 2 gana en comision si de verdad no vas a tinkerear. El 3 es el atajo mundial; fiscalmente es el peor de los tres aqui.</p>
 
-    <h2>Horas del dia (por si acaso)</h2>
-    <ul class="bars">
-      <li><em><span>Sesion Asia — moons</span><span>28,7%</span></em><div class="track"><div class="fill" style="width:28.7%"></div></div></li>
-      <li><em><span>Sesion Europa</span><span>25,9%</span></em><div class="track"><div class="fill" style="width:25.9%"></div></div></li>
-      <li><em><span>Sesion EEUU</span><span>23,7%</span></em><div class="track"><div class="fill" style="width:23.7%"></div></div></li>
+    <h2>Plan de pensiones</h2>
+    <p>Indexa y otros tienen plan de pensiones indexado. Desgrava hasta 1.500 €/año (limite actual de empleo/individual; el de empresa puede ser mas). El dinero queda preso hasta jubilacion o supuestos legales. Complemento, no el cubo principal, salvo que el ahorro fiscal te importe y no necesites el dinero.</p>
+
+    <h2>Que no es “auto-regularse”</h2>
+    <ul>
+      <li>Un gestor del banco que “se pone conservador” a ojo y cobra el 2%.</li>
+      <li>Rotar a oro, cripto o “el sector que pinta bien”. Eso es estar pendiente.</li>
+      <li>Parar las aportaciones cuando cae. El rebalanceo necesita que sigas metiendo dinero, sobre todo entonces.</li>
     </ul>
-    <p class="note">SwapHunt. Jueves 23%, sabado 28%. Demasiado poco frente a un 8–12% de slippage ida y vuelta. No hay turno de trabajo que te ponga en el asiento 2.</p>
+    <p>Si un sector se hunde, un indice mundial ya pesa menos ese sector. El roboadvisor no tiene que “vender Tesla a tiempo”. Tiene que mantener tu mezcla acciones/bonos y cobrarte poco.</p>
 
-    <h2>Lo de antes, en una linea</h2>
-    <p>80% de tokens Pump.fun muertos en 24 h (CoinGecko, 18,7M). 98,6% acaban con liquidez &lt; 1.000 USD (Solidus). CMC no es el evento; el anuncio de un CEX si mueve (+33% Coinbase el dia D) y ya llega tarde para quien lo ve en el timeline. Filtros de higiene quitan trampas de principiante. No eligen el millon.</p>
-    <div class="grid" role="img" aria-label="98 de 100 tokens mueren, 2 sobreviven con liquidez">
-      <i class="live"></i><i class="live"></i>
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-    </div>
-    <p class="note">Verde: ~2 de 100 con liquidez real. El resto, gris.</p>
+    <h2>La eleccion corta</h2>
+    <p>Si cierras esto y haces una sola cosa: abre Indexa, haz el test de riesgo con honestidad (si el dinero lo necesitas en menos de 5 años, no es para bolsa), domicilia una cantidad que no te duela, y no mires la app. Si partes de poco capital, MyInvestor hace lo mismo desde 150 € y un pelin mas barato al inicio.</p>
+    <p>No hay almuerzo gratis. Habra años en rojo. La rentabilidad “buena” es la del mercado mundial menos comisiones, sostenida 15–30 años. Eso es lo unico que, a esta fecha, encaja con no estar pendiente.</p>
 
     <footer>
-      <p>Fuentes historicas, no consejo de inversion. Sigue sin haber bot: solo el analisis.</p>
+      <p>Informacion general, no asesoramiento personalizado ni recomendacion de compra. Comprueba comisiones, minimos y fiscalidad vigentes. Entidades supervisadas por CNMV / Banco de España.</p>
       <ul>
-        <li>SwapHunt — 2.371 tokens; horas del dia; rugs 1–3 h; moons 9–15 h</li>
-        <li>Unhosted — 275 pumps: early +62%, chasers −18%</li>
-        <li>Sentinel (paper) — stop −18%, fill real mediana −84%</li>
-        <li>Coinquant — mean reversion en crypto liquida: funciona en rango, sangra en bear</li>
-        <li>CoinGecko / Solidus — mortalidad Pump.fun</li>
-        <li>Li — anuncio Coinbase +33%, Binance +23%</li>
+        <li>Indexa, MyInvestor, Finizens, inbestMe — fichas de costes 2026</li>
+        <li>Bogleheads España — fondos vs ETF y traspaso</li>
+        <li>Expansion / comparativas roboadvisors 2026</li>
       </ul>
     </footer>
   </main>
