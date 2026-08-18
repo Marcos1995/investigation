@@ -1,7 +1,5 @@
 # Investigation
 
-Filtros de higiene para tokens EVM nuevos vs la tesis de “listing pump” en CMC.
+Informe visual: abrir `index.html`.
 
-Veredicto en `HALLAZGOS.md`. Checker: `python score.py --check` o `python score.py <chain_id> <0xaddress>`.
-
-PASS = no es trampa obvia. No significa que vaya a subir.
+La idea de comprar un token recien creado (o uno a punto de listarse) es real. No hay gran garantia de que no sea fraude ni de que vaya a triunfar.
