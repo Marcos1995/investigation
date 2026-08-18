@@ -2,8 +2,8 @@
 # Contexto del proyecto
 
 ## Produccion
-- URL: index.html en el repo (informe visual, no hay app)
-- Deploy: GitHub / raw.githack
+- URL: https://gist.githack.com/Marcos1995/4232f4eebf9d6ef386faac916c3505ea/raw/index.html
+- Deploy: gist publico (el repo es privado y no tiene Pages)
 
 ## Stack
 - Un HTML estatico (`index.html`)
