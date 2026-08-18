@@ -2,8 +2,8 @@
 # Contexto del proyecto
 
 ## Produccion
-- URL: https://gist.githack.com/Marcos1995/4232f4eebf9d6ef386faac916c3505ea/raw/index.html
-- Deploy: gist publico (el repo es privado y no tiene Pages)
+- URL: https://marcos1995.github.io/investigation/
+- Deploy: GitHub Pages (repo publico)
 
 ## Stack
 - Un HTML estatico (`index.html`)
