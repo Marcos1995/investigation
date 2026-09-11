@@ -44,7 +44,14 @@
     .city.open { grid-column: 1 / -1; }
     .city b { display: block; }
     .city > span { color: var(--mute); font-size: .8rem; }
-    .city .p { color: var(--clay); font-weight: 750; font-size: .92rem; }
+    .city .p { color: var(--clay); font-weight: 750; font-size: .98rem; }
+    .city .brk { color: var(--mute); font-size: .75rem; margin: .15rem 0 .1rem; }
+    .split {
+      display: grid; gap: .15rem; font-size: .8rem; margin: 0 0 .5rem;
+      background: #f7f1e8; border-radius: 8px; padding: .45rem .55rem;
+    }
+    .split b { color: var(--ink); }
+    .split .tot { color: var(--clay); font-weight: 750; }
     .sbtn { display: flex; flex-wrap: wrap; gap: .28rem; margin-top: .45rem; }
     .sbtn a {
       font-size: .72rem; padding: .28rem .45rem; border-radius: 7px; text-decoration: none;
@@ -135,11 +142,12 @@
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas", pair: "las 2",
         stay: "Airbnb: 3 hab. y 2+ baños. Si haces zoom en su mapa, puede vaciarse: aleja o pulsa la ciudad. Hotel (Booking): 3 hab., baño dentro.",
         foodL: "Comida / persona / día", stayL: "Alojamiento total · 6 pers. · 4 noches",
-        bud: "Total por persona = vuelo (fijo, varía por origen) + piso/6 + comida × 4 días.",
+        bud: "Total por persona = vuelo (fijo) + piso/6 + comida × 4. Las aerolíneas no aceptan el enlace directo: Kayak abre la búsqueda con fechas, 2 adultos y esa compañía.",
+        fly: "Vuelo", bed: "Alojamiento", eat: "Comida (est.)", tot: "Total",
         nights: "/noche · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "sin listados",
-        gf: "Google Flights", air: "Aerolínea", bag: "cabina 8 kg incluida"
+        gf: "Google Flights", air: "Kayak", bag: "cabina 8 kg incluida · 2 adultos"
       },
       en: {
         dates: "4–8 December 2026",
@@ -151,11 +159,12 @@
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people", pair: "for 2",
         stay: "Airbnb: 3 bedrooms, 2+ baths. Zooming its map can empty results: zoom out or tap the city. Hotel (Booking): 3 rooms, bathroom in each.",
         foodL: "Food / person / day", stayL: "Stay total · 6 people · 4 nights",
-        bud: "Per person = flight (fixed, varies by origin) + stay/6 + food × 4 days.",
+        bud: "Per person = flight (fixed) + stay/6 + food × 4. Airline sites ignore deep links: Kayak runs the search with dates, 2 adults and that carrier.",
+        fly: "Flight", bed: "Stay", eat: "Food (est.)", tot: "Total",
         nights: "/night · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "no listings",
-        gf: "Google Flights", air: "Airline", bag: "8 kg cabin bag included"
+        gf: "Google Flights", air: "Kayak", bag: "8 kg cabin bag included · 2 adults"
       },
       de: {
         dates: "4.–8. Dezember 2026",
@@ -167,11 +176,12 @@
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen", pair: "für 2",
         stay: "Airbnb: 3 Schlafzimmer, 2+ Bäder. Zoom auf deren Karte kann Treffer leeren: rauszoomen oder Stadt antippen. Hotel (Booking): 3 Zimmer, Bad im Zimmer.",
         foodL: "Essen / Person / Tag", stayL: "Unterkunft gesamt · 6 Pers. · 4 Nächte",
-        bud: "Pro Person = Flug (fest, je nach Start) + Unterkunft/6 + Essen × 4 Tage.",
+        bud: "Pro Person = Flug (fest) + Unterkunft/6 + Essen × 4. Airline-Seiten ignorieren Direktlinks: Kayak startet die Suche mit Daten, 2 Erwachsenen und dieser Airline.",
+        fly: "Flug", bed: "Unterkunft", eat: "Essen (geschätzt)", tot: "Summe",
         nights: "/Nacht · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "keine Treffer",
-        gf: "Google Flights", air: "Airline", bag: "8-kg-Handgepäck inklusive"
+        gf: "Google Flights", air: "Kayak", bag: "8-kg-Handgepäck inklusive · 2 Personen"
       }
     };
 
@@ -313,25 +323,9 @@
       const hl = lang === "de" ? "de" : lang === "en" ? "en" : "es";
       return "https://www.google.com/travel/flights/search?tfs=" + tfs + "&hl=" + hl + "&curr=EUR";
     }
-    function airlineUrl(air, from, to) {
-      const es = lang === "de" ? "de" : lang === "en" ? "en" : "es";
-      if (air === "Vueling")
-        return "https://tickets.vueling.com/booking/flightSearch?o=" + from + "&d=" + to + "&dd=2026-12-04&rd=2026-12-08&ADT=2&CURRENCY=EUR";
-      if (air === "Lufthansa") {
-        const loc = lang === "de" ? "de/de" : lang === "en" ? "en/en" : "es/es";
-        return "https://www.lufthansa.com/" + loc + "/booking/flight-search?origin=" + from + "&destination=" + to +
-          "&outboundDate=2026-12-04&inboundDate=2026-12-08&adults=2&tripType=ROUNDTRIP&cabinClass=M";
-      }
-      if (air === "TAP")
-        return "https://booking.flytap.com/booking/availability?tripType=RT&origin=" + from + "&destination=" + to +
-          "&outDate=2026-12-04&inDate=2026-12-08&adults=2&currency=EUR";
-      if (air === "Eurowings")
-        return "https://www.eurowings.com/" + es + "/booking/flights/search.html?origin=" + from + "&destination=" + to +
-          "&outboundDate=2026-12-04&inboundDate=2026-12-08&adultCount=2&currency=EUR";
-      if (air === "Iberia")
-        return "https://www.iberia.com/" + (lang === "de" ? "de" : lang === "en" ? "gb" : "es") +
-          "/flights/?origin=" + from + "&destination=" + to + "&departureDate=2026-12-04&returnDate=2026-12-08&adults=2";
-      return "https://www.google.com/travel/flights/search?hl=es&curr=EUR&q=" + encodeURIComponent(from + " to " + to + " 2026-12-04");
+    function kayak(from, to, air) {
+      const host = lang === "de" ? "www.kayak.de" : lang === "en" ? "www.kayak.com" : "www.kayak.es";
+      return "https://" + host + "/flights/" + from + "-" + to + "/2026-12-04/2026-12-08/2adults?sort=bestflight_a&fs=stops%3D~0%3Bairlines%3D~" + (AIR[air] || "VY");
     }
     function stayUrls(c) {
       const max = Math.max(80, Math.round(stayTot / NIGHTS));
@@ -380,6 +374,16 @@
       setTimeout(() => map.invalidateSize(), 80);
     }
 
+    function splitBox(c, t) {
+      const bed = Math.round(stayTot / 6);
+      const eat = foodDay * NIGHTS;
+      const rows = ["BCN", "FRA", "HAM"].map((o) => {
+        const fly = c.flights[o].p;
+        return "<div>" + t.fly + " " + o + ": <b>" + fly + " €</b> · " + t.tot + " <span class=\"tot\">" + (fly + bed + eat) + " € " + t.each + "</span></div>";
+      }).join("");
+      return "<div class=\"split\"><div>" + t.bed + ": <b>" + bed + " €</b> " + t.each + " · " + stayTot + " € / 6</div>" +
+        "<div>" + t.eat + ": <b>" + eat + " €</b> " + t.each + " · " + foodDay + " € × " + NIGHTS + "</div>" + rows + "</div>";
+    }
     function flyRow(c, o, t) {
       const f = c.flights[o];
       return "<div class=\"rowf\"><div class=\"o\">" + o + "</div><div>" +
@@ -387,7 +391,7 @@
         "<div class=\"leg\"><em>" + t.out + "</em>" + f.out[0] + " " + o + " → " + f.out[1] + " " + c.iata + " · " + f.out[2] + "</div>" +
         "<div class=\"leg\"><em>" + t.back + "</em>" + f.back[0] + " " + c.iata + " → " + f.back[1] + " " + o + " · " + f.back[2] + "</div>" +
         "</div><div class=\"btns\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"" + gf(o, c.iata, f.air, f.out[0], f.back[0]) + "\">" + t.gf + "</a>" +
-        "<a class=\"btn ghost\" target=\"_blank\" rel=\"noopener\" href=\"" + airlineUrl(f.air, o, c.iata) + "\">" + f.air + "</a></div></div>";
+        "<a class=\"btn ghost\" target=\"_blank\" rel=\"noopener\" href=\"" + kayak(o, c.iata, f.air) + "\">" + t.air + " · " + f.air + "</a></div></div>";
     }
 
     function render() {
@@ -416,13 +420,17 @@
             (miss ? " title=\"" + t.zero + "\"" : "") + ">" + label + (miss ? " · " + t.zero : "") + "</a>";
         };
         const extra = isOpen
-          ? "<div class=\"more\"><p class=\"why\"><strong>" + t.whyL + ".</strong> " + x.why[lang] + "</p>" +
+          ? "<div class=\"more\">" + splitBox(x, t) + "<p class=\"why\"><strong>" + t.whyL + ".</strong> " + x.why[lang] + "</p>" +
             ["BCN", "FRA", "HAM"].map((o) => flyRow(x, o, t)).join("") +
             "<div style=\"font-size:.72rem;color:var(--mute)\">" + t.bag + "</div></div>"
           : "";
+        const tots = ["BCN", "FRA", "HAM"].map((o) => pp(x, o));
+        const flies = ["BCN", "FRA", "HAM"].map((o) => x.flights[o].p);
         return "<div class=\"city" + (x.id === sel ? " on" : "") + (isOpen ? " open" : "") + "\" data-id=\"" + x.id + "\">" +
         "<b>#" + x.rank + " " + x.name[lang] + "</b><span>" + x.t + " · " + x.area[lang] + "</span>" +
-        "<div class=\"p\">" + pp(x, "BCN") + "–" + pp(x, "FRA") + " € " + t.each + "</div>" +
+        "<div class=\"p\">" + Math.min.apply(null, tots) + "–" + Math.max.apply(null, tots) + " € " + t.each + "</div>" +
+        "<div class=\"brk\">" + t.fly + " " + Math.min.apply(null, flies) + "–" + Math.max.apply(null, flies) +
+        " · " + t.bed + " " + Math.round(stayTot / 6) + " · " + t.eat + " " + (foodDay * NIGHTS) + "</div>" +
         "<div class=\"sbtn\">" + btn("airbnb", t.ab) + btn("hotel", t.ht) + "</div>" +
         "<button type=\"button\" class=\"tog\" data-open=\"" + x.id + "\" aria-expanded=\"" + isOpen + "\">" +
         (isOpen ? t.hide : t.det) + "</button>" + extra + "</div>";
