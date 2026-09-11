@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="de">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>4–8 diciembre 2026</title>
+  <title>4.–8. Dezember 2026</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
   <style>
     :root {
@@ -120,9 +120,9 @@
   <div class="bar">
     <div class="brand" id="dates"></div>
     <div class="langs">
-      <button class="pill" type="button" data-lang="es">ES</button>
-      <button class="pill" type="button" data-lang="en">EN</button>
-      <button class="pill" type="button" data-lang="de">DE</button>
+      <button class="pill" type="button" data-lang="es" aria-pressed="false">ES</button>
+      <button class="pill" type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button class="pill" type="button" data-lang="de" aria-pressed="true">DE</button>
     </div>
   </div>
   <div class="wrap">
@@ -293,7 +293,7 @@
       HAM: { ll: [53.6304, 9.9882] }
     };
 
-    let lang = localStorage.getItem("trip-lang") || "de";
+    let lang = "de";
     let sel = "LIS";
     let open = "";
     let stay = "airbnb";
@@ -482,7 +482,7 @@
     document.getElementById("foodIn").oninput = function () { foodDay = +this.value; render(); };
     document.getElementById("stayIn").oninput = function () { stayTot = +this.value; render(); };
     document.querySelectorAll("[data-lang]").forEach((b) => {
-      b.onclick = () => { lang = b.dataset.lang; localStorage.setItem("trip-lang", lang); render(); };
+      b.onclick = () => { lang = b.dataset.lang; render(); };
     });
     render();
   </script>
