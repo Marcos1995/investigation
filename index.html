@@ -41,8 +41,9 @@
       padding: .55rem .6rem; cursor: pointer; text-align: left;
     }
     .city.on { outline: 2px solid var(--clay); }
+    .city.open { grid-column: 1 / -1; }
     .city b { display: block; }
-    .city span { color: var(--mute); font-size: .8rem; }
+    .city > span { color: var(--mute); font-size: .8rem; }
     .city .p { color: var(--clay); font-weight: 750; font-size: .92rem; }
     .sbtn { display: flex; flex-wrap: wrap; gap: .28rem; margin-top: .45rem; }
     .sbtn a {
@@ -51,16 +52,24 @@
     }
     .sbtn a.on { background: var(--clay); }
     .sbtn a.miss { opacity: .55; }
+    .tog {
+      margin-top: .4rem; width: 100%; font: inherit; font-size: .72rem; font-weight: 650;
+      cursor: pointer; border: 1px solid var(--line); background: #fff; color: var(--ink);
+      border-radius: 7px; padding: .28rem .45rem;
+    }
+    .city.open .tog { background: var(--sea); color: #fff; border-color: var(--sea); }
+    .more { margin-top: .5rem; border-top: 1px solid var(--line); padding-top: .5rem; }
+    .more .why { color: var(--mute); font-size: .84rem; margin: 0 0 .45rem; }
+    .rowf {
+      display: grid; grid-template-columns: 3.2rem minmax(0, 1fr) auto; gap: .25rem .55rem;
+      align-items: center; font-size: .8rem; background: #f7f1e8; border-radius: 8px;
+      padding: .35rem .45rem; margin: 0 0 .28rem;
+    }
+    .rowf .o { font-weight: 800; color: var(--sea); }
+    .rowf .times { font-weight: 650; }
+    .rowf .btns { display: flex; gap: .28rem; flex-wrap: wrap; }
+    .rowf .btn { padding: .22rem .48rem; font-size: .7rem; border-radius: 7px; }
     .hint { color: var(--mute); font-size: .8rem; margin: -.1rem 0 .75rem; }
-    .panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .9rem 1rem; }
-    .k { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--clay); font-weight: 700; }
-    .why { color: var(--mute); margin: .25rem 0 .55rem; }
-    .leg { border: 1px solid var(--line); border-radius: 10px; padding: .6rem .7rem; margin: .4rem 0; }
-    .leg h3 { margin: 0 0 .35rem; font-size: .92rem; }
-    .pair { display: grid; grid-template-columns: 1fr; gap: .4rem; }
-    .fly { background: #f7f1e8; border-radius: 8px; padding: .45rem .5rem; font-size: .84rem; }
-    .fly b { display: block; font-size: .74rem; color: var(--mute); }
-    .times { font-weight: 750; margin: .1rem 0; }
     .price { color: var(--clay); font-weight: 750; }
     .pin { background: var(--clay); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: grid; place-items: center; font-size: 10px; font-weight: 800; border: 2px solid #fff; }
     .pin.origin { background: var(--sea); }
@@ -71,8 +80,9 @@
       .cities { grid-template-columns: 1fr 1fr; }
       #map { height: 220px; }
     }
-    @media (min-width: 901px) {
-      .pair { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 700px) {
+      .rowf { grid-template-columns: 3.2rem 1fr; }
+      .rowf .btns { grid-column: 1 / -1; }
     }
     @media (max-width: 560px) { .cities { grid-template-columns: 1fr; } }
   </style>
@@ -95,7 +105,6 @@
     </div>
     <div class="cities" id="list"></div>
     <p class="hint" id="stayhint"></p>
-    <div class="panel" id="detail"></div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
@@ -103,9 +112,10 @@
       es: {
         dates: "4–8 de diciembre de 2026",
         title: "Un puente de 4 noches para 6 personas",
-        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b>: ida <b>a partir de las 17:00–18:00</b> (no antes), vuelta a mediodía o tarde. El precio del vuelo ya incluye maleta de cabina (~8 kg). Pulsa una ciudad.",
+        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b>: ida <b>a partir de las 17:00–18:00</b> (no antes), vuelta a mediodía o tarde. El precio del vuelo ya incluye maleta de cabina (~8 kg). En cada ciudad, <b>Ciudad y vuelos</b> abre la zona y los horarios.",
         mapO: "Salís de aquí", mapD: "Destinos",
-        whyL: "Por qué", each: "por persona", out: "Ida 4 dic", back: "Vuelta 8 dic",
+        whyL: "Por qué", each: "por persona", out: "Ida", back: "Vuelta",
+        det: "Ciudad y vuelos", hide: "Cerrar",
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas",
         stay: "Airbnb: piso de 3 habitaciones y 2+ baños. Hotel (Booking): 3 habitaciones, cama doble o dos individuales, baño dentro de cada una.",
         nights: "/noche · ",
@@ -116,9 +126,10 @@
       en: {
         dates: "4–8 December 2026",
         title: "A 4-night trip for 6 people",
-        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> only: out <b>from 17:00–18:00</b> (not earlier), back midday or afternoon. Fares include a cabin bag (~8 kg). Tap a city.",
+        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> only: out <b>from 17:00–18:00</b> (not earlier), back midday or afternoon. Fares include a cabin bag (~8 kg). On each city, <b>City & flights</b> opens the area and times.",
         mapO: "You leave from here", mapD: "Destinations",
-        whyL: "Why", each: "per person", out: "Out 4 Dec", back: "Return 8 Dec",
+        whyL: "Why", each: "per person", out: "Out", back: "Back",
+        det: "City & flights", hide: "Close",
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people",
         stay: "Airbnb: 3-bedroom flat with 2+ baths. Hotel (Booking): 3 rooms, double or twin beds, private bathroom in each room.",
         nights: "/night · ",
@@ -129,9 +140,10 @@
       de: {
         dates: "4.–8. Dezember 2026",
         title: "Vier Nächte für sechs Personen",
-        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Direktflüge</b>: hin <b>ab 17:00–18:00</b> (nicht früher), zurück mittags oder nachmittags. Preis inkl. Handgepäck (~8 kg). Stadt antippen.",
+        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Direktflüge</b>: hin <b>ab 17:00–18:00</b> (nicht früher), zurück mittags oder nachmittags. Preis inkl. Handgepäck (~8 kg). Pro Stadt öffnet <b>Stadt und Flüge</b> Viertel und Zeiten.",
         mapO: "Abflug", mapD: "Ziele",
-        whyL: "Warum", each: "pro Person", out: "Hin 4. Dez", back: "Rück 8. Dez",
+        whyL: "Warum", each: "pro Person", out: "Hin", back: "Rück",
+        det: "Stadt und Flüge", hide: "Schließen",
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen",
         stay: "Airbnb: Wohnung mit 3 Schlafzimmern und 2+ Bädern. Hotel (Booking): 3 Zimmer, Doppel- oder zwei Einzelbetten, Bad im Zimmer.",
         nights: "/Nacht · ",
@@ -243,6 +255,7 @@
     const hl = { es: "es", en: "en", de: "de" };
     let lang = localStorage.getItem("trip-lang") || "es";
     let sel = "LIS";
+    let open = "";
     let stay = "airbnb";
     let map, overlay;
 
@@ -309,26 +322,23 @@
       CITIES.forEach((c) => {
         L.marker(c.ll, { icon: pinIcon(c.iata, false, c.id === sel) })
           .addTo(overlay).bindTooltip(c.name[lang])
-          .on("click", () => { sel = c.id; render(); });
+          .on("click", () => { sel = c.id; open = c.id; render(); });
       });
       setTimeout(() => map.invalidateSize(), 80);
     }
 
-    function flyBlock(c, o, t) {
+    function flyRow(c, o, t) {
       const f = c.flights[o];
-      return "<div class=\"leg\"><h3>" + t.pax + " " + o + " · " + f.air + " · <span class=\"price\">" + f.p + " € " + t.each + "</span> · " + t.bag + "</h3>" +
-        "<div class=\"pair\"><div class=\"fly\"><b>" + t.out + "</b><div class=\"times\">" + f.out[0] + " " + o + " → " + f.out[1] + " " + c.iata + "</div>" +
-        t.dep + " " + f.out[0] + " · " + t.arr + " " + f.out[1] + " · " + f.out[2] + "</div>" +
-        "<div class=\"fly\"><b>" + t.back + "</b><div class=\"times\">" + f.back[0] + " " + c.iata + " → " + f.back[1] + " " + o + "</div>" +
-        t.dep + " " + f.back[0] + " · " + t.arr + " " + f.back[1] + " · " + f.back[2] + "</div></div>" +
-        "<div style=\"margin-top:.4rem;display:flex;gap:.35rem;flex-wrap:wrap\">" +
-        "<a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"" + gf(o, c.iata) + "\">" + t.gf + "</a>" +
-        "<a class=\"btn ghost\" target=\"_blank\" rel=\"noopener\" href=\"" + airlineUrl(f.air, o, c.iata) + "\">" + t.air + " " + f.air + "</a></div></div>";
+      return "<div class=\"rowf\"><div class=\"o\">" + o + "</div><div>" +
+        f.air + " · <span class=\"price\">" + f.p + " €</span> · " + t.pax +
+        "<div class=\"times\">" + t.out + " " + f.out[0] + "→" + f.out[1] + " · " + t.back + " " + f.back[0] + "→" + f.back[1] +
+        " · " + f.out[2] + "</div></div>" +
+        "<div class=\"btns\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"" + gf(o, c.iata) + "\">" + t.gf + "</a>" +
+        "<a class=\"btn ghost\" target=\"_blank\" rel=\"noopener\" href=\"" + airlineUrl(f.air, o, c.iata) + "\">" + f.air + "</a></div></div>";
     }
 
     function render() {
       const t = T[lang];
-      const c = city();
       document.documentElement.lang = lang;
       document.title = t.dates;
       document.getElementById("dates").textContent = t.dates;
@@ -341,31 +351,45 @@
 
       document.getElementById("list").innerHTML = CITIES.map((x) => {
         const u = stayUrls(x);
+        const isOpen = open === x.id;
         const btn = (kind, label) => {
           const miss = x.empty && x.empty[kind];
           return "<a class=\"" + (stay === kind ? "on" : "") + (miss ? " miss" : "") + "\" data-stay=\"" + kind +
             "\" data-city=\"" + x.id + "\" target=\"_blank\" rel=\"noopener\" href=\"" + u[kind] + "\"" +
             (miss ? " title=\"" + t.zero + "\"" : "") + ">" + label + (miss ? " · " + t.zero : "") + "</a>";
         };
-        return "<div class=\"city" + (x.id === sel ? " on" : "") + "\" data-id=\"" + x.id + "\">" +
+        const extra = isOpen
+          ? "<div class=\"more\"><p class=\"why\"><strong>" + t.whyL + ".</strong> " + x.why[lang] + "</p>" +
+            ["BCN", "FRA", "HAM"].map((o) => flyRow(x, o, t)).join("") +
+            "<div style=\"font-size:.72rem;color:var(--mute)\">" + t.bag + "</div></div>"
+          : "";
+        return "<div class=\"city" + (x.id === sel ? " on" : "") + (isOpen ? " open" : "") + "\" data-id=\"" + x.id + "\">" +
         "<b>#" + x.rank + " " + x.name[lang] + "</b><span>" + x.t + " · " + x.area[lang] + "</span>" +
         "<div class=\"p\">" + pp(x, "BCN") + "–" + pp(x, "FRA") + " € " + t.each + "</div>" +
-        "<div class=\"sbtn\">" + btn("airbnb", t.ab) + btn("hotel", t.ht) + "</div></div>";
+        "<div class=\"sbtn\">" + btn("airbnb", t.ab) + btn("hotel", t.ht) + "</div>" +
+        "<button type=\"button\" class=\"tog\" data-open=\"" + x.id + "\" aria-expanded=\"" + isOpen + "\">" +
+        (isOpen ? t.hide : t.det) + "</button>" + extra + "</div>";
       }).join("");
 
-      document.getElementById("detail").innerHTML =
-        "<div class=\"k\">#" + c.rank + "</div>" +
-        "<h2 style=\"margin:.1rem 0;font-family:Georgia,serif\">" + c.name[lang] + "</h2>" +
-        "<p class=\"why\"><strong>" + t.whyL + ":</strong> " + c.why[lang] + "</p>" +
-        ["BCN", "FRA", "HAM"].map((o) => flyBlock(c, o, t)).join("");
-
       document.querySelectorAll(".city").forEach((el) => el.onclick = () => { sel = el.dataset.id; render(); });
-      document.querySelectorAll(".sbtn a").forEach((a) => {
+      document.querySelectorAll(".tog").forEach((b) => {
+        b.onclick = (e) => {
+          e.stopPropagation();
+          const id = b.dataset.open;
+          open = open === id ? "" : id;
+          sel = id;
+          render();
+        };
+      });
+      document.querySelectorAll(".more").forEach((el) => { el.onclick = (e) => e.stopPropagation(); });
+      document.querySelectorAll(".sbtn a, .more a").forEach((a) => {
         a.onclick = (e) => {
           e.stopPropagation();
-          stay = a.dataset.stay;
-          sel = a.dataset.city;
-          setTimeout(render, 0);
+          if (a.dataset.stay) {
+            stay = a.dataset.stay;
+            sel = a.dataset.city;
+            setTimeout(render, 0);
+          }
         };
       });
       drawMap();
