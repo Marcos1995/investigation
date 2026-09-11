@@ -72,6 +72,15 @@
     .rowf .btns { display: flex; gap: .28rem; flex-wrap: wrap; padding-top: .1rem; }
     .rowf .btn { padding: .22rem .48rem; font-size: .7rem; border-radius: 7px; }
     .hint { color: var(--mute); font-size: .8rem; margin: -.1rem 0 .75rem; }
+    .budget {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .55rem;
+      background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+      padding: .7rem .8rem; margin: .7rem 0 0;
+    }
+    .budget label { display: block; font-size: .8rem; color: var(--mute); }
+    .budget b { color: var(--clay); font-weight: 750; }
+    .budget input[type="range"] { width: 100%; margin-top: .25rem; accent-color: var(--sea); }
+    @media (max-width: 560px) { .budget { grid-template-columns: 1fr; } }
     .price { color: var(--clay); font-weight: 750; }
     .pin { background: var(--clay); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: grid; place-items: center; font-size: 10px; font-weight: 800; border: 2px solid #fff; }
     .pin.origin { background: var(--sea); }
@@ -102,6 +111,14 @@
       <div id="map"></div>
       <div class="legend" id="legend"></div>
     </div>
+    <div class="budget">
+      <label><span id="foodLbl"></span> <b id="foodVal"></b>
+        <input id="foodIn" type="range" min="15" max="80" step="5" value="40">
+      </label>
+      <label><span id="stayLbl"></span> <b id="stayVal"></b>
+        <input id="stayIn" type="range" min="400" max="2500" step="50" value="1000">
+      </label>
+    </div>
     <div class="cities" id="list"></div>
     <p class="hint" id="stayhint"></p>
   </div>
@@ -111,12 +128,14 @@
       es: {
         dates: "4–8 de diciembre de 2026",
         title: "Un puente de 4 noches para 6 personas",
-        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b>: ida <b>a partir de las 17:00–18:00</b> (no antes), vuelta a mediodía o tarde. El precio del vuelo ya incluye maleta de cabina (~8 kg). En cada ciudad, <b>Ciudad y vuelos</b> abre la zona y los horarios.",
+        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b>: ida <b>a partir de las 17:00–18:00</b>, vuelta a mediodía o tarde. Cabina ~8 kg incluida. El vuelo es el único precio fijo; comida y piso se ajustan abajo.",
         mapO: "Salís de aquí", mapD: "Destinos",
         whyL: "Por qué", each: "por persona", out: "Ida", back: "Vuelta",
         det: "Ciudad y vuelos", hide: "Cerrar",
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas", pair: "las 2",
-        stay: "Airbnb: piso de 3 hab. y 2+ baños. Si haces zoom en su mapa, busca solo esa zona y puede vaciarse: aleja o pulsa el nombre de la ciudad. Hotel (Booking): 3 hab., baño dentro.",
+        stay: "Airbnb: 3 hab. y 2+ baños. Si haces zoom en su mapa, puede vaciarse: aleja o pulsa la ciudad. Hotel (Booking): 3 hab., baño dentro.",
+        foodL: "Comida / persona / día", stayL: "Alojamiento total · 6 pers. · 4 noches",
+        bud: "Total por persona = vuelo (fijo, varía por origen) + piso/6 + comida × 4 días.",
         nights: "/noche · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "sin listados",
@@ -125,12 +144,14 @@
       en: {
         dates: "4–8 December 2026",
         title: "A 4-night trip for 6 people",
-        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> only: out <b>from 17:00–18:00</b> (not earlier), back midday or afternoon. Fares include a cabin bag (~8 kg). On each city, <b>City & flights</b> opens the area and times.",
+        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> only: out <b>from 17:00–18:00</b>, back midday or afternoon. Cabin bag ~8 kg included. Only the flight fare is fixed; food and stay are sliders below.",
         mapO: "You leave from here", mapD: "Destinations",
         whyL: "Why", each: "per person", out: "Out", back: "Back",
         det: "City & flights", hide: "Close",
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people", pair: "for 2",
-        stay: "Airbnb: 3-bedroom flat, 2+ baths. Zooming its map searches only that area and listings can vanish: zoom out or tap the city name. Hotel (Booking): 3 rooms, bathroom in each.",
+        stay: "Airbnb: 3 bedrooms, 2+ baths. Zooming its map can empty results: zoom out or tap the city. Hotel (Booking): 3 rooms, bathroom in each.",
+        foodL: "Food / person / day", stayL: "Stay total · 6 people · 4 nights",
+        bud: "Per person = flight (fixed, varies by origin) + stay/6 + food × 4 days.",
         nights: "/night · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "no listings",
@@ -139,12 +160,14 @@
       de: {
         dates: "4.–8. Dezember 2026",
         title: "Vier Nächte für sechs Personen",
-        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Direktflüge</b>: hin <b>ab 17:00–18:00</b> (nicht früher), zurück mittags oder nachmittags. Preis inkl. Handgepäck (~8 kg). Pro Stadt öffnet <b>Stadt und Flüge</b> Viertel und Zeiten.",
+        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Direktflüge</b>: hin <b>ab 17:00–18:00</b>, zurück mittags oder nachmittags. Handgepäck ~8 kg inklusive. Nur der Flugpreis ist fest; Essen und Unterkunft stellst du unten ein.",
         mapO: "Abflug", mapD: "Ziele",
         whyL: "Warum", each: "pro Person", out: "Hin", back: "Rück",
         det: "Stadt und Flüge", hide: "Schließen",
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen", pair: "für 2",
-        stay: "Airbnb: 3 Schlafzimmer, 2+ Bäder. Zoom auf deren Karte sucht nur den Ausschnitt; Treffer können verschwinden: rauszoomen oder den Städtenamen antippen. Hotel (Booking): 3 Zimmer, Bad im Zimmer.",
+        stay: "Airbnb: 3 Schlafzimmer, 2+ Bäder. Zoom auf deren Karte kann Treffer leeren: rauszoomen oder Stadt antippen. Hotel (Booking): 3 Zimmer, Bad im Zimmer.",
+        foodL: "Essen / Person / Tag", stayL: "Unterkunft gesamt · 6 Pers. · 4 Nächte",
+        bud: "Pro Person = Flug (fest, je nach Start) + Unterkunft/6 + Essen × 4 Tage.",
         nights: "/Nacht · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "keine Treffer",
@@ -163,7 +186,6 @@
           de: "Beste Balance. Viertel: Saldanha / Metro Parque — sicher, nicht luxuriös, Metro durch ganz Lissabon. Alfama ist postkartenhafter, aber ohne Metro und unpraktisch für 6."
         },
         area: { es: "Saldanha · metro Parque", en: "Saldanha · Parque metro", de: "Saldanha · Metro Parque" },
-        food: 190, metro: 20, stay: { airbnb: 800, hotel: 960 },
         q: { airbnb: "Lisbon--Portugal", ss: "Lisbon", dest: "-2167973" },
         flights: {
           BCN: { air: "Vueling", p: 155, out: ["19:20", "20:25", "1h 55m"], back: ["14:05", "17:05", "2h 00m"] },
@@ -181,7 +203,6 @@
           de: "Am wärmsten, abends gut erreichbar ab HAM. Altstadt zu Fuß; Bus zum Flughafen."
         },
         area: { es: "Casco antiguo · Plaça Major", en: "Old town · Plaça Major", de: "Altstadt · Plaça Major" },
-        food: 185, metro: 12, stay: { airbnb: 640, hotel: 780 },
         q: { airbnb: "Palma--Spain", ss: "Palma de Mallorca", dest: "-395224" },
         flights: {
           BCN: { air: "Vueling", p: 120, out: ["18:30", "19:30", "1h 00m"], back: ["12:35", "13:35", "1h 00m"] },
@@ -199,7 +220,6 @@
           de: "Viel Stadt. Sol / Gran Vía an der Metro. Iberia ab HAM ~19:50 (Handgepäck inklusive)."
         },
         area: { es: "Sol · Gran Vía · metro", en: "Sol · Gran Vía · metro", de: "Sol · Gran Vía · Metro" },
-        food: 200, metro: 18, stay: { airbnb: 1000, hotel: 1240 },
         q: { airbnb: "Madrid--Spain", ss: "Madrid", dest: "-390625" },
         flights: {
           BCN: { air: "Vueling", p: 130, out: ["18:00", "19:25", "1h 25m"], back: ["13:00", "14:20", "1h 20m"] },
@@ -217,7 +237,6 @@
           de: "Am meisten Stadt. Historisches Zentrum; Metro Spagna. 8. Dez. Feiertag. HAM Eurowings ~17:00."
         },
         area: { es: "Centro histórico · Panteón", en: "Historic centre · Pantheon", de: "Historisches Zentrum · Pantheon" },
-        food: 235, metro: 25, stay: { airbnb: 1040, hotel: 1280 },
         q: { airbnb: "Rome--Italy", ss: "Rome", dest: "-126693" },
         flights: {
           BCN: { air: "Vueling", p: 160, out: ["18:55", "20:45", "1h 50m"], back: ["13:20", "15:15", "1h 55m"] },
@@ -235,7 +254,6 @@
           de: "Abend-Direktflüge ab allen dreien. Dom per Metro. Kälter als Lissabon oder Palma."
         },
         area: { es: "Duomo · metro", en: "Duomo · metro", de: "Dom · Metro" },
-        food: 220, metro: 20, stay: { airbnb: 880, hotel: 1100 },
         q: { airbnb: "Milan--Italy", ss: "Milan", dest: "-121726" },
         flights: {
           BCN: { air: "Vueling", p: 140, out: ["18:20", "19:50", "1h 30m"], back: ["13:10", "14:40", "1h 30m"] },
@@ -255,47 +273,69 @@
     let sel = "LIS";
     let open = "";
     let stay = "airbnb";
+    let foodDay = 40;
+    let stayTot = 1000;
     let map, overlay;
+    const NIGHTS = 4;
+    const AIR = { Vueling: "VY", TAP: "TP", Eurowings: "EW", Lufthansa: "LH", Iberia: "IB" };
 
-    const pp = (c, o) => c.flights[o].p + Math.round(c.stay[stay] / 6) + c.food + c.metro;
+    const pp = (c, o) => c.flights[o].p + Math.round(stayTot / 6) + foodDay * NIGHTS;
     const city = () => CITIES.find((c) => c.id === sel);
 
+    function uvar(n) {
+      const o = [];
+      while (n > 127) { o.push((n & 127) | 128); n = Math.floor(n / 128); }
+      o.push(n);
+      return o;
+    }
+    function tag(f, w) { return uvar((f << 3) | w); }
+    function fVar(f, n) { return tag(f, 0).concat(uvar(n)); }
+    function fBytes(f, arr) { return tag(f, 2).concat(uvar(arr.length)).concat(arr); }
+    function fStr(f, s) {
+      const a = [];
+      for (let i = 0; i < s.length; i++) a.push(s.charCodeAt(i));
+      return fBytes(f, a);
+    }
+    function place(code) { return fVar(1, 1).concat(fStr(2, code)); }
+    function leg(date, frm, to, al, h0, h1) {
+      return fStr(2, date).concat(fVar(5, 0)).concat(fStr(6, al))
+        .concat(fVar(8, h0)).concat(fVar(9, h1))
+        .concat(fBytes(13, place(frm))).concat(fBytes(14, place(to)));
+    }
     function gf(from, to, air, outH, backH) {
-      const loc = lang === "de" ? ["de", "de"] : lang === "en" ? ["en", "es"] : ["es", "es"];
-      const q = lang === "de"
-        ? ("Nonstop " + air + " " + from + " nach " + to + " am 2026-12-04 Abflug " + outH + " Rückflug 2026-12-08 " + backH + " 2 Erwachsene")
-        : lang === "en"
-        ? ("Nonstop " + air + " " + from + " to " + to + " on 2026-12-04 departing " + outH + " returning 2026-12-08 " + backH + " 2 adults")
-        : ("Vuelos directos " + air + " de " + from + " a " + to + " el 2026-12-04 salida " + outH + " vuelta 2026-12-08 " + backH + " 2 adultos");
-      return "https://www.google.com/travel/flights?hl=" + loc[0] + "&gl=" + loc[1] + "&curr=EUR&q=" + encodeURIComponent(q);
+      const al = AIR[air] || "VY";
+      const oh = parseInt(outH, 10), bh = parseInt(backH, 10);
+      let msg = fVar(1, 28).concat(fVar(2, 2));
+      msg = msg.concat(fBytes(3, leg("2026-12-04", from, to, al, Math.max(oh - 1, 0), Math.min(oh + 2, 23))));
+      msg = msg.concat(fBytes(3, leg("2026-12-08", to, from, al, Math.max(bh - 1, 0), Math.min(bh + 2, 23))));
+      msg = msg.concat(fVar(8, 1)).concat(fVar(8, 1)).concat(fVar(9, 1)).concat(fVar(14, 1)).concat(fVar(19, 1));
+      const tfs = btoa(String.fromCharCode.apply(null, msg)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+      const hl = lang === "de" ? "de" : lang === "en" ? "en" : "es";
+      return "https://www.google.com/travel/flights/search?tfs=" + tfs + "&hl=" + hl + "&curr=EUR";
     }
     function airlineUrl(air, from, to) {
       const es = lang === "de" ? "de" : lang === "en" ? "en" : "es";
-      if (air === "Vueling") {
-        const c = lang === "de" ? "de-DE" : lang === "en" ? "en-GB" : "es-ES";
-        return "https://tickets.vueling.com/booking?o=" + from + "&d=" + to + "&dd=2026-12-04&rd=2026-12-08&adt=2&chd=0&inf=0&c=" + c + "&cur=EUR";
-      }
+      if (air === "Vueling")
+        return "https://tickets.vueling.com/booking/flightSearch?o=" + from + "&d=" + to + "&dd=2026-12-04&rd=2026-12-08&ADT=2&CURRENCY=EUR";
       if (air === "Lufthansa") {
         const loc = lang === "de" ? "de/de" : lang === "en" ? "en/en" : "es/es";
         return "https://www.lufthansa.com/" + loc + "/booking/flight-search?origin=" + from + "&destination=" + to +
-          "&outboundDate=2026-12-04&inboundDate=2026-12-08&adults=2&children=0&infants=0&tripType=ROUNDTRIP&cabinClass=M";
+          "&outboundDate=2026-12-04&inboundDate=2026-12-08&adults=2&tripType=ROUNDTRIP&cabinClass=M";
       }
       if (air === "TAP")
         return "https://booking.flytap.com/booking/availability?tripType=RT&origin=" + from + "&destination=" + to +
-          "&outDate=2026-12-04&inDate=2026-12-08&adults=2&children=0&infants=0&cabin=Y&currency=EUR";
+          "&outDate=2026-12-04&inDate=2026-12-08&adults=2&currency=EUR";
       if (air === "Eurowings")
         return "https://www.eurowings.com/" + es + "/booking/flights/search.html?origin=" + from + "&destination=" + to +
-          "&outboundDate=2026-12-04&inboundDate=2026-12-08&adultCount=2&childrenCount=0&infantCount=0&currency=EUR";
-      if (air === "Iberia") {
-        const loc = lang === "de" ? "de" : lang === "en" ? "gb" : "es";
-        return "https://www.iberia.com/" + loc + "/flights/?origin=" + from + "&destination=" + to +
-          "&departureDate=2026-12-04&returnDate=2026-12-08&adults=2&cabin=ECONOMY";
-      }
-      return "https://en.aegeanair.com/plan/book/?from=" + from + "&to=" + to + "&departure=2026-12-04&return=2026-12-08&adults=2";
+          "&outboundDate=2026-12-04&inboundDate=2026-12-08&adultCount=2&currency=EUR";
+      if (air === "Iberia")
+        return "https://www.iberia.com/" + (lang === "de" ? "de" : lang === "en" ? "gb" : "es") +
+          "/flights/?origin=" + from + "&destination=" + to + "&departureDate=2026-12-04&returnDate=2026-12-08&adults=2";
+      return "https://www.google.com/travel/flights/search?hl=es&curr=EUR&q=" + encodeURIComponent(from + " to " + to + " 2026-12-04");
     }
     function stayUrls(c) {
-      const max = c.max;
-      const hmax = Math.round(c.max * 1.5 + 50);
+      const max = Math.max(80, Math.round(stayTot / NIGHTS));
+      const hmax = Math.round(max * 1.5);
       const ab = (lang === "de" ? "https://www.airbnb.de" : lang === "en" ? "https://www.airbnb.com" : "https://www.airbnb.es") +
         "/s/" + c.q.airbnb + "/homes?query=" + encodeURIComponent(c.q.ss) +
         "&checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3&min_beds=3&min_bathrooms=2" +
@@ -360,7 +400,11 @@
       document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
       document.getElementById("legend").innerHTML =
         "<span><i style=\"background:#1f4e68\"></i>" + t.mapO + "<i style=\"background:#c24b1f\"></i>" + t.mapD + "</span>";
-      document.getElementById("stayhint").textContent = t.stay;
+      document.getElementById("foodLbl").textContent = t.foodL;
+      document.getElementById("stayLbl").textContent = t.stayL;
+      document.getElementById("foodVal").textContent = foodDay + " €";
+      document.getElementById("stayVal").textContent = stayTot + " €";
+      document.getElementById("stayhint").textContent = t.bud + " " + t.stay;
 
       document.getElementById("list").innerHTML = CITIES.map((x) => {
         const u = stayUrls(x);
@@ -408,6 +452,8 @@
       drawMap();
     }
 
+    document.getElementById("foodIn").oninput = function () { foodDay = +this.value; render(); };
+    document.getElementById("stayIn").oninput = function () { stayTot = +this.value; render(); };
     document.querySelectorAll("[data-lang]").forEach((b) => {
       b.onclick = () => { lang = b.dataset.lang; localStorage.setItem("trip-lang", lang); render(); };
     });
