@@ -55,27 +55,24 @@
     .why { color: var(--mute); margin: .25rem 0 .55rem; }
     .leg { border: 1px solid var(--line); border-radius: 10px; padding: .6rem .7rem; margin: .4rem 0; }
     .leg h3 { margin: 0 0 .35rem; font-size: .92rem; }
-    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; }
+    .pair { display: grid; grid-template-columns: 1fr; gap: .4rem; }
     .fly { background: #f7f1e8; border-radius: 8px; padding: .45rem .5rem; font-size: .84rem; }
     .fly b { display: block; font-size: .74rem; color: var(--mute); }
     .times { font-weight: 750; margin: .1rem 0; }
     .price { color: var(--clay); font-weight: 750; }
-    .stayrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: .45rem; margin-top: .65rem; }
-    .stayrow a {
-      display: block; background: #f7f1e8; border-radius: 10px; padding: .55rem .6rem;
-      text-decoration: none; color: inherit; border: 1px solid var(--line);
-    }
-    .stayrow a strong { display: block; color: var(--sea); }
     .pin { background: var(--clay); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: grid; place-items: center; font-size: 10px; font-weight: 800; border: 2px solid #fff; }
     .pin.origin { background: var(--sea); }
     .pin.on { transform: scale(1.12); }
     footer { max-width: 74rem; margin: 0 auto; padding: 0 1.1rem 1.4rem; color: var(--mute); font-size: .8rem; }
     footer a { color: inherit; }
     @media (max-width: 900px) {
-      .cities, .pair, .stayrow { grid-template-columns: 1fr 1fr; }
+      .cities { grid-template-columns: 1fr 1fr; }
       #map { height: 220px; }
     }
-    @media (max-width: 560px) { .cities, .stayrow { grid-template-columns: 1fr; } }
+    @media (min-width: 901px) {
+      .pair { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) { .cities { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -337,7 +334,6 @@
     function render() {
       const t = T[lang];
       const c = city();
-      const urls = stayUrls(c);
       document.documentElement.lang = lang;
       document.title = t.dates;
       document.getElementById("dates").textContent = t.dates;
@@ -365,12 +361,7 @@
         "<div class=\"k\">#" + c.rank + "</div>" +
         "<h2 style=\"margin:.1rem 0;font-family:Georgia,serif\">" + c.name[lang] + "</h2>" +
         "<p class=\"why\"><strong>" + t.whyL + ":</strong> " + c.why[lang] + "</p>" +
-        ["BCN", "FRA", "HAM"].map((o) => flyBlock(c, o, t)).join("") +
-        "<p style=\"margin:.7rem 0 .3rem;font-size:.9rem\">" + t.stay + c.max + " €" + t.nights + " · " + c.area[lang] + "</p>" +
-        "<div class=\"stayrow\">" +
-        "<a target=\"_blank\" rel=\"noopener\" href=\"" + urls.airbnb + "\"><strong>" + t.ab + "</strong>" + c.stay.airbnb + " € · " + Math.round(c.stay.airbnb / 6) + " € " + t.each + "</a>" +
-        "<a target=\"_blank\" rel=\"noopener\" href=\"" + urls.apt + "\"><strong>" + t.apt + "</strong>" + c.stay.apt + " € · " + Math.round(c.stay.apt / 6) + " € " + t.each + "</a>" +
-        "<a target=\"_blank\" rel=\"noopener\" href=\"" + urls.hotel + "\"><strong>" + t.ht + "</strong>" + c.stay.hotel + " € · " + Math.round(c.stay.hotel / 6) + " € " + t.each + "</a></div>";
+        ["BCN", "FRA", "HAM"].map((o) => flyBlock(c, o, t)).join("");
 
       document.querySelectorAll(".city").forEach((el) => el.onclick = () => { sel = el.dataset.id; mapWide = false; render(); });
       document.querySelectorAll(".sbtn a").forEach((a) => {
