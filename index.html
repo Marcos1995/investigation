@@ -3,215 +3,403 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>6 personas · 4–8 dic 2026 · ranking de destinos</title>
+  <title>4–8 Dec 2026</title>
   <style>
     :root {
-      --ink: #1b2430;
-      --paper: #f4ece1;
-      --tile: #1e4d6b;
-      --clay: #c45c26;
-      --foam: #fffaf3;
-      --mute: #5c6670;
-      --line: #e0d2c0;
-      --ok: #2f6f4e;
+      --ink: #17202a;
+      --mute: #5a6570;
+      --line: #e4d8c8;
+      --paper: #f3ebe0;
+      --card: #fffcf7;
+      --sea: #1f4e68;
+      --clay: #c24b1f;
+      --gold: #c9a227;
+      --ok: #2c6b4a;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: "Segoe UI", system-ui, sans-serif;
-      background:
-        radial-gradient(900px 420px at 8% -8%, #f3d7b5 0%, transparent 50%),
-        var(--paper);
+      background: var(--paper);
       color: var(--ink);
       line-height: 1.45;
     }
-    header, main, footer { max-width: 72rem; margin: 0 auto; padding: 0 1.1rem; }
-    header { padding-top: 1.5rem; }
-    .kicker {
-      letter-spacing: .12em; text-transform: uppercase; font-size: .72rem;
-      color: var(--tile); font-weight: 700; margin: 0 0 .4rem;
+    .bar {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: .8rem; flex-wrap: wrap;
+      padding: .7rem 1.2rem;
+      background: rgba(243,235,224,.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
     }
-    h1 { font-size: clamp(1.55rem, 3vw, 2.25rem); margin: 0 0 .45rem; }
-    .brief { max-width: 48rem; color: var(--mute); margin: 0 0 1rem; }
-    .people {
-      display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.2rem;
+    .brand { font-weight: 750; letter-spacing: .02em; }
+    .langs, .stay, .chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+    button.pill, a.btn {
+      font: inherit; cursor: pointer; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--card); color: var(--ink);
+      padding: .32rem .72rem;
     }
-    .people span {
-      background: var(--foam); border: 1px solid var(--line);
-      border-radius: 999px; padding: .35rem .8rem; font-size: .9rem;
+    button.pill[aria-pressed="true"] {
+      background: var(--sea); color: #fff; border-color: var(--sea);
     }
-    h2 { font-size: 1.15rem; margin: 1.4rem 0 .7rem; }
-    .rank { display: grid; gap: .9rem; }
-    article {
-      background: var(--foam); border: 1px solid var(--line);
-      border-radius: 14px; padding: 1rem 1.1rem 1.15rem;
-    }
-    article.best { outline: 2px solid var(--clay); }
-    .top {
-      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
-      align-items: baseline;
-    }
-    .place { font-size: .8rem; font-weight: 700; color: var(--clay); letter-spacing: .04em; }
-    .pay { font-size: 1.35rem; font-weight: 750; }
-    .pay small { font-size: .85rem; font-weight: 600; color: var(--mute); }
-    .why { color: var(--mute); margin: .35rem 0 .8rem; }
-    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
-    th, td { text-align: left; padding: .38rem 0; border-bottom: 1px solid var(--line); }
-    th { color: var(--mute); font-weight: 600; }
-    td.num, th.num { text-align: right; }
-    .links { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .85rem; }
     a.btn {
-      text-decoration: none; color: #fff; background: var(--ink);
-      padding: .4rem .7rem; border-radius: 8px; font-size: .84rem;
+      text-decoration: none; background: var(--ink); color: #fff; border: 0;
+      display: inline-block; border-radius: 8px; padding: .42rem .75rem;
     }
-    a.btn.alt { background: var(--tile); }
-    .meals { font-size: .88rem; color: var(--mute); margin: .7rem 0 0; }
-    .meals strong { color: var(--ink); }
-    footer { padding: 1.4rem 1.1rem 2.2rem; color: var(--mute); font-size: .86rem; }
+    a.btn.alt { background: var(--sea); }
+    .wrap { max-width: 76rem; margin: 0 auto; padding: 1.1rem 1.15rem 2.4rem; }
+    h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.6rem, 3.2vw, 2.35rem); margin: 0 0 .4rem; font-weight: 600; }
+    .lead { max-width: 46rem; color: var(--mute); margin: 0 0 1rem; }
+    .chips span {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 999px; padding: .28rem .7rem; font-size: .88rem;
+    }
+    .grid {
+      display: grid; grid-template-columns: 1.05fr .95fr; gap: 1rem; margin-top: 1rem;
+    }
+    .panel, .mapbox, .city {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    }
+    .mapbox { padding: .7rem .7rem .4rem; }
+    svg.map { width: 100%; height: auto; display: block; }
+    .dot { cursor: pointer; }
+    .dot circle { stroke: #fff; stroke-width: 2; }
+    .dot text { font-size: 11px; font-family: inherit; fill: var(--ink); font-weight: 700; }
+    .legend { display: flex; gap: .8rem; font-size: .78rem; color: var(--mute); padding: .2rem .4rem .55rem; }
+    .legend i { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; margin-right: .25rem; vertical-align: -1px; }
+    .panel { padding: 1rem 1.05rem 1.1rem; }
+    .k { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--clay); font-weight: 700; }
+    .temp { font-size: 1.05rem; font-weight: 700; color: var(--sea); }
+    .why { color: var(--mute); margin: .35rem 0 .85rem; }
+    .leg {
+      border: 1px solid var(--line); border-radius: 12px; padding: .75rem .8rem; margin: .55rem 0;
+    }
+    .leg h3 { margin: 0 0 .45rem; font-size: .95rem; }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+    .fly {
+      background: #f7f1e8; border-radius: 10px; padding: .55rem .6rem; font-size: .86rem;
+    }
+    .fly b { display: block; font-size: .78rem; color: var(--mute); font-weight: 650; }
+    .times { font-size: 1.05rem; font-weight: 750; margin: .15rem 0; }
+    .times span { color: var(--mute); font-weight: 600; font-size: .9rem; }
+    .price { color: var(--clay); font-weight: 750; }
+    .staybox { font-size: .92rem; margin: .7rem 0 .2rem; }
+    .links { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .75rem; }
+    .list { display: grid; gap: .55rem; margin-top: 1rem; }
+    .city { padding: .75rem .9rem; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; gap: .7rem; align-items: center; }
+    .city.on { outline: 2px solid var(--clay); }
+    .n { width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--sea); color: #fff; display: grid; place-items: center; font-size: .8rem; font-weight: 700; }
+    .city.on .n { background: var(--clay); }
+    footer { max-width: 76rem; margin: 0 auto; padding: 0 1.15rem 2rem; color: var(--mute); font-size: .84rem; }
     footer a { color: inherit; }
+    @media (max-width: 900px) {
+      .grid, .pair { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <p class="kicker">Vuelos directos · 4 noches · 4–8 diciembre 2026</p>
-    <h1>Ranking para 6 personas: gana Lisboa</h1>
-    <p class="brief">
-      Viernes 4 por la tarde ida, martes 8 mediodía o tarde vuelta (sin aterrizar de noche).
-      Alojamientos: apartamento de 3 habitaciones, gama media (no lujo).
-      Comida: desayuno, comida, merienda y cena. Cada uno paga su vuelo más 1/6 del piso y de la comida.
-    </p>
-    <p class="people">
-      <span>2 × Barcelona El Prat (BCN)</span>
-      <span>2 × Frankfurt am Main (FRA)</span>
-      <span>2 × Hamburgo (HAM)</span>
-    </p>
-  </header>
-
-  <main>
-    <section class="rank" id="rank" aria-label="Ranking de ciudades"></section>
-    <h2>Qué incluye el presupuesto de comida</h2>
-    <article>
-      <p class="meals" style="margin:0">
-        En destino: <strong>4 desayunos</strong> (5–8 dic), <strong>3 comidas + 1 ligera</strong> el día de vuelta,
-        <strong>3 meriendas</strong> y <strong>4 cenas</strong> (4–7 dic). Precios de carta media, no gourmet.
-        El vuelo de la tarde del 4 y el del 8 recortan comidas en origen.
-      </p>
-    </article>
-  </main>
-
-  <footer>
-    <p>
-      Cifras orientativas (sep 2026): vuelos ida-vuelta directos en economía, piso 3 hab. 4 noches,
-      comida y transporte urbano. Confirma en los enlaces. Código:
-      <a href="https://github.com/Marcos1995/investigation">https://github.com/Marcos1995/investigation</a>
-    </p>
-  </footer>
-
+  <div class="bar">
+    <div class="brand">4–8 · 2026</div>
+    <div class="langs" role="group" aria-label="Language">
+      <button class="pill" type="button" data-lang="es">ES</button>
+      <button class="pill" type="button" data-lang="en">EN</button>
+      <button class="pill" type="button" data-lang="de">DE</button>
+    </div>
+  </div>
+  <div class="wrap">
+    <h1 id="title"></h1>
+    <p class="lead" id="lead"></p>
+    <div class="chips" id="who"></div>
+    <p class="k" id="stayLabel" style="margin:1rem 0 .4rem"></p>
+    <div class="stay" id="stay"></div>
+    <div class="grid">
+      <div class="mapbox">
+        <svg class="map" viewBox="0 0 820 430" role="img" aria-labelledby="mapTitle">
+          <title id="mapTitle">Europe</title>
+          <rect width="820" height="430" fill="#e7eef2"/>
+          <path fill="#efe4d4" d="M70 250 C120 210 160 200 210 230 C250 190 310 185 350 210 C390 160 470 90 520 70 C560 95 590 150 580 210 C650 200 720 240 760 300 C700 340 620 310 560 300 C500 330 430 300 380 310 C300 360 200 370 110 340 Z"/>
+          <g id="arcs" fill="none" stroke="#c24b1f" stroke-width="1.6" stroke-dasharray="4 4" opacity=".55"></g>
+          <g id="markers"></g>
+        </svg>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="panel" id="detail"></div>
+    </div>
+    <div class="list" id="list"></div>
+  </div>
+  <footer id="foot"></footer>
   <script>
-    const gf = (from, to) =>
-      "https://www.google.com/travel/flights?hl=es&curr=EUR&q=" +
-      encodeURIComponent("Vuelos de " + from + " a " + to + " el 2026-12-04 vuelta 2026-12-08 directos");
-    const airbnb = (slug) =>
-      "https://www.airbnb.es/s/" + slug + "/homes?checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3";
-    const booking = (city) =>
-      "https://www.booking.com/searchresults.es.html?ss=" + encodeURIComponent(city) +
-      "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6&no_rooms=3&nflt=ht_id%3D201";
+    const T = {
+      es: {
+        title: "Seis personas, tres aeropuertos, un destino",
+        lead: "Ida viernes 4 dic por la tarde. Vuelta martes 8 a mediodía o tarde, sin aterrizar de noche. Solo vuelos directos. Elige Airbnb, apartamento u hotel céntrico con metro. Horarios de invierno típicos: confírmalos al pulsar el vuelo.",
+        stay: "Alojamiento (6 personas, 4 noches, zona centro + transporte público)",
+        airbnb: "Airbnb", apt: "Apartamento", hotel: "Hotel 3 hab.",
+        who: ["2 personas · Barcelona El Prat (BCN)", "2 personas · Frankfurt am Main (FRA)", "2 personas · Hamburgo (HAM)"],
+        mapO: "Salidas", mapD: "Destinos",
+        pick: "Destino", pay: "paga cada uno", each: "por persona", out: "Ida 4 dic", back: "Vuelta 8 dic",
+        dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas",
+        food: "Comida 4–8 dic", foodInc: "4 desayunos · 3 comidas + 1 ligera · 3 meriendas · 4 cenas",
+        metro: "Metro / tranvía", nights: "4 noches", area: "Barrio",
+        fl: "Buscar vuelo directo", ab: "Ver alojamiento céntrico",
+        note: "Precios orientativos · confirma horarios y tarifas. Código:",
+        legend: "Pulsa un destino en el mapa."
+      },
+      en: {
+        title: "Six people, three airports, one city",
+        lead: "Outbound Friday 4 Dec in the afternoon. Return Tuesday 8 Dec midday or afternoon, not late at night. Direct flights only. Pick a central Airbnb, apartment or hotel on public transport. Winter timings are typical: confirm them when you open the flight link.",
+        stay: "Stay (6 people, 4 nights, city centre + public transport)",
+        airbnb: "Airbnb", apt: "Apartment", hotel: "3-room hotel",
+        who: ["2 people · Barcelona El Prat (BCN)", "2 people · Frankfurt am Main (FRA)", "2 people · Hamburg (HAM)"],
+        mapO: "Origins", mapD: "Destinations",
+        pick: "Destination", pay: "each person pays", each: "per person", out: "Out 4 Dec", back: "Return 8 Dec",
+        dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people",
+        food: "Food 4–8 Dec", foodInc: "4 breakfasts · 3 lunches + 1 light · 3 snacks · 4 dinners",
+        metro: "Metro / tram", nights: "4 nights", area: "Area",
+        fl: "Search direct flight", ab: "See central stay",
+        note: "Guide prices · confirm times and fares. Source:",
+        legend: "Tap a destination on the map."
+      },
+      de: {
+        title: "Sechs Personen, drei Flughäfen, ein Ziel",
+        lead: "Hinflug Freitag 4. Dez. nachmittags. Rückflug Dienstag 8. Dez. mittags oder nachmittags, nicht spät abends. Nur Direktflüge. Airbnb, Apartment oder Hotel zentral an der Bahn. Winterzeiten sind typisch: bitte im Fluglink prüfen.",
+        stay: "Unterkunft (6 Personen, 4 Nächte, Zentrum + ÖPNV)",
+        airbnb: "Airbnb", apt: "Apartment", hotel: "Hotel, 3 Zimmer",
+        who: ["2 Personen · Barcelona El Prat (BCN)", "2 Personen · Frankfurt am Main (FRA)", "2 Personen · Hamburg (HAM)"],
+        mapO: "Abflüge", mapD: "Ziele",
+        pick: "Ziel", pay: "zahlt jede Person", each: "pro Person", out: "Hin 4. Dez", back: "Rück 8. Dez",
+        dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen",
+        food: "Essen 4.–8. Dez", foodInc: "4 Frühstück · 3 Mittag + 1 leicht · 3 Snacks · 4 Abendessen",
+        metro: "U-Bahn / Tram", nights: "4 Nächte", area: "Viertel",
+        fl: "Direktflug suchen", ab: "Zentrale Unterkunft",
+        note: "Richtpreise · Zeiten und Tarife prüfen. Code:",
+        legend: "Ziel auf der Karte antippen."
+      }
+    };
 
-    const cities = [
+    const CITIES = [
       {
-        rank: 1, best: true, name: "Lisboa", iata: "LIS",
-        why: "Mejor equilibrio: ciudad para pasear, ~15–17 °C, directos fiables desde las tres salidas y piso razonable.",
-        weather: "15–17 °C",
-        aptNight: 200, apt: 800,
-        food: { b: 8, l: 15, s: 5, d: 22, total: 190 },
-        foodNote: "café + pastel 8 € · menú 15 € · merienda 5 € · cena tasca 22 €",
-        city: 20,
-        flight: { BCN: 95, FRA: 175, HAM: 165 },
-        air: { BCN: "Vueling / TAP", FRA: "Lufthansa / TAP", HAM: "TAP / Eurowings" },
-        slug: "Lisboa--Portugal", book: "Lisboa"
+        id: "LIS", iata: "LIS", rank: 1, xy: [118, 278],
+        name: { es: "Lisboa", en: "Lisbon", de: "Lissabon" },
+        t: "15–17 °C",
+        why: {
+          es: "La opción más clara: ciudad para caminar, clima suave y directos fiables desde BCN, FRA y HAM.",
+          en: "Clearest pick: walkable city, mild weather, reliable directs from BCN, FRA and HAM.",
+          de: "Klarste Wahl: Stadt zum Laufen, mildes Wetter, zuverlässige Direktflüge ab BCN, FRA und HAM."
+        },
+        area: {
+          es: "Chiado / Baixa · metro Baixa-Chiado, tranvía 28",
+          en: "Chiado / Baixa · metro Baixa-Chiado, tram 28",
+          de: "Chiado / Baixa · Metro Baixa-Chiado, Tram 28"
+        },
+        food: { total: 190, es: "café+pastel 8 € · menú 15 € · merienda 5 € · cena 22 €", en: "coffee+pastry €8 · lunch €15 · snack €5 · dinner €22", de: "Kaffee+Pastel 8 € · Mittag 15 € · Snack 5 € · Abend 22 €" },
+        metro: 20,
+        stay: { airbnb: 800, apt: 760, hotel: 960 },
+        q: { airbnb: "Chiado--Lisboa--Portugal", apt: "Lisboa centro", hotel: "Lisboa centro" },
+        flights: {
+          BCN: { air: "Vueling", p: 95, out: ["14:10", "15:05", "1h 55m"], back: ["14:05", "17:05", "2h 00m"] },
+          FRA: { air: "Lufthansa", p: 175, out: ["13:20", "15:35", "3h 15m"], back: ["12:15", "16:25", "3h 10m"] },
+          HAM: { air: "TAP", p: 165, out: ["13:45", "16:50", "3h 05m"], back: ["11:20", "16:20", "3h 00m"] }
+        }
       },
       {
-        rank: 2, best: false, name: "Málaga", iata: "AGP",
-        why: "La más cálida y de las más baratas. Menos ‘capital’ que Lisboa; HAM tiene pocos directos al día.",
-        weather: "16–18 °C",
-        aptNight: 170, apt: 680,
-        food: { b: 8, l: 15, s: 5, d: 20, total: 185 },
-        foodNote: "desayuno 8 € · tapas/menú 15 € · merienda 5 € · cena 20 €",
-        city: 12,
-        flight: { BCN: 70, FRA: 140, HAM: 130 },
-        air: { BCN: "Vueling / Ryanair", FRA: "LH / Ryanair", HAM: "Eurowings / Ryanair" },
-        slug: "Málaga--España", book: "Malaga"
+        id: "AGP", iata: "AGP", rank: 2, xy: [198, 318],
+        name: { es: "Málaga", en: "Málaga", de: "Málaga" },
+        t: "16–18 °C",
+        why: {
+          es: "La más cálida y barata. Centro a pie; HAM tiene pocos directos al día.",
+          en: "Warmest and among the cheapest. Walkable centre; HAM has few daily directs.",
+          de: "Am wärmsten und günstig. Zentrum zu Fuß; HAM hat wenige tägliche Direktflüge."
+        },
+        area: {
+          es: "Centro Histórico / Soho · metro El Perchel",
+          en: "Old town / Soho · metro El Perchel",
+          de: "Altstadt / Soho · Metro El Perchel"
+        },
+        food: { total: 185, es: "desayuno 8 € · tapas 15 € · merienda 5 € · cena 20 €", en: "breakfast €8 · tapas €15 · snack €5 · dinner €20", de: "Frühstück 8 € · Tapas 15 € · Snack 5 € · Abend 20 €" },
+        metro: 12,
+        stay: { airbnb: 680, apt: 640, hotel: 840 },
+        q: { airbnb: "Málaga-Centro--España", apt: "Malaga centro", hotel: "Malaga centro" },
+        flights: {
+          BCN: { air: "Vueling", p: 70, out: ["15:05", "16:30", "1h 25m"], back: ["12:40", "14:05", "1h 25m"] },
+          FRA: { air: "Lufthansa", p: 140, out: ["13:05", "16:30", "3h 25m"], back: ["11:15", "14:35", "3h 20m"] },
+          HAM: { air: "Eurowings", p: 130, out: ["13:25", "16:50", "3h 25m"], back: ["11:40", "15:05", "3h 25m"] }
+        }
       },
       {
-        rank: 3, best: false, name: "Atenas", iata: "ATH",
-        why: "Sol, precio de piso y comida bajos, mucha ciudad. El cuello de botella es HAM (menos frecuencias).",
-        weather: "14–16 °C",
-        aptNight: 170, apt: 680,
-        food: { b: 7, l: 14, s: 5, d: 20, total: 175 },
-        foodNote: "desayuno 7 € · taverna 14 € · merienda 5 € · cena 20 €",
-        city: 15,
-        flight: { BCN: 100, FRA: 175, HAM: 155 },
-        air: { BCN: "Vueling / Aegean", FRA: "LH / Aegean", HAM: "Aegean" },
-        slug: "Atenas--Grecia", book: "Athens"
+        id: "ATH", iata: "ATH", rank: 3, xy: [698, 292],
+        name: { es: "Atenas", en: "Athens", de: "Athen" },
+        t: "14–16 °C",
+        why: {
+          es: "Sol, Acrópolis a pie de metro. HAM no siempre tiene tarde el 4.",
+          en: "Sun and the Acropolis on the metro. HAM may not have an afternoon on the 4th.",
+          de: "Sonne, Akropolis per Metro. HAM hat am 4. nicht immer Nachmittag."
+        },
+        area: {
+          es: "Monastiraki / Koukaki · metro Acropolis / Monastiraki",
+          en: "Monastiraki / Koukaki · metro Acropolis / Monastiraki",
+          de: "Monastiraki / Koukaki · Metro Acropolis / Monastiraki"
+        },
+        food: { total: 175, es: "desayuno 7 € · taverna 14 € · merienda 5 € · cena 20 €", en: "breakfast €7 · taverna €14 · snack €5 · dinner €20", de: "Frühstück 7 € · Taverne 14 € · Snack 5 € · Abend 20 €" },
+        metro: 15,
+        stay: { airbnb: 680, apt: 640, hotel: 800 },
+        q: { airbnb: "Plaka--Atenas--Grecia", apt: "Athens Plaka", hotel: "Athens Syntagma" },
+        flights: {
+          BCN: { air: "Aegean", p: 100, out: ["14:20", "18:15", "2h 55m"], back: ["12:00", "14:00", "3h 00m"] },
+          FRA: { air: "Lufthansa", p: 175, out: ["13:00", "16:55", "2h 55m"], back: ["11:40", "13:40", "3h 00m"] },
+          HAM: { air: "Aegean", p: 155, out: ["14:00", "18:05", "3h 05m"], back: ["12:10", "14:20", "3h 10m"] }
+        }
       },
       {
-        rank: 4, best: false, name: "Valencia", iata: "VLC",
-        why: "Clima agradable y barata, pero para los de BCN es un salto corto y HAM no vuela todos los días.",
-        weather: "15–17 °C",
-        aptNight: 160, apt: 640,
-        food: { b: 8, l: 15, s: 5, d: 20, total: 185 },
-        foodNote: "desayuno 8 € · menú 15 € · merienda 5 € · cena 20 €",
-        city: 15,
-        flight: { BCN: 55, FRA: 125, HAM: 140 },
-        air: { BCN: "Vueling / Ryanair", FRA: "LH / Ryanair", HAM: "Eurowings" },
-        slug: "Valencia--España", book: "Valencia"
+        id: "VLC", iata: "VLC", rank: 4, xy: [268, 268],
+        name: { es: "Valencia", en: "Valencia", de: "Valencia" },
+        t: "15–17 °C",
+        why: {
+          es: "Barata y suave. Para BCN es un salto corto; HAM no vuela todos los días.",
+          en: "Cheap and mild. A short hop from BCN; HAM is not daily.",
+          de: "Günstig und mild. Von BCN nur ein Sprung; HAM nicht täglich."
+        },
+        area: {
+          es: "Ciutat Vella / Ruzafa · metro Xàtiva / Colón",
+          en: "Ciutat Vella / Ruzafa · metro Xàtiva / Colón",
+          de: "Ciutat Vella / Ruzafa · Metro Xàtiva / Colón"
+        },
+        food: { total: 185, es: "desayuno 8 € · menú 15 € · merienda 5 € · cena 20 €", en: "breakfast €8 · menú €15 · snack €5 · dinner €20", de: "Frühstück 8 € · Menü 15 € · Snack 5 € · Abend 20 €" },
+        metro: 15,
+        stay: { airbnb: 640, apt: 600, hotel: 780 },
+        q: { airbnb: "Ciutat-Vella--Valencia--España", apt: "Valencia centro", hotel: "Valencia centro" },
+        flights: {
+          BCN: { air: "Vueling", p: 55, out: ["15:30", "16:40", "1h 10m"], back: ["12:15", "13:25", "1h 10m"] },
+          FRA: { air: "Lufthansa", p: 125, out: ["15:10", "17:30", "2h 20m"], back: ["13:05", "15:25", "2h 20m"] },
+          HAM: { air: "Eurowings", p: 140, out: ["14:40", "17:35", "2h 55m"], back: ["12:10", "14:55", "2h 45m"] }
+        }
       },
       {
-        rank: 5, best: false, name: "Roma", iata: "FCO",
-        why: "La que más ofrece. El 8 dic es festivo italiano: piso y cenas suben y el aeropuerto se llena.",
-        weather: "12–14 °C",
-        aptNight: 260, apt: 1040,
-        food: { b: 10, l: 18, s: 6, d: 28, total: 235 },
-        foodNote: "cappuccino+cornetto 10 € · trattoria 18 € · gelato 6 € · cena 28 €",
-        city: 25,
-        flight: { BCN: 105, FRA: 155, HAM: 135 },
-        air: { BCN: "Vueling / ITA", FRA: "LH / ITA", HAM: "Eurowings / easyJet" },
-        slug: "Roma--Italia", book: "Roma"
+        id: "FCO", iata: "FCO", rank: 5, xy: [498, 228],
+        name: { es: "Roma", en: "Rome", de: "Rom" },
+        t: "12–14 °C",
+        why: {
+          es: "La que más ofrece. El 8 dic es festivo: caras las cenas y el piso.",
+          en: "The most to see. 8 Dec is a holiday: stays and dinners cost more.",
+          de: "Am meisten Stadt. 8. Dez. ist Feiertag: Wohnung und Essen teurer."
+        },
+        area: {
+          es: "Monti / Colosseo · metro Colosseo / Cavour",
+          en: "Monti / Colosseum · metro Colosseo / Cavour",
+          de: "Monti / Kolosseum · Metro Colosseo / Cavour"
+        },
+        food: { total: 235, es: "cornetto 10 € · trattoria 18 € · gelato 6 € · cena 28 €", en: "cornetto €10 · trattoria €18 · gelato €6 · dinner €28", de: "Cornetto 10 € · Trattoria 18 € · Gelato 6 € · Abend 28 €" },
+        metro: 25,
+        stay: { airbnb: 1040, apt: 980, hotel: 1280 },
+        q: { airbnb: "Monti--Roma--Italia", apt: "Roma Monti", hotel: "Rome Colosseo" },
+        flights: {
+          BCN: { air: "Vueling", p: 105, out: ["14:45", "16:35", "1h 50m"], back: ["13:20", "15:15", "1h 55m"] },
+          FRA: { air: "Lufthansa", p: 155, out: ["13:10", "15:00", "1h 50m"], back: ["12:00", "14:00", "2h 00m"] },
+          HAM: { air: "Eurowings", p: 135, out: ["14:15", "16:30", "2h 15m"], back: ["12:40", "15:00", "2h 20m"] }
+        }
       }
     ];
 
-    function pp(c, origin) {
-      return c.flight[origin] + Math.round(c.apt / 6) + c.food.total + c.city;
+    const ORIGIN = {
+      BCN: { xy: [318, 238], label: "BCN" },
+      FRA: { xy: [428, 98], label: "FRA" },
+      HAM: { xy: [458, 42], label: "HAM" }
+    };
+
+    const hl = { es: "es", en: "en", de: "de" };
+    let lang = localStorage.getItem("trip-lang") || "es";
+    let stay = "airbnb";
+    let sel = "LIS";
+
+    const pp = (c, o) => c.flights[o].p + Math.round(c.stay[stay] / 6) + c.food.total + c.metro;
+    const city = () => CITIES.find((c) => c.id === sel);
+    const gf = (from, to) =>
+      "https://www.google.com/travel/flights?hl=" + hl[lang] + "&curr=EUR&q=" +
+      encodeURIComponent((lang === "de" ? "Flüge von " : lang === "en" ? "Flights from " : "Vuelos de ") + from + (lang === "de" ? " nach " : lang === "en" ? " to " : " a ") + to + " 2026-12-04 2026-12-08");
+
+    function stayUrl(c) {
+      if (stay === "airbnb") {
+        const host = lang === "de" ? "https://www.airbnb.de" : lang === "en" ? "https://www.airbnb.com" : "https://www.airbnb.es";
+        return host + "/s/" + c.q.airbnb + "/homes?checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3";
+      }
+      const page = lang === "de" ? "de.html" : lang === "en" ? "html" : "es.html";
+      const type = stay === "hotel" ? "" : "&nflt=ht_id%3D201";
+      const rooms = stay === "hotel" ? "&no_rooms=3" : "&no_rooms=1";
+      return "https://www.booking.com/searchresults." + page + "?ss=" + encodeURIComponent(c.q[stay === "hotel" ? "hotel" : "apt"]) +
+        "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6" + rooms + type;
     }
 
-    document.getElementById("rank").innerHTML = cities.map((c) => {
-      const shareApt = Math.round(c.apt / 6);
-      const rows = ["BCN", "FRA", "HAM"].map((o) => (
-        "<tr><td>2 pers. " + o + " · " + c.air[o] + "</td>" +
-        "<td class=\"num\">" + c.flight[o] + " €</td>" +
-        "<td class=\"num\">" + shareApt + " €</td>" +
-        "<td class=\"num\">" + c.food.total + " €</td>" +
-        "<td class=\"num\">" + c.city + " €</td>" +
-        "<td class=\"num\"><strong>" + pp(c, o) + " €</strong></td></tr>"
-      )).join("");
-      const links = ["BCN", "FRA", "HAM"].map((o) =>
-        "<a class=\"btn\" href=\"" + gf(o, c.iata) + "\">Vuelo directo " + o + "→" + c.iata + "</a>"
+    function flyBlock(c, o, t) {
+      const f = c.flights[o];
+      const row = (tag, a, b, d) =>
+        "<div class=\"fly\"><b>" + tag + "</b><div class=\"times\">" + a + " " + o + " <span>→</span> " + b + " " + c.iata + "</div>" +
+        t.dep + " " + a + " · " + t.arr + " " + b + " · " + d + " " + t.dur + "</div>";
+      return "<div class=\"leg\"><h3>" + t.pax + " · " + o + " · " + f.air + " · <span class=\"price\">" + f.p + " € " + t.each + "</span></h3>" +
+        "<div class=\"pair\">" + row(t.out, f.out[0], f.out[1], f.out[2]) +
+        "<div class=\"fly\"><b>" + t.back + "</b><div class=\"times\">" + f.back[0] + " " + c.iata + " <span>→</span> " + f.back[1] + " " + o + "</div>" +
+        t.dep + " " + f.back[0] + " · " + t.arr + " " + f.back[1] + " · " + f.back[2] + " " + t.dur + "</div></div>" +
+        "<div class=\"links\"><a class=\"btn\" href=\"" + gf(o, c.iata) + "\">" + t.fl + " " + o + "→" + c.iata + "</a></div></div>";
+    }
+
+    function render() {
+      const t = T[lang];
+      document.documentElement.lang = lang;
+      document.title = t.title;
+      document.getElementById("title").textContent = t.title;
+      document.getElementById("lead").textContent = t.lead;
+      document.getElementById("who").innerHTML = t.who.map((w) => "<span>" + w + "</span>").join("");
+      document.getElementById("stayLabel").textContent = t.stay;
+      document.getElementById("stay").innerHTML = [
+        ["airbnb", t.airbnb], ["apt", t.apt], ["hotel", t.hotel]
+      ].map(([k, lab]) => "<button class=\"pill\" type=\"button\" data-stay=\"" + k + "\" aria-pressed=\"" + (stay === k) + "\">" + lab + "</button>").join("");
+      document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+      document.getElementById("legend").innerHTML =
+        "<span><i style=\"background:#1f4e68\"></i>" + t.mapO + "</span><span><i style=\"background:#c24b1f\"></i>" + t.mapD + "</span><span>" + t.legend + "</span>";
+      document.getElementById("foot").innerHTML = t.note + ' <a href="https://github.com/Marcos1995/investigation">https://github.com/Marcos1995/investigation</a>';
+
+      const arcs = Object.values(ORIGIN).map((o) => {
+        const d = city();
+        return "<path d=\"M" + o.xy[0] + " " + o.xy[1] + " Q " + ((o.xy[0] + d.xy[0]) / 2) + " " + (Math.min(o.xy[1], d.xy[1]) - 40) + " " + d.xy[0] + " " + d.xy[1] + "\"/>";
+      }).join("");
+      document.getElementById("arcs").innerHTML = arcs;
+
+      const marks = Object.values(ORIGIN).map((o) =>
+        "<g><circle cx=\"" + o.xy[0] + "\" cy=\"" + o.xy[1] + "\" r=\"7\" fill=\"#1f4e68\"/><text x=\"" + (o.xy[0] + 10) + "\" y=\"" + (o.xy[1] + 4) + "\">" + o.label + "</text></g>"
+      ).join("") + CITIES.map((c) =>
+        "<g class=\"dot\" data-id=\"" + c.id + "\"><circle cx=\"" + c.xy[0] + "\" cy=\"" + c.xy[1] + "\" r=\"" + (c.id === sel ? 9 : 7) + "\" fill=\"#c24b1f\"/><text x=\"" + (c.xy[0] + 10) + "\" y=\"" + (c.xy[1] + 4) + "\">" + c.name[lang] + "</text></g>"
       ).join("");
-      return (
-        "<article class=\"" + (c.best ? "best" : "") + "\">" +
-        "<div class=\"top\"><div><div class=\"place\">#" + c.rank + " · " + c.weather + "</div>" +
-        "<h2 style=\"margin:.15rem 0 0\">" + c.name + " (" + c.iata + ")</h2></div>" +
-        "<div class=\"pay\">" + pp(c, "BCN") + "–" + pp(c, "FRA") + " € <small>/ persona</small></div></div>" +
-        "<p class=\"why\">" + c.why + " Apartamento 3 hab. ~" + c.aptNight + " €/noche × 4 = " + c.apt + " € (" + shareApt + " € cada uno).</p>" +
-        "<table><thead><tr><th>Quién</th><th class=\"num\">Vuelo</th><th class=\"num\">Piso</th><th class=\"num\">Comida</th><th class=\"num\">Metro</th><th class=\"num\">Paga</th></tr></thead>" +
-        "<tbody>" + rows + "</tbody></table>" +
-        "<p class=\"meals\"><strong>Comida 4–8 dic:</strong> " + c.foodNote +
-        " → " + c.food.total + " €/pers. (4×desayuno, 3×comida + 1 ligera, 3×merienda, 4×cena).</p>" +
-        "<div class=\"links\">" + links +
-        "<a class=\"btn alt\" href=\"" + airbnb(c.slug) + "\">Airbnb 6 pers. 3 hab.</a>" +
-        "<a class=\"btn alt\" href=\"" + booking(c.book) + "\">Booking apartamentos</a></div></article>"
-      );
-    }).join("");
+      document.getElementById("markers").innerHTML = marks;
+
+      const c = city();
+      const share = Math.round(c.stay[stay] / 6);
+      document.getElementById("detail").innerHTML =
+        "<div class=\"k\">#" + c.rank + " · " + t.pick + "</div>" +
+        "<h2 style=\"margin:.2rem 0 0;font-family:Georgia,serif\">" + c.name[lang] + " (" + c.iata + ")</h2>" +
+        "<div class=\"temp\">" + c.t + "</div>" +
+        "<p class=\"why\">" + c.why[lang] + "</p>" +
+        ["BCN", "FRA", "HAM"].map((o) => flyBlock(c, o, t)).join("") +
+        "<p class=\"staybox\"><strong>" + t.area + ":</strong> " + c.area[lang] + "<br>" +
+        "<strong>" + t.nights + ":</strong> " + c.stay[stay] + " € → " + share + " € " + t.pay + "<br>" +
+        "<strong>" + t.food + ":</strong> " + c.food[lang] + " → " + c.food.total + " € · " + t.foodInc + "<br>" +
+        "<strong>" + t.metro + ":</strong> " + c.metro + " €</p>" +
+        "<div class=\"links\"><a class=\"btn alt\" href=\"" + stayUrl(c) + "\">" + t.ab + "</a></div>";
+
+      document.getElementById("list").innerHTML = CITIES.map((x) =>
+        "<div class=\"city" + (x.id === sel ? " on" : "") + "\" data-id=\"" + x.id + "\">" +
+        "<div class=\"n\">" + x.rank + "</div><div><strong>" + x.name[lang] + "</strong> · " + x.t +
+        "<div class=\"why\" style=\"margin:0\">" + x.why[lang] + "</div></div>" +
+        "<div class=\"price\">" + pp(x, "BCN") + "–" + pp(x, "FRA") + " €</div></div>"
+      ).join("");
+
+      document.querySelectorAll("[data-stay]").forEach((b) => b.onclick = () => { stay = b.dataset.stay; render(); });
+      document.querySelectorAll(".dot, .city").forEach((el) => el.onclick = () => { sel = el.dataset.id; render(); });
+    }
+
+    document.querySelectorAll("[data-lang]").forEach((b) => {
+      b.onclick = () => { lang = b.dataset.lang; localStorage.setItem("trip-lang", lang); render(); };
+    });
+    render();
   </script>
 </body>
 </html>
