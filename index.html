@@ -35,10 +35,10 @@
     #map { height: 240px; width: 100%; }
     .legend { font-size: .78rem; color: var(--mute); padding: .4rem .7rem; display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
     .legend i { display: inline-block; width: .65rem; height: .65rem; border-radius: 50%; margin: 0 .25rem 0 .5rem; vertical-align: -1px; }
-    .cities { display: grid; grid-template-columns: repeat(5, 1fr); gap: .45rem; margin: .75rem 0 .8rem; }
+    .cities { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin: .75rem 0 .8rem; }
     .city {
       background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-      padding: .55rem .6rem; cursor: pointer; text-align: left;
+      padding: .7rem .75rem; cursor: pointer; text-align: left;
     }
     .city.on { outline: 2px solid var(--clay); }
     .city.open { grid-column: 1 / -1; }
@@ -61,13 +61,15 @@
     .more { margin-top: .5rem; border-top: 1px solid var(--line); padding-top: .5rem; }
     .more .why { color: var(--mute); font-size: .84rem; margin: 0 0 .45rem; }
     .rowf {
-      display: grid; grid-template-columns: 3.2rem minmax(0, 1fr) auto; gap: .25rem .55rem;
-      align-items: center; font-size: .8rem; background: #f7f1e8; border-radius: 8px;
-      padding: .35rem .45rem; margin: 0 0 .28rem;
+      display: grid; grid-template-columns: 3.4rem minmax(0, 1fr) auto; gap: .3rem .7rem;
+      align-items: start; font-size: .82rem; background: #f7f1e8; border-radius: 8px;
+      padding: .45rem .55rem; margin: 0 0 .32rem;
     }
-    .rowf .o { font-weight: 800; color: var(--sea); }
-    .rowf .times { font-weight: 650; }
-    .rowf .btns { display: flex; gap: .28rem; flex-wrap: wrap; }
+    .rowf .o { font-weight: 800; color: var(--sea); padding-top: .12rem; }
+    .rowf .meta { color: var(--mute); font-size: .78rem; margin-bottom: .18rem; }
+    .rowf .leg { font-weight: 650; line-height: 1.45; }
+    .rowf .leg em { font-style: normal; font-weight: 750; color: var(--mute); font-size: .72rem; margin-right: .35rem; }
+    .rowf .btns { display: flex; gap: .28rem; flex-wrap: wrap; padding-top: .1rem; }
     .rowf .btn { padding: .22rem .48rem; font-size: .7rem; border-radius: 7px; }
     .hint { color: var(--mute); font-size: .8rem; margin: -.1rem 0 .75rem; }
     .price { color: var(--clay); font-weight: 750; }
@@ -76,12 +78,9 @@
     .pin.on { transform: scale(1.12); }
     footer { max-width: 74rem; margin: 0 auto; padding: 0 1.1rem 1.4rem; color: var(--mute); font-size: .8rem; }
     footer a { color: inherit; }
-    @media (max-width: 900px) {
-      .cities { grid-template-columns: 1fr 1fr; }
-      #map { height: 220px; }
-    }
     @media (max-width: 700px) {
-      .rowf { grid-template-columns: 3.2rem 1fr; }
+      #map { height: 220px; }
+      .rowf { grid-template-columns: 3.4rem 1fr; }
       .rowf .btns { grid-column: 1 / -1; }
     }
     @media (max-width: 560px) { .cities { grid-template-columns: 1fr; } }
@@ -330,10 +329,10 @@
     function flyRow(c, o, t) {
       const f = c.flights[o];
       return "<div class=\"rowf\"><div class=\"o\">" + o + "</div><div>" +
-        f.air + " · <span class=\"price\">" + f.p + " €</span> · " + t.pax +
-        "<div class=\"times\">" + t.out + " " + f.out[0] + "→" + f.out[1] + " · " + t.back + " " + f.back[0] + "→" + f.back[1] +
-        " · " + f.out[2] + "</div></div>" +
-        "<div class=\"btns\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"" + gf(o, c.iata) + "\">" + t.gf + "</a>" +
+        "<div class=\"meta\">" + f.air + " · <span class=\"price\">" + f.p + " €</span> · " + t.pax + "</div>" +
+        "<div class=\"leg\"><em>" + t.out + "</em>" + f.out[0] + " " + o + " → " + f.out[1] + " " + c.iata + " · " + f.out[2] + "</div>" +
+        "<div class=\"leg\"><em>" + t.back + "</em>" + f.back[0] + " " + c.iata + " → " + f.back[1] + " " + o + " · " + f.back[2] + "</div>" +
+        "</div><div class=\"btns\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"" + gf(o, c.iata) + "\">" + t.gf + "</a>" +
         "<a class=\"btn ghost\" target=\"_blank\" rel=\"noopener\" href=\"" + airlineUrl(f.air, o, c.iata) + "\">" + f.air + "</a></div></div>";
     }
 
