@@ -32,8 +32,8 @@
     .lead { max-width: 46rem; margin: 0 0 .7rem; font-size: .98rem; }
     .lead b { color: var(--clay); }
     .mapbox { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-    #map { height: 340px; width: 100%; }
-    .legend { font-size: .78rem; color: var(--mute); padding: .4rem .7rem; }
+    #map { height: 240px; width: 100%; }
+    .legend { font-size: .78rem; color: var(--mute); padding: .4rem .7rem; display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
     .legend i { display: inline-block; width: .65rem; height: .65rem; border-radius: 50%; margin: 0 .25rem 0 .5rem; vertical-align: -1px; }
     .cities { display: grid; grid-template-columns: repeat(5, 1fr); gap: .45rem; margin: .75rem 0 .8rem; }
     .city {
@@ -44,6 +44,12 @@
     .city b { display: block; }
     .city span { color: var(--mute); font-size: .8rem; }
     .city .p { color: var(--clay); font-weight: 750; font-size: .92rem; }
+    .sbtn { display: flex; flex-wrap: wrap; gap: .28rem; margin-top: .45rem; }
+    .sbtn a {
+      font-size: .72rem; padding: .28rem .45rem; border-radius: 7px; text-decoration: none;
+      background: var(--sea); color: #fff; font-weight: 650;
+    }
+    .sbtn a.on { background: var(--clay); }
     .panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .9rem 1rem; }
     .k { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--clay); font-weight: 700; }
     .why { color: var(--mute); margin: .25rem 0 .55rem; }
@@ -67,7 +73,7 @@
     footer a { color: inherit; }
     @media (max-width: 900px) {
       .cities, .pair, .stayrow { grid-template-columns: 1fr 1fr; }
-      #map { height: 260px; }
+      #map { height: 220px; }
     }
     @media (max-width: 560px) { .cities, .stayrow { grid-template-columns: 1fr; } }
   </style>
@@ -99,12 +105,13 @@
         dates: "4–8 de diciembre de 2026",
         title: "Un puente de 4 noches para 6 personas",
         lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. 2 vuelan desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo vuelos directos: ida por la tarde, vuelta a mediodía o tarde. Pulsa una ciudad del mapa o de la lista.",
-        mapO: "Salís de aquí", mapD: "Podéis ir aquí",
+        mapO: "Salís de aquí", mapD: "Barrio al elegir ciudad", mapHint: "El mapa enseña el barrio (Saldanha, Plaka…). Pulsa «Europa» para ver las 3 salidas.",
+        eu: "Europa",
         whyL: "Por qué", each: "por persona", out: "Ida 4 dic", back: "Vuelta 8 dic",
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas",
-        stay: "Piso o hotel: 3 habitaciones con cama de matrimonio (2 pers. cada una), 2+ baños si hay, sin lujo. Máx. ~",
+        stay: "Mismo tipo de piso, dos webs: Airbnb o Booking. Hotel es hotel. 3 hab. cama doble, 2+ baños si hay, sin lujo. Máx. ~",
         nights: "/noche · ",
-        ab: "Airbnb · 3 hab. + 6 camas + 2 baños", apt: "Apartamento Booking · 3 hab.", ht: "Hotel · 3 habitaciones dobles",
+        ab: "Piso Airbnb", apt: "Piso Booking", ht: "Hotel",
         gf: "Google Flights", air: "Aerolínea",
         note: "Saldanha/Parque es segura y con metro; Alfama es más de postal pero sin metro. Enlaces con tope de precio. Código:"
       },
@@ -112,12 +119,13 @@
         dates: "4–8 December 2026",
         title: "A 4-night trip for 6 people",
         lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. 2 fly from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). Direct flights only: out in the afternoon, back midday or afternoon. Tap a city on the map or the list.",
-        mapO: "You leave from here", mapD: "You can go here",
+        mapO: "You leave from here", mapD: "Neighbourhood when you pick a city", mapHint: "The map shows the area (Saldanha, Plaka…). Tap “Europe” to see the 3 airports.",
+        eu: "Europe",
         whyL: "Why", each: "per person", out: "Out 4 Dec", back: "Return 8 Dec",
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people",
-        stay: "Flat or hotel: 3 bedrooms with a double bed each (2 people per room), 2+ baths if possible, no luxury. Max ~",
+        stay: "Same kind of flat, two websites: Airbnb or Booking. Hotel is a hotel. 3 double bedrooms, 2+ baths if possible, no luxury. Max ~",
         nights: "/night · ",
-        ab: "Airbnb · 3 bedrooms + 6 beds + 2 baths", apt: "Booking apartment · 3 rooms", ht: "Hotel · 3 double rooms",
+        ab: "Airbnb flat", apt: "Booking flat", ht: "Hotel",
         gf: "Google Flights", air: "Airline",
         note: "Saldanha/Parque is safe and on the metro; Alfama is prettier but has no metro. Price cap on stay links. Source:"
       },
@@ -125,12 +133,13 @@
         dates: "4.–8. Dezember 2026",
         title: "Vier Nächte für sechs Personen",
         lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. 2 fliegen ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur Direktflüge: hin nachmittags, zurück mittags oder nachmittags. Stadt auf der Karte oder in der Liste antippen.",
-        mapO: "Abflug", mapD: "Ziele",
+        mapO: "Abflug", mapD: "Viertel nach Stadtauswahl", mapHint: "Die Karte zeigt das Viertel (Saldanha, Plaka…). «Europa» zeigt die 3 Abflüge.",
+        eu: "Europa",
         whyL: "Warum", each: "pro Person", out: "Hin 4. Dez", back: "Rück 8. Dez",
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen",
-        stay: "Wohnung oder Hotel: 3 Zimmer mit Doppelbett (2 Personen je Zimmer), 2+ Bäder wenn möglich, kein Luxus. Max. ~",
+        stay: "Gleiche Wohnungsart, zwei Websites: Airbnb oder Booking. Hotel ist Hotel. 3 Doppelzimmer, 2+ Bäder wenn möglich, kein Luxus. Max. ~",
         nights: "/Nacht · ",
-        ab: "Airbnb · 3 Zimmer + 6 Betten + 2 Bäder", apt: "Booking-Apartment · 3 Zimmer", ht: "Hotel · 3 Doppelzimmer",
+        ab: "Airbnb-Wohnung", apt: "Booking-Wohnung", ht: "Hotel",
         gf: "Google Flights", air: "Airline",
         note: "Saldanha/Parque ist sicher und an der Metro; Alfama ist postkartenhaft, aber ohne Metro. Preisdeckel. Code:"
       }
@@ -238,9 +247,11 @@
     const hl = { es: "es", en: "en", de: "de" };
     let lang = localStorage.getItem("trip-lang") || "es";
     let sel = "LIS";
+    let stay = "airbnb";
+    let mapWide = false;
     let map, overlay;
 
-    const pp = (c, o) => c.flights[o].p + Math.round(c.stay.airbnb / 6) + c.food + c.metro;
+    const pp = (c, o) => c.flights[o].p + Math.round(c.stay[stay] / 6) + c.food + c.metro;
     const city = () => CITIES.find((c) => c.id === sel);
 
     function gf(from, to) {
@@ -301,9 +312,13 @@
       CITIES.forEach((c) => {
         L.marker(c.ll, { icon: pinIcon(c.iata, false, c.id === sel) })
           .addTo(overlay).bindTooltip(c.name[lang])
-          .on("click", () => { sel = c.id; render(); });
+          .on("click", () => { sel = c.id; mapWide = false; render(); });
       });
-      map.fitBounds(Object.values(ORIGIN).map((o) => o.ll).concat([dest.ll]), { padding: [24, 24], maxZoom: 5 });
+      if (mapWide) {
+        map.fitBounds(Object.values(ORIGIN).map((o) => o.ll).concat(CITIES.map((c) => c.ll)), { padding: [24, 24], maxZoom: 5 });
+      } else {
+        map.flyTo(dest.ll, 14, { duration: 0.6 });
+      }
       setTimeout(() => map.invalidateSize(), 80);
     }
 
@@ -329,14 +344,22 @@
       document.getElementById("title").textContent = t.title;
       document.getElementById("lead").innerHTML = t.lead;
       document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
-      document.getElementById("legend").innerHTML = "<i style=\"background:#1f4e68\"></i>" + t.mapO + "<i style=\"background:#c24b1f\"></i>" + t.mapD;
+      document.getElementById("legend").innerHTML =
+        "<span><i style=\"background:#1f4e68\"></i>" + t.mapO + "<i style=\"background:#c24b1f\"></i>" + t.mapD + " — " + t.mapHint + "</span>" +
+        "<button type=\"button\" class=\"pill\" id=\"eu\">" + t.eu + "</button>";
       document.getElementById("foot").innerHTML = t.note + ' <a href="https://github.com/Marcos1995/investigation">https://github.com/Marcos1995/investigation</a>';
 
-      document.getElementById("list").innerHTML = CITIES.map((x) =>
-        "<button type=\"button\" class=\"city" + (x.id === sel ? " on" : "") + "\" data-id=\"" + x.id + "\">" +
+      document.getElementById("list").innerHTML = CITIES.map((x) => {
+        const u = stayUrls(x);
+        return "<div class=\"city" + (x.id === sel ? " on" : "") + "\" data-id=\"" + x.id + "\">" +
         "<b>#" + x.rank + " " + x.name[lang] + "</b><span>" + x.t + " · " + x.area[lang] + "</span>" +
-        "<div class=\"p\">" + pp(x, "BCN") + "–" + pp(x, "FRA") + " € " + t.each + "</div></button>"
-      ).join("");
+        "<div class=\"p\">" + pp(x, "BCN") + "–" + pp(x, "FRA") + " € " + t.each + "</div>" +
+        "<div class=\"sbtn\">" +
+        "<a class=\"" + (stay === "airbnb" ? "on" : "") + "\" data-stay=\"airbnb\" data-city=\"" + x.id + "\" target=\"_blank\" rel=\"noopener\" href=\"" + u.airbnb + "\">" + t.ab + "</a>" +
+        "<a class=\"" + (stay === "apt" ? "on" : "") + "\" data-stay=\"apt\" data-city=\"" + x.id + "\" target=\"_blank\" rel=\"noopener\" href=\"" + u.apt + "\">" + t.apt + "</a>" +
+        "<a class=\"" + (stay === "hotel" ? "on" : "") + "\" data-stay=\"hotel\" data-city=\"" + x.id + "\" target=\"_blank\" rel=\"noopener\" href=\"" + u.hotel + "\">" + t.ht + "</a>" +
+        "</div></div>";
+      }).join("");
 
       document.getElementById("detail").innerHTML =
         "<div class=\"k\">#" + c.rank + "</div>" +
@@ -349,7 +372,18 @@
         "<a target=\"_blank\" rel=\"noopener\" href=\"" + urls.apt + "\"><strong>" + t.apt + "</strong>" + c.stay.apt + " € · " + Math.round(c.stay.apt / 6) + " € " + t.each + "</a>" +
         "<a target=\"_blank\" rel=\"noopener\" href=\"" + urls.hotel + "\"><strong>" + t.ht + "</strong>" + c.stay.hotel + " € · " + Math.round(c.stay.hotel / 6) + " € " + t.each + "</a></div>";
 
-      document.querySelectorAll(".city").forEach((el) => el.onclick = () => { sel = el.dataset.id; render(); });
+      document.querySelectorAll(".city").forEach((el) => el.onclick = () => { sel = el.dataset.id; mapWide = false; render(); });
+      document.querySelectorAll(".sbtn a").forEach((a) => {
+        a.onclick = (e) => {
+          e.stopPropagation();
+          stay = a.dataset.stay;
+          sel = a.dataset.city;
+          mapWide = false;
+          setTimeout(render, 0);
+        };
+      });
+      const eu = document.getElementById("eu");
+      if (eu) eu.onclick = () => { mapWide = true; render(); };
       drawMap();
     }
 
