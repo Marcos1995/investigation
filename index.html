@@ -102,11 +102,11 @@
         mapO: "Salís de aquí", mapD: "Podéis ir aquí",
         whyL: "Por qué", each: "por persona", out: "Ida 4 dic", back: "Vuelta 8 dic",
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas",
-        stay: "Dormir en zona turística (sin lujo, máx. ~",
-        nights: "/noche)",
-        ab: "Airbnb", apt: "Apartamento", ht: "Hotel 3 hab.",
+        stay: "Piso o hotel: 3 habitaciones con cama de matrimonio (2 pers. cada una), 2+ baños si hay, sin lujo. Máx. ~",
+        nights: "/noche · ",
+        ab: "Airbnb · 3 hab. + 6 camas + 2 baños", apt: "Apartamento Booking · 3 hab.", ht: "Hotel · 3 habitaciones dobles",
         gf: "Google Flights", air: "Aerolínea",
-        note: "Precios orientativos. Los enlaces de piso ya descartan lo carísimo. Código:"
+        note: "Saldanha/Parque es segura y con metro; Alfama es más de postal pero sin metro. Enlaces con tope de precio. Código:"
       },
       en: {
         dates: "4–8 December 2026",
@@ -115,11 +115,11 @@
         mapO: "You leave from here", mapD: "You can go here",
         whyL: "Why", each: "per person", out: "Out 4 Dec", back: "Return 8 Dec",
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people",
-        stay: "Stay in the tourist area (no luxury, max ~",
-        nights: "/night)",
-        ab: "Airbnb", apt: "Apartment", ht: "3-room hotel",
+        stay: "Flat or hotel: 3 bedrooms with a double bed each (2 people per room), 2+ baths if possible, no luxury. Max ~",
+        nights: "/night · ",
+        ab: "Airbnb · 3 bedrooms + 6 beds + 2 baths", apt: "Booking apartment · 3 rooms", ht: "Hotel · 3 double rooms",
         gf: "Google Flights", air: "Airline",
-        note: "Guide prices. Stay links already hide the expensive listings. Source:"
+        note: "Saldanha/Parque is safe and on the metro; Alfama is prettier but has no metro. Price cap on stay links. Source:"
       },
       de: {
         dates: "4.–8. Dezember 2026",
@@ -128,27 +128,27 @@
         mapO: "Abflug", mapD: "Ziele",
         whyL: "Warum", each: "pro Person", out: "Hin 4. Dez", back: "Rück 8. Dez",
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen",
-        stay: "Übernachtung im Touristenviertel (kein Luxus, max. ~",
-        nights: "/Nacht)",
-        ab: "Airbnb", apt: "Apartment", ht: "Hotel, 3 Zimmer",
+        stay: "Wohnung oder Hotel: 3 Zimmer mit Doppelbett (2 Personen je Zimmer), 2+ Bäder wenn möglich, kein Luxus. Max. ~",
+        nights: "/Nacht · ",
+        ab: "Airbnb · 3 Zimmer + 6 Betten + 2 Bäder", apt: "Booking-Apartment · 3 Zimmer", ht: "Hotel · 3 Doppelzimmer",
         gf: "Google Flights", air: "Airline",
-        note: "Richtpreise. Unterkunft-Links blenden das Teure aus. Code:"
+        note: "Saldanha/Parque ist sicher und an der Metro; Alfama ist postkartenhaft, aber ohne Metro. Preisdeckel. Code:"
       }
     };
 
     const CITIES = [
       {
-        id: "LIS", iata: "LIS", rank: 1, ll: [38.7114, -9.1293], max: 220,
+        id: "LIS", iata: "LIS", rank: 1, ll: [38.7308, -9.1485], max: 250,
         name: { es: "Lisboa", en: "Lisbon", de: "Lissabon" },
         t: "15–17 °C",
         why: {
-          es: "Mejor equilibrio: suave, bonita, mucho que ver. Zona: Alfama (la más turística) + tranvía 28 hasta Baixa.",
-          en: "Best balance: mild, beautiful, lots to see. Area: Alfama (most touristy) + tram 28 to Baixa.",
-          de: "Beste Balance: mild, schön, viel zu sehen. Viertel: Alfama (am touristischsten) + Tram 28 zur Baixa."
+          es: "Mejor equilibrio. Zona: Saldanha / metro Parque — segura, no es cara de lujo, y con metro a todo Lisboa. Alfama es más de postal, pero no tiene metro y es menos práctica para 6.",
+          en: "Best balance. Area: Saldanha / Parque metro — safe, not luxury-priced, metro to the whole city. Alfama is prettier on postcards but has no metro and is awkward for 6.",
+          de: "Beste Balance. Viertel: Saldanha / Metro Parque — sicher, nicht luxuriös, Metro durch ganz Lissabon. Alfama ist postkartenhafter, aber ohne Metro und unpraktisch für 6."
         },
-        area: { es: "Alfama · tranvía 28", en: "Alfama · tram 28", de: "Alfama · Tram 28" },
+        area: { es: "Saldanha · metro Parque", en: "Saldanha · Parque metro", de: "Saldanha · Metro Parque" },
         food: 190, metro: 20, stay: { airbnb: 800, apt: 760, hotel: 960 },
-        q: { airbnb: "Alfama--Lisbon--Portugal", apt: "Lisbon Alfama", hotel: "Lisbon Alfama" },
+        q: { airbnb: "Saldanha--Lisbon--Portugal", apt: "Lisbon Saldanha Parque metro", hotel: "Lisbon Saldanha Parque" },
         flights: {
           BCN: { air: "Vueling", p: 95, out: ["14:10", "15:05", "1h 55m"], back: ["14:05", "17:05", "2h 00m"] },
           FRA: { air: "Lufthansa", p: 175, out: ["13:20", "15:35", "3h 15m"], back: ["12:15", "16:25", "3h 10m"] },
@@ -265,12 +265,14 @@
     function stayUrls(c) {
       const max = c.max;
       const ab = (lang === "de" ? "https://www.airbnb.de" : lang === "en" ? "https://www.airbnb.com" : "https://www.airbnb.es") +
-        "/s/" + c.q.airbnb + "/homes?checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3&room_types%5B%5D=Entire%20home%2Fapt&price_min=40&price_max=" + max + "&price_filter_num_nights=4";
+        "/s/" + c.q.airbnb + "/homes?checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3&min_beds=6&min_bathrooms=2&room_types%5B%5D=Entire%20home%2Fapt&price_min=40&price_max=" + max + "&price_filter_num_nights=4";
       const page = lang === "de" ? "de.html" : lang === "en" ? "html" : "es.html";
+      const nfltApt = "price%3DEUR-40-" + max + "-1%3Bht_id%3D201%3Broomfacility%3D38%3Bhotelfacility%3D81";
+      const nfltHt = "price%3DEUR-40-" + (max + 60) + "-1%3Broomfacility%3D38";
       const apt = "https://www.booking.com/searchresults." + page + "?ss=" + encodeURIComponent(c.q.apt) +
-        "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6&no_rooms=1&selected_currency=EUR&nflt=price%3DEUR-40-" + max + "-1%3Bht_id%3D201";
+        "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6&no_rooms=3&selected_currency=EUR&nflt=" + nfltApt;
       const ht = "https://www.booking.com/searchresults." + page + "?ss=" + encodeURIComponent(c.q.hotel) +
-        "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6&no_rooms=3&selected_currency=EUR&nflt=price%3DEUR-40-" + (max + 60) + "-1";
+        "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6&no_rooms=3&selected_currency=EUR&nflt=" + nfltHt;
       return { airbnb: ab, apt: apt, hotel: ht };
     }
 
