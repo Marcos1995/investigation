@@ -1,7 +1,5 @@
-# Escapada 4–8 diciembre
+# Escapada 4–8 diciembre · 6 personas
 
-Comparativa de destinos europeos con **vuelos directos** desde Barcelona (BCN), Frankfurt Main (FRA) y Hamburgo (HAM). Recomendación: **Lisboa**.
+Ranking de destinos con vuelos directos desde BCN, FRA y HAM, apartamento de 3 habitaciones y presupuesto de comida.
 
-## Vista
-
-Abre `index.html` en el navegador. Código: https://github.com/Marcos1995/investigation
+Abre `index.html` en el navegador. Repo: https://github.com/Marcos1995/investigation

@@ -15,6 +15,6 @@
 - Dev: `python -m http.server`
 
 ## Notas para el agente
-- Escapada 4–8 dic 2026, directos desde BCN, FRA y HAM
-- Destino recomendado: Lisboa (LIS)
+- 6 personas: 2 BCN, 2 FRA, 2 HAM · 4–8 dic 2026
+- Ranking: Lisboa, Málaga, Atenas, Valencia, Roma
 - Lean kit (ver AGENTS.md)

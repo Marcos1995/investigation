@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Escapada 4–8 dic · Lisboa</title>
+  <title>6 personas · 4–8 dic 2026 · ranking de destinos</title>
   <style>
     :root {
       --ink: #1b2430;
-      --paper: #f6efe4;
+      --paper: #f4ece1;
       --tile: #1e4d6b;
       --clay: #c45c26;
-      --gold: #d4a017;
       --foam: #fffaf3;
       --mute: #5c6670;
+      --line: #e0d2c0;
       --ok: #2f6f4e;
     }
     * { box-sizing: border-box; }
@@ -20,342 +20,198 @@
       margin: 0;
       font-family: "Segoe UI", system-ui, sans-serif;
       background:
-        radial-gradient(1200px 500px at 10% -10%, #f3d7b5 0%, transparent 55%),
-        linear-gradient(180deg, #e8d7c3 0%, var(--paper) 28%);
+        radial-gradient(900px 420px at 8% -8%, #f3d7b5 0%, transparent 50%),
+        var(--paper);
       color: var(--ink);
       line-height: 1.45;
     }
-    header {
-      max-width: 68rem;
-      margin: 0 auto;
-      padding: 1.6rem 1.1rem 0.4rem;
+    header, main, footer { max-width: 72rem; margin: 0 auto; padding: 0 1.1rem; }
+    header { padding-top: 1.5rem; }
+    .kicker {
+      letter-spacing: .12em; text-transform: uppercase; font-size: .72rem;
+      color: var(--tile); font-weight: 700; margin: 0 0 .4rem;
     }
-    header p.kicker {
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 0.72rem;
-      color: var(--tile);
-      font-weight: 700;
-      margin: 0 0 0.4rem;
+    h1 { font-size: clamp(1.55rem, 3vw, 2.25rem); margin: 0 0 .45rem; }
+    .brief { max-width: 48rem; color: var(--mute); margin: 0 0 1rem; }
+    .people {
+      display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.2rem;
     }
-    h1 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin: 0 0 0.5rem; }
-    .brief {
-      max-width: 46rem;
-      color: var(--mute);
-      margin: 0;
+    .people span {
+      background: var(--foam); border: 1px solid var(--line);
+      border-radius: 999px; padding: .35rem .8rem; font-size: .9rem;
     }
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin: 1.1rem 0 0;
+    h2 { font-size: 1.15rem; margin: 1.4rem 0 .7rem; }
+    .rank { display: grid; gap: .9rem; }
+    article {
+      background: var(--foam); border: 1px solid var(--line);
+      border-radius: 14px; padding: 1rem 1.1rem 1.15rem;
     }
-    .filters button {
-      border: 1px solid #c9b8a4;
-      background: var(--foam);
-      color: var(--ink);
-      border-radius: 999px;
-      padding: 0.42rem 0.9rem;
-      cursor: pointer;
-      font: inherit;
+    article.best { outline: 2px solid var(--clay); }
+    .top {
+      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      align-items: baseline;
     }
-    .filters button[aria-pressed="true"] {
-      background: var(--tile);
-      color: #fff;
-      border-color: var(--tile);
-    }
-    main { max-width: 68rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
-    .pick {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 1.1rem;
-      background: var(--foam);
-      border: 1px solid #e0d2c0;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(27, 36, 48, 0.08);
-    }
-    .pick-copy, .pick-side { padding: 1.2rem 1.25rem; }
-    .badge {
-      display: inline-block;
-      background: var(--clay);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.55rem;
-      border-radius: 6px;
-    }
-    .pick h2 { margin: 0.45rem 0 0.35rem; }
-    .meta { display: flex; flex-wrap: wrap; gap: 0.45rem 0.9rem; color: var(--mute); font-size: 0.92rem; }
-    .pick-side {
-      background: linear-gradient(165deg, var(--tile), #16384e);
-      color: #f4efe6;
-    }
-    .pick-side h3 { margin: 0 0 0.6rem; font-size: 1rem; }
-    .legs { margin: 0; padding: 0; list-style: none; }
-    .legs li {
-      border-top: 1px solid rgba(255,255,255,0.18);
-      padding: 0.55rem 0;
-      font-size: 0.92rem;
-    }
-    .legs li:first-child { border-top: 0; }
-    .legs strong { display: block; color: #fff; }
-    .price { color: #f0d27a; font-weight: 700; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr));
-      gap: 0.85rem;
-      margin-top: 1.2rem;
-    }
-    article.card {
-      background: var(--foam);
-      border: 1px solid #e0d2c0;
-      border-radius: 14px;
-      padding: 1rem 1.05rem 1.1rem;
-    }
-    article.card.winner { outline: 2px solid var(--clay); }
-    article.card h3 { margin: 0.15rem 0 0.35rem; }
-    .score {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--ok);
-    }
-    .why { margin: 0.4rem 0 0.7rem; color: var(--mute); font-size: 0.92rem; }
-    .row { display: flex; justify-content: space-between; gap: 0.6rem; font-size: 0.88rem; margin: 0.22rem 0; }
+    .place { font-size: .8rem; font-weight: 700; color: var(--clay); letter-spacing: .04em; }
+    .pay { font-size: 1.35rem; font-weight: 750; }
+    .pay small { font-size: .85rem; font-weight: 600; color: var(--mute); }
+    .why { color: var(--mute); margin: .35rem 0 .8rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    th, td { text-align: left; padding: .38rem 0; border-bottom: 1px solid var(--line); }
+    th { color: var(--mute); font-weight: 600; }
+    td.num, th.num { text-align: right; }
+    .links { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .85rem; }
     a.btn {
-      display: inline-block;
-      margin-top: 0.7rem;
-      background: var(--ink);
-      color: #fff;
-      text-decoration: none;
-      padding: 0.42rem 0.75rem;
-      border-radius: 8px;
-      font-size: 0.88rem;
+      text-decoration: none; color: #fff; background: var(--ink);
+      padding: .4rem .7rem; border-radius: 8px; font-size: .84rem;
     }
-    footer {
-      max-width: 68rem;
-      margin: 0 auto;
-      padding: 0 1.1rem 2rem;
-      color: var(--mute);
-      font-size: 0.88rem;
-    }
-    @media (max-width: 760px) {
-      .pick { grid-template-columns: 1fr; }
-    }
+    a.btn.alt { background: var(--tile); }
+    .meals { font-size: .88rem; color: var(--mute); margin: .7rem 0 0; }
+    .meals strong { color: var(--ink); }
+    footer { padding: 1.4rem 1.1rem 2.2rem; color: var(--mute); font-size: .86rem; }
+    footer a { color: inherit; }
   </style>
 </head>
 <body>
   <header>
-    <p class="kicker">Vuelos directos · 4–8 diciembre 2026</p>
-    <h1>Mejor destino: Lisboa</h1>
+    <p class="kicker">Vuelos directos · 4 noches · 4–8 diciembre 2026</p>
+    <h1>Ranking para 6 personas: gana Lisboa</h1>
     <p class="brief">
-      Salida viernes 4 por la tarde y vuelta martes 8 a mediodía o por la tarde
-      (sin aterrizar de noche). Salidas desde El Prat (BCN), Frankfurt Main (FRA)
-      y Hamburgo (HAM). Lisboa gana por clima suave, ciudad para pasear y precios
-      competitivos en las tres rutas.
+      Viernes 4 por la tarde ida, martes 8 mediodía o tarde vuelta (sin aterrizar de noche).
+      Alojamientos: apartamento de 3 habitaciones, gama media (no lujo).
+      Comida: desayuno, comida, merienda y cena. Cada uno paga su vuelo más 1/6 del piso y de la comida.
     </p>
-    <div class="filters" role="group" aria-label="Aeropuerto de salida">
-      <button type="button" data-origin="ALL" aria-pressed="true">Las 3 salidas</button>
-      <button type="button" data-origin="BCN" aria-pressed="false">BCN El Prat</button>
-      <button type="button" data-origin="FRA" aria-pressed="false">FRA Frankfurt</button>
-      <button type="button" data-origin="HAM" aria-pressed="false">HAM Hamburgo</button>
-    </div>
+    <p class="people">
+      <span>2 × Barcelona El Prat (BCN)</span>
+      <span>2 × Frankfurt am Main (FRA)</span>
+      <span>2 × Hamburgo (HAM)</span>
+    </p>
   </header>
 
   <main>
-    <section class="pick" aria-labelledby="winner-title">
-      <div class="pick-copy">
-        <span class="badge">Recomendación</span>
-        <h2 id="winner-title">Lisboa (LIS)</h2>
-        <p class="meta">
-          <span>~15–17 °C</span>
-          <span>Directo desde BCN, FRA y HAM</span>
-          <span>8 dic: Inmaculada Concepción (festivo PT)</span>
-        </p>
-        <p>
-          En Europa a principios de diciembre, Lisboa es de las pocas capitales
-          que siguen siendo agradables a pie: luz, colinas, Belém, Chiado y
-          luces de Navidad. Málaga está un poco más cálida y a veces más barata,
-          pero ofrece menos ciudad en 4 noches. Roma es inmensa, pero el 8 es
-          festivo y suele salir más cara.
-        </p>
-        <p>
-          Ventana útil: salir el 4 después de las 13:00 y volver el 8 entre
-          las 11:00 y las 18:00, para llegar a origen antes de noche cerrada.
-        </p>
-      </div>
-      <aside class="pick-side">
-        <h3>Ventanas típicas a Lisboa</h3>
-        <ul class="legs" id="winner-legs"></ul>
-      </aside>
-    </section>
-
-    <section class="grid" id="cards" aria-label="Comparativa de destinos"></section>
+    <section class="rank" id="rank" aria-label="Ranking de ciudades"></section>
+    <h2>Qué incluye el presupuesto de comida</h2>
+    <article>
+      <p class="meals" style="margin:0">
+        En destino: <strong>4 desayunos</strong> (5–8 dic), <strong>3 comidas + 1 ligera</strong> el día de vuelta,
+        <strong>3 meriendas</strong> y <strong>4 cenas</strong> (4–7 dic). Precios de carta media, no gourmet.
+        El vuelo de la tarde del 4 y el del 8 recortan comidas en origen.
+      </p>
+    </article>
   </main>
 
   <footer>
     <p>
-      Precios ida y vuelta orientativos (1 adulto, directo, economía) según
-      rangos habituales de diciembre; confirma en Google Flights. Repo:
+      Cifras orientativas (sep 2026): vuelos ida-vuelta directos en economía, piso 3 hab. 4 noches,
+      comida y transporte urbano. Confirma en los enlaces. Código:
       <a href="https://github.com/Marcos1995/investigation">https://github.com/Marcos1995/investigation</a>
-      — abre este HTML en local para verlo renderizado.
     </p>
   </footer>
 
   <script>
-    const DEST = [
-      {
-        id: "LIS",
-        name: "Lisboa",
-        iata: "LIS",
-        winner: true,
-        weather: "15–17 °C, suave, posible lluvia",
-        vibe: "Capital bonita, comida, luces, mucho que hacer a pie.",
-        scores: { ALL: 9.4, BCN: 9.5, FRA: 9.3, HAM: 9.1 },
-        prices: { BCN: "70–140 €", FRA: "100–180 €", HAM: "120–210 €" },
-        airlines: {
-          BCN: "Vueling, TAP, Ryanair",
-          FRA: "Lufthansa, TAP",
-          HAM: "TAP, Eurowings"
-        },
-        out: {
-          BCN: "Tarde: TAP/VY ~14:00–18:00",
-          FRA: "Tarde: LH/TAP ~13:00–16:00",
-          HAM: "Tarde: TAP/EW ~13:30–16:00"
-        },
-        back: {
-          BCN: "8 dic: VY/TAP ~12:00–17:40 (evitar 21:05)",
-          FRA: "8 dic: TAP/LH ~11:00–16:30",
-          HAM: "8 dic: TAP/EW ~11:00–16:00"
-        }
-      },
-      {
-        id: "AGP",
-        name: "Málaga",
-        iata: "AGP",
-        winner: false,
-        weather: "16–18 °C, el más cálido",
-        vibe: "Mejor clima y precios; menos densidad urbana que Lisboa.",
-        scores: { ALL: 8.6, BCN: 8.8, FRA: 8.4, HAM: 8.2 },
-        prices: { BCN: "50–110 €", FRA: "90–170 €", HAM: "80–160 €" },
-        airlines: {
-          BCN: "Vueling, Ryanair",
-          FRA: "Lufthansa, Ryanair, Condor",
-          HAM: "Eurowings, Ryanair"
-        },
-        out: {
-          BCN: "Varias tardes VY",
-          FRA: "Algunas tardes LH/FR",
-          HAM: "EW a menudo ~13:25 (pocos diarios)"
-        },
-        back: {
-          BCN: "Mediodía/tarde frecuentes",
-          FRA: "Mediodía/tarde según día",
-          HAM: "Comprobar: poca frecuencia invernal"
-        }
-      },
-      {
-        id: "FCO",
-        name: "Roma",
-        iata: "FCO",
-        winner: false,
-        weather: "12–14 °C, fresco y posible lluvia",
-        vibe: "La que más ofrece; 8 dic festivo IT y suele encarecer.",
-        scores: { ALL: 8.3, BCN: 8.4, FRA: 8.5, HAM: 8.3 },
-        prices: { BCN: "80–160 €", FRA: "110–200 €", HAM: "90–180 €" },
-        airlines: {
-          BCN: "Vueling, Ryanair, ITA",
-          FRA: "Lufthansa, ITA",
-          HAM: "Eurowings, easyJet"
-        },
-        out: {
-          BCN: "Tardes VY/FR frecuentes",
-          FRA: "Varias LH por la tarde",
-          HAM: "EW/U2 tarde según día"
-        },
-        back: {
-          BCN: "Mediodía/tarde OK",
-          FRA: "Mediodía/tarde OK",
-          HAM: "Filtrar llegada antes de 20:30"
-        }
-      },
-      {
-        id: "ATH",
-        name: "Atenas",
-        iata: "ATH",
-        winner: false,
-        weather: "14–16 °C, a menudo soleado",
-        vibe: "Bonita y barata en destino; HAM no siempre diario.",
-        scores: { ALL: 8.0, BCN: 8.2, FRA: 8.1, HAM: 7.6 },
-        prices: { BCN: "70–150 €", FRA: "120–220 €", HAM: "100–200 €" },
-        airlines: {
-          BCN: "Vueling, Aegean, Ryanair",
-          FRA: "Lufthansa, Aegean",
-          HAM: "Aegean (menos frecuencias)"
-        },
-        out: {
-          BCN: "Tardes Aegean/VY",
-          FRA: "Tarde LH/A3",
-          HAM: "Comprobar si hay tarde el 4"
-        },
-        back: {
-          BCN: "Mediodía/tarde",
-          FRA: "Mediodía/tarde",
-          HAM: "Puede forzar mañana o noche"
-        }
-      }
-    ];
-
     const gf = (from, to) =>
       "https://www.google.com/travel/flights?hl=es&curr=EUR&q=" +
       encodeURIComponent("Vuelos de " + from + " a " + to + " el 2026-12-04 vuelta 2026-12-08 directos");
+    const airbnb = (slug) =>
+      "https://www.airbnb.es/s/" + slug + "/homes?checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3";
+    const booking = (city) =>
+      "https://www.booking.com/searchresults.es.html?ss=" + encodeURIComponent(city) +
+      "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6&no_rooms=3&nflt=ht_id%3D201";
 
-    const origins = ["BCN", "FRA", "HAM"];
-    let origin = "ALL";
+    const cities = [
+      {
+        rank: 1, best: true, name: "Lisboa", iata: "LIS",
+        why: "Mejor equilibrio: ciudad para pasear, ~15–17 °C, directos fiables desde las tres salidas y piso razonable.",
+        weather: "15–17 °C",
+        aptNight: 200, apt: 800,
+        food: { b: 8, l: 15, s: 5, d: 22, total: 190 },
+        foodNote: "café + pastel 8 € · menú 15 € · merienda 5 € · cena tasca 22 €",
+        city: 20,
+        flight: { BCN: 95, FRA: 175, HAM: 165 },
+        air: { BCN: "Vueling / TAP", FRA: "Lufthansa / TAP", HAM: "TAP / Eurowings" },
+        slug: "Lisboa--Portugal", book: "Lisboa"
+      },
+      {
+        rank: 2, best: false, name: "Málaga", iata: "AGP",
+        why: "La más cálida y de las más baratas. Menos ‘capital’ que Lisboa; HAM tiene pocos directos al día.",
+        weather: "16–18 °C",
+        aptNight: 170, apt: 680,
+        food: { b: 8, l: 15, s: 5, d: 20, total: 185 },
+        foodNote: "desayuno 8 € · tapas/menú 15 € · merienda 5 € · cena 20 €",
+        city: 12,
+        flight: { BCN: 70, FRA: 140, HAM: 130 },
+        air: { BCN: "Vueling / Ryanair", FRA: "LH / Ryanair", HAM: "Eurowings / Ryanair" },
+        slug: "Málaga--España", book: "Malaga"
+      },
+      {
+        rank: 3, best: false, name: "Atenas", iata: "ATH",
+        why: "Sol, precio de piso y comida bajos, mucha ciudad. El cuello de botella es HAM (menos frecuencias).",
+        weather: "14–16 °C",
+        aptNight: 170, apt: 680,
+        food: { b: 7, l: 14, s: 5, d: 20, total: 175 },
+        foodNote: "desayuno 7 € · taverna 14 € · merienda 5 € · cena 20 €",
+        city: 15,
+        flight: { BCN: 100, FRA: 175, HAM: 155 },
+        air: { BCN: "Vueling / Aegean", FRA: "LH / Aegean", HAM: "Aegean" },
+        slug: "Atenas--Grecia", book: "Athens"
+      },
+      {
+        rank: 4, best: false, name: "Valencia", iata: "VLC",
+        why: "Clima agradable y barata, pero para los de BCN es un salto corto y HAM no vuela todos los días.",
+        weather: "15–17 °C",
+        aptNight: 160, apt: 640,
+        food: { b: 8, l: 15, s: 5, d: 20, total: 185 },
+        foodNote: "desayuno 8 € · menú 15 € · merienda 5 € · cena 20 €",
+        city: 15,
+        flight: { BCN: 55, FRA: 125, HAM: 140 },
+        air: { BCN: "Vueling / Ryanair", FRA: "LH / Ryanair", HAM: "Eurowings" },
+        slug: "Valencia--España", book: "Valencia"
+      },
+      {
+        rank: 5, best: false, name: "Roma", iata: "FCO",
+        why: "La que más ofrece. El 8 dic es festivo italiano: piso y cenas suben y el aeropuerto se llena.",
+        weather: "12–14 °C",
+        aptNight: 260, apt: 1040,
+        food: { b: 10, l: 18, s: 6, d: 28, total: 235 },
+        foodNote: "cappuccino+cornetto 10 € · trattoria 18 € · gelato 6 € · cena 28 €",
+        city: 25,
+        flight: { BCN: 105, FRA: 155, HAM: 135 },
+        air: { BCN: "Vueling / ITA", FRA: "LH / ITA", HAM: "Eurowings / easyJet" },
+        slug: "Roma--Italia", book: "Roma"
+      }
+    ];
 
-    function render() {
-      const legs = document.getElementById("winner-legs");
-      const lis = DEST[0];
-      const show = origin === "ALL" ? origins : [origin];
-      legs.innerHTML = show.map((o) => (
-        "<li><strong>" + o + " ↔ LIS</strong>" +
-        lis.out[o] + "<br>" + lis.back[o] +
-        " · <span class=\"price\">" + lis.prices[o] + "</span></li>"
-      )).join("");
-
-      const cards = document.getElementById("cards");
-      cards.innerHTML = DEST.map((d) => {
-        const priceBlock = show.map((o) => (
-          "<div class=\"row\"><span>" + o + " · " + d.airlines[o] + "</span><strong>" +
-          d.prices[o] + "</strong></div>"
-        )).join("");
-        const links = show.map((o) => (
-          "<a class=\"btn\" href=\"" + gf(o, d.iata) + "\" rel=\"noopener\">Buscar " + o + "→" + d.iata + "</a>"
-        )).join(" ");
-        return (
-          "<article class=\"card" + (d.winner ? " winner" : "") + "\">" +
-          "<div class=\"score\">Nota " + d.scores[origin] + "/10</div>" +
-          "<h3>" + d.name + " (" + d.iata + ")</h3>" +
-          "<p class=\"why\">" + d.weather + ". " + d.vibe + "</p>" +
-          priceBlock + links +
-          "</article>"
-        );
-      }).join("");
+    function pp(c, origin) {
+      return c.flight[origin] + Math.round(c.apt / 6) + c.food.total + c.city;
     }
 
-    document.querySelectorAll(".filters button").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        origin = btn.dataset.origin;
-        document.querySelectorAll(".filters button").forEach((b) => {
-          b.setAttribute("aria-pressed", String(b === btn));
-        });
-        render();
-      });
-    });
-
-    render();
+    document.getElementById("rank").innerHTML = cities.map((c) => {
+      const shareApt = Math.round(c.apt / 6);
+      const rows = ["BCN", "FRA", "HAM"].map((o) => (
+        "<tr><td>2 pers. " + o + " · " + c.air[o] + "</td>" +
+        "<td class=\"num\">" + c.flight[o] + " €</td>" +
+        "<td class=\"num\">" + shareApt + " €</td>" +
+        "<td class=\"num\">" + c.food.total + " €</td>" +
+        "<td class=\"num\">" + c.city + " €</td>" +
+        "<td class=\"num\"><strong>" + pp(c, o) + " €</strong></td></tr>"
+      )).join("");
+      const links = ["BCN", "FRA", "HAM"].map((o) =>
+        "<a class=\"btn\" href=\"" + gf(o, c.iata) + "\">Vuelo directo " + o + "→" + c.iata + "</a>"
+      ).join("");
+      return (
+        "<article class=\"" + (c.best ? "best" : "") + "\">" +
+        "<div class=\"top\"><div><div class=\"place\">#" + c.rank + " · " + c.weather + "</div>" +
+        "<h2 style=\"margin:.15rem 0 0\">" + c.name + " (" + c.iata + ")</h2></div>" +
+        "<div class=\"pay\">" + pp(c, "BCN") + "–" + pp(c, "FRA") + " € <small>/ persona</small></div></div>" +
+        "<p class=\"why\">" + c.why + " Apartamento 3 hab. ~" + c.aptNight + " €/noche × 4 = " + c.apt + " € (" + shareApt + " € cada uno).</p>" +
+        "<table><thead><tr><th>Quién</th><th class=\"num\">Vuelo</th><th class=\"num\">Piso</th><th class=\"num\">Comida</th><th class=\"num\">Metro</th><th class=\"num\">Paga</th></tr></thead>" +
+        "<tbody>" + rows + "</tbody></table>" +
+        "<p class=\"meals\"><strong>Comida 4–8 dic:</strong> " + c.foodNote +
+        " → " + c.food.total + " €/pers. (4×desayuno, 3×comida + 1 ligera, 3×merienda, 4×cena).</p>" +
+        "<div class=\"links\">" + links +
+        "<a class=\"btn alt\" href=\"" + airbnb(c.slug) + "\">Airbnb 6 pers. 3 hab.</a>" +
+        "<a class=\"btn alt\" href=\"" + booking(c.book) + "\">Booking apartamentos</a></div></article>"
+      );
+    }).join("");
   </script>
 </body>
 </html>
