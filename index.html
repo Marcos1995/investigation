@@ -120,9 +120,9 @@
   <div class="bar">
     <div class="brand" id="dates"></div>
     <div class="langs">
-      <button class="pill" type="button" data-lang="es" aria-pressed="false">ES</button>
-      <button class="pill" type="button" data-lang="en" aria-pressed="false">EN</button>
       <button class="pill" type="button" data-lang="de" aria-pressed="true">DE</button>
+      <button class="pill" type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button class="pill" type="button" data-lang="es" aria-pressed="false">ES</button>
     </div>
   </div>
   <div class="wrap">
@@ -293,7 +293,17 @@
       HAM: { ll: [53.6304, 9.9882] }
     };
 
-    let lang = "de";
+    function langFromUrl() {
+      const q = new URLSearchParams(location.search).get("lang");
+      return q === "es" || q === "en" || q === "de" ? q : "de";
+    }
+    function setLangUrl(code) {
+      const u = new URL(location.href);
+      u.searchParams.set("lang", code);
+      history.replaceState(null, "", u.pathname + u.search + u.hash);
+    }
+    let lang = langFromUrl();
+    setLangUrl(lang);
     let sel = "LIS";
     let open = "";
     let stay = "airbnb";
@@ -482,7 +492,7 @@
     document.getElementById("foodIn").oninput = function () { foodDay = +this.value; render(); };
     document.getElementById("stayIn").oninput = function () { stayTot = +this.value; render(); };
     document.querySelectorAll("[data-lang]").forEach((b) => {
-      b.onclick = () => { lang = b.dataset.lang; render(); };
+      b.onclick = () => { lang = b.dataset.lang; setLangUrl(lang); render(); };
     });
     render();
   </script>
