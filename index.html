@@ -93,12 +93,12 @@
     .rowf .btns { display: flex; gap: .28rem; flex-wrap: wrap; padding-top: .1rem; }
     .rowf .btn { padding: .22rem .48rem; font-size: .7rem; border-radius: 7px; }
     .hint { color: var(--mute); font-size: .8rem; margin: -.1rem 0 .75rem; }
-    .budget {
-      display: grid; grid-template-columns: 1fr 1fr; gap: .55rem;
+    .budget { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin: .7rem 0 0; }
+    .budget label {
+      display: block; font-size: .8rem; color: var(--mute);
       background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-      padding: .7rem .8rem; margin: .7rem 0 0;
+      padding: .7rem .75rem;
     }
-    .budget label { display: block; font-size: .8rem; color: var(--mute); }
     .budget b { color: var(--clay); font-weight: 750; }
     .budget input[type="range"] { width: 100%; margin-top: .25rem; accent-color: var(--sea); }
     @media (max-width: 560px) { .budget { grid-template-columns: 1fr; } }
@@ -293,7 +293,7 @@
       HAM: { ll: [53.6304, 9.9882] }
     };
 
-    let lang = localStorage.getItem("trip-lang") || "es";
+    let lang = localStorage.getItem("trip-lang") || "de";
     let sel = "LIS";
     let open = "";
     let stay = "airbnb";
