@@ -115,8 +115,8 @@
         mapO: "Salís de aquí", mapD: "Destinos",
         whyL: "Por qué", each: "por persona", out: "Ida", back: "Vuelta",
         det: "Ciudad y vuelos", hide: "Cerrar",
-        dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas",
-        stay: "Airbnb: piso de 3 habitaciones y 2+ baños. Hotel (Booking): 3 habitaciones, cama doble o dos individuales, baño dentro de cada una.",
+        dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas", pair: "las 2",
+        stay: "Airbnb: piso de 3 hab. y 2+ baños. Si haces zoom en su mapa, busca solo esa zona y puede vaciarse: aleja o pulsa el nombre de la ciudad. Hotel (Booking): 3 hab., baño dentro.",
         nights: "/noche · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "sin listados",
@@ -129,8 +129,8 @@
         mapO: "You leave from here", mapD: "Destinations",
         whyL: "Why", each: "per person", out: "Out", back: "Back",
         det: "City & flights", hide: "Close",
-        dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people",
-        stay: "Airbnb: 3-bedroom flat with 2+ baths. Hotel (Booking): 3 rooms, double or twin beds, private bathroom in each room.",
+        dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people", pair: "for 2",
+        stay: "Airbnb: 3-bedroom flat, 2+ baths. Zooming its map searches only that area and listings can vanish: zoom out or tap the city name. Hotel (Booking): 3 rooms, bathroom in each.",
         nights: "/night · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "no listings",
@@ -143,8 +143,8 @@
         mapO: "Abflug", mapD: "Ziele",
         whyL: "Warum", each: "pro Person", out: "Hin", back: "Rück",
         det: "Stadt und Flüge", hide: "Schließen",
-        dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen",
-        stay: "Airbnb: Wohnung mit 3 Schlafzimmern und 2+ Bädern. Hotel (Booking): 3 Zimmer, Doppel- oder zwei Einzelbetten, Bad im Zimmer.",
+        dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen", pair: "für 2",
+        stay: "Airbnb: 3 Schlafzimmer, 2+ Bäder. Zoom auf deren Karte sucht nur den Ausschnitt; Treffer können verschwinden: rauszoomen oder den Städtenamen antippen. Hotel (Booking): 3 Zimmer, Bad im Zimmer.",
         nights: "/Nacht · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "keine Treffer",
@@ -251,7 +251,6 @@
       HAM: { ll: [53.6304, 9.9882] }
     };
 
-    const hl = { es: "es", en: "en", de: "de" };
     let lang = localStorage.getItem("trip-lang") || "es";
     let sel = "LIS";
     let open = "";
@@ -261,32 +260,47 @@
     const pp = (c, o) => c.flights[o].p + Math.round(c.stay[stay] / 6) + c.food + c.metro;
     const city = () => CITIES.find((c) => c.id === sel);
 
-    function gf(from, to) {
-      return "https://www.google.com/travel/flights?hl=" + hl[lang] + "&curr=EUR#flt=" +
-        from + "." + to + ".2026-12-04*" + to + "." + from + ".2026-12-08";
+    function gf(from, to, air, outH, backH) {
+      const loc = lang === "de" ? ["de", "de"] : lang === "en" ? ["en", "es"] : ["es", "es"];
+      const q = lang === "de"
+        ? ("Nonstop " + air + " " + from + " nach " + to + " am 2026-12-04 Abflug " + outH + " Rückflug 2026-12-08 " + backH + " 2 Erwachsene")
+        : lang === "en"
+        ? ("Nonstop " + air + " " + from + " to " + to + " on 2026-12-04 departing " + outH + " returning 2026-12-08 " + backH + " 2 adults")
+        : ("Vuelos directos " + air + " de " + from + " a " + to + " el 2026-12-04 salida " + outH + " vuelta 2026-12-08 " + backH + " 2 adultos");
+      return "https://www.google.com/travel/flights?hl=" + loc[0] + "&gl=" + loc[1] + "&curr=EUR&q=" + encodeURIComponent(q);
     }
     function airlineUrl(air, from, to) {
-      if (air === "Vueling")
-        return "https://tickets.vueling.com/ScheduleSelectNew.aspx?o=" + from + "&d=" + to + "&dd=2026-12-04&rd=2026-12-08&ADT=2&CURRENCY=EUR";
+      const es = lang === "de" ? "de" : lang === "en" ? "en" : "es";
+      if (air === "Vueling") {
+        const c = lang === "de" ? "de-DE" : lang === "en" ? "en-GB" : "es-ES";
+        return "https://tickets.vueling.com/booking?o=" + from + "&d=" + to + "&dd=2026-12-04&rd=2026-12-08&adt=2&chd=0&inf=0&c=" + c + "&cur=EUR";
+      }
       if (air === "Lufthansa") {
         const loc = lang === "de" ? "de/de" : lang === "en" ? "en/en" : "es/es";
-        return "https://www.lufthansa.com/" + loc + "/booking/flight-search?origin=" + from + "&destination=" + to + "&outboundDate=2026-12-04&inboundDate=2026-12-08&adults=2&tripType=ROUNDTRIP";
+        return "https://www.lufthansa.com/" + loc + "/booking/flight-search?origin=" + from + "&destination=" + to +
+          "&outboundDate=2026-12-04&inboundDate=2026-12-08&adults=2&children=0&infants=0&tripType=ROUNDTRIP&cabinClass=M";
       }
       if (air === "TAP")
-        return "https://booking.flytap.com/?tripType=RT&origin=" + from + "&destination=" + to + "&departureDate=2026-12-04&returnDate=2026-12-08&adults=2";
-      if (air === "Eurowings") {
-        const loc = lang === "de" ? "de" : lang === "en" ? "en" : "es";
-        return "https://www.eurowings.com/" + loc + "/booking/flights/search.html?origin=" + from + "&destination=" + to + "&outboundDate=2026-12-04&inboundDate=2026-12-08&adultCount=2";
+        return "https://booking.flytap.com/booking/availability?tripType=RT&origin=" + from + "&destination=" + to +
+          "&outDate=2026-12-04&inDate=2026-12-08&adults=2&children=0&infants=0&cabin=Y&currency=EUR";
+      if (air === "Eurowings")
+        return "https://www.eurowings.com/" + es + "/booking/flights/search.html?origin=" + from + "&destination=" + to +
+          "&outboundDate=2026-12-04&inboundDate=2026-12-08&adultCount=2&childrenCount=0&infantCount=0&currency=EUR";
+      if (air === "Iberia") {
+        const loc = lang === "de" ? "de" : lang === "en" ? "gb" : "es";
+        return "https://www.iberia.com/" + loc + "/flights/?origin=" + from + "&destination=" + to +
+          "&departureDate=2026-12-04&returnDate=2026-12-08&adults=2&cabin=ECONOMY";
       }
-      if (air === "Iberia")
-        return "https://www.iberia.com/" + (lang === "de" ? "de" : lang === "en" ? "gb" : "es") + "/flights/?origin=" + from + "&destination=" + to + "&outbound=" + "2026-12-04&inbound=2026-12-08&adults=2";
       return "https://en.aegeanair.com/plan/book/?from=" + from + "&to=" + to + "&departure=2026-12-04&return=2026-12-08&adults=2";
     }
     function stayUrls(c) {
       const max = c.max;
       const hmax = Math.round(c.max * 1.5 + 50);
       const ab = (lang === "de" ? "https://www.airbnb.de" : lang === "en" ? "https://www.airbnb.com" : "https://www.airbnb.es") +
-        "/s/" + c.q.airbnb + "/homes?checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3&min_beds=3&min_bathrooms=2&room_types%5B%5D=Entire%20home%2Fapt&price_max=" + max;
+        "/s/" + c.q.airbnb + "/homes?query=" + encodeURIComponent(c.q.ss) +
+        "&checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3&min_beds=3&min_bathrooms=2" +
+        "&room_types%5B%5D=Entire%20home%2Fapt&price_max=" + max +
+        "&search_type=search_query&source=structured_search_input_header&refinement_paths%5B%5D=%2Fhomes&tab_id=home_tab";
       const page = lang === "de" ? "de.html" : lang === "en" ? "html" : "es.html";
       const occ = "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6&req_adults=6&no_rooms=3&req_rooms=3&group_children=0&req_children=0&selected_currency=EUR";
       const where = "?ss=" + encodeURIComponent(c.q.ss) + "&dest_id=" + c.q.dest + "&dest_type=city" + occ;
@@ -329,10 +343,10 @@
     function flyRow(c, o, t) {
       const f = c.flights[o];
       return "<div class=\"rowf\"><div class=\"o\">" + o + "</div><div>" +
-        "<div class=\"meta\">" + f.air + " · <span class=\"price\">" + f.p + " €</span> · " + t.pax + "</div>" +
+        "<div class=\"meta\">" + f.air + " · <span class=\"price\">" + f.p + " € " + t.each + "</span> · " + (f.p * 2) + " € " + t.pair + "</div>" +
         "<div class=\"leg\"><em>" + t.out + "</em>" + f.out[0] + " " + o + " → " + f.out[1] + " " + c.iata + " · " + f.out[2] + "</div>" +
         "<div class=\"leg\"><em>" + t.back + "</em>" + f.back[0] + " " + c.iata + " → " + f.back[1] + " " + o + " · " + f.back[2] + "</div>" +
-        "</div><div class=\"btns\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"" + gf(o, c.iata) + "\">" + t.gf + "</a>" +
+        "</div><div class=\"btns\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"" + gf(o, c.iata, f.air, f.out[0], f.back[0]) + "\">" + t.gf + "</a>" +
         "<a class=\"btn ghost\" target=\"_blank\" rel=\"noopener\" href=\"" + airlineUrl(f.air, o, c.iata) + "\">" + f.air + "</a></div></div>";
     }
 
