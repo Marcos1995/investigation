@@ -100,38 +100,38 @@
       es: {
         dates: "4–8 de diciembre de 2026",
         title: "Un puente de 4 noches para 6 personas",
-        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. 2 vuelan desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo vuelos directos: ida por la tarde, vuelta a mediodía o tarde. Pulsa una ciudad del mapa o de la lista.",
+        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b>: ida <b>a partir de las 17:00–18:00</b> (no antes), vuelta a mediodía o tarde. El precio del vuelo ya incluye maleta de cabina (~8 kg). Pulsa una ciudad.",
         mapO: "Salís de aquí", mapD: "Destinos",
         whyL: "Por qué", each: "por persona", out: "Ida 4 dic", back: "Vuelta 8 dic",
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas",
         stay: "Mismo tipo de piso, dos webs: Airbnb o Booking. Hotel es hotel. 3 hab. cama doble, 2+ baños si hay, sin lujo. Máx. ~",
         nights: "/noche · ",
         ab: "Piso Airbnb", apt: "Piso Booking", ht: "Hotel",
-        gf: "Google Flights", air: "Aerolínea"
+        gf: "Google Flights", air: "Aerolínea", bag: "cabina 8 kg incluida"
       },
       en: {
         dates: "4–8 December 2026",
         title: "A 4-night trip for 6 people",
-        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. 2 fly from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). Direct flights only: out in the afternoon, back midday or afternoon. Tap a city on the map or the list.",
+        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> only: out <b>from 17:00–18:00</b> (not earlier), back midday or afternoon. Fares include a cabin bag (~8 kg). Tap a city.",
         mapO: "You leave from here", mapD: "Destinations",
         whyL: "Why", each: "per person", out: "Out 4 Dec", back: "Return 8 Dec",
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people",
         stay: "Same kind of flat, two websites: Airbnb or Booking. Hotel is a hotel. 3 double bedrooms, 2+ baths if possible, no luxury. Max ~",
         nights: "/night · ",
         ab: "Airbnb flat", apt: "Booking flat", ht: "Hotel",
-        gf: "Google Flights", air: "Airline"
+        gf: "Google Flights", air: "Airline", bag: "8 kg cabin bag included"
       },
       de: {
         dates: "4.–8. Dezember 2026",
         title: "Vier Nächte für sechs Personen",
-        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. 2 fliegen ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur Direktflüge: hin nachmittags, zurück mittags oder nachmittags. Stadt auf der Karte oder in der Liste antippen.",
+        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Direktflüge</b>: hin <b>ab 17:00–18:00</b> (nicht früher), zurück mittags oder nachmittags. Preis inkl. Handgepäck (~8 kg). Stadt antippen.",
         mapO: "Abflug", mapD: "Ziele",
         whyL: "Warum", each: "pro Person", out: "Hin 4. Dez", back: "Rück 8. Dez",
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen",
         stay: "Gleiche Wohnungsart, zwei Websites: Airbnb oder Booking. Hotel ist Hotel. 3 Doppelzimmer, 2+ Bäder wenn möglich, kein Luxus. Max. ~",
         nights: "/Nacht · ",
         ab: "Airbnb-Wohnung", apt: "Booking-Wohnung", ht: "Hotel",
-        gf: "Google Flights", air: "Airline"
+        gf: "Google Flights", air: "Airline", bag: "8-kg-Handgepäck inklusive"
       }
     };
 
@@ -149,81 +149,81 @@
         food: 190, metro: 20, stay: { airbnb: 800, apt: 760, hotel: 960 },
         q: { airbnb: "Saldanha--Lisbon--Portugal", apt: "Lisbon Saldanha Parque metro", hotel: "Lisbon Saldanha Parque" },
         flights: {
-          BCN: { air: "Vueling", p: 95, out: ["14:10", "15:05", "1h 55m"], back: ["14:05", "17:05", "2h 00m"] },
-          FRA: { air: "Lufthansa", p: 175, out: ["13:20", "15:35", "3h 15m"], back: ["12:15", "16:25", "3h 10m"] },
-          HAM: { air: "TAP", p: 165, out: ["13:45", "16:50", "3h 05m"], back: ["11:20", "16:20", "3h 00m"] }
+          BCN: { air: "Vueling", p: 155, out: ["19:20", "20:25", "1h 55m"], back: ["14:05", "17:05", "2h 00m"] },
+          FRA: { air: "TAP", p: 200, out: ["17:45", "20:00", "3h 15m"], back: ["12:15", "16:25", "3h 10m"] },
+          HAM: { air: "TAP", p: 195, out: ["17:00", "19:35", "3h 35m"], back: ["11:20", "16:50", "3h 30m"] }
         }
       },
       {
-        id: "AGP", iata: "AGP", rank: 2, ll: [36.7213, -4.4197], max: 190,
-        name: { es: "Málaga", en: "Málaga", de: "Málaga" },
+        id: "PMI", iata: "PMI", rank: 2, ll: [39.5696, 2.6502], max: 180,
+        name: { es: "Palma", en: "Palma", de: "Palma" },
         t: "16–18 °C",
         why: {
-          es: "La más cálida y barata. Casco histórico (catedral) a pie; metro El Perchel a 10 min.",
-          en: "Warmest and cheapest. Old town by the cathedral; El Perchel metro ~10 min.",
-          de: "Am wärmsten und günstigsten. Altstadt an der Kathedrale; Metro El Perchel ~10 Min."
+          es: "La más cálida y con tardes directas fáciles desde HAM. Casco antiguo a pie; bus/metro al aeropuerto.",
+          en: "Warmest, with easy evening directs from HAM. Walkable old town; bus to the airport.",
+          de: "Am wärmsten, abends gut erreichbar ab HAM. Altstadt zu Fuß; Bus zum Flughafen."
         },
-        area: { es: "Centro histórico · catedral", en: "Old town · cathedral", de: "Altstadt · Kathedrale" },
-        food: 185, metro: 12, stay: { airbnb: 680, apt: 640, hotel: 840 },
-        q: { airbnb: "Malaga-Historic-Center--Spain", apt: "Malaga centro historico catedral", hotel: "Malaga catedral" },
+        area: { es: "Casco antiguo · Plaça Major", en: "Old town · Plaça Major", de: "Altstadt · Plaça Major" },
+        food: 185, metro: 12, stay: { airbnb: 640, apt: 600, hotel: 780 },
+        q: { airbnb: "Palma-Old-Town--Spain", apt: "Palma de Mallorca casco antiguo", hotel: "Palma de Mallorca centro" },
         flights: {
-          BCN: { air: "Vueling", p: 70, out: ["15:05", "16:30", "1h 25m"], back: ["12:40", "14:05", "1h 25m"] },
-          FRA: { air: "Lufthansa", p: 140, out: ["13:05", "16:30", "3h 25m"], back: ["11:15", "14:35", "3h 20m"] },
-          HAM: { air: "Eurowings", p: 130, out: ["13:25", "16:50", "3h 25m"], back: ["11:40", "15:05", "3h 25m"] }
+          BCN: { air: "Vueling", p: 120, out: ["18:30", "19:30", "1h 00m"], back: ["12:35", "13:35", "1h 00m"] },
+          FRA: { air: "Eurowings", p: 155, out: ["17:30", "19:50", "2h 20m"], back: ["13:00", "15:15", "2h 15m"] },
+          HAM: { air: "Eurowings", p: 150, out: ["17:15", "20:00", "2h 45m"], back: ["12:20", "14:50", "2h 30m"] }
         }
       },
       {
-        id: "ATH", iata: "ATH", rank: 3, ll: [37.9725, 23.7280], max: 190,
-        name: { es: "Atenas", en: "Athens", de: "Athen" },
-        t: "14–16 °C",
+        id: "MAD", iata: "MAD", rank: 3, ll: [40.4168, -3.7038], max: 200,
+        name: { es: "Madrid", en: "Madrid", de: "Madrid" },
+        t: "11–13 °C",
         why: {
-          es: "Plaka es el barrio turístico bajo la Acrópolis, con metro en Monastiraki.",
-          en: "Plaka is the tourist quarter under the Acropolis, metro at Monastiraki.",
-          de: "Plaka ist das Touristenviertel unter der Akropolis, Metro Monastiraki."
+          es: "Mucho que ver. Sol / Gran Vía con metro. Iberia HAM sale ~19:50 (cabina incluida).",
+          en: "Lots to see. Sol / Gran Vía on the metro. Iberia from HAM ~19:50 (cabin bag included).",
+          de: "Viel Stadt. Sol / Gran Vía an der Metro. Iberia ab HAM ~19:50 (Handgepäck inklusive)."
         },
-        area: { es: "Plaka · metro Monastiraki", en: "Plaka · Monastiraki metro", de: "Plaka · Metro Monastiraki" },
-        food: 175, metro: 15, stay: { airbnb: 680, apt: 640, hotel: 800 },
-        q: { airbnb: "Plaka--Athens--Greece", apt: "Athens Plaka", hotel: "Athens Plaka" },
+        area: { es: "Sol · Gran Vía · metro", en: "Sol · Gran Vía · metro", de: "Sol · Gran Vía · Metro" },
+        food: 200, metro: 18, stay: { airbnb: 720, apt: 680, hotel: 900 },
+        q: { airbnb: "Sol--Madrid--Spain", apt: "Madrid Sol Gran Via", hotel: "Madrid Sol" },
         flights: {
-          BCN: { air: "Aegean", p: 100, out: ["14:20", "18:15", "2h 55m"], back: ["12:00", "14:00", "3h 00m"] },
-          FRA: { air: "Lufthansa", p: 175, out: ["13:00", "16:55", "2h 55m"], back: ["11:40", "13:40", "3h 00m"] },
-          HAM: { air: "Aegean", p: 155, out: ["14:00", "18:05", "3h 05m"], back: ["12:10", "14:20", "3h 10m"] }
+          BCN: { air: "Vueling", p: 130, out: ["18:00", "19:25", "1h 25m"], back: ["13:00", "14:20", "1h 20m"] },
+          FRA: { air: "Lufthansa", p: 175, out: ["18:00", "20:30", "2h 30m"], back: ["13:15", "15:40", "2h 25m"] },
+          HAM: { air: "Iberia", p: 190, out: ["19:50", "22:35", "2h 45m"], back: ["12:40", "15:20", "2h 40m"] }
         }
       },
       {
-        id: "VLC", iata: "VLC", rank: 4, ll: [39.4760, -0.3753], max: 180,
-        name: { es: "Valencia", en: "Valencia", de: "Valencia" },
-        t: "15–17 °C",
-        why: {
-          es: "Barata. El Carmen / Ciutat Vella es el casco turístico; metro Colón y Xàtiva cerca.",
-          en: "Cheap. El Carmen / Ciutat Vella is the tourist old town; Colón and Xàtiva metro nearby.",
-          de: "Günstig. El Carmen / Ciutat Vella ist die touristische Altstadt; Metro Colón und Xàtiva nah."
-        },
-        area: { es: "El Carmen · Ciutat Vella", en: "El Carmen · Ciutat Vella", de: "El Carmen · Ciutat Vella" },
-        food: 185, metro: 15, stay: { airbnb: 640, apt: 600, hotel: 780 },
-        q: { airbnb: "El-Carmen--Valencia--Spain", apt: "Valencia El Carmen Ciutat Vella", hotel: "Valencia Ciutat Vella" },
-        flights: {
-          BCN: { air: "Vueling", p: 55, out: ["15:30", "16:40", "1h 10m"], back: ["12:15", "13:25", "1h 10m"] },
-          FRA: { air: "Lufthansa", p: 125, out: ["15:10", "17:30", "2h 20m"], back: ["13:05", "15:25", "2h 20m"] },
-          HAM: { air: "Eurowings", p: 140, out: ["14:40", "17:35", "2h 55m"], back: ["12:10", "14:55", "2h 45m"] }
-        }
-      },
-      {
-        id: "FCO", iata: "FCO", rank: 5, ll: [41.8986, 12.4768], max: 260,
+        id: "FCO", iata: "FCO", rank: 4, ll: [41.8986, 12.4768], max: 260,
         name: { es: "Roma", en: "Rome", de: "Rom" },
         t: "12–14 °C",
         why: {
-          es: "La que más ofrece. Centro histórico (Panteón / Navona); metro Spagna a 10–15 min. El 8 es festivo.",
-          en: "Most to see. Historic centre (Pantheon / Navona); Spagna metro 10–15 min. 8 Dec is a holiday.",
-          de: "Am meisten Stadt. Historisches Zentrum (Pantheon / Navona); Metro Spagna 10–15 Min. 8. Dez. Feiertag."
+          es: "La que más ofrece. Centro histórico; metro Spagna. El 8 es festivo. HAM Eurowings ~17:00.",
+          en: "Most to see. Historic centre; Spagna metro. 8 Dec is a holiday. HAM Eurowings ~17:00.",
+          de: "Am meisten Stadt. Historisches Zentrum; Metro Spagna. 8. Dez. Feiertag. HAM Eurowings ~17:00."
         },
         area: { es: "Centro histórico · Panteón", en: "Historic centre · Pantheon", de: "Historisches Zentrum · Pantheon" },
         food: 235, metro: 25, stay: { airbnb: 1040, apt: 980, hotel: 1280 },
         q: { airbnb: "Pantheon--Rome--Italy", apt: "Rome Pantheon Navona", hotel: "Rome Pantheon" },
         flights: {
-          BCN: { air: "Vueling", p: 105, out: ["14:45", "16:35", "1h 50m"], back: ["13:20", "15:15", "1h 55m"] },
-          FRA: { air: "Lufthansa", p: 155, out: ["13:10", "15:00", "1h 50m"], back: ["12:00", "14:00", "2h 00m"] },
-          HAM: { air: "Eurowings", p: 135, out: ["14:15", "16:30", "2h 15m"], back: ["12:40", "15:00", "2h 20m"] }
+          BCN: { air: "Vueling", p: 160, out: ["18:55", "20:45", "1h 50m"], back: ["13:20", "15:15", "1h 55m"] },
+          FRA: { air: "Lufthansa", p: 185, out: ["18:10", "20:00", "1h 50m"], back: ["12:00", "14:00", "2h 00m"] },
+          HAM: { air: "Eurowings", p: 175, out: ["17:00", "19:15", "2h 15m"], back: ["12:40", "15:00", "2h 20m"] }
+        }
+      },
+      {
+        id: "MXP", iata: "MXP", rank: 5, ll: [45.4642, 9.1900], max: 220,
+        name: { es: "Milán", en: "Milan", de: "Mailand" },
+        t: "7–10 °C",
+        why: {
+          es: "Directos de tarde desde las tres. Duomo en metro. Más fría que Lisboa o Palma.",
+          en: "Evening directs from all three. Duomo on the metro. Colder than Lisbon or Palma.",
+          de: "Abend-Direktflüge ab allen dreien. Dom per Metro. Kälter als Lissabon oder Palma."
+        },
+        area: { es: "Duomo · metro", en: "Duomo · metro", de: "Dom · Metro" },
+        food: 220, metro: 20, stay: { airbnb: 880, apt: 840, hotel: 1100 },
+        q: { airbnb: "Duomo--Milan--Italy", apt: "Milan Duomo", hotel: "Milan Duomo" },
+        flights: {
+          BCN: { air: "Vueling", p: 140, out: ["18:20", "19:50", "1h 30m"], back: ["13:10", "14:40", "1h 30m"] },
+          FRA: { air: "Lufthansa", p: 170, out: ["17:15", "18:25", "1h 10m"], back: ["12:30", "13:45", "1h 15m"] },
+          HAM: { air: "Eurowings", p: 165, out: ["17:10", "18:50", "1h 40m"], back: ["13:00", "14:40", "1h 40m"] }
         }
       }
     ];
@@ -260,6 +260,8 @@
         const loc = lang === "de" ? "de" : lang === "en" ? "en" : "es";
         return "https://www.eurowings.com/" + loc + "/booking/flights/search.html?origin=" + from + "&destination=" + to + "&outboundDate=2026-12-04&inboundDate=2026-12-08&adultCount=2";
       }
+      if (air === "Iberia")
+        return "https://www.iberia.com/" + (lang === "de" ? "de" : lang === "en" ? "gb" : "es") + "/flights/?origin=" + from + "&destination=" + to + "&outbound=" + "2026-12-04&inbound=2026-12-08&adults=2";
       return "https://en.aegeanair.com/plan/book/?from=" + from + "&to=" + to + "&departure=2026-12-04&return=2026-12-08&adults=2";
     }
     function stayUrls(c) {
@@ -309,7 +311,7 @@
 
     function flyBlock(c, o, t) {
       const f = c.flights[o];
-      return "<div class=\"leg\"><h3>" + t.pax + " " + o + " · " + f.air + " · <span class=\"price\">" + f.p + " € " + t.each + "</span></h3>" +
+      return "<div class=\"leg\"><h3>" + t.pax + " " + o + " · " + f.air + " · <span class=\"price\">" + f.p + " € " + t.each + "</span> · " + t.bag + "</h3>" +
         "<div class=\"pair\"><div class=\"fly\"><b>" + t.out + "</b><div class=\"times\">" + f.out[0] + " " + o + " → " + f.out[1] + " " + c.iata + "</div>" +
         t.dep + " " + f.out[0] + " · " + t.arr + " " + f.out[1] + " · " + f.out[2] + "</div>" +
         "<div class=\"fly\"><b>" + t.back + "</b><div class=\"times\">" + f.back[0] + " " + c.iata + " → " + f.back[1] + " " + o + "</div>" +
