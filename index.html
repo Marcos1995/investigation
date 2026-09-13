@@ -18,7 +18,7 @@
       padding: .65rem 1.1rem; background: #efe6d8; border-bottom: 1px solid var(--line);
     }
     .brand { font-weight: 800; font-size: 1.05rem; }
-    .langs { display: flex; gap: .3rem; }
+    .langs, .views { display: flex; gap: .3rem; }
     button.pill, a.btn {
       font: inherit; cursor: pointer; border-radius: 999px; border: 1px solid var(--line);
       background: var(--card); color: var(--ink); padding: .3rem .7rem;
@@ -106,6 +106,15 @@
     .pin { background: var(--clay); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: grid; place-items: center; font-size: 10px; font-weight: 800; border: 2px solid #fff; }
     .pin.origin { background: var(--sea); }
     .pin.on { transform: scale(1.12); }
+    .nv { display: grid; gap: .55rem; max-width: 46rem; }
+    .nv .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: .75rem .85rem;
+    }
+    .nv .card b.k { color: var(--clay); }
+    .nv ul { margin: .35rem 0 0; padding: 0 0 0 1.1rem; }
+    .nv li { margin: .22rem 0; font-size: .92rem; }
+    .nv code { font-size: .82em; background: #f7f1e8; padding: .05rem .28rem; border-radius: 4px; }
+    .nv a { color: var(--sea); }
     footer { max-width: 74rem; margin: 0 auto; padding: 0 1.1rem 1.4rem; color: var(--mute); font-size: .8rem; }
     footer a { color: inherit; }
     @media (max-width: 700px) {
@@ -119,13 +128,17 @@
 <body>
   <div class="bar">
     <div class="brand" id="dates"></div>
+    <div class="views">
+      <button class="pill" type="button" data-view="trip" aria-pressed="true" id="vTrip"></button>
+      <button class="pill" type="button" data-view="nvidia" aria-pressed="false" id="vNvidia">NVIDIA</button>
+    </div>
     <div class="langs">
       <button class="pill" type="button" data-lang="de" aria-pressed="true">DE</button>
       <button class="pill" type="button" data-lang="en" aria-pressed="false">EN</button>
       <button class="pill" type="button" data-lang="es" aria-pressed="false">ES</button>
     </div>
   </div>
-  <div class="wrap">
+  <div class="wrap" id="trip">
     <h1 id="title"></h1>
     <p class="lead" id="lead"></p>
     <div class="mapbox">
@@ -142,6 +155,15 @@
     </div>
     <div class="cities" id="list"></div>
     <p class="hint" id="stayhint"></p>
+  </div>
+  <div class="wrap nv" id="nvidia" hidden>
+    <h1 id="nvTitle"></h1>
+    <p class="lead" id="nvLead"></p>
+    <div class="card"><b class="k" id="nvA"></b><p id="nvAbody"></p></div>
+    <div class="card"><b id="nvB"></b><ul id="nvBullets"></ul></div>
+    <div class="card"><b id="nvC"></b><p id="nvCbody"></p></div>
+    <p class="hint"><a href="https://build.nvidia.com/" target="_blank" rel="noopener">build.nvidia.com</a>
+      · <a href="https://forums.developer.nvidia.com/t/nvidia-nim-faq/300317" target="_blank" rel="noopener">NIM FAQ</a></p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
@@ -161,7 +183,22 @@
         nights: "/noche · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "sin listados",
-        gf: "Google Flights", air: "Kayak", bag: "cabina 8 kg incluida · 2 adultos"
+        gf: "Google Flights", air: "Kayak", bag: "cabina 8 kg incluida · 2 adultos",
+        vTrip: "Viaje",
+        nvTitle: "API de NVIDIA: no es ilimitada",
+        nvLead: "El catálogo de <b>build.nvidia.com</b> (NIM) deja usar muchos modelos open-weight por API compatible con OpenAI. Es <b>prueba para prototipar</b>, no un Cursor gratis.",
+        nvA: "Respuesta corta",
+        nvAbody: "No. No puedes usar los mejores modelos de forma ilimitada ni sustituir la cuota de Cursor. La API alojada es gratis, pero con techo de ritmo y de carga; no hay cuota de tokens publicada porque ya no van por créditos: van por rate limit.",
+        nvB: "Qué implica",
+        nvItems: [
+          "Tope típico ~40 peticiones/minuto (cambia por modelo y tráfico). Con el agente de Cursor (muchas llamadas) se agota en un rato; a veces 429 aunque vayas más despacio.",
+          "No sustituye a Claude/GPT de Cursor: son Llama, Nemotron, DeepSeek, Kimi, Qwen, etc. Más flojos para agent/código.",
+          "En Cursor puedes poner la clave y la base URL <code>https://integrate.api.nvidia.com/v1</code>: no gasta cuota de Cursor, pero sí choca con el límite de NVIDIA. Tab sigue usando Cursor.",
+          "Producción de pago: NVIDIA AI Enterprise o partners. Autohospedar NIM: desarrollo/test sin cuota de NVIDIA (tú pagas GPU/luz); producción pide licencia.",
+          "Si se acaba Cursor y quieres seguir sin cuota: modelo local (Ollama/LM Studio). Peor, pero sin techo de proveedor."
+        ],
+        nvC: "Si se acaba la cuota de Cursor",
+        nvCbody: "NVIDIA sirve para acabar un prototipo corto, no para el día a día. Lo “ilimitado” de verdad es solo un modelo en tu máquina o un endpoint de pago."
       },
       en: {
         dates: "4–8 December 2026",
@@ -178,7 +215,22 @@
         nights: "/night · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "no listings",
-        gf: "Google Flights", air: "Kayak", bag: "8 kg cabin bag included · 2 adults"
+        gf: "Google Flights", air: "Kayak", bag: "8 kg cabin bag included · 2 adults",
+        vTrip: "Trip",
+        nvTitle: "NVIDIA API: not unlimited",
+        nvLead: "The <b>build.nvidia.com</b> catalog (NIM) exposes many open-weight models on an OpenAI-compatible API. It is a <b>prototyping trial</b>, not a free Cursor replacement.",
+        nvA: "Short answer",
+        nvAbody: "No. You cannot run the best models with no cap, and you cannot replace a Cursor quota. Hosted inference is free, but rate- and load-limited. There is no published token quota because credits were dropped in favour of rate limits.",
+        nvB: "What that means",
+        nvItems: [
+          "Typical cap ~40 requests/minute (varies by model and traffic). A Cursor agent (many tool calls) hits it fast; 429s also happen under load even below that.",
+          "Not a stand-in for Cursor’s Claude/GPT: you get Llama, Nemotron, DeepSeek, Kimi, Qwen, and similar. Weaker for agent/coding work.",
+          "In Cursor you can set the key and base URL <code>https://integrate.api.nvidia.com/v1</code>: that does not spend Cursor quota, but it still hits NVIDIA’s limit. Tab stays on Cursor.",
+          "Paid production: NVIDIA AI Enterprise or partners. Self-host NIM: research/test with no NVIDIA quota (you pay GPU/power); production needs a license.",
+          "If Cursor quota is gone and you want no vendor cap: a local model (Ollama/LM Studio). Worse, but no provider ceiling."
+        ],
+        nvC: "When Cursor quota runs out",
+        nvCbody: "NVIDIA is fine for a short prototype, not daily work. Truly “unlimited” only means a model on your machine or a paid endpoint."
       },
       de: {
         dates: "4.–8. Dezember 2026",
@@ -195,7 +247,22 @@
         nights: "/Nacht · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "keine Treffer",
-        gf: "Google Flights", air: "Kayak", bag: "8-kg-Handgepäck inklusive · 2 Personen"
+        gf: "Google Flights", air: "Kayak", bag: "8-kg-Handgepäck inklusive · 2 Personen",
+        vTrip: "Reise",
+        nvTitle: "NVIDIA-API: nicht unbegrenzt",
+        nvLead: "Der Katalog auf <b>build.nvidia.com</b> (NIM) stellt viele Open-Weight-Modelle über eine OpenAI-kompatible API bereit. Das ist ein <b>Prototyp-Test</b>, kein kostenloser Cursor-Ersatz.",
+        nvA: "Kurz",
+        nvAbody: "Nein. Die besten Modelle laufen nicht ohne Deckel, und die Cursor-Quote ersetzt das nicht. Hosted Inference ist kostenlos, aber tempo- und lastbegrenzt. Es gibt kein Token-Kontingent, weil Credits durch Rate Limits ersetzt wurden.",
+        nvB: "Was das heißt",
+        nvItems: [
+          "Typisch ~40 Anfragen/Minute (je Modell und Last). Ein Cursor-Agent (viele Tool-Calls) trifft das schnell; unter Last auch 429 darunter.",
+          "Kein Ersatz für Claude/GPT in Cursor: Llama, Nemotron, DeepSeek, Kimi, Qwen u. a. Schwächer für Agent/Code.",
+          "In Cursor kannst du den Key und die Base-URL <code>https://integrate.api.nvidia.com/v1</code> setzen: verbraucht keine Cursor-Quote, stößt aber an NVIDIAs Limit. Tab bleibt bei Cursor.",
+          "Produktion gegen Geld: NVIDIA AI Enterprise oder Partner. NIM selbst hosten: Forschung/Test ohne NVIDIA-Quote (du zahlst GPU/Strom); Produktion braucht Lizenz.",
+          "Wenn Cursor leer ist und du keinen Anbieter-Deckel willst: lokales Modell (Ollama/LM Studio). Schwächer, aber ohne Provider-Limit."
+        ],
+        nvC: "Wenn die Cursor-Quote leer ist",
+        nvCbody: "NVIDIA reicht für einen kurzen Prototyp, nicht für den Alltag. Wirklich „unbegrenzt“ ist nur ein Modell auf deinem Rechner oder ein bezahlter Endpoint."
       }
     };
 
@@ -297,12 +364,17 @@
       const q = new URLSearchParams(location.search).get("lang");
       return q === "es" || q === "en" || q === "de" ? q : "de";
     }
+    function viewFromUrl() {
+      return new URLSearchParams(location.search).get("view") === "nvidia" ? "nvidia" : "trip";
+    }
     function setLangUrl(code) {
       const u = new URL(location.href);
       u.searchParams.set("lang", code);
+      u.searchParams.set("view", view);
       history.replaceState(null, "", u.pathname + u.search + u.hash);
     }
     let lang = langFromUrl();
+    let view = viewFromUrl();
     setLangUrl(lang);
     let sel = "LIS";
     let open = "";
@@ -426,8 +498,23 @@
     function render() {
       const t = T[lang];
       document.documentElement.lang = lang;
-      document.title = t.dates;
-      document.getElementById("dates").textContent = t.dates;
+      document.title = view === "nvidia" ? t.nvTitle : t.dates;
+      document.getElementById("dates").textContent = view === "nvidia" ? "NVIDIA" : t.dates;
+      document.getElementById("vTrip").textContent = t.vTrip;
+      document.getElementById("vTrip").setAttribute("aria-pressed", String(view === "trip"));
+      document.getElementById("vNvidia").setAttribute("aria-pressed", String(view === "nvidia"));
+      document.getElementById("trip").hidden = view !== "trip";
+      document.getElementById("nvidia").hidden = view !== "nvidia";
+      document.getElementById("nvTitle").textContent = t.nvTitle;
+      document.getElementById("nvLead").innerHTML = t.nvLead;
+      document.getElementById("nvA").textContent = t.nvA;
+      document.getElementById("nvAbody").textContent = t.nvAbody;
+      document.getElementById("nvB").textContent = t.nvB;
+      document.getElementById("nvBullets").innerHTML = t.nvItems.map((x) => "<li>" + x + "</li>").join("");
+      document.getElementById("nvC").textContent = t.nvC;
+      document.getElementById("nvCbody").textContent = t.nvCbody;
+      document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+      if (view !== "trip") return;
       document.getElementById("title").textContent = t.title;
       document.getElementById("lead").innerHTML = t.lead;
       document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
@@ -495,6 +582,9 @@
     document.getElementById("stayIn").oninput = function () { stayTot = +this.value; render(); };
     document.querySelectorAll("[data-lang]").forEach((b) => {
       b.onclick = () => { lang = b.dataset.lang; setLangUrl(lang); render(); };
+    });
+    document.querySelectorAll("[data-view]").forEach((b) => {
+      b.onclick = () => { view = b.dataset.view; setLangUrl(lang); render(); };
     });
     render();
   </script>
