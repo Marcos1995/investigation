@@ -3,8 +3,8 @@
 
 ## Produccion
 - URL: https://github.com/Marcos1995/investigation
-- Vista local: `index.html` (abrir en el navegador)
-- Deploy: no (solo GitHub.com)
+- Vista: https://marcos1995.github.io/investigation/ (Chrome)
+- Vista local: `index.html`
 
 ## Stack
 - HTML + CSS + JS en un solo `index.html`
