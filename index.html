@@ -32,7 +32,7 @@
     .lead { max-width: 46rem; margin: 0 0 .7rem; font-size: .98rem; }
     .lead b { color: var(--clay); }
     .mapbox { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-    #map { height: 240px; width: 100%; }
+    #map { height: 280px; width: 100%; }
     .legend { font-size: .78rem; color: var(--mute); padding: .4rem .7rem; display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
     .legend i { display: inline-block; width: .65rem; height: .65rem; border-radius: 50%; margin: 0 .25rem 0 .5rem; vertical-align: -1px; }
     .cities { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin: .75rem 0 .8rem; }
@@ -145,15 +145,15 @@
     const T = {
       es: {
         dates: "4–8 de diciembre de 2026",
-        title: "Un puente de 4 noches para 6 personas",
-        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b>: ida <b>a partir de las 17:00–18:00</b>, vuelta a mediodía o tarde. Cabina ~8 kg incluida. El piso es el <b>mínimo real</b> ahora en Airbnb (3 hab., 2 baños). Booking abre con el mismo tope. La comida se estima abajo.",
+        title: "Top 10 destinos baratos · 4 noches · 6 personas",
+        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. Cumpleaños en ciudad: 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b> de tarde (ida desde ~15:00), cabina ~8 kg. Ordenados por lo que pagan los 6 (vuelos + piso). El piso es el <b>mínimo real</b> en Airbnb ahora (3 hab., 2 baños). Booking abre 3 hab. con baño, sin tope, para que haya hoteles. La comida se estima abajo.",
         mapO: "Salís de aquí", mapD: "Destinos",
         whyL: "Por qué", each: "por persona", out: "Ida", back: "Vuelta",
         det: "Ciudad y vuelos", hide: "Cerrar",
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas", pair: "las 2",
-        stay: "Airbnb: 3 hab. y 2+ baños. Si haces zoom en su mapa, puede vaciarse: aleja o pulsa la ciudad. Hotel (Booking): 3 hab., baño dentro. El precio del piso es el anuncio más barato que cumple eso hoy.",
+        stay: "Airbnb abre al precio más bajo con al menos un anuncio (3 hab., 2 baños). Booking: 3 hab., baño dentro, sin tope de precio (si lo aprietas, a menudo queda vacío). Zoom en el mapa de Airbnb puede vaciar resultados: aleja o pulsa la ciudad.",
         foodL: "Comida estimada / persona / día",
-        bud: "Total por persona = vuelo + piso (mínimo real / 6) + comida estimada × 4. Las aerolíneas no aceptan el enlace directo: Kayak abre la búsqueda con fechas, 2 adultos y esa compañía.",
+        bud: "Ranking = (vuelo BCN + FRA + HAM) × 2 + piso. Por persona = tu vuelo + piso/6 + comida × 4. Kayak abre la aerolínea con fechas y 2 adultos.",
         from: "desde", fly: "Vuelo", bed: "Alojamiento", eat: "Comida", est: "estimada", tot: "Total",
         nights: "/noche · ",
         ab: "Airbnb", ht: "Hotel",
@@ -162,15 +162,15 @@
       },
       en: {
         dates: "4–8 December 2026",
-        title: "A 4-night trip for 6 people",
-        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> only: out <b>from 17:00–18:00</b>, back midday or afternoon. Cabin bag ~8 kg included. Stay is the <b>live minimum</b> on Airbnb (3 bedrooms, 2 baths). Booking opens with the same cap. Food is estimated below.",
+        title: "Top 10 cheap cities · 4 nights · 6 people",
+        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. Birthday-city trip: 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> evenings only (out from ~15:00), cabin bag ~8 kg. Ranked by what all 6 pay (flights + stay). Stay is the <b>live Airbnb minimum</b> (3 bedrooms, 2 baths). Booking opens 3 rooms with a private bath, no price cap, so hotels actually appear. Food is estimated below.",
         mapO: "You leave from here", mapD: "Destinations",
         whyL: "Why", each: "per person", out: "Out", back: "Back",
         det: "City & flights", hide: "Close",
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people", pair: "for 2",
-        stay: "Airbnb: 3 bedrooms, 2+ baths. Zooming its map can empty results: zoom out or tap the city. Hotel (Booking): 3 rooms, bathroom in each. Stay price is the cheapest listing that matches that today.",
+        stay: "Airbnb opens at the lowest price that still has a listing (3 bedrooms, 2 baths). Booking: 3 rooms, bathroom in each, no price cap (a tight cap often returns zero). Zooming Airbnb’s map can empty results: zoom out or tap the city.",
         foodL: "Estimated food / person / day",
-        bud: "Per person = flight + stay (live minimum / 6) + estimated food × 4. Airline sites ignore deep links: Kayak runs the search with dates, 2 adults and that carrier.",
+        bud: "Rank = (BCN + FRA + HAM fares) × 2 + stay. Per person = your flight + stay/6 + food × 4. Kayak opens that airline with dates and 2 adults.",
         from: "from", fly: "Flight", bed: "Stay", eat: "Food", est: "estimated", tot: "Total",
         nights: "/night · ",
         ab: "Airbnb", ht: "Hotel",
@@ -179,15 +179,15 @@
       },
       de: {
         dates: "4.–8. Dezember 2026",
-        title: "Vier Nächte für sechs Personen",
-        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Direktflüge</b>: hin <b>ab 17:00–18:00</b>, zurück mittags oder nachmittags. Handgepäck ~8 kg inklusive. Unterkunft ist das <b>aktuelle Minimum</b> auf Airbnb (3 SZ, 2 Bäder). Booking öffnet mit derselben Obergrenze. Essen schätzt du unten.",
+        title: "Top 10 günstige Städte · 4 Nächte · 6 Personen",
+        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. Städtetrip zum Geburtstag: 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Abend-Direktflüge</b> (hin ab ~15:00), Handgepäck ~8 kg. Sortiert nach dem, was alle 6 zahlen (Flüge + Unterkunft). Unterkunft ist das <b>aktuelle Airbnb-Minimum</b> (3 SZ, 2 Bäder). Booking öffnet 3 Zimmer mit Bad, ohne Preisdeckel, damit Hotels erscheinen. Essen schätzt du unten.",
         mapO: "Abflug", mapD: "Ziele",
         whyL: "Warum", each: "pro Person", out: "Hin", back: "Rück",
         det: "Stadt und Flüge", hide: "Schließen",
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen", pair: "für 2",
-        stay: "Airbnb: 3 Schlafzimmer, 2+ Bäder. Zoom auf deren Karte kann Treffer leeren: rauszoomen oder Stadt antippen. Hotel (Booking): 3 Zimmer, Bad im Zimmer. Der Unterkunftspreis ist das günstigste passende Inserat von heute.",
+        stay: "Airbnb öffnet zum niedrigsten Preis mit mindestens einem Inserat (3 SZ, 2 Bäder). Booking: 3 Zimmer, Bad im Zimmer, ohne Preisdeckel (ein enger Deckel bleibt oft leer). Zoom auf der Airbnb-Karte kann Treffer leeren: rauszoomen oder Stadt antippen.",
         foodL: "Essen geschätzt / Person / Tag",
-        bud: "Pro Person = Flug + Unterkunft (aktuelles Minimum / 6) + Essen geschätzt × 4. Airline-Seiten ignorieren Direktlinks: Kayak startet die Suche mit Daten, 2 Erwachsenen und dieser Airline.",
+        bud: "Rang = (BCN + FRA + HAM) × 2 + Unterkunft. Pro Person = dein Flug + Unterkunft/6 + Essen × 4. Kayak öffnet die Airline mit Daten und 2 Erwachsenen.",
         from: "ab", fly: "Flug", bed: "Unterkunft", eat: "Essen", est: "geschätzt", tot: "Summe",
         nights: "/Nacht · ",
         ab: "Airbnb", ht: "Hotel",
@@ -198,88 +198,173 @@
 
     const CITIES = [
       {
-        id: "LIS", iata: "LIS", rank: 1, ll: [38.7308, -9.1485], stay: 403, max: 410,
+        id: "FCO", iata: "FCO", rank: 1, ll: [41.8986, 12.4768], stay: 401, max: 660,
+        name: { es: "Roma", en: "Rome", de: "Rom" },
+        t: "12–14 °C",
+        why: {
+          es: "La más barata para los 6 y con más que ver. Centro histórico; metro Spagna. El 8 es festivo. HAM easyJet 15:00.",
+          en: "Cheapest for all 6, and the most to see. Historic centre; Spagna metro. 8 Dec is a holiday. HAM easyJet 15:00.",
+          de: "Günstigste für alle 6, und am meisten Stadt. Historisches Zentrum; Metro Spagna. 8. Dez. Feiertag. HAM easyJet 15:00."
+        },
+        area: { es: "Centro histórico · Panteón", en: "Historic centre · Pantheon", de: "Historisches Zentrum · Pantheon" },
+        q: { airbnb: "Rome--Italy", ss: "Rome", dest: "-126693" },
+        flights: {
+          BCN: { air: "Wizz Air", p: 190, out: ["22:00", "23:55", "1h 55m"], back: ["12:40", "14:30", "1h 50m"] },
+          FRA: { air: "Lufthansa", p: 191, out: ["15:55", "17:45", "1h 50m"], back: ["09:55", "11:50", "1h 55m"] },
+          HAM: { air: "easyJet", p: 80, out: ["15:00", "17:20", "2h 20m"], back: ["12:00", "14:30", "2h 30m"] }
+        }
+      },
+      {
+        id: "ATH", iata: "ATH", rank: 2, ll: [37.9838, 23.7275], stay: 371, max: 371,
+        name: { es: "Atenas", en: "Athens", de: "Athen" },
+        t: "12–16 °C",
+        why: {
+          es: "Acrópolis a pie o en metro. Diciembre suave, mucho barrio para un cumpleaños. Piso barato.",
+          en: "Acropolis on foot or metro. Mild December, lots of neighbourhood for a birthday. Cheap stay.",
+          de: "Akropolis zu Fuß oder per Metro. Milder Dezember, viel Viertel zum Feiern. Günstige Wohnung."
+        },
+        area: { es: "Monastiraki · Plaka · metro", en: "Monastiraki · Plaka · metro", de: "Monastiraki · Plaka · Metro" },
+        q: { airbnb: "Athens--Greece", ss: "Athens", dest: "-814876" },
+        flights: {
+          BCN: { air: "Aegean", p: 215, out: ["19:40", "23:30", "2h 50m"], back: ["16:40", "18:50", "3h 10m"] },
+          FRA: { air: "Aegean", p: 176, out: ["18:50", "22:40", "2h 50m"], back: ["14:30", "16:30", "3h 00m"] },
+          HAM: { air: "SKY express", p: 142, out: ["18:15", "22:15", "3h 00m"], back: ["08:15", "10:30", "3h 15m"] }
+        }
+      },
+      {
+        id: "MXP", iata: "MXP", rank: 3, ll: [45.4642, 9.1900], stay: 656, max: 656,
+        name: { es: "Milán", en: "Milan", de: "Mailand" },
+        t: "7–10 °C",
+        why: {
+          es: "Mercados de Navidad y Duomo en metro. HAM easyJet muy barato. Más fría que Roma o Atenas.",
+          en: "Christmas markets and the Duomo on the metro. HAM easyJet is very cheap. Colder than Rome or Athens.",
+          de: "Weihnachtsmärkte und Dom per Metro. HAM easyJet sehr günstig. Kälter als Rom oder Athen."
+        },
+        area: { es: "Duomo · metro", en: "Duomo · metro", de: "Dom · Metro" },
+        q: { airbnb: "Milan--Italy", ss: "Milan", dest: "-121726" },
+        flights: {
+          BCN: { air: "easyJet", p: 127, out: ["18:40", "20:25", "1h 45m"], back: ["21:30", "23:10", "1h 40m"] },
+          FRA: { air: "Condor", p: 201, out: ["20:10", "21:25", "1h 15m"], back: ["17:00", "18:15", "1h 15m"] },
+          HAM: { air: "easyJet", p: 63, out: ["21:40", "23:25", "1h 45m"], back: ["09:35", "11:20", "1h 45m"] }
+        }
+      },
+      {
+        id: "WAW", iata: "WAW", rank: 4, ll: [52.2297, 21.0122], stay: 362, max: 362,
+        name: { es: "Varsovia", en: "Warsaw", de: "Warschau" },
+        t: "0–3 °C",
+        why: {
+          es: "El piso más barato. Casco reconstruido, luces de Navidad, comida copiosa. Frío: abrigo.",
+          en: "Cheapest apartment. Rebuilt old town, Christmas lights, hearty food. Cold: pack a coat.",
+          de: "Günstigste Wohnung. Wiederaufgebaute Altstadt, Weihnachtslichter, deftig essen. Kalt: Mantel."
+        },
+        area: { es: "Stare Miasto · metro", en: "Old Town · metro", de: "Altstadt · Metro" },
+        q: { airbnb: "Warsaw--Poland", ss: "Warsaw", dest: "-392863" },
+        flights: {
+          BCN: { air: "Wizz Air", p: 176, out: ["19:00", "22:10", "3h 10m"], back: ["15:05", "18:15", "3h 10m"] },
+          FRA: { air: "Lufthansa", p: 168, out: ["16:00", "17:40", "1h 40m"], back: ["07:40", "09:40", "2h 00m"] },
+          HAM: { air: "LOT", p: 243, out: ["19:40", "21:10", "1h 30m"], back: ["09:15", "10:55", "1h 40m"] }
+        }
+      },
+      {
+        id: "LIS", iata: "LIS", rank: 5, ll: [38.7308, -9.1485], stay: 428, max: 430,
         name: { es: "Lisboa", en: "Lisbon", de: "Lissabon" },
         t: "15–17 °C",
         why: {
-          es: "Mejor equilibrio. Zona: Saldanha / metro Parque — segura, no es cara de lujo, y con metro a todo Lisboa. Alfama es más de postal, pero no tiene metro y es menos práctica para 6.",
-          en: "Best balance. Area: Saldanha / Parque metro — safe, not luxury-priced, metro to the whole city. Alfama is prettier on postcards but has no metro and is awkward for 6.",
-          de: "Beste Balance. Viertel: Saldanha / Metro Parque — sicher, nicht luxuriös, Metro durch ganz Lissabon. Alfama ist postkartenhafter, aber ohne Metro und unpraktisch für 6."
+          es: "Diciembre suave. Saldanha / metro Parque: práctica para 6, no es zona de lujo.",
+          en: "Mild December. Saldanha / Parque metro: practical for 6, not a luxury district.",
+          de: "Milder Dezember. Saldanha / Metro Parque: praktisch für 6, kein Luxusviertel."
         },
         area: { es: "Saldanha · metro Parque", en: "Saldanha · Parque metro", de: "Saldanha · Metro Parque" },
         q: { airbnb: "Lisbon--Portugal", ss: "Lisbon", dest: "-2167973" },
         flights: {
-          BCN: { air: "TAP", p: 143, out: ["18:05", "19:10", "2h 05m"], back: ["10:50", "13:45", "1h 55m"] },
+          BCN: { air: "TAP", p: 130, out: ["21:10", "22:10", "2h 00m"], back: ["20:50", "23:45", "1h 55m"] },
           FRA: { air: "TAP", p: 240, out: ["17:45", "20:00", "3h 15m"], back: ["18:25", "22:40", "3h 15m"] },
           HAM: { air: "TAP", p: 209, out: ["17:00", "19:45", "3h 45m"], back: ["11:40", "16:10", "3h 30m"] }
         }
       },
       {
-        id: "PMI", iata: "PMI", rank: 2, ll: [39.5696, 2.6502], stay: 488, max: 490,
+        id: "LHR", iata: "LHR", rank: 6, ll: [51.5074, -0.1278], stay: 625, max: 630,
+        name: { es: "Londres", en: "London", de: "London" },
+        t: "6–9 °C",
+        why: {
+          es: "Luces de Navidad, museos, pubs. Heathrow con BA/LH. El piso parte de 625 € con los filtros.",
+          en: "Christmas lights, museums, pubs. Heathrow on BA/LH. Stay starts at 625 € with the filters.",
+          de: "Weihnachtslichter, Museen, Pubs. Heathrow mit BA/LH. Unterkunft ab 625 € mit den Filtern."
+        },
+        area: { es: "Zone 1–2 · Tube", en: "Zone 1–2 · Tube", de: "Zone 1–2 · Tube" },
+        q: { airbnb: "London--United-Kingdom", ss: "London", dest: "-2601889" },
+        flights: {
+          BCN: { air: "British Airways", p: 177, out: ["15:30", "16:50", "2h 20m"], back: ["19:20", "22:30", "2h 10m"] },
+          FRA: { air: "Lufthansa", p: 151, out: ["20:10", "20:50", "1h 40m"], back: ["09:30", "12:05", "1h 35m"] },
+          HAM: { air: "British Airways", p: 199, out: ["16:00", "16:45", "1h 45m"], back: ["15:15", "18:00", "1h 45m"] }
+        }
+      },
+      {
+        id: "CDG", iata: "CDG", rank: 7, ll: [48.8566, 2.3522], stay: 457, max: 457,
+        name: { es: "París", en: "Paris", de: "Paris" },
+        t: "5–8 °C",
+        why: {
+          es: "Mucho que ver y luces. Air France desde las tres. El piso barato puede quedar fuera del centro: mira el metro.",
+          en: "Lots to see, and the lights. Air France from all three. The cheap stay may sit outside the centre: check the metro.",
+          de: "Viel Stadt und Lichter. Air France ab allen dreien. Die günstige Wohnung kann außerhalb liegen: Metro prüfen."
+        },
+        area: { es: "Metro · intramuros si puedes", en: "Metro · inside the Périphérique if you can", de: "Metro · innerorts wenn möglich" },
+        q: { airbnb: "Paris--France", ss: "Paris", dest: "-1456928" },
+        flights: {
+          BCN: { air: "Air France", p: 298, out: ["15:00", "17:00", "2h 00m"], back: ["12:15", "14:00", "1h 45m"] },
+          FRA: { air: "Air France", p: 125, out: ["15:05", "16:35", "1h 30m"], back: ["09:50", "11:15", "1h 25m"] },
+          HAM: { air: "Air France", p: 188, out: ["16:00", "17:40", "1h 40m"], back: ["20:40", "22:20", "1h 40m"] }
+        }
+      },
+      {
+        id: "PMI", iata: "PMI", rank: 8, ll: [39.5696, 2.6502], stay: 488, max: 488,
         name: { es: "Palma", en: "Palma", de: "Palma" },
         t: "16–18 °C",
         why: {
-          es: "La más cálida y con tardes directas fáciles desde HAM. Casco antiguo a pie; bus/metro al aeropuerto.",
-          en: "Warmest, with easy evening directs from HAM. Walkable old town; bus to the airport.",
-          de: "Am wärmsten, abends gut erreichbar ab HAM. Altstadt zu Fuß; Bus zum Flughafen."
+          es: "La más cálida. Casco antiguo a pie. HAM Eurowings es el vuelo caro del grupo.",
+          en: "Warmest. Walkable old town. HAM Eurowings is the expensive leg for the group.",
+          de: "Am wärmsten. Altstadt zu Fuß. HAM Eurowings ist das teure Ticket der Gruppe."
         },
         area: { es: "Casco antiguo · Plaça Major", en: "Old town · Plaça Major", de: "Altstadt · Plaça Major" },
         q: { airbnb: "Palma-de-Mallorca--Spain", ss: "Palma de Mallorca", dest: "-395224" },
         flights: {
-          BCN: { air: "Air Europa", p: 129, out: ["18:45", "19:30", "0h 45m"], back: ["17:05", "17:55", "0h 50m"] },
+          BCN: { air: "Air Europa", p: 109, out: ["22:00", "22:50", "0h 50m"], back: ["10:15", "11:05", "0h 50m"] },
           FRA: { air: "Lufthansa", p: 168, out: ["16:00", "18:05", "2h 05m"], back: ["13:55", "16:15", "2h 20m"] },
           HAM: { air: "Eurowings", p: 336, out: ["18:05", "20:40", "2h 35m"], back: ["14:05", "16:45", "2h 40m"] }
         }
       },
       {
-        id: "MAD", iata: "MAD", rank: 3, ll: [40.4168, -3.7038], stay: 691, max: 710,
+        id: "MAD", iata: "MAD", rank: 9, ll: [40.4168, -3.7038], stay: 691, max: 693,
         name: { es: "Madrid", en: "Madrid", de: "Madrid" },
         t: "11–13 °C",
         why: {
-          es: "Mucho que ver. Sol / Gran Vía con metro. Iberia HAM sale ~15:50 (cabina incluida).",
-          en: "Lots to see. Sol / Gran Vía on the metro. Iberia from HAM ~15:50 (cabin bag included).",
-          de: "Viel Stadt. Sol / Gran Vía an der Metro. Iberia ab HAM ~15:50 (Handgepäck inklusive)."
+          es: "Mucho que ver. Sol / Gran Vía con metro. El piso 3 hab. + 2 baños sale más caro que en Roma o Atenas.",
+          en: "Lots to see. Sol / Gran Vía on the metro. A 3-bed 2-bath stay costs more than in Rome or Athens.",
+          de: "Viel Stadt. Sol / Gran Vía an der Metro. 3 SZ + 2 Bäder teurer als in Rom oder Athen."
         },
         area: { es: "Sol · Gran Vía · metro", en: "Sol · Gran Vía · metro", de: "Sol · Gran Vía · Metro" },
         q: { airbnb: "Madrid--Spain", ss: "Madrid", dest: "-390625" },
         flights: {
-          BCN: { air: "Iberia", p: 133, out: ["18:00", "19:25", "1h 25m"], back: ["13:00", "14:20", "1h 20m"] },
-          FRA: { air: "Lufthansa", p: 237, out: ["17:35", "20:15", "2h 40m"], back: ["17:20", "19:50", "2h 30m"] },
-          HAM: { air: "Iberia", p: 300, out: ["15:50", "18:55", "3h 05m"], back: ["12:10", "15:10", "3h 00m"] }
+          BCN: { air: "Iberia", p: 133, out: ["15:05", "16:30", "1h 25m"], back: ["20:00", "21:20", "1h 20m"] },
+          FRA: { air: "Lufthansa", p: 180, out: ["21:15", "23:55", "2h 40m"], back: ["17:20", "19:50", "2h 30m"] },
+          HAM: { air: "Iberia", p: 300, out: ["15:50", "18:55", "3h 05m"], back: ["19:45", "22:40", "2h 55m"] }
         }
       },
       {
-        id: "FCO", iata: "FCO", rank: 4, ll: [41.8986, 12.4768], stay: 586, max: 620,
-        name: { es: "Roma", en: "Rome", de: "Rom" },
-        t: "12–14 °C",
+        id: "VIE", iata: "VIE", rank: 10, ll: [48.2082, 16.3738], stay: 664, max: 665,
+        name: { es: "Viena", en: "Vienna", de: "Wien" },
+        t: "1–4 °C",
         why: {
-          es: "La que más ofrece. Centro histórico; metro Spagna. El 8 es festivo. HAM easyJet ~15:00.",
-          en: "Most to see. Historic centre; Spagna metro. 8 Dec is a holiday. HAM easyJet ~15:00.",
-          de: "Am meisten Stadt. Historisches Zentrum; Metro Spagna. 8. Dez. Feiertag. HAM easyJet ~15:00."
+          es: "Mercados de Navidad de libro. BCN Ryanair con cabina sale caro; FRA/HAM Austrian están bien.",
+          en: "Textbook Christmas markets. BCN Ryanair with a cabin bag is pricey; FRA/HAM Austrian are fine.",
+          de: "Klassische Weihnachtsmärkte. BCN Ryanair mit Handgepäck ist teuer; FRA/HAM Austrian passen."
         },
-        area: { es: "Centro histórico · Panteón", en: "Historic centre · Pantheon", de: "Historisches Zentrum · Pantheon" },
-        q: { airbnb: "Rome--Italy", ss: "Rome", dest: "-126693" },
+        area: { es: "Innere Stadt · U-Bahn", en: "Innere Stadt · U-Bahn", de: "Innere Stadt · U-Bahn" },
+        q: { airbnb: "Vienna--Austria", ss: "Vienna", dest: "-199250" },
         flights: {
-          BCN: { air: "ITA", p: 324, out: ["16:50", "18:35", "1h 45m"], back: ["14:05", "15:55", "1h 50m"] },
-          FRA: { air: "Lufthansa", p: 191, out: ["21:00", "22:50", "1h 50m"], back: ["13:30", "15:25", "1h 55m"] },
-          HAM: { air: "easyJet", p: 80, out: ["15:00", "17:20", "2h 20m"], back: ["12:00", "14:30", "2h 30m"] }
-        }
-      },
-      {
-        id: "MXP", iata: "MXP", rank: 5, ll: [45.4642, 9.1900], stay: 595, max: 600,
-        name: { es: "Milán", en: "Milan", de: "Mailand" },
-        t: "7–10 °C",
-        why: {
-          es: "Directos de tarde desde las tres. Duomo en metro. Más fría que Lisboa o Palma.",
-          en: "Evening directs from all three. Duomo on the metro. Colder than Lisbon or Palma.",
-          de: "Abend-Direktflüge ab allen dreien. Dom per Metro. Kälter als Lissabon oder Palma."
-        },
-        area: { es: "Duomo · metro", en: "Duomo · metro", de: "Dom · Metro" },
-        q: { airbnb: "Milan--Italy", ss: "Milan", dest: "-121726" },
-        flights: {
-          BCN: { air: "easyJet", p: 127, out: ["18:40", "20:25", "1h 45m"], back: ["14:35", "16:10", "1h 35m"] },
-          FRA: { air: "Condor", p: 201, out: ["20:10", "21:25", "1h 15m"], back: ["17:00", "18:15", "1h 15m"] },
-          HAM: { air: "Eurowings", p: 324, out: ["17:55", "19:35", "1h 40m"], back: ["09:35", "11:20", "1h 45m"] }
+          BCN: { air: "Ryanair", p: 448, out: ["20:10", "22:40", "2h 30m"], back: ["17:10", "19:35", "2h 25m"] },
+          FRA: { air: "Austrian", p: 131, out: ["16:15", "17:40", "1h 25m"], back: ["09:00", "10:30", "1h 30m"] },
+          HAM: { air: "Austrian", p: 161, out: ["20:10", "21:40", "1h 30m"], back: ["12:45", "14:20", "1h 35m"] }
         }
       }
     ];
@@ -301,13 +386,13 @@
     }
     let lang = langFromUrl();
     setLangUrl(lang);
-    let sel = "LIS";
+    let sel = "FCO";
     let open = "";
     let stay = "airbnb";
     let foodDay = 40;
     let map, overlay;
     const NIGHTS = 4;
-    const AIR = { Vueling: "VY", TAP: "TP", Eurowings: "EW", Lufthansa: "LH", Iberia: "IB", "Air Europa": "UX", easyJet: "U2", Condor: "DE", ITA: "AZ" };
+    const AIR = { Vueling: "VY", TAP: "TP", Eurowings: "EW", Lufthansa: "LH", Iberia: "IB", "Air Europa": "UX", easyJet: "U2", Condor: "DE", ITA: "AZ", "Wizz Air": "W6", Ryanair: "FR", Aegean: "A3", "SKY express": "GQ", Austrian: "OS", LOT: "LO", "Air France": "AF", "British Airways": "BA" };
 
     const bedOf = (c) => Math.round(c.stay / 6);
     const pp = (c, o) => c.flights[o].p + bedOf(c) + foodDay * NIGHTS;
@@ -360,7 +445,7 @@
       const ss = encodeURIComponent(c.q.ss);
       const occ = "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6&req_adults=6&no_rooms=3&req_rooms=3&group_children=0&req_children=0&selected_currency=EUR";
       const where = "?ss=" + ss + "&ssne=" + ss + "&ssne_untouched=" + ss + "&dest_id=" + c.q.dest + "&dest_type=city" + occ;
-      const nfltHt = "ht_id%3D204%3Broomfacility%3D38%3Bprice%3DEUR-40-" + max + "-1";
+      const nfltHt = "ht_id%3D204%3Broomfacility%3D38";
       const ht = "https://www.booking.com/searchresults." + page + where + "&nflt=" + nfltHt + "&sb=1";
       return { airbnb: ab, hotel: ht };
     }
@@ -378,7 +463,7 @@
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "&copy; OpenStreetMap" }).addTo(map);
       overlay = L.layerGroup().addTo(map);
       const pts = Object.values(ORIGIN).map((o) => o.ll).concat(CITIES.map((c) => c.ll));
-      map.fitBounds(pts, { padding: [28, 28], maxZoom: 5 });
+      map.fitBounds(pts, { padding: [28, 28], maxZoom: 4 });
     }
     function drawMap() {
       ensureMap();

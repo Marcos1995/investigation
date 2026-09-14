@@ -16,5 +16,5 @@
 
 ## Notas para el agente
 - 6 personas: 2 BCN, 2 FRA, 2 HAM · 4–8 dic 2026
-- Ranking: Lisboa, Málaga, Atenas, Valencia, Roma
+- Ranking: Roma, Atenas, Milán, Varsovia, Lisboa, Londres, París, Palma, Madrid, Viena
 - Lean kit (ver AGENTS.md)
