@@ -93,7 +93,7 @@
     .rowf .btns { display: flex; gap: .28rem; flex-wrap: wrap; padding-top: .1rem; }
     .rowf .btn { padding: .22rem .48rem; font-size: .7rem; border-radius: 7px; }
     .hint { color: var(--mute); font-size: .8rem; margin: -.1rem 0 .75rem; }
-    .budget { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin: .7rem 0 0; }
+    .budget { display: grid; grid-template-columns: 1fr; gap: .55rem; margin: .7rem 0 0; max-width: 28rem; }
     .budget label {
       display: block; font-size: .8rem; color: var(--mute);
       background: var(--card); border: 1px solid var(--line); border-radius: 12px;
@@ -136,9 +136,6 @@
       <label><span id="foodLbl"></span> <b id="foodVal"></b>
         <input id="foodIn" type="range" min="15" max="80" step="5" value="40">
       </label>
-      <label><span id="stayLbl"></span> <b id="stayVal"></b>
-        <input id="stayIn" type="range" min="400" max="2500" step="50" value="600">
-      </label>
     </div>
     <div class="cities" id="list"></div>
     <p class="hint" id="stayhint"></p>
@@ -149,14 +146,14 @@
       es: {
         dates: "4–8 de diciembre de 2026",
         title: "Un puente de 4 noches para 6 personas",
-        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b>: ida <b>a partir de las 17:00–18:00</b>, vuelta a mediodía o tarde. Cabina ~8 kg incluida. El vuelo es el único precio fijo; comida y piso se ajustan abajo.",
+        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b>: ida <b>a partir de las 17:00–18:00</b>, vuelta a mediodía o tarde. Cabina ~8 kg incluida. El piso es el <b>mínimo real</b> ahora en Airbnb (3 hab., 2 baños). Booking abre con el mismo tope. La comida se estima abajo.",
         mapO: "Salís de aquí", mapD: "Destinos",
         whyL: "Por qué", each: "por persona", out: "Ida", back: "Vuelta",
         det: "Ciudad y vuelos", hide: "Cerrar",
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas", pair: "las 2",
-        stay: "Airbnb: 3 hab. y 2+ baños. Si haces zoom en su mapa, puede vaciarse: aleja o pulsa la ciudad. Hotel (Booking): 3 hab., baño dentro.",
-        foodL: "Comida estimada / persona / día", stayL: "Alojamiento total · 6 pers. · 4 noches",
-        bud: "Total por persona = vuelo (fijo) + piso/6 + comida × 4. Las aerolíneas no aceptan el enlace directo: Kayak abre la búsqueda con fechas, 2 adultos y esa compañía.",
+        stay: "Airbnb: 3 hab. y 2+ baños. Si haces zoom en su mapa, puede vaciarse: aleja o pulsa la ciudad. Hotel (Booking): 3 hab., baño dentro. El precio del piso es el anuncio más barato que cumple eso hoy.",
+        foodL: "Comida estimada / persona / día",
+        bud: "Total por persona = vuelo + piso (mínimo real / 6) + comida estimada × 4. Las aerolíneas no aceptan el enlace directo: Kayak abre la búsqueda con fechas, 2 adultos y esa compañía.",
         from: "desde", fly: "Vuelo", bed: "Alojamiento", eat: "Comida", est: "estimada", tot: "Total",
         nights: "/noche · ",
         ab: "Airbnb", ht: "Hotel",
@@ -166,14 +163,14 @@
       en: {
         dates: "4–8 December 2026",
         title: "A 4-night trip for 6 people",
-        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> only: out <b>from 17:00–18:00</b>, back midday or afternoon. Cabin bag ~8 kg included. Only the flight fare is fixed; food and stay are sliders below.",
+        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> only: out <b>from 17:00–18:00</b>, back midday or afternoon. Cabin bag ~8 kg included. Stay is the <b>live minimum</b> on Airbnb (3 bedrooms, 2 baths). Booking opens with the same cap. Food is estimated below.",
         mapO: "You leave from here", mapD: "Destinations",
         whyL: "Why", each: "per person", out: "Out", back: "Back",
         det: "City & flights", hide: "Close",
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people", pair: "for 2",
-        stay: "Airbnb: 3 bedrooms, 2+ baths. Zooming its map can empty results: zoom out or tap the city. Hotel (Booking): 3 rooms, bathroom in each.",
-        foodL: "Estimated food / person / day", stayL: "Stay total · 6 people · 4 nights",
-        bud: "Per person = flight (fixed) + stay/6 + food × 4. Airline sites ignore deep links: Kayak runs the search with dates, 2 adults and that carrier.",
+        stay: "Airbnb: 3 bedrooms, 2+ baths. Zooming its map can empty results: zoom out or tap the city. Hotel (Booking): 3 rooms, bathroom in each. Stay price is the cheapest listing that matches that today.",
+        foodL: "Estimated food / person / day",
+        bud: "Per person = flight + stay (live minimum / 6) + estimated food × 4. Airline sites ignore deep links: Kayak runs the search with dates, 2 adults and that carrier.",
         from: "from", fly: "Flight", bed: "Stay", eat: "Food", est: "estimated", tot: "Total",
         nights: "/night · ",
         ab: "Airbnb", ht: "Hotel",
@@ -183,14 +180,14 @@
       de: {
         dates: "4.–8. Dezember 2026",
         title: "Vier Nächte für sechs Personen",
-        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Direktflüge</b>: hin <b>ab 17:00–18:00</b>, zurück mittags oder nachmittags. Handgepäck ~8 kg inklusive. Nur der Flugpreis ist fest; Essen und Unterkunft stellst du unten ein.",
+        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Direktflüge</b>: hin <b>ab 17:00–18:00</b>, zurück mittags oder nachmittags. Handgepäck ~8 kg inklusive. Unterkunft ist das <b>aktuelle Minimum</b> auf Airbnb (3 SZ, 2 Bäder). Booking öffnet mit derselben Obergrenze. Essen schätzt du unten.",
         mapO: "Abflug", mapD: "Ziele",
         whyL: "Warum", each: "pro Person", out: "Hin", back: "Rück",
         det: "Stadt und Flüge", hide: "Schließen",
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen", pair: "für 2",
-        stay: "Airbnb: 3 Schlafzimmer, 2+ Bäder. Zoom auf deren Karte kann Treffer leeren: rauszoomen oder Stadt antippen. Hotel (Booking): 3 Zimmer, Bad im Zimmer.",
-        foodL: "Essen geschätzt / Person / Tag", stayL: "Unterkunft gesamt · 6 Pers. · 4 Nächte",
-        bud: "Pro Person = Flug (fest) + Unterkunft/6 + Essen × 4. Airline-Seiten ignorieren Direktlinks: Kayak startet die Suche mit Daten, 2 Erwachsenen und dieser Airline.",
+        stay: "Airbnb: 3 Schlafzimmer, 2+ Bäder. Zoom auf deren Karte kann Treffer leeren: rauszoomen oder Stadt antippen. Hotel (Booking): 3 Zimmer, Bad im Zimmer. Der Unterkunftspreis ist das günstigste passende Inserat von heute.",
+        foodL: "Essen geschätzt / Person / Tag",
+        bud: "Pro Person = Flug + Unterkunft (aktuelles Minimum / 6) + Essen geschätzt × 4. Airline-Seiten ignorieren Direktlinks: Kayak startet die Suche mit Daten, 2 Erwachsenen und dieser Airline.",
         from: "ab", fly: "Flug", bed: "Unterkunft", eat: "Essen", est: "geschätzt", tot: "Summe",
         nights: "/Nacht · ",
         ab: "Airbnb", ht: "Hotel",
@@ -201,7 +198,7 @@
 
     const CITIES = [
       {
-        id: "LIS", iata: "LIS", rank: 1, ll: [38.7308, -9.1485], max: 600,
+        id: "LIS", iata: "LIS", rank: 1, ll: [38.7308, -9.1485], stay: 403, max: 410,
         name: { es: "Lisboa", en: "Lisbon", de: "Lissabon" },
         t: "15–17 °C",
         why: {
@@ -218,7 +215,7 @@
         }
       },
       {
-        id: "PMI", iata: "PMI", rank: 2, ll: [39.5696, 2.6502], max: 600,
+        id: "PMI", iata: "PMI", rank: 2, ll: [39.5696, 2.6502], stay: 488, max: 490,
         name: { es: "Palma", en: "Palma", de: "Palma" },
         t: "16–18 °C",
         why: {
@@ -235,7 +232,7 @@
         }
       },
       {
-        id: "MAD", iata: "MAD", rank: 3, ll: [40.4168, -3.7038], max: 600,
+        id: "MAD", iata: "MAD", rank: 3, ll: [40.4168, -3.7038], stay: 691, max: 710,
         name: { es: "Madrid", en: "Madrid", de: "Madrid" },
         t: "11–13 °C",
         why: {
@@ -252,7 +249,7 @@
         }
       },
       {
-        id: "FCO", iata: "FCO", rank: 4, ll: [41.8986, 12.4768], max: 600,
+        id: "FCO", iata: "FCO", rank: 4, ll: [41.8986, 12.4768], stay: 586, max: 620,
         name: { es: "Roma", en: "Rome", de: "Rom" },
         t: "12–14 °C",
         why: {
@@ -269,7 +266,7 @@
         }
       },
       {
-        id: "MXP", iata: "MXP", rank: 5, ll: [45.4642, 9.1900], max: 600,
+        id: "MXP", iata: "MXP", rank: 5, ll: [45.4642, 9.1900], stay: 595, max: 600,
         name: { es: "Milán", en: "Milan", de: "Mailand" },
         t: "7–10 °C",
         why: {
@@ -308,12 +305,12 @@
     let open = "";
     let stay = "airbnb";
     let foodDay = 40;
-    let stayTot = 600;
     let map, overlay;
     const NIGHTS = 4;
     const AIR = { Vueling: "VY", TAP: "TP", Eurowings: "EW", Lufthansa: "LH", Iberia: "IB", "Air Europa": "UX", easyJet: "U2", Condor: "DE", ITA: "AZ" };
 
-    const pp = (c, o) => c.flights[o].p + Math.round(stayTot / 6) + foodDay * NIGHTS;
+    const bedOf = (c) => Math.round(c.stay / 6);
+    const pp = (c, o) => c.flights[o].p + bedOf(c) + foodDay * NIGHTS;
     const city = () => CITIES.find((c) => c.id === sel);
 
     function uvar(n) {
@@ -353,8 +350,7 @@
       return "https://" + host + "/flights/" + from + "-" + to + "/2026-12-04/2026-12-08/2adults?sort=bestflight_a&fs=stops=~0;airlines=~" + code + ";cabin=~e";
     }
     function stayUrls(c) {
-      const max = stayTot;
-      const hmax = stayTot;
+      const max = c.max;
       const ab = (lang === "de" ? "https://www.airbnb.de" : lang === "en" ? "https://www.airbnb.com" : "https://www.airbnb.es") +
         "/s/" + c.q.airbnb + "/homes?query=" + encodeURIComponent(c.q.ss) +
         "&checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3&min_beds=3&min_bathrooms=2" +
@@ -364,7 +360,7 @@
       const ss = encodeURIComponent(c.q.ss);
       const occ = "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6&req_adults=6&no_rooms=3&req_rooms=3&group_children=0&req_children=0&selected_currency=EUR";
       const where = "?ss=" + ss + "&ssne=" + ss + "&ssne_untouched=" + ss + "&dest_id=" + c.q.dest + "&dest_type=city" + occ;
-      const nfltHt = "ht_id%3D204%3Broomfacility%3D38%3Bprice%3DEUR-40-" + hmax + "-1";
+      const nfltHt = "ht_id%3D204%3Broomfacility%3D38%3Bprice%3DEUR-40-" + max + "-1";
       const ht = "https://www.booking.com/searchresults." + page + where + "&nflt=" + nfltHt + "&sb=1";
       return { airbnb: ab, hotel: ht };
     }
@@ -402,14 +398,14 @@
 
     function euro(n) { return n + " €"; }
     function splitBox(c, t) {
-      const bed = Math.round(stayTot / 6);
+      const bed = bedOf(c);
       const eat = foodDay * NIGHTS;
       const rows = ["BCN", "FRA", "HAM"].map((o) => {
         const fly = c.flights[o].p;
         return "<div class=\"orig\"><span>" + o + "</span><span class=\"flyp\">" + t.fly + " " + euro(fly) + "</span><strong>" + euro(fly + bed + eat) + "</strong></div>";
       }).join("");
       return "<div class=\"split\">" +
-        "<div class=\"line\"><span>" + t.bed + "</span><b>" + euro(bed) + "</b></div>" +
+        "<div class=\"line\"><span>" + t.bed + " · 6</span><b>" + euro(c.stay) + "</b></div>" +
         "<div class=\"line\"><span>" + t.eat + " <em>" + t.est + "</em></span><b>" + euro(eat) + "</b></div>" +
         rows + "</div>";
     }
@@ -434,9 +430,7 @@
       document.getElementById("legend").innerHTML =
         "<span><i style=\"background:#1f4e68\"></i>" + t.mapO + "<i style=\"background:#c24b1f\"></i>" + t.mapD + "</span>";
       document.getElementById("foodLbl").textContent = t.foodL;
-      document.getElementById("stayLbl").textContent = t.stayL;
       document.getElementById("foodVal").textContent = foodDay + " €";
-      document.getElementById("stayVal").textContent = stayTot + " €";
       document.getElementById("stayhint").textContent = t.bud + " " + t.stay;
 
       document.getElementById("list").innerHTML = CITIES.map((x) => {
@@ -460,7 +454,7 @@
         "<div class=\"p\"><small>" + t.from + "</small>" + euro(Math.min.apply(null, tots)) + "</div>" +
         "<div class=\"each\">" + t.each + "</div>" +
         "<div class=\"brk\"><span>" + t.fly + " <b>" + Math.min.apply(null, flies) + "–" + euro(Math.max.apply(null, flies)) + "</b></span>" +
-        "<span>" + t.bed + " <b>" + euro(Math.round(stayTot / 6)) + "</b></span>" +
+        "<span>" + t.bed + " · 6 <b>" + euro(x.stay) + "</b></span>" +
         "<span>" + t.eat + " <b>" + euro(foodDay * NIGHTS) + "</b> <em>" + t.est + "</em></span></div>" +
         "<div class=\"sbtn\">" + btn("airbnb", t.ab) + btn("hotel", t.ht) + "</div>" +
         "<button type=\"button\" class=\"tog\" data-open=\"" + x.id + "\" aria-expanded=\"" + isOpen + "\">" +
@@ -492,7 +486,6 @@
     }
 
     document.getElementById("foodIn").oninput = function () { foodDay = +this.value; render(); };
-    document.getElementById("stayIn").oninput = function () { stayTot = +this.value; render(); };
     document.querySelectorAll("[data-lang]").forEach((b) => {
       b.onclick = () => { lang = b.dataset.lang; setLangUrl(lang); render(); };
     });
