@@ -137,7 +137,7 @@
         <input id="foodIn" type="range" min="15" max="80" step="5" value="40">
       </label>
       <label><span id="stayLbl"></span> <b id="stayVal"></b>
-        <input id="stayIn" type="range" min="400" max="2500" step="50" value="1100">
+        <input id="stayIn" type="range" min="400" max="2500" step="50" value="600">
       </label>
     </div>
     <div class="cities" id="list"></div>
@@ -201,7 +201,7 @@
 
     const CITIES = [
       {
-        id: "LIS", iata: "LIS", rank: 1, ll: [38.7308, -9.1485], max: 280,
+        id: "LIS", iata: "LIS", rank: 1, ll: [38.7308, -9.1485], max: 600,
         name: { es: "Lisboa", en: "Lisbon", de: "Lissabon" },
         t: "15–17 °C",
         why: {
@@ -218,7 +218,7 @@
         }
       },
       {
-        id: "PMI", iata: "PMI", rank: 2, ll: [39.5696, 2.6502], max: 220,
+        id: "PMI", iata: "PMI", rank: 2, ll: [39.5696, 2.6502], max: 600,
         name: { es: "Palma", en: "Palma", de: "Palma" },
         t: "16–18 °C",
         why: {
@@ -235,7 +235,7 @@
         }
       },
       {
-        id: "MAD", iata: "MAD", rank: 3, ll: [40.4168, -3.7038], max: 250,
+        id: "MAD", iata: "MAD", rank: 3, ll: [40.4168, -3.7038], max: 600,
         name: { es: "Madrid", en: "Madrid", de: "Madrid" },
         t: "11–13 °C",
         why: {
@@ -252,7 +252,7 @@
         }
       },
       {
-        id: "FCO", iata: "FCO", rank: 4, ll: [41.8986, 12.4768], max: 320,
+        id: "FCO", iata: "FCO", rank: 4, ll: [41.8986, 12.4768], max: 600,
         name: { es: "Roma", en: "Rome", de: "Rom" },
         t: "12–14 °C",
         why: {
@@ -269,7 +269,7 @@
         }
       },
       {
-        id: "MXP", iata: "MXP", rank: 5, ll: [45.4642, 9.1900], max: 240,
+        id: "MXP", iata: "MXP", rank: 5, ll: [45.4642, 9.1900], max: 600,
         name: { es: "Milán", en: "Milan", de: "Mailand" },
         t: "7–10 °C",
         why: {
@@ -308,7 +308,7 @@
     let open = "";
     let stay = "airbnb";
     let foodDay = 40;
-    let stayTot = 1100;
+    let stayTot = 600;
     let map, overlay;
     const NIGHTS = 4;
     const AIR = { Vueling: "VY", TAP: "TP", Eurowings: "EW", Lufthansa: "LH", Iberia: "IB", "Air Europa": "UX", easyJet: "U2", Condor: "DE", ITA: "AZ" };
@@ -353,8 +353,8 @@
       return "https://" + host + "/flights/" + from + "-" + to + "/2026-12-04/2026-12-08/2adults?sort=bestflight_a&fs=stops=~0;airlines=~" + code + ";cabin=~e";
     }
     function stayUrls(c) {
-      const max = Math.max(120, c.max);
-      const hmax = Math.round(max * 2);
+      const max = stayTot;
+      const hmax = stayTot;
       const ab = (lang === "de" ? "https://www.airbnb.de" : lang === "en" ? "https://www.airbnb.com" : "https://www.airbnb.es") +
         "/s/" + c.q.airbnb + "/homes?query=" + encodeURIComponent(c.q.ss) +
         "&checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3&min_beds=3&min_bathrooms=2" +
