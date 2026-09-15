@@ -68,11 +68,11 @@
     .split .flyp { color: var(--ink); font-weight: 650; }
     .sbtn { display: flex; flex-wrap: wrap; gap: .28rem; margin-top: .45rem; }
     .sbtn a {
-      display: inline-flex; flex-direction: column; align-items: flex-start; gap: .08rem;
+      display: inline-flex; flex-direction: row; align-items: baseline; gap: .35rem;
       font-size: .72rem; padding: .32rem .5rem; border-radius: 7px; text-decoration: none;
       background: var(--sea); color: #fff; font-weight: 650; line-height: 1.2;
     }
-    .sbtn a .from { font-size: .65rem; font-weight: 550; opacity: .95; }
+    .sbtn a .from { font-size: .72rem; font-weight: 800; opacity: 1; }
     .sbtn a.on { background: var(--clay); }
     .sbtn a.miss { opacity: .55; }
     .tog {
@@ -158,7 +158,7 @@
         bud: "Por persona = tu vuelo + piso/6 + comida × 4. El ranking usa lo que pagan los 6. Kayak abre la aerolínea con fechas y 2 adultos.",
         from: "a partir de", fly: "Vuelo", bed: "Alojamiento", eat: "Comida", est: "estimada", tot: "Total",
         nights: "/noche · ",
-        ab: "Airbnb", ht: "Hotel", rooms: "3 hab. · Booking",
+        ab: "Airbnb", ht: "Hotel",
         zero: "sin listados",
         gf: "Google Flights", air: "Kayak", bag: "cabina 8 kg incluida · 2 adultos"
       },
@@ -175,7 +175,7 @@
         bud: "Per person = your flight + stay/6 + food × 4. Rank uses what all 6 pay. Kayak opens that airline with dates and 2 adults.",
         from: "from", fly: "Flight", bed: "Stay", eat: "Food", est: "estimated", tot: "Total",
         nights: "/night · ",
-        ab: "Airbnb", ht: "Hotel", rooms: "3 rooms · Booking",
+        ab: "Airbnb", ht: "Hotel",
         zero: "no listings",
         gf: "Google Flights", air: "Kayak", bag: "8 kg cabin bag included · 2 adults"
       },
@@ -192,7 +192,7 @@
         bud: "Pro Person = dein Flug + Unterkunft/6 + Essen × 4. Der Rang nutzt, was alle 6 zahlen. Kayak öffnet die Airline mit Daten und 2 Erwachsenen.",
         from: "ab", fly: "Flug", bed: "Unterkunft", eat: "Essen", est: "geschätzt", tot: "Summe",
         nights: "/Nacht · ",
-        ab: "Airbnb", ht: "Hotel", rooms: "3 Zimmer · Booking",
+        ab: "Airbnb", ht: "Hotel",
         zero: "keine Treffer",
         gf: "Google Flights", air: "Kayak", bag: "8-kg-Handgepäck inklusive · 2 Personen"
       }
@@ -545,7 +545,8 @@
         "<b>#" + x.rank + " " + x.name[lang] + "</b><span>" + x.t + " · " + x.area[lang] + "</span>" +
         "<div class=\"p\"><small>" + t.from + "</small>" + euro(Math.min.apply(null, tots)) + " <small>" + t.each + "</small></div>" +
         "<div class=\"brk\"><span>" + t.fly + " <b>" + Math.min.apply(null, flies) + "–" + euro(Math.max.apply(null, flies)) + "</b></span>" +
-        "<span>" + t.bed + " <b>" + euro(bedOf(x)) + "</b></span>" +
+        "<span>" + t.ab + " <b>" + euro(x.stay) + "</b></span>" +
+        "<span>" + t.ht + " <b>" + euro(x.hotel) + "</b></span>" +
         "<span>" + t.eat + " <b>" + euro(foodDay * NIGHTS) + "</b> <em>" + t.est + "</em></span></div>" +
         "<div class=\"sbtn\">" + btn("airbnb", t.ab, t.from + " " + euro(x.stay)) + btn("hotel", t.ht, t.from + " " + euro(x.hotel)) + "</div>" +
         "<button type=\"button\" class=\"tog\" data-open=\"" + x.id + "\" aria-expanded=\"" + isOpen + "\">" +
