@@ -71,7 +71,11 @@
     .split .bill {
       background: #f7f1e8; border-radius: 10px; padding: .45rem .6rem .5rem;
     }
-    .split .bill .o { font-weight: 800; color: var(--sea); font-size: .82rem; margin-bottom: .18rem; }
+    .split .bill .o {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem .4rem;
+      font-weight: 800; color: var(--sea); font-size: .82rem; margin-bottom: .18rem;
+    }
+    .split .bill .o small { font-weight: 650; font-size: .7rem; color: var(--mute); }
     .split .line {
       display: grid; grid-template-columns: 1fr auto; gap: .4rem; align-items: baseline;
       padding: .06rem 0;
@@ -169,7 +173,7 @@
         title: "Top 10 destinos baratos · 4 noches · 6 personas",
         lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. Cumpleaños en ciudad: 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b> de tarde (ida desde ~15:00), cabina ~8 kg. Cada ciudad muestra <b>a partir de</b> cuánto sale por persona (varía según el vuelo) y, debajo, el <b>total entre los 6</b>.",
         mapO: "Salís de aquí", mapD: "Destinos",
-        whyL: "Por qué", each: "por persona", out: "Ida", back: "Vuelta",
+        whyL: "Por qué", each: "por persona", ppx: "precios por persona", out: "Ida", back: "Vuelta",
         det: "Ciudad y vuelos", hide: "Cerrar",
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas", pair: "las 2",
         stay: "Airbnb y Hotel muestran cada uno su total a partir de (6 personas, 4 noches). El piso es 3 hab. + 2 baños en el mapa del centro; el hotel son 3 hab. con baño en Booking. Si haces zoom en Airbnb, puede vaciarse: aleja o pulsa la ciudad.",
@@ -187,7 +191,7 @@
         title: "Top 10 cheap cities · 4 nights · 6 people",
         lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. Birthday-city trip: 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> evenings only (out from ~15:00), cabin bag ~8 kg. Each city shows <b>from</b> what it costs per person (it varies with the flight) and, below, the <b>total for all 6</b>.",
         mapO: "You leave from here", mapD: "Destinations",
-        whyL: "Why", each: "per person", out: "Out", back: "Back",
+        whyL: "Why", each: "per person", ppx: "prices per person", out: "Out", back: "Back",
         det: "City & flights", hide: "Close",
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people", pair: "for 2",
         stay: "Airbnb and Hotel each show their stay total from (6 people, 4 nights). The flat is 3 bed + 2 bath on the centre map; the hotel is 3 rooms with a bathroom on Booking. Zooming Airbnb’s map can empty results: zoom out or tap the city.",
@@ -205,7 +209,7 @@
         title: "Top 10 günstige Städte · 4 Nächte · 6 Personen",
         lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. Städtetrip zum Geburtstag: 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Abend-Direktflüge</b> (hin ab ~15:00), Handgepäck ~8 kg. Jede Stadt zeigt <b>ab</b> welchem Preis es pro Person liegt (je nach Flug) und darunter die <b>Summe für alle 6</b>.",
         mapO: "Abflug", mapD: "Ziele",
-        whyL: "Warum", each: "pro Person", out: "Hin", back: "Rück",
+        whyL: "Warum", each: "pro Person", ppx: "Preise pro Person", out: "Hin", back: "Rück",
         det: "Stadt und Flüge", hide: "Schließen",
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen", pair: "für 2",
         stay: "Airbnb und Hotel zeigen je ihre Summe ab (6 Personen, 4 Nächte). Die Wohnung ist 3 SZ + 2 Bäder auf der Zentrumskarte; das Hotel sind 3 Zimmer mit Bad bei Booking. Zoom auf der Airbnb-Karte kann Treffer leeren: rauszoomen oder Stadt antippen.",
@@ -517,13 +521,13 @@
       return "<div class=\"split\">" + ["BCN", "FRA", "HAM"].map((o) => {
         const fly = c.flights[o].p;
         return "<div class=\"bill\">" +
-          "<div class=\"o\">" + ORIGIN[o].name[lang] + " · " + o + "</div>" +
+          "<div class=\"o\">" + ORIGIN[o].name[lang] + " · " + o + "<small>" + t.ppx + "</small></div>" +
           "<div class=\"line\"><span>" + t.fly + "</span><b>" + euro(fly) + "</b></div>" +
           "<hr>" +
           "<div class=\"line\"><span>" + t.bed + "</span><b>" + t.from + " " + euro(bed) + "</b></div>" +
           "<div class=\"line\"><span>" + t.eat + " <em>" + t.est + "</em></span><b>" + euro(eat) + "</b></div>" +
           "<hr>" +
-          "<div class=\"line totline\"><span>" + t.tot + "</span><strong>" + t.from + " " + euro(fly + bed + eat) + "</strong></div>" +
+          "<div class=\"line totline\"><span>" + t.tot + " · " + t.each + "</span><strong>" + t.from + " " + euro(fly + bed + eat) + "</strong></div>" +
           "</div>";
       }).join("") + "</div>";
     }
