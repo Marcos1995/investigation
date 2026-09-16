@@ -61,7 +61,8 @@
     }
     .city .brk {
       display: flex; flex-wrap: wrap; gap: .28rem .55rem;
-      color: var(--mute); font-size: .75rem; margin: 0 0 .15rem;
+      color: var(--mute); font-size: .75rem; margin: .05rem 0 .15rem;
+      padding-top: .4rem; border-top: 1px solid var(--line);
     }
     .city .brk b { color: var(--ink); font-weight: 750; }
     .city .brk em, .split em {
@@ -573,13 +574,15 @@
         const lo = Math.min.apply(null, tots);
         const hi = Math.max.apply(null, tots);
         const ppAmt = lo === hi ? euro(lo) : lo + "–" + euro(hi);
+        const cheapBed = x.stay <= x.hotel
+          ? "<span>" + t.ab + " <b>" + euro(x.stay) + "</b></span>"
+          : "<span>" + t.ht + " <b>" + euro(x.hotel) + "</b></span>";
         return "<div class=\"city" + (x.id === sel ? " on" : "") + (isOpen ? " open" : "") + "\" data-id=\"" + x.id + "\">" +
         "<b>#" + x.rank + " " + x.name[lang] + "</b><span>" + x.t + " · " + x.area[lang] + "</span>" +
         "<div class=\"p\"><span><small>" + t.tot + "</small>" + euro(groupOf(x)) + "</span>" +
         "<span class=\"each\">" + t.from + " <b>" + ppAmt + "</b> " + t.each + "<span class=\"vary\">" + t.vary + "</span></span></div>" +
         "<div class=\"brk\"><span>" + t.fly + " <b>" + Math.min.apply(null, flies) + "–" + euro(Math.max.apply(null, flies)) + "</b></span>" +
-        "<span>" + t.ab + " <b>" + euro(x.stay) + "</b></span>" +
-        "<span>" + t.ht + " <b>" + euro(x.hotel) + "</b></span>" +
+        cheapBed +
         "<span>" + t.eat + " <b>" + euro(foodDay * NIGHTS) + "</b> <em>" + t.est + "</em></span></div>" +
         "<div class=\"sbtn\">" + btn("airbnb", t.ab, t.from + " " + euro(x.stay)) + btn("hotel", t.ht, t.from + " " + euro(x.hotel)) + "</div>" +
         "<button type=\"button\" class=\"tog\" data-open=\"" + x.id + "\" aria-expanded=\"" + isOpen + "\">" +
