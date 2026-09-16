@@ -44,9 +44,19 @@
     .city.open { grid-column: 1 / -1; }
     .city > b { display: block; }
     .city > span { color: var(--mute); font-size: .8rem; }
-    .city .p { color: var(--clay); font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; margin-top: .2rem; }
-    .city .p small { font-weight: 650; font-size: .72rem; color: var(--mute); letter-spacing: 0; margin-left: .35rem; }
-    .city .each { color: var(--mute); font-size: .72rem; margin: .05rem 0 .2rem; }
+    .city .sums { display: grid; gap: .28rem; margin: .4rem 0 .35rem; }
+    .city .sum {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem .4rem;
+      background: #f7f1e8; border-radius: 10px; padding: .38rem .55rem;
+    }
+    .city .sum em { font-style: normal; font-size: .7rem; font-weight: 650; color: var(--mute); }
+    .city .sum b { font-size: 1.18rem; font-weight: 800; letter-spacing: -.02em; color: var(--clay); }
+    .city .sum.pp b { color: var(--sea); }
+    .city .sum .who { font-size: .72rem; font-weight: 700; color: var(--ink); }
+    .city .sum .vary {
+      margin-left: auto; font-size: .65rem; font-weight: 750; color: #8a3414;
+      background: #f3d9cc; border-radius: 999px; padding: .12rem .45rem;
+    }
     .city .brk {
       display: flex; flex-wrap: wrap; gap: .28rem .55rem;
       color: var(--mute); font-size: .75rem; margin: 0 0 .15rem;
@@ -62,8 +72,14 @@
     .split .line, .split .orig {
       display: grid; grid-template-columns: 1fr auto; gap: .4rem; align-items: baseline;
     }
-    .split .orig { grid-template-columns: 3.2rem 1fr auto; padding: .22rem 0; border-top: 1px solid var(--line); }
-    .split .orig:nth-child(3) { margin-top: .1rem; }
+    .split .sec {
+      display: block; font-size: .72rem; font-weight: 700; color: var(--sea);
+      padding: .28rem 0 .05rem; border-top: 1px dashed var(--line); margin-top: .15rem;
+    }
+    .split .orig {
+      grid-template-columns: 3.2rem 1fr auto; padding: .22rem 0; border-top: 1px solid var(--line);
+    }
+    .split .orig:first-of-type { margin-top: .12rem; }
     .split b, .split strong { color: var(--clay); font-weight: 800; }
     .split .flyp { color: var(--ink); font-weight: 650; }
     .sbtn { display: flex; flex-wrap: wrap; gap: .28rem; margin-top: .45rem; }
@@ -157,7 +173,7 @@
         foodL: "Comida estimada / persona / día",
         bud: "El número grande es lo que pagan los 6. Por persona = tu vuelo + piso/6 + comida × 4; varía según origen. Kayak abre la aerolínea con fechas y 2 adultos.",
         from: "a partir de", fly: "Vuelo", bed: "Alojamiento", eat: "Comida", est: "estimada", tot: "Total",
-        pax6: "los 6", vary: "los vuelos varían",
+        pax6: "los 6", pay: "Pagan los 6", vary: "según el vuelo",
         nights: "/noche · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "sin listados",
@@ -175,7 +191,7 @@
         foodL: "Estimated food / person / day",
         bud: "The big number is what all 6 pay. Per person = your flight + stay/6 + food × 4; it varies by origin. Kayak opens that airline with dates and 2 adults.",
         from: "from", fly: "Flight", bed: "Stay", eat: "Food", est: "estimated", tot: "Total",
-        pax6: "all 6", vary: "flights vary",
+        pax6: "all 6", pay: "All 6 pay", vary: "depends on the flight",
         nights: "/night · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "no listings",
@@ -193,7 +209,7 @@
         foodL: "Essen geschätzt / Person / Tag",
         bud: "Die große Zahl ist, was alle 6 zahlen. Pro Person = dein Flug + Unterkunft/6 + Essen × 4; je nach Abflugort. Kayak öffnet die Airline mit Daten und 2 Erwachsenen.",
         from: "ab", fly: "Flug", bed: "Unterkunft", eat: "Essen", est: "geschätzt", tot: "Summe",
-        pax6: "alle 6", vary: "Flüge unterschiedlich",
+        pax6: "alle 6", pay: "Zahlen alle 6", vary: "je nach Flug",
         nights: "/Nacht · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "keine Treffer",
@@ -495,14 +511,19 @@
     function splitBox(c, t) {
       const bed = bedOf(c);
       const eat = foodDay * NIGHTS;
+      const flyG = 2 * ["BCN", "FRA", "HAM"].reduce((s, o) => s + c.flights[o].p, 0);
+      const bedG = stay === "hotel" ? c.hotel : c.stay;
+      const eatG = eat * 6;
       const rows = ["BCN", "FRA", "HAM"].map((o) => {
         const fly = c.flights[o].p;
         return "<div class=\"orig\"><span>" + o + "</span><span class=\"flyp\">" + t.fly + " " + euro(fly) + "</span><strong>" + euro(fly + bed + eat) + "</strong></div>";
       }).join("");
       return "<div class=\"split\">" +
-        "<div class=\"line\"><span>" + t.tot + " · " + t.pax6 + "</span><b>" + euro(groupOf(c)) + "</b></div>" +
-        "<div class=\"line\"><span>" + t.bed + "</span><b>" + euro(bed) + "</b></div>" +
-        "<div class=\"line\"><span>" + t.eat + " <em>" + t.est + "</em></span><b>" + euro(eat) + "</b></div>" +
+        "<div class=\"line\"><span>" + t.pay + "</span><b>" + euro(groupOf(c)) + "</b></div>" +
+        "<div class=\"line\"><span>" + t.fly + "</span><b>" + euro(flyG) + "</b></div>" +
+        "<div class=\"line\"><span>" + t.bed + "</span><b>" + euro(bedG) + "</b></div>" +
+        "<div class=\"line\"><span>" + t.eat + " <em>" + t.est + "</em></span><b>" + euro(eatG) + "</b></div>" +
+        "<div class=\"sec\">" + t.from + " · " + t.each + " · " + t.vary + "</div>" +
         rows + "</div>";
     }
     function flyRow(c, o, t) {
@@ -549,11 +570,13 @@
         const flies = ["BCN", "FRA", "HAM"].map((o) => x.flights[o].p);
         const lo = Math.min.apply(null, tots);
         const hi = Math.max.apply(null, tots);
-        const ppTxt = t.from + " " + (lo === hi ? euro(lo) : lo + "–" + euro(hi)) + " " + t.each + " · " + t.vary;
+        const ppAmt = lo === hi ? euro(lo) : lo + "–" + euro(hi);
         return "<div class=\"city" + (x.id === sel ? " on" : "") + (isOpen ? " open" : "") + "\" data-id=\"" + x.id + "\">" +
         "<b>#" + x.rank + " " + x.name[lang] + "</b><span>" + x.t + " · " + x.area[lang] + "</span>" +
-        "<div class=\"p\">" + euro(groupOf(x)) + "<small>" + t.pax6 + "</small></div>" +
-        "<div class=\"each\">" + ppTxt + "</div>" +
+        "<div class=\"sums\">" +
+        "<div class=\"sum\"><em>" + t.pay + "</em><b>" + euro(groupOf(x)) + "</b></div>" +
+        "<div class=\"sum pp\"><em>" + t.from + "</em><b>" + ppAmt + "</b><span class=\"who\">" + t.each + "</span><span class=\"vary\">" + t.vary + "</span></div>" +
+        "</div>" +
         "<div class=\"brk\"><span>" + t.fly + " <b>" + Math.min.apply(null, flies) + "–" + euro(Math.max.apply(null, flies)) + "</b></span>" +
         "<span>" + t.ab + " <b>" + euro(x.stay) + "</b></span>" +
         "<span>" + t.ht + " <b>" + euro(x.hotel) + "</b></span>" +
