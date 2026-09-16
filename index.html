@@ -200,13 +200,13 @@
 
     const CITIES = [
       {
-        id: "MXP", iata: "MXP", rank: 4, ll: [45.4642, 9.1900], stay: 1264, hotel: 888, max: 1264,
+        id: "MXP", iata: "MXP", rank: 3, ll: [45.4642, 9.1900], stay: 911, hotel: 888, max: 911,
         name: { es: "Milán", en: "Milan", de: "Mailand" },
         t: "7–10 °C",
         why: {
-          es: "Mercados de Navidad y Duomo en metro. HAM easyJet muy barato; el piso en el centro ya no es el más barato del top 10.",
-          en: "Christmas markets and the Duomo on the metro. HAM easyJet is very cheap; a central apartment is no longer the cheapest stay.",
-          de: "Weihnachtsmärkte und Dom per Metro. HAM easyJet sehr günstig; die Wohnung im Zentrum ist nicht mehr die günstigste.",
+          es: "Mercados de Navidad y Duomo en metro. HAM easyJet sigue tirado; el piso del centro ha bajado y sube al #3.",
+          en: "Christmas markets and the Duomo on the metro. HAM easyJet is still cheap; a central apartment dropped and Milan is #3.",
+          de: "Weihnachtsmärkte und Dom per Metro. HAM easyJet weiter günstig; die Wohnung im Zentrum ist billiger, daher #3.",
         },
         area: { es: "Duomo · metro", en: "Duomo · metro", de: "Dom · Metro" },
         q: { airbnb: "Milan--Italy", ss: "Milan", dest: "-121726", bb: [45.445, 9.155, 45.495, 9.230] },
@@ -217,7 +217,7 @@
         }
       },
       {
-        id: "ATH", iata: "ATH", rank: 1, ll: [37.9838, 23.7275], stay: 521, hotel: 792, max: 521,
+        id: "ATH", iata: "ATH", rank: 1, ll: [37.9838, 23.7275], stay: 568, hotel: 840, max: 568,
         name: { es: "Atenas", en: "Athens", de: "Athen" },
         t: "12–16 °C",
         why: {
@@ -234,7 +234,7 @@
         }
       },
       {
-        id: "LIS", iata: "LIS", rank: 2, ll: [38.7308, -9.1485], stay: 747, hotel: 756, max: 747,
+        id: "LIS", iata: "LIS", rank: 2, ll: [38.7308, -9.1485], stay: 562, hotel: 756, max: 562,
         name: { es: "Lisboa", en: "Lisbon", de: "Lissabon" },
         t: "15–17 °C",
         why: {
@@ -251,30 +251,30 @@
         }
       },
       {
-        id: "FCO", iata: "FCO", rank: 3, ll: [41.8986, 12.4768], stay: 982, hotel: 1692, max: 982,
+        id: "FCO", iata: "FCO", rank: 4, ll: [41.8986, 12.4768], stay: 781, hotel: 1764, max: 781,
         name: { es: "Roma", en: "Rome", de: "Rom" },
         t: "12–14 °C",
         why: {
-          es: "La que más ofrece. Centro histórico; metro Spagna. El 8 es festivo. HAM easyJet 15:00.",
-          en: "Most to see. Historic centre; Spagna metro. 8 Dec is a holiday. HAM easyJet 15:00.",
-          de: "Am meisten Stadt. Historisches Zentrum; Metro Spagna. 8. Dez. Feiertag. HAM easyJet 15:00."
+          es: "La que más ofrece. Centro histórico; metro Spagna. El 8 es festivo. HAM easyJet 15:00. Baja a #4: Milán ahora sale menos para los 6.",
+          en: "Most to see. Historic centre; Spagna metro. 8 Dec is a holiday. HAM easyJet 15:00. Drops to #4: Milan now costs less for all 6.",
+          de: "Am meisten Stadt. Historisches Zentrum; Metro Spagna. 8. Dez. Feiertag. HAM easyJet 15:00. Auf #4: Mailand ist für die 6 günstiger."
         },
         area: { es: "Centro histórico · Panteón", en: "Historic centre · Pantheon", de: "Historisches Zentrum · Pantheon" },
         q: { airbnb: "Rome--Italy", ss: "Rome", dest: "-126693", bb: [41.860, 12.445, 41.925, 12.535] },
         flights: {
           BCN: { air: "Wizz Air", p: 190, out: ["22:00", "23:55", "1h 55m"], back: ["12:40", "14:30", "1h 50m"] },
           FRA: { air: "Lufthansa", p: 191, out: ["15:55", "17:45", "1h 50m"], back: ["09:55", "11:50", "1h 55m"] },
-          HAM: { air: "easyJet", p: 73, out: ["15:00", "17:20", "2h 20m"], back: ["12:00", "14:30", "2h 30m"] }
+          HAM: { air: "easyJet", p: 80, out: ["15:00", "17:20", "2h 20m"], back: ["12:00", "14:30", "2h 30m"] }
         }
       },
       {
-        id: "CDG", iata: "CDG", rank: 8, ll: [48.8566, 2.3522], stay: 1222, hotel: 2820, max: 1222,
+        id: "CDG", iata: "CDG", rank: 6, ll: [48.8566, 2.3522], stay: 1047, hotel: 2520, max: 1047,
         name: { es: "París", en: "Paris", de: "Paris" },
         t: "5–8 °C",
         why: {
-          es: "Mucho que ver y luces. Air France desde las tres. Airbnb queda intramuros, no en banlieue.",
-          en: "Lots to see, and the lights. Air France from all three. Airbnb stays inside Paris, not the banlieue.",
-          de: "Viel Stadt und Lichter. Air France ab allen dreien. Airbnb bleibt in Paris, nicht in der Banlieue."
+          es: "Mucho que ver y luces. Air France desde las tres. El piso intramuros ha bajado y sube al #6.",
+          en: "Lots to see, and the lights. Air France from all three. A stay inside Paris dropped, so Paris is #6.",
+          de: "Viel Stadt und Lichter. Air France ab allen dreien. Wohnung innerorts günstiger, daher #6."
         },
         area: { es: "Intramuros · metro", en: "Inside Paris · metro", de: "Innerhalb Paris · Metro" },
         q: { airbnb: "Paris--France", ss: "Paris", dest: "-1456928", bb: [48.830, 2.265, 48.895, 2.410] },
@@ -285,13 +285,13 @@
         }
       },
       {
-        id: "LHR", iata: "LHR", rank: 9, ll: [51.5074, -0.1278], stay: 1668, hotel: 1452, max: 1668,
+        id: "LHR", iata: "LHR", rank: 9, ll: [51.5074, -0.1278], stay: 1696, hotel: 1452, max: 1696,
         name: { es: "Londres", en: "London", de: "London" },
         t: "6–9 °C",
         why: {
-          es: "Luces de Navidad, museos, pubs. Heathrow con BA/LH. El piso 3 hab. en Zone 1–2 parte de 1.668 €.",
-          en: "Christmas lights, museums, pubs. Heathrow on BA/LH. A 3-bed in Zone 1–2 starts at 1,668 €.",
-          de: "Weihnachtslichter, Museen, Pubs. Heathrow mit BA/LH. 3 SZ in Zone 1–2 ab 1.668 €.",
+          es: "Luces de Navidad, museos, pubs. Heathrow con BA/LH. El piso 3 hab. en Zone 1–2 parte de 1.696 €.",
+          en: "Christmas lights, museums, pubs. Heathrow on BA/LH. A 3-bed in Zone 1–2 starts at 1,696 €.",
+          de: "Weihnachtslichter, Museen, Pubs. Heathrow mit BA/LH. 3 SZ in Zone 1–2 ab 1.696 €.",
         },
         area: { es: "Zone 1–2 · Tube", en: "Zone 1–2 · Tube", de: "Zone 1–2 · Tube" },
         q: { airbnb: "London--United-Kingdom", ss: "London", dest: "-2601889", bb: [51.480, -0.195, 51.545, -0.055] },
@@ -302,7 +302,7 @@
         }
       },
       {
-        id: "WAW", iata: "WAW", rank: 5, ll: [52.2297, 21.0122], stay: 883, hotel: 648, max: 883,
+        id: "WAW", iata: "WAW", rank: 5, ll: [52.2297, 21.0122], stay: 883, hotel: 708, max: 883,
         name: { es: "Varsovia", en: "Warsaw", de: "Warschau" },
         t: "0–3 °C",
         why: {
@@ -313,13 +313,13 @@
         area: { es: "Stare Miasto · metro", en: "Old Town · metro", de: "Altstadt · Metro" },
         q: { airbnb: "Warsaw--Poland", ss: "Warsaw", dest: "-392863", bb: [52.215, 20.970, 52.265, 21.055] },
         flights: {
-          BCN: { air: "Wizz Air", p: 198, out: ["19:00", "22:10", "3h 10m"], back: ["15:05", "18:15", "3h 10m"] },
+          BCN: { air: "Wizz Air", p: 268, out: ["19:00", "22:10", "3h 10m"], back: ["15:05", "18:15", "3h 10m"] },
           FRA: { air: "LOT", p: 165, out: ["19:55", "21:40", "1h 45m"], back: ["07:40", "09:40", "2h 00m"] },
           HAM: { air: "LOT", p: 230, out: ["19:40", "21:10", "1h 30m"], back: ["09:15", "10:55", "1h 40m"] }
         }
       },
       {
-        id: "PMI", iata: "PMI", rank: 6, ll: [39.5696, 2.6502], stay: 1054, hotel: 3216, max: 1054,
+        id: "PMI", iata: "PMI", rank: 7, ll: [39.5696, 2.6502], stay: 1054, hotel: 2172, max: 1054,
         name: { es: "Palma", en: "Palma", de: "Palma" },
         t: "16–18 °C",
         why: {
@@ -336,30 +336,30 @@
         }
       },
       {
-        id: "VIE", iata: "VIE", rank: 7, ll: [48.2082, 16.3738], stay: 1263, hotel: 984, max: 1263,
+        id: "VIE", iata: "VIE", rank: 10, ll: [48.2082, 16.3738], stay: 1696, hotel: 768, max: 1696,
         name: { es: "Viena", en: "Vienna", de: "Wien" },
         t: "1–4 °C",
         why: {
-          es: "Mercados de Navidad de libro. BCN Austrian con cabina; FRA Condor y HAM Austrian están bien.",
-          en: "Textbook Christmas markets. BCN Austrian with a cabin bag; FRA Condor and HAM Austrian are fine.",
-          de: "Klassische Weihnachtsmärkte. BCN Austrian mit Handgepäck; FRA Condor und HAM Austrian passen."
+          es: "Mercados de Navidad de libro, pero el piso 3 hab. se ha disparado: queda la última del ranking.",
+          en: "Textbook Christmas markets, but a 3-bed apartment jumped: Vienna is now last in the ranking.",
+          de: "Klassische Weihnachtsmärkte, aber die 3-SZ-Wohnung ist teurer: Wien ist jetzt Letzte."
         },
         area: { es: "Innere Stadt · U-Bahn", en: "Innere Stadt · U-Bahn", de: "Innere Stadt · U-Bahn" },
         q: { airbnb: "Vienna--Austria", ss: "Vienna", dest: "-199250", bb: [48.185, 16.335, 48.235, 16.410] },
         flights: {
           BCN: { air: "Austrian", p: 267, out: ["20:30", "22:50", "2h 20m"], back: ["17:10", "19:35", "2h 25m"] },
           FRA: { air: "Condor", p: 124, out: ["20:10", "21:30", "1h 20m"], back: ["09:00", "10:30", "1h 30m"] },
-          HAM: { air: "Austrian", p: 161, out: ["20:10", "21:40", "1h 30m"], back: ["12:45", "14:20", "1h 35m"] }
+          HAM: { air: "Austrian", p: 148, out: ["20:10", "21:40", "1h 30m"], back: ["12:45", "14:20", "1h 35m"] }
         }
       },
       {
-        id: "MAD", iata: "MAD", rank: 10, ll: [40.4168, -3.7038], stay: 1454, hotel: 1332, max: 1454,
+        id: "MAD", iata: "MAD", rank: 8, ll: [40.4168, -3.7038], stay: 1454, hotel: 1596, max: 1454,
         name: { es: "Madrid", en: "Madrid", de: "Madrid" },
         t: "11–13 °C",
         why: {
-          es: "Mucho que ver. Sol / Gran Vía con metro. El piso 3 hab. + 2 baños sale más caro que en Roma o Atenas.",
-          en: "Lots to see. Sol / Gran Vía on the metro. A 3-bed 2-bath stay costs more than in Rome or Athens.",
-          de: "Viel Stadt. Sol / Gran Vía an der Metro. 3 SZ + 2 Bäder teurer als in Rom oder Athen."
+          es: "Mucho que ver. Sol / Gran Vía con metro. El piso sigue caro; sube al #8 porque Viena se ha disparado.",
+          en: "Lots to see. Sol / Gran Vía on the metro. The apartment is still pricey; #8 because Vienna jumped.",
+          de: "Viel Stadt. Sol / Gran Vía an der Metro. Wohnung weiter teuer; #8 weil Wien teurer wurde."
         },
         area: { es: "Sol · Gran Vía · metro", en: "Sol · Gran Vía · metro", de: "Sol · Gran Vía · Metro" },
         q: { airbnb: "Madrid--Spain", ss: "Madrid", dest: "-390625", bb: [40.400, -3.725, 40.440, -3.680] },
