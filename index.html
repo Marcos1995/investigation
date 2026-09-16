@@ -66,18 +66,25 @@
       font-style: italic; font-weight: 550; color: var(--mute); font-size: .7rem;
     }
     .split {
-      display: grid; gap: .2rem; font-size: .84rem; margin: 0 0 .55rem;
-      background: #f7f1e8; border-radius: 10px; padding: .5rem .65rem;
+      display: grid; gap: .45rem; font-size: .84rem; margin: 0 0 .55rem;
     }
-    .split .line, .split .orig {
+    .split .bill {
+      background: #f7f1e8; border-radius: 10px; padding: .45rem .6rem .5rem;
+    }
+    .split .bill .o { font-weight: 800; color: var(--sea); font-size: .82rem; margin-bottom: .18rem; }
+    .split .line {
       display: grid; grid-template-columns: 1fr auto; gap: .4rem; align-items: baseline;
+      padding: .06rem 0;
     }
-    .split .orig {
-      grid-template-columns: 3.2rem 1fr auto; padding: .22rem 0; border-top: 1px solid var(--line);
+    .split .line b { color: var(--ink); font-weight: 650; }
+    .split hr {
+      border: 0; border-top: 1px solid var(--line); margin: .2rem 0 .12rem;
     }
-    .split .orig:first-of-type { margin-top: .12rem; }
-    .split b, .split strong { color: var(--clay); font-weight: 800; }
-    .split .flyp { color: var(--ink); font-weight: 650; }
+    .split .totline span { font-weight: 750; }
+    .split .totline strong { color: var(--clay); font-weight: 800; font-size: 1.05rem; }
+    .split em {
+      font-style: italic; font-weight: 550; color: var(--mute); font-size: .7rem;
+    }
     .sbtn { display: flex; flex-wrap: wrap; gap: .28rem; margin-top: .45rem; }
     .sbtn a {
       display: inline-flex; flex-direction: row; align-items: baseline; gap: .35rem;
@@ -388,9 +395,9 @@
     ];
 
     const ORIGIN = {
-      BCN: { ll: [41.2974, 2.0833] },
-      FRA: { ll: [50.0379, 8.5622] },
-      HAM: { ll: [53.6304, 9.9882] }
+      BCN: { ll: [41.2974, 2.0833], name: { es: "Barcelona", en: "Barcelona", de: "Barcelona" } },
+      FRA: { ll: [50.0379, 8.5622], name: { es: "Frankfurt", en: "Frankfurt", de: "Frankfurt" } },
+      HAM: { ll: [53.6304, 9.9882], name: { es: "Hamburgo", en: "Hamburg", de: "Hamburg" } }
     };
 
     function langFromUrl() {
@@ -507,14 +514,18 @@
     function splitBox(c, t) {
       const bed = bedOf(c);
       const eat = foodDay * NIGHTS;
-      const rows = ["BCN", "FRA", "HAM"].map((o) => {
+      return "<div class=\"split\">" + ["BCN", "FRA", "HAM"].map((o) => {
         const fly = c.flights[o].p;
-        return "<div class=\"orig\"><span>" + o + "</span><span class=\"flyp\">" + t.fly + " " + euro(fly) + "</span><strong>" + t.from + " " + euro(fly + bed + eat) + "</strong></div>";
-      }).join("");
-      return "<div class=\"split\">" +
-        "<div class=\"line\"><span>" + t.bed + " · " + t.each + "</span><b>" + t.from + " " + euro(bed) + "</b></div>" +
-        "<div class=\"line\"><span>" + t.eat + " · " + t.each + " <em>" + t.est + "</em></span><b>" + euro(eat) + "</b></div>" +
-        rows + "</div>";
+        return "<div class=\"bill\">" +
+          "<div class=\"o\">" + ORIGIN[o].name[lang] + " · " + o + "</div>" +
+          "<div class=\"line\"><span>" + t.fly + "</span><b>" + euro(fly) + "</b></div>" +
+          "<hr>" +
+          "<div class=\"line\"><span>" + t.bed + "</span><b>" + t.from + " " + euro(bed) + "</b></div>" +
+          "<div class=\"line\"><span>" + t.eat + " <em>" + t.est + "</em></span><b>" + euro(eat) + "</b></div>" +
+          "<hr>" +
+          "<div class=\"line totline\"><span>" + t.tot + "</span><strong>" + t.from + " " + euro(fly + bed + eat) + "</strong></div>" +
+          "</div>";
+      }).join("") + "</div>";
     }
     function flyRow(c, o, t) {
       const f = c.flights[o];
