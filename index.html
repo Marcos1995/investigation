@@ -72,10 +72,6 @@
     .split .line, .split .orig {
       display: grid; grid-template-columns: 1fr auto; gap: .4rem; align-items: baseline;
     }
-    .split .sec {
-      display: block; font-size: .72rem; font-weight: 700; color: var(--sea);
-      padding: .28rem 0 .05rem; border-top: 1px dashed var(--line); margin-top: .15rem;
-    }
     .split .orig {
       grid-template-columns: 3.2rem 1fr auto; padding: .22rem 0; border-top: 1px solid var(--line);
     }
@@ -511,19 +507,13 @@
     function splitBox(c, t) {
       const bed = bedOf(c);
       const eat = foodDay * NIGHTS;
-      const flyG = 2 * ["BCN", "FRA", "HAM"].reduce((s, o) => s + c.flights[o].p, 0);
-      const bedG = stay === "hotel" ? c.hotel : c.stay;
-      const eatG = eat * 6;
       const rows = ["BCN", "FRA", "HAM"].map((o) => {
         const fly = c.flights[o].p;
         return "<div class=\"orig\"><span>" + o + "</span><span class=\"flyp\">" + t.fly + " " + euro(fly) + "</span><strong>" + euro(fly + bed + eat) + "</strong></div>";
       }).join("");
       return "<div class=\"split\">" +
-        "<div class=\"line\"><span>" + t.tot + "</span><b>" + euro(groupOf(c)) + "</b></div>" +
-        "<div class=\"line\"><span>" + t.fly + "</span><b>" + euro(flyG) + "</b></div>" +
-        "<div class=\"line\"><span>" + t.bed + "</span><b>" + euro(bedG) + "</b></div>" +
-        "<div class=\"line\"><span>" + t.eat + " <em>" + t.est + "</em></span><b>" + euro(eatG) + "</b></div>" +
-        "<div class=\"sec\">" + t.from + " · " + t.each + " · " + t.vary + "</div>" +
+        "<div class=\"line\"><span>" + t.bed + " · " + t.each + "</span><b>" + euro(bed) + "</b></div>" +
+        "<div class=\"line\"><span>" + t.eat + " · " + t.each + " <em>" + t.est + "</em></span><b>" + euro(eat) + "</b></div>" +
         rows + "</div>";
     }
     function flyRow(c, o, t) {
