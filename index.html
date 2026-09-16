@@ -45,7 +45,7 @@
     .city > b { display: block; }
     .city > span { color: var(--mute); font-size: .8rem; }
     .city .p { color: var(--clay); font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; margin-top: .2rem; }
-    .city .p small { font-weight: 650; font-size: .72rem; color: var(--mute); letter-spacing: 0; margin: 0 .25rem; }
+    .city .p small { font-weight: 650; font-size: .72rem; color: var(--mute); letter-spacing: 0; margin-left: .35rem; }
     .city .each { color: var(--mute); font-size: .72rem; margin: .05rem 0 .2rem; }
     .city .brk {
       display: flex; flex-wrap: wrap; gap: .28rem .55rem;
@@ -148,15 +148,16 @@
       es: {
         dates: "4–8 de diciembre de 2026",
         title: "Top 10 destinos baratos · 4 noches · 6 personas",
-        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. Cumpleaños en ciudad: 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b> de tarde (ida desde ~15:00), cabina ~8 kg. <b>Cifras por persona</b> (el piso es el total ÷ 6). Airbnb y Hotel muestran cada uno <b>a partir de</b> qué cuesta el alojamiento. La comida se estima abajo.",
+        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. Cumpleaños en ciudad: 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b> de tarde (ida desde ~15:00), cabina ~8 kg. Cada ciudad muestra el <b>total de los 6</b> (vuelos directos + Airbnb o hotel + comida) y, debajo, <b>a partir de</b> cuánto sale por persona: eso varía según el vuelo.",
         mapO: "Salís de aquí", mapD: "Destinos",
         whyL: "Por qué", each: "por persona", out: "Ida", back: "Vuelta",
         det: "Ciudad y vuelos", hide: "Cerrar",
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas", pair: "las 2",
         stay: "Airbnb y Hotel muestran cada uno su total a partir de (6 personas, 4 noches). El piso es 3 hab. + 2 baños en el mapa del centro; el hotel son 3 hab. con baño en Booking. Si haces zoom en Airbnb, puede vaciarse: aleja o pulsa la ciudad.",
         foodL: "Comida estimada / persona / día",
-        bud: "Por persona = tu vuelo + piso/6 + comida × 4. El ranking usa lo que pagan los 6. Kayak abre la aerolínea con fechas y 2 adultos.",
+        bud: "El número grande es lo que pagan los 6. Por persona = tu vuelo + piso/6 + comida × 4; varía según origen. Kayak abre la aerolínea con fechas y 2 adultos.",
         from: "a partir de", fly: "Vuelo", bed: "Alojamiento", eat: "Comida", est: "estimada", tot: "Total",
+        pax6: "los 6", vary: "los vuelos varían",
         nights: "/noche · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "sin listados",
@@ -165,15 +166,16 @@
       en: {
         dates: "4–8 December 2026",
         title: "Top 10 cheap cities · 4 nights · 6 people",
-        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. Birthday-city trip: 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> evenings only (out from ~15:00), cabin bag ~8 kg. <b>Figures are per person</b> (stay is the total ÷ 6). Airbnb and Hotel each show <b>from</b> what the stay costs. Food is estimated below.",
+        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. Birthday-city trip: 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> evenings only (out from ~15:00), cabin bag ~8 kg. Each city shows the <b>total for all 6</b> (direct flights + Airbnb or hotel + food) and, below, <b>from</b> what it costs per person: that varies with the flight.",
         mapO: "You leave from here", mapD: "Destinations",
         whyL: "Why", each: "per person", out: "Out", back: "Back",
         det: "City & flights", hide: "Close",
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people", pair: "for 2",
         stay: "Airbnb and Hotel each show their stay total from (6 people, 4 nights). The flat is 3 bed + 2 bath on the centre map; the hotel is 3 rooms with a bathroom on Booking. Zooming Airbnb’s map can empty results: zoom out or tap the city.",
         foodL: "Estimated food / person / day",
-        bud: "Per person = your flight + stay/6 + food × 4. Rank uses what all 6 pay. Kayak opens that airline with dates and 2 adults.",
+        bud: "The big number is what all 6 pay. Per person = your flight + stay/6 + food × 4; it varies by origin. Kayak opens that airline with dates and 2 adults.",
         from: "from", fly: "Flight", bed: "Stay", eat: "Food", est: "estimated", tot: "Total",
+        pax6: "all 6", vary: "flights vary",
         nights: "/night · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "no listings",
@@ -182,15 +184,16 @@
       de: {
         dates: "4.–8. Dezember 2026",
         title: "Top 10 günstige Städte · 4 Nächte · 6 Personen",
-        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. Städtetrip zum Geburtstag: 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Abend-Direktflüge</b> (hin ab ~15:00), Handgepäck ~8 kg. <b>Zahlen pro Person</b> (Unterkunft ist die Summe ÷ 6). Airbnb und Hotel zeigen je <b>ab</b> welchem Preis die Unterkunft liegt. Essen schätzt du unten.",
+        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. Städtetrip zum Geburtstag: 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Abend-Direktflüge</b> (hin ab ~15:00), Handgepäck ~8 kg. Jede Stadt zeigt die <b>Summe für alle 6</b> (Direktflüge + Airbnb oder Hotel + Essen) und darunter <b>ab</b> welchem Preis es pro Person liegt: das hängt vom Flug ab.",
         mapO: "Abflug", mapD: "Ziele",
         whyL: "Warum", each: "pro Person", out: "Hin", back: "Rück",
         det: "Stadt und Flüge", hide: "Schließen",
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen", pair: "für 2",
         stay: "Airbnb und Hotel zeigen je ihre Summe ab (6 Personen, 4 Nächte). Die Wohnung ist 3 SZ + 2 Bäder auf der Zentrumskarte; das Hotel sind 3 Zimmer mit Bad bei Booking. Zoom auf der Airbnb-Karte kann Treffer leeren: rauszoomen oder Stadt antippen.",
         foodL: "Essen geschätzt / Person / Tag",
-        bud: "Pro Person = dein Flug + Unterkunft/6 + Essen × 4. Der Rang nutzt, was alle 6 zahlen. Kayak öffnet die Airline mit Daten und 2 Erwachsenen.",
+        bud: "Die große Zahl ist, was alle 6 zahlen. Pro Person = dein Flug + Unterkunft/6 + Essen × 4; je nach Abflugort. Kayak öffnet die Airline mit Daten und 2 Erwachsenen.",
         from: "ab", fly: "Flug", bed: "Unterkunft", eat: "Essen", est: "geschätzt", tot: "Summe",
+        pax6: "alle 6", vary: "Flüge unterschiedlich",
         nights: "/Nacht · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "keine Treffer",
@@ -399,6 +402,8 @@
 
     const bedOf = (c) => Math.round((stay === "hotel" ? c.hotel : c.stay) / 6);
     const pp = (c, o) => c.flights[o].p + bedOf(c) + foodDay * NIGHTS;
+    const groupOf = (c) => 2 * ["BCN", "FRA", "HAM"].reduce((s, o) => s + c.flights[o].p, 0)
+      + (stay === "hotel" ? c.hotel : c.stay) + foodDay * NIGHTS * 6;
     const city = () => CITIES.find((c) => c.id === sel);
 
     function uvar(n) {
@@ -495,6 +500,7 @@
         return "<div class=\"orig\"><span>" + o + "</span><span class=\"flyp\">" + t.fly + " " + euro(fly) + "</span><strong>" + euro(fly + bed + eat) + "</strong></div>";
       }).join("");
       return "<div class=\"split\">" +
+        "<div class=\"line\"><span>" + t.tot + " · " + t.pax6 + "</span><b>" + euro(groupOf(c)) + "</b></div>" +
         "<div class=\"line\"><span>" + t.bed + "</span><b>" + euro(bed) + "</b></div>" +
         "<div class=\"line\"><span>" + t.eat + " <em>" + t.est + "</em></span><b>" + euro(eat) + "</b></div>" +
         rows + "</div>";
@@ -541,9 +547,13 @@
           : "";
         const tots = ["BCN", "FRA", "HAM"].map((o) => pp(x, o));
         const flies = ["BCN", "FRA", "HAM"].map((o) => x.flights[o].p);
+        const lo = Math.min.apply(null, tots);
+        const hi = Math.max.apply(null, tots);
+        const ppTxt = t.from + " " + (lo === hi ? euro(lo) : lo + "–" + euro(hi)) + " " + t.each + " · " + t.vary;
         return "<div class=\"city" + (x.id === sel ? " on" : "") + (isOpen ? " open" : "") + "\" data-id=\"" + x.id + "\">" +
         "<b>#" + x.rank + " " + x.name[lang] + "</b><span>" + x.t + " · " + x.area[lang] + "</span>" +
-        "<div class=\"p\"><small>" + t.from + "</small>" + euro(Math.min.apply(null, tots)) + " <small>" + t.each + "</small></div>" +
+        "<div class=\"p\">" + euro(groupOf(x)) + "<small>" + t.pax6 + "</small></div>" +
+        "<div class=\"each\">" + ppTxt + "</div>" +
         "<div class=\"brk\"><span>" + t.fly + " <b>" + Math.min.apply(null, flies) + "–" + euro(Math.max.apply(null, flies)) + "</b></span>" +
         "<span>" + t.ab + " <b>" + euro(x.stay) + "</b></span>" +
         "<span>" + t.ht + " <b>" + euro(x.hotel) + "</b></span>" +
