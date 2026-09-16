@@ -509,10 +509,10 @@
       const eat = foodDay * NIGHTS;
       const rows = ["BCN", "FRA", "HAM"].map((o) => {
         const fly = c.flights[o].p;
-        return "<div class=\"orig\"><span>" + o + "</span><span class=\"flyp\">" + t.fly + " " + euro(fly) + "</span><strong>" + euro(fly + bed + eat) + "</strong></div>";
+        return "<div class=\"orig\"><span>" + o + "</span><span class=\"flyp\">" + t.fly + " " + euro(fly) + "</span><strong>" + t.from + " " + euro(fly + bed + eat) + "</strong></div>";
       }).join("");
       return "<div class=\"split\">" +
-        "<div class=\"line\"><span>" + t.bed + " · " + t.each + "</span><b>" + euro(bed) + "</b></div>" +
+        "<div class=\"line\"><span>" + t.bed + " · " + t.each + "</span><b>" + t.from + " " + euro(bed) + "</b></div>" +
         "<div class=\"line\"><span>" + t.eat + " · " + t.each + " <em>" + t.est + "</em></span><b>" + euro(eat) + "</b></div>" +
         rows + "</div>";
     }
