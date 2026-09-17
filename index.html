@@ -131,8 +131,8 @@
     .pin { background: var(--clay); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: grid; place-items: center; font-size: 10px; font-weight: 800; border: 2px solid #fff; }
     .pin.origin { background: var(--sea); }
     .pin.on { transform: scale(1.12); }
-    footer { max-width: 74rem; margin: 0 auto; padding: 0 1.1rem 1.4rem; color: var(--mute); font-size: .8rem; }
-    footer a { color: inherit; }
+    footer { max-width: 74rem; margin: 0 auto; padding: 0 1.1rem 1.6rem; color: var(--mute); font-size: .8rem; }
+    footer b { color: var(--ink); font-weight: 700; }
     @media (max-width: 700px) {
       #map { height: 220px; }
       .rowf { grid-template-columns: 3.4rem 1fr; }
@@ -165,6 +165,7 @@
     <div class="cities" id="list"></div>
     <p class="hint" id="stayhint"></p>
   </div>
+  <footer id="updated"></footer>
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const T = {
@@ -184,7 +185,8 @@
         nights: "/noche · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "sin listados",
-        gf: "Google Flights", air: "Kayak", bag: "cabina 8 kg incluida · 2 adultos"
+        gf: "Google Flights", air: "Kayak", bag: "cabina 8 kg incluida · 2 adultos",
+        upd: "Precios de vuelos, Airbnb y hotel consultados el <b>17 de septiembre de 2026 a las 16:50</b>. Es una foto fija; al abrir los enlaces pueden haber cambiado."
       },
       en: {
         dates: "4–8 December 2026",
@@ -202,7 +204,8 @@
         nights: "/night · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "no listings",
-        gf: "Google Flights", air: "Kayak", bag: "8 kg cabin bag included · 2 adults"
+        gf: "Google Flights", air: "Kayak", bag: "8 kg cabin bag included · 2 adults",
+        upd: "Flight, Airbnb and hotel prices checked on <b>17 September 2026 at 16:50</b>. This is a snapshot; the live links may already differ."
       },
       de: {
         dates: "4.–8. Dezember 2026",
@@ -220,7 +223,8 @@
         nights: "/Nacht · ",
         ab: "Airbnb", ht: "Hotel",
         zero: "keine Treffer",
-        gf: "Google Flights", air: "Kayak", bag: "8-kg-Handgepäck inklusive · 2 Personen"
+        gf: "Google Flights", air: "Kayak", bag: "8-kg-Handgepäck inklusive · 2 Personen",
+        upd: "Flug-, Airbnb- und Hotelpreise geprüft am <b>17. September 2026 um 16:50 Uhr</b>. Eine Momentaufnahme; die Links können schon abweichen."
       }
     };
 
@@ -554,6 +558,7 @@
       document.getElementById("foodLbl").textContent = t.foodL;
       document.getElementById("foodVal").textContent = foodDay + " €";
       document.getElementById("stayhint").textContent = t.bud + " " + t.stay;
+      document.getElementById("updated").innerHTML = t.upd;
 
       document.getElementById("list").innerHTML = CITIES.slice().sort((a, b) => a.rank - b.rank).map((x) => {
         const u = stayUrls(x);
