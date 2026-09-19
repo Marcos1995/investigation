@@ -16,5 +16,6 @@
 
 ## Notas para el agente
 - 6 personas: 2 BCN, 2 FRA, 2 HAM · 4–8 dic 2026
-- Ranking: Atenas, Roma, Varsovia, Palma, Lisboa, París, Milán, Madrid, Londres, Viena
+- Ranking: Atenas, Roma, Varsovia, Lisboa, Palma, París, Milán, Madrid, Londres, Viena
+- Cabina 8–10 kg: si la low-cost no la incluye, el extra ida+vuelta ya está en el precio (Wizz 64, Ryanair/Vueling 56, easyJet 64, Eurowings/Condor 44, Iberia Básica 50)
 - Lean kit (ver AGENTS.md)
