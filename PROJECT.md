@@ -16,7 +16,7 @@
 
 ## Viaje
 - 6 personas: 2 BCN, 2 FRA, 2 HAM · viernes 4 – martes 8 dic 2026 · 4 noches
-- Ranking: Atenas, Varsovia, Roma, París, Milán, Lisboa, Londres, Madrid, Palma, Viena
+- Ranking: Atenas, Varsovia, Roma, París, Lisboa, Londres, Madrid, Palma, Milán, Viena
 - Lean kit (ver AGENTS.md)
 
 ## Qué hacer cuando piden actualizar precios

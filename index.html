@@ -93,10 +93,11 @@
     .sbtn a {
       display: inline-flex; flex-direction: row; align-items: baseline; gap: .35rem;
       font-size: .72rem; padding: .32rem .5rem; border-radius: 7px; text-decoration: none;
-      background: var(--sea); color: #fff; font-weight: 650; line-height: 1.2;
+      color: #fff; font-weight: 650; line-height: 1.2;
     }
+    .sbtn a.ab { background: var(--clay); }
+    .sbtn a.ht { background: var(--sea); }
     .sbtn a .from { font-size: .72rem; font-weight: 800; opacity: 1; }
-    .sbtn a.on { background: var(--clay); }
     .sbtn a.miss { opacity: .55; }
     .tog {
       margin-top: .4rem; width: 100%; font: inherit; font-size: .72rem; font-weight: 650;
@@ -177,7 +178,7 @@
         whyL: "Por qué", each: "por persona", ppx: "precios por persona", out: "Ida", back: "Vuelta",
         det: "Ciudad y vuelos", hide: "Cerrar",
         dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas", pair: "las 2",
-        stay: "El ranking y el desglose usan el más barato entre Airbnb y hotel. El piso es 3 hab. + 2 baños en el mapa del centro; el hotel son 3 hab. con baño. Si haces zoom en Airbnb, puede vaciarse: aleja o pulsa la ciudad.",
+        stay: "El ranking y el desglose usan el más barato entre Airbnb y hotel. El piso es 3 hab. + 2 baños en el mapa del centro; el hotel son 3 hab. con baño. Airbnb siempre naranja, hotel siempre azul. Si haces zoom en Airbnb, puede vaciarse: aleja o pulsa la ciudad.",
         foodL: "Comida estimada / persona / día",
         bud: "El número grande es a partir de por persona (tu vuelo + el más barato entre piso y hotel /6 + comida × 4). Debajo, el total entre los 6. Kayak abre la aerolínea con fechas y 2 adultos.",
         from: "a partir de", fly: "Vuelo", bed: "Alojamiento", eat: "Comida", est: "estimada", tot: "Total",
@@ -186,7 +187,7 @@
         ab: "Airbnb", ht: "Hotel",
         zero: "sin listados",
         gf: "Google Flights", air: "Kayak",         bag: "cabina 8–10 kg y 2 asientos juntos · 2 adultos",
-        upd: "Precios consultados el <b>21 de septiembre de 2026 a las 11:45</b>. Alojamiento = el más barato entre Airbnb y hotel. Incluye cabina 8–10 kg y asientos juntos. Mismo aeropuerto para los 3 orígenes."
+        upd: "Precios consultados el <b>21 de septiembre de 2026 a las 16:20</b>. Alojamiento = el más barato entre Airbnb y hotel. Incluye cabina 8–10 kg y asientos juntos. Mismo aeropuerto para los 3 orígenes."
       },
       en: {
         dates: "4–8 December 2026",
@@ -196,7 +197,7 @@
         whyL: "Why", each: "per person", ppx: "prices per person", out: "Out", back: "Back",
         det: "City & flights", hide: "Close",
         dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people", pair: "for 2",
-        stay: "Ranking and the split use the cheaper of Airbnb vs hotel. The flat is 3 bed + 2 bath on the centre map; the hotel is 3 rooms with a bathroom. Zooming Airbnb’s map can empty results: zoom out or tap the city.",
+        stay: "Ranking and the split use the cheaper of Airbnb vs hotel. The flat is 3 bed + 2 bath on the centre map; the hotel is 3 rooms with a bathroom. Airbnb is always orange, hotel always blue. Zooming Airbnb’s map can empty results: zoom out or tap the city.",
         foodL: "Estimated food / person / day",
         bud: "The big number is from-per-person (your flight + the cheaper of flat vs hotel /6 + food × 4). Below is the total for all 6. Kayak opens that airline with dates and 2 adults.",
         from: "from", fly: "Flight", bed: "Stay", eat: "Food", est: "estimated", tot: "Total",
@@ -205,7 +206,7 @@
         ab: "Airbnb", ht: "Hotel",
         zero: "no listings",
         gf: "Google Flights", air: "Kayak",         bag: "8–10 kg cabin bag and 2 seats together · 2 adults",
-        upd: "Prices checked on <b>21 September 2026 at 11:45</b>. Stay = the cheaper of Airbnb vs hotel. Includes 8–10 kg cabin bag and seats together. Same airport for all 3 origins."
+        upd: "Prices checked on <b>21 September 2026 at 16:20</b>. Stay = the cheaper of Airbnb vs hotel. Includes 8–10 kg cabin bag and seats together. Same airport for all 3 origins."
       },
       de: {
         dates: "4.–8. Dezember 2026",
@@ -215,7 +216,7 @@
         whyL: "Warum", each: "pro Person", ppx: "Preise pro Person", out: "Hin", back: "Rück",
         det: "Stadt und Flüge", hide: "Schließen",
         dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen", pair: "für 2",
-        stay: "Ranking und Aufschlüsselung nehmen das Günstigere aus Airbnb und Hotel. Die Wohnung ist 3 SZ + 2 Bäder auf der Zentrumskarte; das Hotel sind 3 Zimmer mit Bad. Zoom auf der Airbnb-Karte kann Treffer leeren: rauszoomen oder Stadt antippen.",
+        stay: "Ranking und Aufschlüsselung nehmen das Günstigere aus Airbnb und Hotel. Die Wohnung ist 3 SZ + 2 Bäder auf der Zentrumskarte; das Hotel sind 3 Zimmer mit Bad. Airbnb immer orange, Hotel immer blau. Zoom auf der Airbnb-Karte kann Treffer leeren: rauszoomen oder Stadt antippen.",
         foodL: "Essen geschätzt / Person / Tag",
         bud: "Die große Zahl ist der Preis ab pro Person (dein Flug + das Günstigere aus Wohnung und Hotel /6 + Essen × 4). Darunter die Summe für alle 6. Kayak öffnet die Airline mit Daten und 2 Erwachsenen.",
         from: "ab", fly: "Flug", bed: "Unterkunft", eat: "Essen", est: "geschätzt", tot: "Summe",
@@ -224,36 +225,36 @@
         ab: "Airbnb", ht: "Hotel",
         zero: "keine Treffer",
         gf: "Google Flights", air: "Kayak",         bag: "8–10-kg-Handgepäck und 2 Sitze nebeneinander · 2 Personen",
-        upd: "Preise geprüft am <b>21. September 2026 um 11:45 Uhr</b>. Unterkunft = das Günstigere aus Airbnb und Hotel. Inkl. 8–10-kg-Handgepäck und Sitze. Gleicher Flughafen für alle 3 Origins."
+        upd: "Preise geprüft am <b>21. September 2026 um 16:20 Uhr</b>. Unterkunft = das Günstigere aus Airbnb und Hotel. Inkl. 8–10-kg-Handgepäck und Sitze. Gleicher Flughafen für alle 3 Origins."
       }
     };
 
     const CITIES = [
       {
-        id: "MXP", iata: "MXP", rank: 5, ll: [45.4642, 9.1900], stay: 683, hotel: 856, max: 683,
+        id: "MXP", iata: "MXP", rank: 9, ll: [45.4642, 9.1900], stay: 683, hotel: 799, max: 683,
         name: { es: "Milán", en: "Milan", de: "Mailand" },
         t: "7–10 °C",
         why: {
-          es: "Sigue #5: el piso del centro (683 €) gana al hotel. Los 3 a Malpensa (MXP), no Linate. HAM sin vuelta de tarde (09:35).",
-          en: "Still #5: the centre flat (683 €) beats the hotel. All 3 to Malpensa (MXP), not Linate. HAM has no evening return (09:35).",
-          de: "Weiter #5: Wohnung im Zentrum (683 €) schlägt das Hotel. Alle 3 nach Malpensa (MXP), nicht Linate. HAM ohne Abend-Rück (09:35).",
+          es: "Cae al #9: Eurowings HAM ha subido mucho (ida 17:55, vuelta 09:35). El piso (683 €) gana al hotel. Los 3 a Malpensa (MXP), no Linate.",
+          en: "Down to #9: HAM Eurowings jumped (out 17:55, back 09:35). The flat (683 €) beats the hotel. All 3 to Malpensa (MXP), not Linate.",
+          de: "Auf #9: HAM-Eurowings deutlich teurer (hin 17:55, zurück 09:35). Wohnung (683 €) schlägt das Hotel. Alle 3 nach Malpensa (MXP), nicht Linate.",
         },
         area: { es: "Duomo · metro", en: "Duomo · metro", de: "Dom · Metro" },
         q: { airbnb: "Milan--Italy", ss: "Milan", dest: "-121726", bb: [45.445, 9.155, 45.495, 9.230] },
         flights: {
           BCN: { air: "easyJet", p: 162, out: ["18:40", "20:25", "1h 45m"], back: ["21:30", "23:10", "1h 40m"] },
           FRA: { air: "Lufthansa", p: 204, out: ["20:50", "22:05", "1h 15m"], back: ["18:35", "19:55", "1h 20m"] },
-          HAM: { air: "Eurowings", p: 269, out: ["17:55", "19:35", "1h 40m"], back: ["09:35", "11:20", "1h 45m"] }
+          HAM: { air: "Eurowings", p: 346, out: ["17:55", "19:35", "1h 40m"], back: ["09:35", "11:20", "1h 45m"] }
         }
       },
       {
-        id: "ATH", iata: "ATH", rank: 1, ll: [37.9838, 23.7275], stay: 534, hotel: 364, max: 534,
+        id: "ATH", iata: "ATH", rank: 1, ll: [37.9838, 23.7275], stay: 534, hotel: 338, max: 534,
         name: { es: "Atenas", en: "Athens", de: "Athen" },
         t: "12–16 °C",
         why: {
-          es: "La más barata para los 6. El hotel (364 €) gana al Airbnb (534 €). Acrópolis a pie o en metro. HAM solo vuelve a las 08:15.",
-          en: "Cheapest for all 6. Hotel (364 €) beats Airbnb (534 €). Acropolis on foot or metro. HAM’s only back is 08:15.",
-          de: "Günstigste für alle 6. Hotel (364 €) schlägt Airbnb (534 €). Akropolis zu Fuß oder per Metro. HAM nur Rück um 08:15.",
+          es: "Sigue la más barata. El hotel (338 €) gana al Airbnb (534 €). Acrópolis a pie o en metro. HAM solo vuelve a las 08:15.",
+          en: "Still cheapest. Hotel (338 €) beats Airbnb (534 €). Acropolis on foot or metro. HAM’s only back is 08:15.",
+          de: "Weiter günstigste. Hotel (338 €) schlägt Airbnb (534 €). Akropolis zu Fuß oder per Metro. HAM nur Rück um 08:15.",
         },
         area: { es: "Monastiraki · Plaka · metro", en: "Monastiraki · Plaka · metro", de: "Monastiraki · Plaka · Metro" },
         q: { airbnb: "Athens--Greece", ss: "Athens", dest: "-814876", bb: [37.958, 23.705, 38.000, 23.755] },
@@ -264,13 +265,13 @@
         }
       },
       {
-        id: "LIS", iata: "LIS", rank: 6, ll: [38.7308, -9.1485], stay: 747, hotel: 814, max: 747,
+        id: "LIS", iata: "LIS", rank: 5, ll: [38.7308, -9.1485], stay: 747, hotel: 814, max: 747,
         name: { es: "Lisboa", en: "Lisbon", de: "Lissabon" },
         t: "15–17 °C",
         why: {
-          es: "Saldanha / metro Parque. easyJet de tarde con cabina y asientos ya sumados. El piso (747 €) gana al hotel. Sube al #6. HAM vuelve a las 11:40.",
-          en: "Saldanha / Parque metro. Evening easyJet with cabin bag and seats already in. The flat (747 €) beats the hotel. Up to #6. HAM back at 11:40.",
-          de: "Saldanha / Metro Parque. Abend-easyJet inkl. Handgepäck und Sitze. Die Wohnung (747 €) schlägt das Hotel. Auf #6. HAM zurück 11:40.",
+          es: "Saldanha / metro Parque. El piso (747 €) gana al hotel. Sube al #5 (Milán se dispara). HAM TAP vuelve a las 11:40.",
+          en: "Saldanha / Parque metro. The flat (747 €) beats the hotel. Up to #5 (Milan jumped). HAM TAP back at 11:40.",
+          de: "Saldanha / Metro Parque. Wohnung (747 €) schlägt das Hotel. Auf #5 (Mailand teurer). HAM TAP zurück 11:40.",
         },
         area: { es: "Saldanha · metro Parque", en: "Saldanha · Parque metro", de: "Saldanha · Metro Parque" },
         q: { airbnb: "Lisbon--Portugal", ss: "Lisbon", dest: "-2167973", bb: [38.705, -9.170, 38.745, -9.130] },
@@ -281,13 +282,13 @@
         }
       },
       {
-        id: "FCO", iata: "FCO", rank: 3, ll: [41.8986, 12.4768], stay: 917, hotel: 710, max: 917,
+        id: "FCO", iata: "FCO", rank: 3, ll: [41.8986, 12.4768], stay: 917, hotel: 669, max: 917,
         name: { es: "Roma", en: "Rome", de: "Rom" },
         t: "12–14 °C",
         why: {
-          es: "Baja al #3: el hotel (710 €) sigue ganando al piso. Centro histórico; metro Spagna. Los 3 a Fiumicino (FCO), no Ciampino. Wizz y easyJet con cabina y asientos.",
-          en: "Down to #3: hotel (710 €) still beats the flat. Historic centre; Spagna metro. All 3 to Fiumicino (FCO), not Ciampino. Wizz and easyJet cabin+seats extra.",
-          de: "Auf #3: Hotel (710 €) schlägt weiter die Wohnung. Historisches Zentrum; Metro Spagna. Alle 3 nach Fiumicino (FCO), nicht Ciampino. Wizz und easyJet Handgepäck+Sitze extra.",
+          es: "Sigue #3, casi empatada con Varsovia. El hotel (669 €) gana al piso. Centro histórico; metro Spagna. Los 3 a Fiumicino (FCO), no Ciampino. HAM vuelve a las 12:00.",
+          en: "Still #3, almost tied with Warsaw. Hotel (669 €) beats the flat. Historic centre; Spagna metro. All 3 to Fiumicino (FCO), not Ciampino. HAM back at 12:00.",
+          de: "Weiter #3, fast gleichauf mit Warschau. Hotel (669 €) schlägt die Wohnung. Historisches Zentrum; Metro Spagna. Alle 3 nach Fiumicino (FCO), nicht Ciampino. HAM zurück 12:00.",
         },
         area: { es: "Centro histórico · Panteón", en: "Historic centre · Pantheon", de: "Historisches Zentrum · Pantheon" },
         q: { airbnb: "Rome--Italy", ss: "Rome", dest: "-126693", bb: [41.860, 12.445, 41.925, 12.535] },
@@ -298,37 +299,37 @@
         }
       },
       {
-        id: "CDG", iata: "CDG", rank: 4, ll: [48.8566, 2.3522], stay: 1047, hotel: 689, max: 1047,
+        id: "CDG", iata: "CDG", rank: 4, ll: [48.8566, 2.3522], stay: 1047, hotel: 676, max: 1047,
         name: { es: "París", en: "Paris", de: "Paris" },
         t: "5–8 °C",
         why: {
-          es: "Mucho que ver y luces. Los 3 a Charles de Gaulle (CDG), no Orly. El hotel (689 €) gana al piso: sigue #4. BCN Air France de tarde sigue caro.",
-          en: "Lots to see, and the lights. All 3 to Charles de Gaulle (CDG), not Orly. Hotel (689 €) beats the flat: still #4. Evening BCN Air France stays pricey.",
-          de: "Viel Stadt und Lichter. Alle 3 nach Charles de Gaulle (CDG), nicht Orly. Hotel (689 €) schlägt die Wohnung: weiter #4. BCN Air France am Abend weiter teuer.",
+          es: "Mucho que ver y luces. Los 3 a Charles de Gaulle (CDG), no Orly. El hotel (676 €) gana al piso: sigue #4. BCN Air France 20:20 sigue caro.",
+          en: "Lots to see, and the lights. All 3 to Charles de Gaulle (CDG), not Orly. Hotel (676 €) beats the flat: still #4. BCN Air France 20:20 stays pricey.",
+          de: "Viel Stadt und Lichter. Alle 3 nach Charles de Gaulle (CDG), nicht Orly. Hotel (676 €) schlägt die Wohnung: weiter #4. BCN Air France 20:20 weiter teuer.",
         },
         area: { es: "Intramuros · metro", en: "Inside Paris · metro", de: "Innerhalb Paris · Metro" },
         q: { airbnb: "Paris--France", ss: "Paris", dest: "-1456928", bb: [48.830, 2.265, 48.895, 2.410] },
         flights: {
-          BCN: { air: "Air France", p: 459, out: ["15:00", "17:00", "2h 00m"], back: ["15:15", "17:00", "1h 45m"] },
+          BCN: { air: "Air France", p: 454, out: ["20:20", "22:20", "2h 00m"], back: ["15:15", "17:00", "1h 45m"] },
           FRA: { air: "Air France", p: 124, out: ["15:05", "16:35", "1h 30m"], back: ["15:25", "16:45", "1h 20m"] },
           HAM: { air: "Air France", p: 188, out: ["16:00", "17:40", "1h 40m"], back: ["20:40", "22:20", "1h 40m"] }
         }
       },
       {
-        id: "LHR", iata: "LHR", rank: 7, ll: [51.5074, -0.1278], stay: 1871, hotel: 811, max: 1871,
+        id: "LHR", iata: "LHR", rank: 6, ll: [51.5074, -0.1278], stay: 1871, hotel: 811, max: 1871,
         name: { es: "Londres", en: "London", de: "London" },
         t: "6–9 °C",
         why: {
-          es: "Luces de Navidad, museos, pubs. Los 3 a Heathrow (LHR), no Gatwick/Stansted. El hotel (811 €) gana al piso (1871 €): #7. BA y LH incluyen cabina y asientos.",
-          en: "Christmas lights, museums, pubs. All 3 to Heathrow (LHR), not Gatwick/Stansted. Hotel (811 €) beats the flat (1871 €): #7. BA and LH include cabin bag and seats.",
-          de: "Weihnachtslichter, Museen, Pubs. Alle 3 nach Heathrow (LHR), nicht Gatwick/Stansted. Hotel (811 €) schlägt die Wohnung (1871 €): #7. BA und LH inkl. Handgepäck und Sitze.",
+          es: "Luces de Navidad, museos, pubs. Los 3 a Heathrow (LHR), no Gatwick/Stansted. El hotel (811 €) gana al piso (1871 €): sube al #6. BA HAM de reserva ha subido.",
+          en: "Christmas lights, museums, pubs. All 3 to Heathrow (LHR), not Gatwick/Stansted. Hotel (811 €) beats the flat (1871 €): up to #6. Bookable HAM BA went up.",
+          de: "Weihnachtslichter, Museen, Pubs. Alle 3 nach Heathrow (LHR), nicht Gatwick/Stansted. Hotel (811 €) schlägt die Wohnung (1871 €): auf #6. HAM-BA zum Buchen teurer.",
         },
         area: { es: "Zone 1–2 · Tube", en: "Zone 1–2 · Tube", de: "Zone 1–2 · Tube" },
         q: { airbnb: "London--United-Kingdom", ss: "London", dest: "-2601889", bb: [51.480, -0.195, 51.545, -0.055] },
         flights: {
           BCN: { air: "British Airways", p: 442, out: ["15:30", "16:50", "2h 20m"], back: ["19:20", "22:30", "2h 10m"] },
           FRA: { air: "Lufthansa", p: 141, out: ["17:05", "17:45", "1h 40m"], back: ["15:30", "18:05", "1h 35m"] },
-          HAM: { air: "British Airways", p: 167, out: ["18:55", "19:35", "1h 40m"], back: ["19:35", "22:15", "1h 40m"] }
+          HAM: { air: "British Airways", p: 193, out: ["18:55", "19:35", "1h 40m"], back: ["19:35", "22:15", "1h 40m"] }
         }
       },
       {
@@ -336,9 +337,9 @@
         name: { es: "Varsovia", en: "Warsaw", de: "Warschau" },
         t: "0–3 °C",
         why: {
-          es: "Casco reconstruido, luces de Navidad. El hotel (495 €) gana al Airbnb (838 €). Sube al #2: Wizz desde BCN ha bajado. Frío: abrigo.",
-          en: "Rebuilt old town, Christmas lights. Hotel (495 €) beats Airbnb (838 €). Up to #2: Wizz from BCN dropped. Cold: pack a coat.",
-          de: "Wiederaufgebaute Altstadt, Weihnachtslichter. Hotel (495 €) schlägt Airbnb (838 €). Auf #2: Wizz ab BCN günstiger. Kalt: Mantel.",
+          es: "Casco reconstruido, luces de Navidad. El hotel (495 €) gana al Airbnb (838 €). Sigue #2, casi empatada con Roma. Frío: abrigo.",
+          en: "Rebuilt old town, Christmas lights. Hotel (495 €) beats Airbnb (838 €). Still #2, almost tied with Rome. Cold: pack a coat.",
+          de: "Wiederaufgebaute Altstadt, Weihnachtslichter. Hotel (495 €) schlägt Airbnb (838 €). Weiter #2, fast gleichauf mit Rom. Kalt: Mantel.",
         },
         area: { es: "Stare Miasto · metro", en: "Old Town · metro", de: "Altstadt · Metro" },
         q: { airbnb: "Warsaw--Poland", ss: "Warsaw", dest: "-534433", bb: [52.215, 20.970, 52.265, 21.055] },
@@ -349,13 +350,13 @@
         }
       },
       {
-        id: "PMI", iata: "PMI", rank: 9, ll: [39.5696, 2.6502], stay: 1054, hotel: 975, max: 1054,
+        id: "PMI", iata: "PMI", rank: 8, ll: [39.5696, 2.6502], stay: 1054, hotel: 905, max: 1054,
         name: { es: "Palma", en: "Palma", de: "Palma" },
         t: "16–18 °C",
         why: {
-          es: "La más cálida. Casco antiguo a pie. El hotel (975 €) gana al piso (1054 €). Ryanair y Eurowings cobran cabina y asientos: sigue #9.",
-          en: "Warmest. Walkable old town. Hotel (975 €) beats the flat (1054 €). Ryanair and Eurowings charge for cabin bag and seats: still #9.",
-          de: "Am wärmsten. Altstadt zu Fuß. Hotel (975 €) schlägt die Wohnung (1054 €). Ryanair und Eurowings nehmen extra für Handgepäck und Sitze: weiter #9.",
+          es: "La más cálida. Casco antiguo a pie. El hotel (905 €) gana al piso (1054 €). Sube al #8. HAM Eurowings vuelve a las 14:05.",
+          en: "Warmest. Walkable old town. Hotel (905 €) beats the flat (1054 €). Up to #8. HAM Eurowings back at 14:05.",
+          de: "Am wärmsten. Altstadt zu Fuß. Hotel (905 €) schlägt die Wohnung (1054 €). Auf #8. HAM-Eurowings zurück 14:05.",
         },
         area: { es: "Casco antiguo · Plaça Major", en: "Old town · Plaça Major", de: "Altstadt · Plaça Major" },
         q: { airbnb: "Palma-de-Mallorca--Spain", ss: "Palma de Mallorca", dest: "-395224", bb: [39.562, 2.625, 39.585, 2.668] },
@@ -366,30 +367,30 @@
         }
       },
       {
-        id: "VIE", iata: "VIE", rank: 10, ll: [48.2082, 16.3738], stay: 1270, hotel: 1080, max: 1270,
+        id: "VIE", iata: "VIE", rank: 10, ll: [48.2082, 16.3738], stay: 1772, hotel: 1005, max: 1772,
         name: { es: "Viena", en: "Vienna", de: "Wien" },
         t: "1–4 °C",
         why: {
-          es: "Mercados de Navidad de libro. El hotel (1080 €) gana al piso (1270 €); Austrian de tarde desde BCN. Sigue última.",
-          en: "Textbook Christmas markets. Hotel (1080 €) beats the flat (1270 €); evening Austrian from BCN. Still last.",
-          de: "Klassische Weihnachtsmärkte. Hotel (1080 €) schlägt die Wohnung (1270 €); Abend-Austrian ab BCN. Weiter Letzte.",
+          es: "Mercados de Navidad de libro. El hotel (1005 €) gana al piso (1772 €; el listado barato de esta mañana ya no está). Ryanair de tarde BCN. Sigue última.",
+          en: "Textbook Christmas markets. Hotel (1005 €) beats the flat (1772 €; this morning’s cheap listing is gone). Evening Ryanair from BCN. Still last.",
+          de: "Klassische Weihnachtsmärkte. Hotel (1005 €) schlägt die Wohnung (1772 €; das günstige Inserat von heute früh ist weg). Abend-Ryanair ab BCN. Weiter Letzte.",
         },
         area: { es: "Innere Stadt · U-Bahn", en: "Innere Stadt · U-Bahn", de: "Innere Stadt · U-Bahn" },
         q: { airbnb: "Vienna--Austria", ss: "Vienna", dest: "-1995499", bb: [48.185, 16.335, 48.235, 16.410] },
         flights: {
-          BCN: { air: "Austrian", p: 510, out: ["20:30", "22:50", "2h 20m"], back: ["17:25", "19:45", "2h 20m"] },
-          FRA: { air: "Lufthansa", p: 130, out: ["16:15", "17:40", "1h 25m"], back: ["15:05", "16:35", "1h 30m"] },
+          BCN: { air: "Ryanair", p: 444, out: ["20:10", "22:40", "2h 30m"], back: ["17:10", "19:35", "2h 25m"] },
+          FRA: { air: "Condor", p: 124, out: ["20:10", "21:30", "1h 20m"], back: ["17:10", "18:30", "1h 20m"] },
           HAM: { air: "Austrian", p: 138, out: ["20:10", "21:40", "1h 30m"], back: ["17:45", "19:20", "1h 35m"] }
         }
       },
       {
-        id: "MAD", iata: "MAD", rank: 8, ll: [40.4168, -3.7038], stay: 1443, hotel: 922, max: 1443,
+        id: "MAD", iata: "MAD", rank: 7, ll: [40.4168, -3.7038], stay: 1443, hotel: 855, max: 1443,
         name: { es: "Madrid", en: "Madrid", de: "Madrid" },
         t: "11–13 °C",
         why: {
-          es: "Mucho que ver. Sol / Gran Vía con metro. El hotel (922 €) gana al piso: baja al #8. Vueling e Iberia cobran cabina y asientos.",
-          en: "Lots to see. Sol / Gran Vía on the metro. Hotel (922 €) beats the flat: down to #8. Vueling and Iberia charge for cabin bag and seats.",
-          de: "Viel Stadt. Sol / Gran Vía an der Metro. Hotel (922 €) schlägt die Wohnung: auf #8. Vueling und Iberia nehmen extra für Handgepäck und Sitze.",
+          es: "Mucho que ver. Sol / Gran Vía con metro. El hotel (855 €) gana al piso: sube al #7. Vueling e Iberia cobran cabina y asientos.",
+          en: "Lots to see. Sol / Gran Vía on the metro. Hotel (855 €) beats the flat: up to #7. Vueling and Iberia charge for cabin bag and seats.",
+          de: "Viel Stadt. Sol / Gran Vía an der Metro. Hotel (855 €) schlägt die Wohnung: auf #7. Vueling und Iberia nehmen extra für Handgepäck und Sitze.",
         },
         area: { es: "Sol · Gran Vía · metro", en: "Sol · Gran Vía · metro", de: "Sol · Gran Vía · Metro" },
         q: { airbnb: "Madrid--Spain", ss: "Madrid", dest: "-390625", bb: [40.400, -3.725, 40.440, -3.680] },
@@ -568,8 +569,8 @@
         const isOpen = open === x.id;
         const btn = (kind, label, sub) => {
           const miss = x.empty && x.empty[kind];
-          const cheap = (kind === "airbnb" && x.stay <= x.hotel) || (kind === "hotel" && x.hotel < x.stay);
-          return "<a class=\"" + (cheap ? "on" : "") + (miss ? " miss" : "") + "\" data-stay=\"" + kind +
+          const cls = (kind === "airbnb" ? "ab" : "ht") + (miss ? " miss" : "");
+          return "<a class=\"" + cls + "\" data-stay=\"" + kind +
             "\" data-city=\"" + x.id + "\" target=\"_blank\" rel=\"noopener\" href=\"" + u[kind] + "\"" +
             (miss ? " title=\"" + t.zero + "\"" : "") + ">" + label +
             (sub ? "<span class=\"from\">" + sub + "</span>" : "") +
