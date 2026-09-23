@@ -20,7 +20,7 @@
 - Lean kit (ver AGENTS.md)
 
 ## Qué hacer cuando piden actualizar precios
-No preguntes. Repite este checklist, cambia lo que haya cambiado, deja lo que no, commit + push. Producto: `index.html` + este fichero. No subas `_*.py` ni probes.
+No preguntes. Lee y sigue `.cursor/skills/refresh-prices/SKILL.md`. Este checklist es la regla; la skill es el cómo. Cambia lo que haya cambiado, deja lo que no, commit + push. Producto: `index.html` + este fichero. No subas `_*.py` ni probes.
 
 1. **Mismo aeropuerto de destino** para BCN, FRA y HAM. El código IATA de la ciudad es el aeropuerto, no “la ciudad”:
    - Milán **MXP** (no LIN) · Roma **FCO** (no CIA) · París **CDG** (no ORY) · Londres **LHR** (no LGW/STN/LTN)

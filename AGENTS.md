@@ -13,7 +13,7 @@ Think → Plan → Build → Review → Test.
 4. Done = `git add -A` + short commit + push (unless told not to).
 5. Final reply: max 5 lines. `HECHO`/`FALLO`.
 
-`/review` loads `.cursor/skills/review`. Keep context small.
+`/review` loads `.cursor/skills/review`. Actualizar precios loads `.cursor/skills/refresh-prices`. Keep context small.
 
 Vista: HTML en el repo. Repo público: HECHO **siempre** con `https://<owner>.github.io/<repo>/` (la web en el navegador). `github.com` es el código. Nada de previews de terceros.
 
