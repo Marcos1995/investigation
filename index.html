@@ -187,7 +187,7 @@
         ab: "Airbnb", ht: "Hotel",
         zero: "sin listados",
         gf: "Google Flights", air: "Kayak",         bag: "cabina 8–10 kg y 2 asientos juntos · 2 adultos",
-        upd: "Precios consultados el <b>23 de septiembre de 2026 a las 00:25</b>. Alojamiento = el más barato entre Airbnb y hotel. Incluye cabina 8–10 kg y asientos juntos. Mismo aeropuerto para los 3 orígenes. La ida llega a una hora parecida si no cuesta más de ~30 € por persona."
+        upd: "Precios consultados el <b>23 de septiembre de 2026 a las 17:40</b>. Alojamiento = el más barato entre Airbnb y hotel. Incluye cabina 8–10 kg y asientos juntos. Mismo aeropuerto para los 3 orígenes. La ida llega a una hora parecida si no cuesta más de ~30 € por persona."
       },
       en: {
         dates: "4–8 December 2026",
@@ -206,7 +206,7 @@
         ab: "Airbnb", ht: "Hotel",
         zero: "no listings",
         gf: "Google Flights", air: "Kayak",         bag: "8–10 kg cabin bag and 2 seats together · 2 adults",
-        upd: "Prices checked on <b>23 September 2026 at 00:25</b>. Stay = the cheaper of Airbnb vs hotel. Includes 8–10 kg cabin bag and seats together. Same airport for all 3 origins. Outbound landings are kept close when that costs no more than ~30 € per person."
+        upd: "Prices checked on <b>23 September 2026 at 17:40</b>. Stay = the cheaper of Airbnb vs hotel. Includes 8–10 kg cabin bag and seats together. Same airport for all 3 origins. Outbound landings are kept close when that costs no more than ~30 € per person."
       },
       de: {
         dates: "4.–8. Dezember 2026",
@@ -225,121 +225,121 @@
         ab: "Airbnb", ht: "Hotel",
         zero: "keine Treffer",
         gf: "Google Flights", air: "Kayak",         bag: "8–10-kg-Handgepäck und 2 Sitze nebeneinander · 2 Personen",
-        upd: "Preise geprüft am <b>23. September 2026 um 00:25 Uhr</b>. Unterkunft = das Günstigere aus Airbnb und Hotel. Inkl. 8–10-kg-Handgepäck und Sitze. Gleicher Flughafen für alle 3 Origins. Hinflüge landen zeitnah, wenn das nicht mehr als ~30 € pro Person kostet."
+        upd: "Preise geprüft am <b>23. September 2026 um 17:40 Uhr</b>. Unterkunft = das Günstigere aus Airbnb und Hotel. Inkl. 8–10-kg-Handgepäck und Sitze. Gleicher Flughafen für alle 3 Origins. Hinflüge landen zeitnah, wenn das nicht mehr als ~30 € pro Person kostet."
       }
     };
 
     const CITIES = [
       {
-        id: "MXP", iata: "MXP", rank: 7, ll: [45.4642, 9.1900], stay: 1231, hotel: 799, max: 1231,
+        id: "MXP", iata: "MXP", rank: 3, ll: [45.4642, 9.1900], stay: 1231, hotel: 913, max: 1231,
         name: { es: "Milán", en: "Milan", de: "Mailand" },
         t: "7–10 °C",
         why: {
-          es: "Sigue #7. Llegan entre 19:35 y 22:05. El hotel (799 €) gana al piso (1.231 €). Los 3 a Malpensa. HAM solo vuelve a las 09:35. Juntar más la llegada pasa FRA a Condor y son unos 60 € más por persona.",
-          en: "Still #7. They land 19:35–22:05. Hotel (799 €) beats the flat (1,231 €). All 3 to Malpensa. HAM’s only back is 09:35. A tighter landing switches FRA to Condor, about 60 € more per person.",
-          de: "Weiter #7. Landung 19:35–22:05. Hotel (799 €) schlägt die Wohnung (1.231 €). Alle 3 nach Malpensa. HAM nur zurück 09:35. Engere Landung hieße Condor ab FRA, etwa 60 € mehr pro Person.",
+          es: "Sube al #3. Llegan 21:40–23:25, los 3 a Malpensa. El hotel (913 €) gana al piso (1.231 €). HAM easyJet reserva a 128 € los 2, pero solo vuelve a las 06:15; Eurowings sale unos 197 € más por persona. FRA es Lufthansa/Air Dolomiti.",
+          en: "Up to #3. They land 21:40–23:25, all 3 to Malpensa. Hotel (913 €) beats the flat (1,231 €). HAM easyJet books at 128 € for 2, but the only return is 06:15; Eurowings is about 197 € more per person. FRA is Lufthansa/Air Dolomiti.",
+          de: "Auf #3. Landung 21:40–23:25, alle 3 nach Malpensa. Hotel (913 €) schlägt die Wohnung (1.231 €). HAM easyJet bucht 128 € für 2, zurück nur 06:15; Eurowings kostet etwa 197 € mehr pro Person. FRA ist Lufthansa/Air Dolomiti.",
         },
         area: { es: "Duomo · metro", en: "Duomo · metro", de: "Dom · Metro" },
         q: { airbnb: "Milan--Italy", ss: "Milan", dest: "-121726", bb: [45.445, 9.155, 45.495, 9.230] },
         flights: {
-          BCN: { air: "easyJet", p: 162, out: ["18:40", "20:25", "1h 45m"], back: ["21:30", "23:10", "1h 40m"] },
+          BCN: { air: "Vueling", p: 136, out: ["20:00", "21:40", "1h 40m"], back: ["22:30", "00:10", "1h 40m"] },
           FRA: { air: "Lufthansa", p: 204, out: ["20:50", "22:05", "1h 15m"], back: ["18:35", "19:55", "1h 20m"] },
-          HAM: { air: "Eurowings", p: 269, out: ["17:55", "19:35", "1h 40m"], back: ["09:35", "11:20", "1h 45m"] }
+          HAM: { air: "easyJet", p: 64, out: ["21:40", "23:25", "1h 45m"], back: ["06:15", "08:05", "1h 50m"] }
         }
       },
       {
-        id: "ATH", iata: "ATH", rank: 1, ll: [37.9838, 23.7275], stay: 534, hotel: 338, max: 534,
+        id: "ATH", iata: "ATH", rank: 1, ll: [37.9838, 23.7275], stay: 356, hotel: 315, max: 356,
         name: { es: "Atenas", en: "Athens", de: "Athen" },
         t: "12–16 °C",
         why: {
-          es: "Sigue la más barata. El hotel (338 €) gana al Airbnb (534 €). FRA baja a 141 € y BCN con SKY a 310 €. FRA y HAM llegan ~22:15; BCN llega a las 02:40. La ida de BCN que llega a las 21:00 es Vueling y sale unos 41 € más por persona. HAM vuelve a las 08:15.",
-          en: "Still cheapest. Hotel (338 €) beats Airbnb (534 €). FRA drops to 141 € and BCN on SKY to 310 €. FRA and HAM land ~22:15; BCN lands 02:40. The BCN flight that lands at 21:00 is Vueling, about 41 € more per person. HAM back at 08:15.",
-          de: "Weiter günstigste. Hotel (338 €) schlägt Airbnb (534 €). FRA fällt auf 141 €, BCN mit SKY auf 310 €. FRA und HAM landen ~22:15; BCN um 02:40. Der BCN-Flug mit Landung 21:00 ist Vueling, etwa 41 € mehr pro Person. HAM zurück 08:15.",
+          es: "Sigue la más barata. El hotel (315 €) gana al Airbnb (356 €). FRA 141 € y HAM 142 €. FRA y HAM llegan ~22:15–22:40; BCN con SKY llega a las 02:40. La ida de BCN que llega a las 21:00 es Vueling y sale unos 98 € más por persona. HAM vuelve a las 08:15.",
+          en: "Still cheapest. Hotel (315 €) beats Airbnb (356 €). FRA 141 € and HAM 142 €. FRA and HAM land ~22:15–22:40; BCN on SKY lands 02:40. The BCN flight that lands at 21:00 is Vueling, about 98 € more per person. HAM back at 08:15.",
+          de: "Weiter günstigste. Hotel (315 €) schlägt Airbnb (356 €). FRA 141 €, HAM 142 €. FRA und HAM landen ~22:15–22:40; BCN mit SKY um 02:40. Der BCN-Flug mit Landung 21:00 ist Vueling, etwa 98 € mehr pro Person. HAM zurück 08:15.",
         },
         area: { es: "Monastiraki · Plaka · metro", en: "Monastiraki · Plaka · metro", de: "Monastiraki · Plaka · Metro" },
         q: { airbnb: "Athens--Greece", ss: "Athens", dest: "-814876", bb: [37.958, 23.705, 38.000, 23.755] },
         flights: {
-          BCN: { air: "SKY express", backAir: "Aegean", p: 310, out: ["22:45", "02:40", "2h 55m"], back: ["16:40", "18:50", "3h 10m"] },
+          BCN: { air: "SKY express", backAir: "Aegean", p: 289, out: ["22:45", "02:40", "2h 55m"], back: ["16:40", "18:45", "3h 05m"] },
           FRA: { air: "Aegean", p: 141, out: ["18:50", "22:40", "2h 50m"], back: ["15:55", "18:00", "3h 05m"] },
           HAM: { air: "SKY express", p: 142, out: ["18:15", "22:15", "3h 00m"], back: ["08:15", "10:30", "3h 15m"] }
         }
       },
       {
-        id: "LIS", iata: "LIS", rank: 5, ll: [38.7308, -9.1485], stay: 747, hotel: 814, max: 747,
+        id: "LIS", iata: "LIS", rank: 6, ll: [38.7308, -9.1485], stay: 694, hotel: 757, max: 694,
         name: { es: "Lisboa", en: "Lisbon", de: "Lissabon" },
         t: "15–17 °C",
         why: {
-          es: "Sigue #5 y empata en total con Londres. BCN se queda en el easyJet de las 15:25 (llega 16:35): el Vueling de las 19:20, que aterriza con los demás, sale unos 42 € más por persona. El piso (747 €) gana al hotel. HAM Lufthansa vuelve a las 11:40.",
-          en: "Still #5 and tied on the group total with London. BCN stays on the 15:25 easyJet (lands 16:35): the 19:20 Vueling, which lands with the others, is about 42 € more per person. The flat (747 €) beats the hotel. HAM Lufthansa back at 11:40.",
-          de: "Weiter #5, im Gruppentotal gleichauf mit London. BCN bleibt easyJet 15:25 (Landung 16:35): Vueling 19:20, das mit den anderen landet, kostet etwa 42 € mehr pro Person. Wohnung (747 €) schlägt das Hotel. HAM Lufthansa zurück 11:40.",
+          es: "Baja al #6. BCN pasa al Vueling de las 19:20, que aterriza con FRA y HAM, unos 19 € más por persona que el easyJet de las 15:25. El piso (694 €) gana al hotel (757 €). HAM TAP vuelve a las 11:40.",
+          en: "Down to #6. BCN moves to the 19:20 Vueling, which lands with FRA and HAM, about 19 € more per person than the 15:25 easyJet. The flat (694 €) beats the hotel (757 €). HAM TAP back at 11:40.",
+          de: "Auf #6. BCN wechselt auf Vueling 19:20, das mit FRA und HAM landet, etwa 19 € mehr pro Person als easyJet 15:25. Wohnung (694 €) schlägt das Hotel (757 €). HAM TAP zurück 11:40.",
         },
         area: { es: "Saldanha · metro Parque", en: "Saldanha · Parque metro", de: "Saldanha · Metro Parque" },
         q: { airbnb: "Lisbon--Portugal", ss: "Lisbon", dest: "-2167973", bb: [38.705, -9.170, 38.745, -9.130] },
         flights: {
-          BCN: { air: "easyJet", backAir: "Vueling", p: 181, out: ["15:25", "16:35", "2h 10m"], back: ["19:00", "21:55", "1h 55m"] },
-          FRA: { air: "Lufthansa", p: 242, out: ["17:45", "20:00", "3h 15m"], back: ["18:25", "22:40", "3h 15m"] },
-          HAM: { air: "Lufthansa", p: 250, out: ["17:00", "19:45", "3h 45m"], back: ["11:40", "16:10", "3h 30m"] }
+          BCN: { air: "Vueling", p: 208, out: ["19:20", "20:25", "2h 05m"], back: ["19:00", "21:55", "1h 55m"] },
+          FRA: { air: "TAP", p: 242, out: ["17:45", "20:00", "3h 15m"], back: ["18:25", "22:40", "3h 15m"] },
+          HAM: { air: "TAP", p: 250, out: ["17:00", "19:45", "3h 45m"], back: ["11:40", "16:10", "3h 30m"] }
         }
       },
       {
-        id: "FCO", iata: "FCO", rank: 8, ll: [41.8986, 12.4768], stay: 917, hotel: 790, max: 917,
+        id: "FCO", iata: "FCO", rank: 5, ll: [41.8986, 12.4768], stay: 917, hotel: 720, max: 917,
         name: { es: "Roma", en: "Rome", de: "Rom" },
         t: "12–14 °C",
         why: {
-          es: "Baja al #8. El Ryanair de BCN que llega a las 18:40 solo vuelve a las 08:30. Se queda el Wizz de las 22:00 (vuelta 19:25). Igualar la llegada con ITA son unos 136 € más por persona. El hotel (790 €) gana al piso. HAM vuelve a las 12:00.",
-          en: "Down to #8. The BCN Ryanair that lands at 18:40 only returns at 08:30. The 22:00 Wizz stays (back 19:25). Matching the landing on ITA is about 136 € more per person. Hotel (790 €) beats the flat. HAM back at 12:00.",
-          de: "Auf #8. Der BCN-Ryanair mit Landung 18:40 geht nur um 08:30 zurück. Es bleibt Wizz 22:00 (zurück 19:25). Landung mit ITA angleichen kostet etwa 136 € mehr pro Person. Hotel (790 €) schlägt die Wohnung. HAM zurück 12:00.",
+          es: "Sube al #5. El Ryanair de BCN que llega a las 18:40 solo vuelve a las 08:30. Se queda el Vueling de las 20:25 (vuelta 22:55). El hotel (720 €) gana al piso (917 €). HAM vuelve a las 12:00. FRA vuelve con ITA.",
+          en: "Up to #5. The BCN Ryanair that lands at 18:40 only returns at 08:30. The 20:25 Vueling stays (back 22:55). Hotel (720 €) beats the flat (917 €). HAM back at 12:00. FRA returns on ITA.",
+          de: "Auf #5. Der BCN-Ryanair mit Landung 18:40 geht nur um 08:30 zurück. Es bleibt Vueling 20:25 (zurück 22:55). Hotel (720 €) schlägt die Wohnung (917 €). HAM zurück 12:00. FRA zurück mit ITA.",
         },
         area: { es: "Centro histórico · Panteón", en: "Historic centre · Pantheon", de: "Historisches Zentrum · Pantheon" },
         q: { airbnb: "Rome--Italy", ss: "Rome", dest: "-126693", bb: [41.860, 12.445, 41.925, 12.535] },
         flights: {
-          BCN: { air: "Wizz Air", p: 346, out: ["22:00", "23:55", "1h 55m"], back: ["19:25", "21:15", "1h 50m"] },
-          FRA: { air: "Lufthansa", p: 191, out: ["15:55", "17:45", "1h 50m"], back: ["15:20", "17:25", "2h 05m"] },
+          BCN: { air: "Vueling", p: 275, out: ["20:25", "22:10", "1h 45m"], back: ["22:55", "00:45", "1h 50m"] },
+          FRA: { air: "Lufthansa", backAir: "ITA", p: 206, out: ["15:55", "17:45", "1h 50m"], back: ["15:20", "17:25", "2h 05m"] },
           HAM: { air: "easyJet", p: 86, out: ["15:00", "17:20", "2h 20m"], back: ["12:00", "14:30", "2h 30m"] }
         }
       },
       {
-        id: "CDG", iata: "CDG", rank: 3, ll: [48.8566, 2.3522], stay: 1222, hotel: 676, max: 1222,
+        id: "CDG", iata: "CDG", rank: 4, ll: [48.8566, 2.3522], stay: 820, hotel: 663, max: 820,
         name: { es: "París", en: "Paris", de: "Paris" },
         t: "5–8 °C",
         why: {
-          es: "Sube al #3. Llegan 16:35–17:40, los 3 con Air France a CDG. El hotel (676 €) gana al piso (1.222 €). La vuelta de HAM sale a las 20:40 y las otras ~15:20; igualarlas sale mucho más caro.",
-          en: "Up to #3. They land 16:35–17:40, all three on Air France to CDG. Hotel (676 €) beats the flat (1,222 €). HAM’s return leaves 20:40 and the others ~15:20; matching them costs much more.",
-          de: "Auf #3. Landung 16:35–17:40, alle drei Air France nach CDG. Hotel (676 €) schlägt die Wohnung (1.222 €). HAM-Rückflug 20:40, die anderen ~15:20; angleichen ist deutlich teurer.",
+          es: "Baja al #4. FRA y HAM llegan 16:35–17:40 con Air France. BCN se queda en el Vueling de las 19:05: el Air France de las 15:00, que aterriza con los demás, sale unos 65 € más por persona. El hotel (663 €) gana al piso (820 €). HAM vuelve a las 20:40.",
+          en: "Down to #4. FRA and HAM land 16:35–17:40 on Air France. BCN stays on the 19:05 Vueling: the 15:00 Air France, which lands with the others, is about 65 € more per person. Hotel (663 €) beats the flat (820 €). HAM back at 20:40.",
+          de: "Auf #4. FRA und HAM landen 16:35–17:40 mit Air France. BCN bleibt Vueling 19:05: Air France 15:00, das mit den anderen landet, kostet etwa 65 € mehr pro Person. Hotel (663 €) schlägt die Wohnung (820 €). HAM zurück 20:40.",
         },
         area: { es: "Intramuros · metro", en: "Inside Paris · metro", de: "Innerhalb Paris · Metro" },
         q: { airbnb: "Paris--France", ss: "Paris", dest: "-1456928", bb: [48.830, 2.265, 48.895, 2.410] },
         flights: {
-          BCN: { air: "Air France", p: 459, out: ["15:00", "17:00", "2h 00m"], back: ["15:15", "17:00", "1h 45m"] },
-          FRA: { air: "Air France", p: 124, out: ["15:05", "16:35", "1h 30m"], back: ["15:25", "16:45", "1h 20m"] },
-          HAM: { air: "Air France", p: 154, out: ["16:00", "17:40", "1h 40m"], back: ["20:40", "22:20", "1h 40m"] }
+          BCN: { air: "Vueling", p: 312, out: ["19:05", "21:00", "1h 55m"], back: ["18:20", "20:10", "1h 50m"] },
+          FRA: { air: "Air France", p: 135, out: ["15:05", "16:35", "1h 30m"], back: ["15:25", "16:45", "1h 20m"] },
+          HAM: { air: "Air France", p: 165, out: ["16:00", "17:40", "1h 40m"], back: ["20:40", "22:20", "1h 40m"] }
         }
       },
       {
-        id: "LHR", iata: "LHR", rank: 4, ll: [51.5074, -0.1278], stay: 1726, hotel: 795, max: 1726,
+        id: "LHR", iata: "LHR", rank: 9, ll: [51.5074, -0.1278], stay: 1399, hotel: 1071, max: 1399,
         name: { es: "Londres", en: "London", de: "London" },
         t: "6–9 °C",
         why: {
-          es: "Sube al #4 y empata en total con Lisboa. Llegan 16:50–18:40, los 3 a Heathrow. El hotel (795 €) gana al piso (1.726 €). BCN: BA ida e Iberia vuelta. HAM se reserva con Eurowings (288 € los 2). Igualar la vuelta sobre las 19:20 le cuesta a HAM unos 49 € más por persona.",
-          en: "Up to #4 and tied on the group total with Lisbon. They land 16:50–18:40, all 3 to Heathrow. Hotel (795 €) beats the flat (1,726 €). BCN: BA out, Iberia back. HAM books with Eurowings (288 € for 2). Matching a 19:20 return costs HAM about 49 € more per person.",
-          de: "Auf #4, im Gruppentotal gleichauf mit Lissabon. Landung 16:50–18:40, alle 3 nach Heathrow. Hotel (795 €) schlägt die Wohnung (1.726 €). BCN: BA hin, Iberia zurück. HAM bucht bei Eurowings (288 € für 2). Rückflug um 19:20 kostet HAM etwa 49 € mehr pro Person.",
+          es: "Baja al #9. Llegan 16:50–19:35, los 3 a Heathrow. El hotel (1.071 €) gana al piso (1.399 €). HAM va en British Airways (446 € los 2): Eurowings llega un poco antes y, con la cabina, cuesta casi lo mismo. BCN vuelve a las 19:20 y FRA a las 15:30.",
+          en: "Down to #9. They land 16:50–19:35, all 3 to Heathrow. Hotel (1,071 €) beats the flat (1,399 €). HAM is on British Airways (446 € for 2): Eurowings lands a bit earlier and, with the cabin bag, costs almost the same. BCN back at 19:20 and FRA at 15:30.",
+          de: "Auf #9. Landung 16:50–19:35, alle 3 nach Heathrow. Hotel (1.071 €) schlägt die Wohnung (1.399 €). HAM fliegt British Airways (446 € für 2): Eurowings landet etwas früher und kostet mit Handgepäck fast gleich viel. BCN zurück 19:20, FRA 15:30.",
         },
         area: { es: "Zone 1–2 · Tube", en: "Zone 1–2 · Tube", de: "Zone 1–2 · Tube" },
         q: { airbnb: "London--United-Kingdom", ss: "London", dest: "-2601889", bb: [51.480, -0.195, 51.545, -0.055] },
         flights: {
-          BCN: { air: "British Airways", backAir: "Iberia", p: 444, out: ["15:30", "16:50", "2h 20m"], back: ["19:20", "22:30", "2h 10m"] },
-          FRA: { air: "Lufthansa", p: 141, out: ["17:05", "17:45", "1h 40m"], back: ["15:30", "18:05", "1h 35m"] },
-          HAM: { air: "Lufthansa", p: 144, out: ["18:00", "18:40", "1h 40m"], back: ["15:50", "18:30", "1h 40m"] }
+          BCN: { air: "British Airways", p: 454, out: ["15:30", "16:50", "2h 20m"], back: ["19:20", "22:30", "2h 10m"] },
+          FRA: { air: "Lufthansa", p: 141, out: ["16:10", "16:50", "1h 40m"], back: ["15:30", "18:05", "1h 35m"] },
+          HAM: { air: "British Airways", p: 223, out: ["18:55", "19:35", "1h 40m"], back: ["19:35", "22:15", "1h 40m"] }
         }
       },
       {
-        id: "WAW", iata: "WAW", rank: 2, ll: [52.2297, 21.0122], stay: 924, hotel: 496, max: 924,
+        id: "WAW", iata: "WAW", rank: 7, ll: [52.2297, 21.0122], stay: 924, hotel: 637, max: 924,
         name: { es: "Varsovia", en: "Warsaw", de: "Warschau" },
         t: "0–3 °C",
         why: {
-          es: "Sube al #2. Llegan 21:10–22:10 y las vueltas salen 15:05–17:10. FRA sigue en el de las 19:55, unos 12 € más por persona, para llegar con los demás. El hotel (496 €) gana al Airbnb (924 €). Wizz desde BCN sube un poco. Frío: abrigo.",
-          en: "Up to #2. They land 21:10–22:10 and returns leave 15:05–17:10. FRA stays on the 19:55 flight, about 12 € more per person, so it lands with the others. Hotel (496 €) beats Airbnb (924 €). Wizz from BCN is up a little. Cold: pack a coat.",
-          de: "Auf #2. Landung 21:10–22:10, Rückflüge 15:05–17:10. FRA bleibt bei 19:55, etwa 12 € mehr pro Person, damit alle ähnlich ankommen. Hotel (496 €) schlägt Airbnb (924 €). Wizz ab BCN etwas teurer. Kalt: Mantel.",
+          es: "Baja al #7. Llegan 21:10–22:10 y las vueltas salen 15:05–17:10. FRA sigue en el de las 19:55, unos 12 € más por persona, para llegar con los demás. El hotel (637 €) gana al Airbnb (924 €). Frío: abrigo.",
+          en: "Down to #7. They land 21:10–22:10 and returns leave 15:05–17:10. FRA stays on the 19:55 flight, about 12 € more per person, so it lands with the others. Hotel (637 €) beats Airbnb (924 €). Cold: pack a coat.",
+          de: "Auf #7. Landung 21:10–22:10, Rückflüge 15:05–17:10. FRA bleibt bei 19:55, etwa 12 € mehr pro Person, damit alle ähnlich ankommen. Hotel (637 €) schlägt Airbnb (924 €). Kalt: Mantel.",
         },
         area: { es: "Stare Miasto · metro", en: "Old Town · metro", de: "Altstadt · Metro" },
         q: { airbnb: "Warsaw--Poland", ss: "Warsaw", dest: "-534433", bb: [52.215, 20.970, 52.265, 21.055] },
@@ -350,54 +350,54 @@
         }
       },
       {
-        id: "PMI", iata: "PMI", rank: 9, ll: [39.5696, 2.6502], stay: 1054, hotel: 905, max: 1054,
+        id: "PMI", iata: "PMI", rank: 2, ll: [39.5696, 2.6502], stay: 1054, hotel: 940, max: 1054,
         name: { es: "Palma", en: "Palma", de: "Palma" },
         t: "16–18 °C",
         why: {
-          es: "Sigue #9. Llegan 18:05–20:40: BCN sale a las 17:30 en vez de las 21:45, unos 10 € más por persona. El hotel (905 €) gana al piso (1.054 €). HAM vuelve a las 14:05.",
-          en: "Still #9. They land 18:05–20:40: BCN leaves 17:30 instead of 21:45, about 10 € more per person. Hotel (905 €) beats the flat (1,054 €). HAM back at 14:05.",
-          de: "Weiter #9. Landung 18:05–20:40: BCN fliegt 17:30 statt 21:45, etwa 10 € mehr pro Person. Hotel (905 €) schlägt die Wohnung (1.054 €). HAM zurück 14:05.",
+          es: "Sube al #2. BCN Ryanair de las 17:30 (vuelta 22:30) cuesta unos 7 € más por persona que el de las 21:45, para aterrizar a las 18:30. FRA llega a las 18:05 con Lufthansa y vuelve con Discover. El hotel (940 €) gana al piso (1.054 €). HAM vuelve a las 14:05.",
+          en: "Up to #2. BCN Ryanair at 17:30 (back 22:30) is about 7 € more per person than the 21:45 flight, so it lands at 18:30. FRA lands 18:05 on Lufthansa and returns on Discover. Hotel (940 €) beats the flat (1,054 €). HAM back at 14:05.",
+          de: "Auf #2. BCN Ryanair 17:30 (zurück 22:30) kostet etwa 7 € mehr pro Person als 21:45, damit die Landung 18:30 ist. FRA landet 18:05 mit Lufthansa und fliegt mit Discover zurück. Hotel (940 €) schlägt die Wohnung (1.054 €). HAM zurück 14:05.",
         },
         area: { es: "Casco antiguo · Plaça Major", en: "Old town · Plaça Major", de: "Altstadt · Plaça Major" },
         q: { airbnb: "Palma-de-Mallorca--Spain", ss: "Palma de Mallorca", dest: "-395224", bb: [39.562, 2.625, 39.585, 2.668] },
         flights: {
-          BCN: { air: "Ryanair", p: 132, out: ["17:30", "18:30", "1h 00m"], back: ["22:30", "23:25", "0h 55m"] },
-          FRA: { air: "Lufthansa", p: 148, out: ["16:00", "18:05", "2h 05m"], back: ["18:35", "20:55", "2h 20m"] },
-          HAM: { air: "Eurowings", p: 333, out: ["18:05", "20:40", "2h 35m"], back: ["14:05", "16:45", "2h 40m"] }
+          BCN: { air: "Ryanair", p: 57, out: ["17:30", "18:30", "1h 00m"], back: ["22:30", "23:25", "0h 55m"] },
+          FRA: { air: "Lufthansa", backAir: "Discover Airlines", p: 148, out: ["16:00", "18:05", "2h 05m"], back: ["18:35", "20:55", "2h 20m"] },
+          HAM: { air: "Eurowings", p: 161, out: ["18:05", "20:40", "2h 35m"], back: ["14:05", "16:45", "2h 40m"] }
         }
       },
       {
-        id: "VIE", iata: "VIE", rank: 10, ll: [48.2082, 16.3738], stay: 1080, hotel: 1105, max: 1080,
+        id: "VIE", iata: "VIE", rank: 8, ll: [48.2082, 16.3738], stay: 961, hotel: 1195, max: 961,
         name: { es: "Viena", en: "Vienna", de: "Wien" },
         t: "1–4 °C",
         why: {
-          es: "Sigue última. Los 3 salen a las 20:10 y las vueltas salen 17:10–17:45. El piso (1.080 €) gana al hotel (1.105 €). BCN: Ryanair ida y Vueling vuelta.",
-          en: "Still last. All 3 leave at 20:10 and the returns leave 17:10–17:45. The flat (1,080 €) beats the hotel (1,105 €). BCN: Ryanair out, Vueling back.",
-          de: "Weiter Letzte. Alle 3 starten 20:10, Rückflüge 17:10–17:45. Wohnung (1.080 €) schlägt das Hotel (1.105 €). BCN: Ryanair hin, Vueling zurück.",
+          es: "Sube al #8. BCN y HAM salen ~20:10–20:30; FRA a las 20:50. El piso (961 €) gana al hotel (1.195 €). La vuelta de FRA sale a las 15:05; igualarla con Condor a las 17:10 son unos 53 € más por persona. BCN solo tiene vuelta de tarde con Austrian.",
+          en: "Up to #8. BCN and HAM leave ~20:10–20:30; FRA at 20:50. The flat (961 €) beats the hotel (1,195 €). FRA’s return leaves 15:05; matching it on Condor at 17:10 is about 53 € more per person. BCN’s only afternoon return is Austrian.",
+          de: "Auf #8. BCN und HAM starten ~20:10–20:30; FRA um 20:50. Wohnung (961 €) schlägt das Hotel (1.195 €). FRA-Rückflug 15:05; Angleichen mit Condor um 17:10 kostet etwa 53 € mehr pro Person. BCN hat den Abend-Rückflug nur mit Austrian.",
         },
         area: { es: "Innere Stadt · U-Bahn", en: "Innere Stadt · U-Bahn", de: "Innere Stadt · U-Bahn" },
         q: { airbnb: "Vienna--Austria", ss: "Vienna", dest: "-1995499", bb: [48.185, 16.335, 48.235, 16.410] },
         flights: {
-          BCN: { air: "Ryanair", backAir: "Vueling", p: 450, out: ["20:10", "22:40", "2h 30m"], back: ["17:10", "19:35", "2h 25m"] },
-          FRA: { air: "Condor", p: 124, out: ["20:10", "21:30", "1h 20m"], back: ["17:10", "18:30", "1h 20m"] },
+          BCN: { air: "Austrian", p: 515, out: ["20:30", "22:50", "2h 20m"], back: ["17:25", "19:45", "2h 20m"] },
+          FRA: { air: "Austrian", p: 131, out: ["20:50", "22:15", "1h 25m"], back: ["15:05", "16:35", "1h 30m"] },
           HAM: { air: "Austrian", p: 138, out: ["20:10", "21:40", "1h 30m"], back: ["17:45", "19:20", "1h 35m"] }
         }
       },
       {
-        id: "MAD", iata: "MAD", rank: 6, ll: [40.4168, -3.7038], stay: 1445, hotel: 855, max: 1445,
+        id: "MAD", iata: "MAD", rank: 10, ll: [40.4168, -3.7038], stay: 1424, hotel: 1080, max: 1424,
         name: { es: "Madrid", en: "Madrid", de: "Madrid" },
         t: "11–13 °C",
         why: {
-          es: "Sube al #6. BCN y HAM llegan ~18:00–19:00; FRA llega a las 23:55. Traer a FRA a las 20:15 cuesta unos 72 € más por persona, así que se queda el más barato. El hotel (855 €) gana al piso. La lista de BCN marca 202 € los 2 y el botón de reserva 259 €.",
-          en: "Up to #6. BCN and HAM land ~18:00–19:00; FRA lands 23:55. Bringing FRA in at 20:15 costs about 72 € more per person, so the cheaper fare stays. Hotel (855 €) beats the flat. BCN’s list price is 202 € for 2 and the book button is 259 €.",
-          de: "Auf #6. BCN und HAM landen ~18:00–19:00; FRA um 23:55. FRA um 20:15 zu landen kostet etwa 72 € mehr pro Person, also bleibt der günstigere Tarif. Hotel (855 €) schlägt die Wohnung. BCNs Listenpreis ist 202 € für 2, der Buchen-Button 259 €.",
+          es: "Baja al #10. BCN y HAM llegan ~18:00–19:00; FRA llega a las 23:55. Traer a FRA a las 20:15 cuesta unos 57 € más por persona. El hotel (1.080 €) gana al piso (1.424 €). El botón de reserva de HAM Iberia marca 836 € los 2.",
+          en: "Down to #10. BCN and HAM land ~18:00–19:00; FRA lands 23:55. Bringing FRA in at 20:15 costs about 57 € more per person. Hotel (1,080 €) beats the flat (1,424 €). HAM’s Iberia book button is 836 € for 2.",
+          de: "Auf #10. BCN und HAM landen ~18:00–19:00; FRA um 23:55. FRA um 20:15 zu landen kostet etwa 57 € mehr pro Person. Hotel (1.080 €) schlägt die Wohnung (1.424 €). HAMs Iberia-Buchen-Button ist 836 € für 2.",
         },
         area: { es: "Sol · Gran Vía · metro", en: "Sol · Gran Vía · metro", de: "Sol · Gran Vía · Metro" },
         q: { airbnb: "Madrid--Spain", ss: "Madrid", dest: "-390625", bb: [40.400, -3.725, 40.440, -3.680] },
         flights: {
-          BCN: { air: "Vueling", p: 130, out: ["16:30", "17:55", "1h 25m"], back: ["19:35", "20:55", "1h 20m"] },
-          FRA: { air: "Lufthansa", p: 165, out: ["21:15", "23:55", "2h 40m"], back: ["17:15", "19:45", "2h 30m"] },
-          HAM: { air: "Iberia", p: 300, out: ["15:50", "18:55", "3h 05m"], back: ["19:45", "22:40", "2h 55m"] }
+          BCN: { air: "Vueling", p: 96, out: ["16:30", "17:55", "1h 25m"], back: ["19:35", "20:55", "1h 20m"] },
+          FRA: { air: "Lufthansa", p: 180, out: ["21:15", "23:55", "2h 40m"], back: ["17:15", "19:45", "2h 30m"] },
+          HAM: { air: "Iberia", p: 418, out: ["15:50", "18:55", "3h 05m"], back: ["19:45", "22:40", "2h 55m"] }
         }
       }
     ];
@@ -424,7 +424,7 @@
     let foodDay = 40;
     let map, overlay;
     const NIGHTS = 4;
-    const AIR = { Vueling: "VY", TAP: "TP", Eurowings: "EW", Lufthansa: "LH", Iberia: "IB", "Air Europa": "UX", easyJet: "U2", Condor: "DE", ITA: "AZ", "Wizz Air": "W6", Ryanair: "FR", Aegean: "A3", "SKY express": "GQ", Austrian: "OS", LOT: "LO", "Air France": "AF", "British Airways": "BA" };
+    const AIR = { Vueling: "VY", TAP: "TP", Eurowings: "EW", Lufthansa: "LH", Iberia: "IB", "Air Europa": "UX", easyJet: "U2", Condor: "DE", ITA: "AZ", "Wizz Air": "W6", Ryanair: "FR", Aegean: "A3", "SKY express": "GQ", Austrian: "OS", LOT: "LO", "Air France": "AF", "British Airways": "BA", "Discover Airlines": "4Y" };
     const BAG_RT = { "Wizz Air": 64, Ryanair: 56, easyJet: 64, Vueling: 56, Eurowings: 44, Iberia: 50, Condor: 44 };
     const SEAT_RT = { "Wizz Air": 18, Ryanair: 18, easyJet: 16, Vueling: 16, Eurowings: 18, Iberia: 20, Condor: 16 };
     const extras = (air) => (BAG_RT[air] || 0) + (SEAT_RT[air] || 0);
