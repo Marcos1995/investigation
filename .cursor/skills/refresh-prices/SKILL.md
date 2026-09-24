@@ -36,7 +36,7 @@ Aerolínea nueva: añádela a `AIR` (Discover = `4Y`). Lufthansa City, HOP y Air
 
 Mapa `q.bb`, 6 adultos, piso entero, 3 dormitorios, 3 camas, 2 baños, 4–8 dic, EUR. Sube `price_max` en escalera (500, 700, 950, 1300, 1800, 2600) hasta tener varios totales.
 
-Descarta tarjetas con fechas parciales (`Del 4 al 6 dic`, `6–8 dic`): no cubren las 4 noches. El número es el de la ficha, «N € en total» con 6 viajeros y 4 noches, no un precio de tarjeta que no coincida.
+Descarta tarjetas con fechas parciales (`Del 4 al 6 dic`, `6–8 dic`): no cubren las 4 noches. Descarta nota por debajo de 3/5 y las que no traen nota. El número es el de la ficha, «N € en total» con 6 viajeros y 4 noches, no un precio de tarjeta que no coincida.
 
 Si el más barato es &lt; 0,6 × el **siguiente** válido (Londres 786 vs 1434), usa el suelo del cluster. Compara con el siguiente, no con la mediana de toda la página.
 
@@ -44,7 +44,7 @@ Si el más barato es &lt; 0,6 × el **siguiente** válido (Londres 786 vs 1434),
 
 ## 3. Hotel
 
-Entra en `booking.com` antes de la búsqueda (si no, 502). 6 adultos, 3 habitaciones, 4–8 dic, EUR, orden por precio. Quédate con tarjetas `3×` habitación, baño privado, a ≤ 2,2 millas del centro (si no hay, ≤ 4). Fuera: dormitorio, hostel, baño compartido, guest house, apartamento entero.
+Entra en `booking.com` antes de la búsqueda (si no, 502). 6 adultos, 3 habitaciones, 4–8 dic, EUR, orden por precio, `review_score=60` (nota ≥ 6/10). Quédate con tarjetas `3×` que duerman a 6, baño privado, a ≤ 2,2 millas del centro (si no hay, ≤ 4). Fuera: dormitorio, hostel, baño compartido, guest house, apartamento entero, 3 individuales. El precio es el «Current price» si existe.
 
 El total de la tarjeta («Current price» o «Price», 4 noches y 6 adultos) ya es el coste del grupo. `hotel` = el más barato de ese filtro.
 
@@ -52,7 +52,7 @@ El total de la tarjeta («Current price» o «Price», 4 noches y 6 adultos) ya 
 
 `rank` según el total de grupo, no a mano:
 
-`2 × (flyBCN + flyFRA + flyHAM) + min(stay, hotel) + 960`
+`2 × (flyBCN + flyFRA + flyHAM) + min(stay, hotel) + 720`
 
 `fly` = `p` + cabina + asientos de la ida. Actualiza `why` en es/en/de y la hora del pie (Madrid, UTC+2 en septiembre) en los tres idiomas. Actualiza la línea de ranking de `PROJECT.md`.
 
