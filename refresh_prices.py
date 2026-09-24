@@ -54,6 +54,24 @@ NAMES = {
     "LIS": "Lisboa", "WAW": "Varsovia", "MAD": "Madrid", "LHR": "Londres", "VIE": "Viena",
 }
 
+NOTE = {
+    "none": {"es": "{0}: sin vuelo de tarde", "en": "{0}: no afternoon flight", "de": "{0}: kein Nachmittagsflug"},
+    "align": {"es": "{0} alinea {1}→{2} vuelta {3}→{4} +{5} €", "en": "{0} aligns {1}→{2}, return {3}→{4}, +{5} €",
+              "de": "{0} gleicht an {1}→{2}, Rückflug {3}→{4}, +{5} €"},
+    "stay": {"es": "{0} se queda en {1} (acercarlo pasa de +{2} €)", "en": "{0} stays on {1} (moving it costs over +{2} €)",
+             "de": "{0} bleibt bei {1} (Angleichen kostet über +{2} €)"},
+    "ok": {"es": "horarios ya alineados o la diferencia pasa de 30 €", "en": "times already close or aligning costs over 30 €",
+           "de": "Zeiten schon nah oder Angleichen kostet über 30 €"},
+}
+MONTHS = {
+    "es": ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
+    "en": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+}
+
+def note_text(n, lang):
+    return NOTE[n[0]][lang].format(*n[1:])
+
 def extras(air):
     return BAG.get(air, 0) + SEAT.get(air, 0)
 
@@ -261,10 +279,10 @@ def align(by_orig):
         cur, base = chosen.get(o), start.get(o)
         opts = by_orig.get(o) or []
         if not cur:
-            notes.append(f"{o}: sin vuelo de tarde")
+            notes.append(("none", o))
             continue
         if (cur["dep"], cur["back_dep"], cur["air"]) != (base["dep"], base["back_dep"], base["air"]):
-            notes.append(f"{o} alinea {base['dep']}→{cur['dep']} vuelta {base['back_dep']}→{cur['back_dep']} +{cur['fly'] - base['fly']} €")
+            notes.append(("align", o, base["dep"], cur["dep"], base["back_dep"], cur["back_dep"], cur["fly"] - base["fly"]))
             continue
         others = [chosen[x] for x in ORIGINS if x != o and chosen.get(x)]
         if not others:
@@ -279,7 +297,7 @@ def align(by_orig):
             if (arr_s > PAY_GAP and spread(c, others, "arr") < arr_s) or (ret_s > PAY_GAP and spread(c, others, "back_dep") < ret_s):
                 jumps.append(extra)
         if jumps:
-            notes.append(f"{o} se queda en {base['dep']} (acercarlo pasa de +{min(jumps)} €)")
+            notes.append(("stay", o, base["dep"], min(jumps)))
     return chosen, notes
 
 def apply_book(opts, booked, orig, dest):
@@ -605,11 +623,17 @@ def scrape_stays(cache):
         browser.close()
     return done
 
-def euro(n):
-    return f"{n:,}".replace(",", ".")
+def euro(n, lang="es"):
+    return f"{n:,}" if lang == "en" else f"{n:,}".replace(",", ".")
 
-def write_html(flights, stays, notes):
-    html = HTML.read_text()
+def sub1(pattern, repl, text, what):
+    out, n = re.subn(pattern, repl, text, count=1)
+    if n != 1:
+        raise SystemExit(f"FALLO index.html: no encuentro {what}")
+    return out
+
+def render_html(html, flights, stays, notes, now):
+    """Pure: returns the new index.html text and the ranking. Only data, why and the footer date move."""
     order = rank_rows(flights, stays)
     rank_of = {cid: i for i, (_, cid, _, _) in enumerate(order, 1)}
     for cid in DESTS:
@@ -618,13 +642,14 @@ def write_html(flights, stays, notes):
         end = nxt if nxt != -1 else html.find("];", start)
         block = html[start:end]
         st, ht = stays[cid]["stay"], stays[cid]["hotel"]
-        block2 = re.sub(
+        block2 = sub1(
             r"(rank: )\d+(, ll: \[[^\]]+\], stay: )\d+(, hotel: )\d+(, max: )\d+",
             lambda m, r=rank_of[cid], s=st, h=ht: f"{m.group(1)}{r}{m.group(2)}{s}{m.group(3)}{h}{m.group(4)}{s}",
-            block, count=1)
-        why = why_text(cid, flights[cid], stays[cid], notes.get(cid, []))
-        for lang, text in why.items():
-            block2 = re.sub(rf'({lang}: )"(?:\\.|[^"\\])*"', lambda m, t=text: m.group(1) + json.dumps(t, ensure_ascii=False), block2, count=1)
+            block, f"rank/stay de {cid}")
+        why = why_text(flights[cid], stays[cid], notes.get(cid, []))
+        q = r'"(?:\\.|[^"\\])*"'
+        why_js = "why: {\n" + "".join(f"          {k}: {json.dumps(why[k], ensure_ascii=False)},\n" for k in ("es", "en", "de")) + "        }"
+        block2 = sub1(rf"why: \{{\s*es: {q},\s*en: {q},\s*de: {q},?\s*\}}", lambda m: why_js, block2, f"why de {cid}")
         for o in ORIGINS:
             f = flights[cid][o]
             back = ""
@@ -635,38 +660,38 @@ def write_html(flights, stays, notes):
                 f'out: ["{f["dep"]}", "{f["arr"]}", "{f["dur"]}"], '
                 f'back: ["{f["back_dep"]}", "{f["back_arr"]}", "{f["back_dur"]}"] }}'
             )
-            block2 = re.sub(rf"{o}: \{{[^}}]+\}}", line, block2, count=1)
+            block2 = sub1(rf"{o}: \{{ air: [^}}]+\}}", lambda m, t=line: t, block2, f"vuelo {cid} {o}")
         html = html[:start] + block2 + html[end:]
-    now = datetime.now(ZoneInfo("Europe/Madrid"))
-    hm = now.strftime("%H:%M")
-    html = re.sub(r"a las \d{2}:\d{2}", f"a las {hm}", html, count=1)
-    html = re.sub(r"at \d{2}:\d{2}", f"at {hm}", html, count=1)
-    html = re.sub(r"um \d{2}:\d{2}", f"um {hm}", html, count=1)
-    months = {9: ("septiembre", "September", "September")}
-    # date is already in the footer; only the clock moves on a same-day refresh
+    d, y, hm, mo = now.day, now.year, now.strftime("%H:%M"), now.month - 1
+    html = sub1(r"el <b>\d{1,2} de \w+ de \d{4} a las \d{2}:\d{2}</b>",
+                f"el <b>{d} de {MONTHS['es'][mo]} de {y} a las {hm}</b>", html, "fecha es")
+    html = sub1(r"on <b>\d{1,2} \w+ \d{4} at \d{2}:\d{2}</b>",
+                f"on <b>{d} {MONTHS['en'][mo]} {y} at {hm}</b>", html, "fecha en")
+    html = sub1(r"am <b>\d{1,2}\. \w+ \d{4} um \d{2}:\d{2} Uhr</b>",
+                f"am <b>{d}. {MONTHS['de'][mo]} {y} um {hm} Uhr</b>", html, "fecha de")
+    return html, ", ".join(NAMES[cid] for _, cid, _, _ in order)
+
+def write_html(flights, stays, notes):
+    html, ranking = render_html(HTML.read_text(), flights, stays, notes, datetime.now(ZoneInfo("Europe/Madrid")))
     HTML.write_text(html)
-    ranking = ", ".join(NAMES[cid] for _, cid, _, _ in order)
-    proj = PROJECT.read_text()
-    proj = re.sub(r"- Ranking: .*", f"- Ranking: {ranking}", proj, count=1)
+    proj = sub1(r"- Ranking: .*", f"- Ranking: {ranking}", PROJECT.read_text(), "Ranking en PROJECT.md")
     PROJECT.write_text(proj)
     print("RANK", ranking)
 
-def why_text(cid, fl, stay, notes):
-    bits = "; ".join(notes) if notes else "horarios ya alineados o la diferencia pasa de 30 €"
-    bed = "hotel" if stay["hotel"] <= stay["stay"] else "Airbnb"
-    es = (f"BCN {fl['BCN']['air']} {fl['BCN']['dep']}–{fl['BCN']['arr']}, "
-          f"FRA {fl['FRA']['air']} {fl['FRA']['dep']}–{fl['FRA']['arr']}, "
-          f"HAM {fl['HAM']['air']} {fl['HAM']['dep']}–{fl['HAM']['arr']}. {bits}. "
-          f"Entra el {bed}: hotel {euro(stay['hotel'])} €, Airbnb {euro(stay['stay'])} €.")
-    en = (f"BCN {fl['BCN']['air']} {fl['BCN']['dep']}–{fl['BCN']['arr']}, "
-          f"FRA {fl['FRA']['air']} {fl['FRA']['dep']}–{fl['FRA']['arr']}, "
-          f"HAM {fl['HAM']['air']} {fl['HAM']['dep']}–{fl['HAM']['arr']}. {bits}. "
-          f"Cheaper stay is the {bed}: hotel {euro(stay['hotel'])} €, Airbnb {euro(stay['stay'])} €.")
-    de = (f"BCN {fl['BCN']['air']} {fl['BCN']['dep']}–{fl['BCN']['arr']}, "
-          f"FRA {fl['FRA']['air']} {fl['FRA']['dep']}–{fl['FRA']['arr']}, "
-          f"HAM {fl['HAM']['air']} {fl['HAM']['dep']}–{fl['HAM']['arr']}. {bits}. "
-          f"Günstiger ist {bed}: Hotel {euro(stay['hotel'])} €, Airbnb {euro(stay['stay'])} €.")
-    return {"es": es, "en": en, "de": de}
+def why_text(fl, stay, notes):
+    legs = ", ".join(f"{o} {fl[o]['air']} {fl[o]['dep']}–{fl[o]['arr']}" for o in ORIGINS)
+    airbnb = stay["stay"] <= stay["hotel"]
+    out = {}
+    for lang in ("es", "en", "de"):
+        bits = "; ".join(note_text(n, lang) for n in notes) if notes else NOTE["ok"][lang]
+        h, a = euro(stay["hotel"], lang), euro(stay["stay"], lang)
+        bed = {
+            "es": f"Entra el {'Airbnb' if airbnb else 'hotel'}: hotel {h} €, Airbnb {a} €.",
+            "en": f"Cheaper stay is the {'Airbnb' if airbnb else 'hotel'}: hotel {h} €, Airbnb {a} €.",
+            "de": f"Günstiger ist {'Airbnb' if airbnb else 'das Hotel'}: Hotel {h} €, Airbnb {a} €.",
+        }[lang]
+        out[lang] = f"{legs}. {bits}. {bed}"
+    return out
 
 def decide(raw_flights, booked):
     flights, notes = {}, {}
@@ -695,9 +720,7 @@ def self_check():
     assert norm("Lufthansa City Airlines") == "Lufthansa"
     assert extras("Discover Airlines") == 0 and extras("Wizz Air") == 82
 
-def check():
-    self_check()
-    html = HTML.read_text()
+def check_html(html):
     assert 'value="30"' in html and "let foodDay = 30" in html, "comida por defecto no es 30"
     assert "review_score%3D60" in html, "Booking sin filtro 6/10"
     flights, stays = {}, {}
@@ -716,6 +739,12 @@ def check():
         got = stays[cid]["rank"]
         if got != i:
             raise SystemExit(f"FALLO rank {cid}: guardado {got}, total {group} sería #{i}")
+    return rows, stays
+
+def check():
+    self_check()
+    rows, _ = check_html(HTML.read_text())
+    for i, (group, cid, _, _) in enumerate(rows, 1):
         print(f"#{i} {cid} {group}")
     print("CHECK ok")
 
@@ -769,9 +798,16 @@ def replay(folder):
                 bad += 1
                 print("DIFF", cid, o, got, "vs", want)
         if not any(True for o in ORIGINS if (flights[cid][o]["dep"], flights[cid][o]["back_dep"]) != (expect[cid][o]["dep"], expect[cid][o]["back_dep"])):
-            print(cid, "ok", notes.get(cid))
+            print(cid, "ok", [note_text(n, "es") for n in notes.get(cid, [])])
     if bad:
         raise SystemExit(f"FALLO replay {bad} vuelos")
+    html = HTML.read_text()
+    _, stays = check_html(html)
+    out, _ = render_html(html, flights, stays, notes, datetime.now(ZoneInfo("Europe/Madrid")))
+    names = lambda t: re.findall(r"name: \{[^}]*\}", t)
+    if names(out) != names(html):
+        raise SystemExit("FALLO replay: render_html cambia los nombres de ciudad")
+    check_html(out)
     print("REPLAY ok")
 
 def book_plan(raw, flights, booked):
