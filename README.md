@@ -6,4 +6,4 @@ Abre `index.html` en el navegador. Repo: https://github.com/Marcos1995/investiga
 
 <!-- managed-by-telegram-cursor-bot:agent-kit -->
 ## Agent kit
-- lean · `AGENTS.md` · `.cursor/rules/context-lean.mdc` · `/review`
+- lean · `AGENTS.md` · `.cursor/rules/context-lean.mdc` · `/review` · skill `refresh-prices` · `REGLAS.md` · `SOUL.md` · `MEMORY.md`

@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent
 HTML = ROOT / "index.html"
 PROJECT = ROOT / "PROJECT.md"
 
-# Frozen. Change only when the user changes the trip rules, then MEMORY.md too.
+# Frozen. Change only when the user changes the trip rules, then REGLAS.md in the same commit.
 FOOD_DAY = 30
 NIGHTS = 4
 PAX = 6

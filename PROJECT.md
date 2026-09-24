@@ -20,23 +20,7 @@
 - Lean kit (ver AGENTS.md)
 
 ## Qué hacer cuando piden actualizar precios
-No preguntes. El ejecutor es `refresh_prices.py` (lee `SOUL.md` y `MEMORY.md`, sigue la skill). No abras otro scraper. Probes fuera del repo. Producto: `index.html` + este fichero. Commit + push.
-
-1. **Mismo aeropuerto de destino** para BCN, FRA y HAM. El código IATA de la ciudad es el aeropuerto, no “la ciudad”:
-   - Milán **MXP** (no LIN) · Roma **FCO** (no CIA) · París **CDG** (no ORY) · Londres **LHR** (no LGW/STN/LTN)
-   - Atenas ATH, Lisboa LIS, Varsovia WAW, Palma PMI, Viena VIE, Madrid MAD
-2. **Filtros de vuelo:** ida y vuelta, solo **directos**, 2 adultos, cabina ~8 kg, **tarde ida y tarde vuelta** (~15:00). Si no hay vuelta de tarde, la más tardía (no emparejar con las 06:00). La vuelta puede ser otra aerolínea. Entre BCN, FRA y HAM, si hay alternativa, la ida que **llegue** a una hora parecida y la vuelta que **salga** a una hora parecida. Si alinearlo cuesta más de ~30 € por persona, quédate con el más barato y dilo en `why`.
-3. **Precio de vuelo:** el de **reserva** en Google Flights (opciones de proveedor), no el de la lista que luego sube. El más barato entre aerolínea / Booking / etc. si es realista (no un parse de 15 €).
-4. **Maleta de cabina 8–10 kg** en el número. Low-cost que la cobran aparte — extra **por persona, ida+vuelta** (`BAG_RT` en `index.html`): Wizz 64, Ryanair/Vueling 56, easyJet 64, Eurowings/Condor 44, Iberia Básica 50. LH / TAP / BA / AF / Aegean / SKY / LOT / Austrian: ya va incluida.
-5. **Dos asientos juntos** (cada origen viaja en pareja). Low-cost cobran reserva de asiento — extra **por persona, ida+vuelta** (`SEAT_RT`): Wizz/Ryanair/Eurowings 18, easyJet/Vueling/Condor 16, Iberia 20. En LH/BA/AF/TAP/etc. se eligen juntos al check-in, 0.
-6. **Airbnb:** 6 adultos, piso entero, 3 hab. + 2 baños, mapa del centro, 4–8 dic, nota ≥ 3/5 (sin nota, fuera). Total de estancia (no precio/noche suelto). Si un mínimo es la mitad del resto del cluster (p. ej. Londres 786 vs 1434), usa el suelo del cluster.
-7. **Hotel:** 3 habitaciones con baño que duerman a 6 × 4 noches. Nota ≥ 6/10. Sin hostales ni 3 individuales. Se muestra al lado del Airbnb.
-8. **Alojamiento en el ranking:** el **más barato ese día** entre Airbnb y hotel. No fuerces al ganador de la vez anterior. El desglose por persona usa ese mínimo / 6.
-9. **Comida:** 30 € × 4 días × 6 = 720 (el slider de la web).
-10. **Total grupo** = 2×(BCN+FRA+HAM pp, ya con cabina y asientos) + min(Airbnb, hotel) + 720. Recalcula `rank` y el texto `why`.
-11. **Hora** en el pie (es/en/de) y esta línea de ranking. Si una ciudad se dispara y hay otra con tarde desde los **tres** orígenes al **mismo** IATA y más barata, sustitúyela.
-
-No olvidar ningún coste: ni vuelo, ni cabina, ni asientos juntos, ni el más barato entre Airbnb y hotel. Si no está en el checklist, no está en el número.
+No preguntes. Las reglas de oro están solo en `REGLAS.md`. Soul en `SOUL.md`, memoria en `MEMORY.md`, skill `.cursor/skills/refresh-prices` (no duerme). Ejecuta `refresh_prices.py`. No abras otro scraper. Producto: `index.html` + la línea de ranking de este fichero. Commit + push.
 
 ## Notas para el agente
 -
