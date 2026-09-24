@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>4.–8. Dezember 2026</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <style>
     :root {
       --ink: #17202a; --mute: #5a6570; --line: #e4d8c8; --paper: #f3ebe0;
@@ -86,9 +87,6 @@
     }
     .split .totline span { font-weight: 750; }
     .split .totline strong { color: var(--clay); font-weight: 800; font-size: 1.05rem; }
-    .split em {
-      font-style: italic; font-weight: 550; color: var(--mute); font-size: .7rem;
-    }
     .sbtn { display: flex; flex-wrap: wrap; gap: .28rem; margin-top: .45rem; }
     .sbtn a {
       display: inline-flex; flex-direction: row; align-items: baseline; gap: .35rem;
@@ -98,7 +96,6 @@
     .sbtn a.ab { background: var(--clay); }
     .sbtn a.ht { background: var(--sea); }
     .sbtn a .from { font-size: .72rem; font-weight: 800; opacity: 1; }
-    .sbtn a.miss { opacity: .55; }
     .tog {
       margin-top: .4rem; width: 100%; font: inherit; font-size: .72rem; font-weight: 650;
       cursor: pointer; border: 1px solid var(--line); background: #fff; color: var(--ink);
@@ -127,7 +124,6 @@
     }
     .budget b { color: var(--clay); font-weight: 750; }
     .budget input[type="range"] { width: 100%; margin-top: .25rem; accent-color: var(--sea); }
-    @media (max-width: 560px) { .budget { grid-template-columns: 1fr; } }
     .price { color: var(--clay); font-weight: 750; }
     .pin { background: var(--clay); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: grid; place-items: center; font-size: 10px; font-weight: 800; border: 2px solid #fff; }
     .pin.origin { background: var(--sea); }
@@ -167,7 +163,7 @@
     <p class="hint" id="stayhint"></p>
   </div>
   <footer id="updated"></footer>
-  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
     const T = {
       es: {
@@ -177,16 +173,14 @@
         mapO: "Salís de aquí", mapD: "Destinos",
         whyL: "Por qué", each: "por persona", ppx: "precios por persona", out: "Ida", back: "Vuelta",
         det: "Ciudad y vuelos", hide: "Cerrar",
-        dep: "Sale", arr: "Aterriza", dur: "en el aire", pax: "2 personas", pair: "las 2",
+        pair: "las 2",
         stay: "El ranking y el desglose usan el más barato entre Airbnb y hotel. El piso es 3 hab. + 2 baños en el mapa del centro, con nota de al menos 3/5; el hotel son 3 hab. con baño y nota de al menos 6/10. Airbnb siempre naranja, hotel siempre azul. Si haces zoom en Airbnb, puede vaciarse: aleja o pulsa la ciudad.",
         foodL: "Comida estimada / persona / día",
         bud: "El número grande es a partir de por persona (tu vuelo + el más barato entre piso y hotel /6 + comida × 4). Debajo, el total entre los 6. Kayak abre la aerolínea con fechas y 2 adultos.",
         from: "a partir de", fly: "Vuelo", bed: "Alojamiento", eat: "Comida", est: "estimada", tot: "Total",
-        pax6: "los 6", tot6: "Total entre los 6", vary: "según el vuelo",
-        nights: "/noche · ",
+        tot6: "Total entre los 6", vary: "según el vuelo",
         ab: "Airbnb", ht: "Hotel",
-        zero: "sin listados",
-        gf: "Google Flights", air: "Kayak",         bag: "cabina 8–10 kg y 2 asientos juntos · 2 adultos",
+        gf: "Google Flights", air: "Kayak", bag: "cabina 8–10 kg y 2 asientos juntos · 2 adultos",
         upd: "Precios consultados el <b>24 de septiembre de 2026 a las 13:33</b>. Alojamiento = el más barato entre Airbnb (nota ≥ 3/5) y hotel (nota ≥ 6/10). Incluye cabina 8–10 kg y asientos juntos. Mismo aeropuerto para los 3 orígenes. La ida llega a una hora parecida si no cuesta más de ~30 € por persona."
       },
       en: {
@@ -196,16 +190,14 @@
         mapO: "You leave from here", mapD: "Destinations",
         whyL: "Why", each: "per person", ppx: "prices per person", out: "Out", back: "Back",
         det: "City & flights", hide: "Close",
-        dep: "Departs", arr: "Lands", dur: "air time", pax: "2 people", pair: "for 2",
+        pair: "for 2",
         stay: "Ranking and the split use the cheaper of Airbnb vs hotel. The flat is 3 bed + 2 bath on the centre map, rated at least 3/5; the hotel is 3 rooms with a bathroom, rated at least 6/10. Airbnb is always orange, hotel always blue. Zooming Airbnb’s map can empty results: zoom out or tap the city.",
         foodL: "Estimated food / person / day",
         bud: "The big number is from-per-person (your flight + the cheaper of flat vs hotel /6 + food × 4). Below is the total for all 6. Kayak opens that airline with dates and 2 adults.",
         from: "from", fly: "Flight", bed: "Stay", eat: "Food", est: "estimated", tot: "Total",
-        pax6: "all 6", tot6: "Total for all 6", vary: "depends on the flight",
-        nights: "/night · ",
+        tot6: "Total for all 6", vary: "depends on the flight",
         ab: "Airbnb", ht: "Hotel",
-        zero: "no listings",
-        gf: "Google Flights", air: "Kayak",         bag: "8–10 kg cabin bag and 2 seats together · 2 adults",
+        gf: "Google Flights", air: "Kayak", bag: "8–10 kg cabin bag and 2 seats together · 2 adults",
         upd: "Prices checked on <b>24 September 2026 at 13:33</b>. Stay = the cheaper of Airbnb (rating ≥ 3/5) vs hotel (rating ≥ 6/10). Includes 8–10 kg cabin bag and seats together. Same airport for all 3 origins. Outbound landings are kept close when that costs no more than ~30 € per person."
       },
       de: {
@@ -215,16 +207,14 @@
         mapO: "Abflug", mapD: "Ziele",
         whyL: "Warum", each: "pro Person", ppx: "Preise pro Person", out: "Hin", back: "Rück",
         det: "Stadt und Flüge", hide: "Schließen",
-        dep: "Start", arr: "Landung", dur: "Flugzeit", pax: "2 Personen", pair: "für 2",
+        pair: "für 2",
         stay: "Ranking und Aufschlüsselung nehmen das Günstigere aus Airbnb und Hotel. Die Wohnung ist 3 SZ + 2 Bäder auf der Zentrumskarte, Bewertung mindestens 3/5; das Hotel sind 3 Zimmer mit Bad und mindestens 6/10. Airbnb immer orange, Hotel immer blau. Zoom auf der Airbnb-Karte kann Treffer leeren: rauszoomen oder Stadt antippen.",
         foodL: "Essen geschätzt / Person / Tag",
         bud: "Die große Zahl ist der Preis ab pro Person (dein Flug + das Günstigere aus Wohnung und Hotel /6 + Essen × 4). Darunter die Summe für alle 6. Kayak öffnet die Airline mit Daten und 2 Erwachsenen.",
         from: "ab", fly: "Flug", bed: "Unterkunft", eat: "Essen", est: "geschätzt", tot: "Summe",
-        pax6: "alle 6", tot6: "Summe für alle 6", vary: "je nach Flug",
-        nights: "/Nacht · ",
+        tot6: "Summe für alle 6", vary: "je nach Flug",
         ab: "Airbnb", ht: "Hotel",
-        zero: "keine Treffer",
-        gf: "Google Flights", air: "Kayak",         bag: "8–10-kg-Handgepäck und 2 Sitze nebeneinander · 2 Personen",
+        gf: "Google Flights", air: "Kayak", bag: "8–10-kg-Handgepäck und 2 Sitze nebeneinander · 2 Personen",
         upd: "Preise geprüft am <b>24. September 2026 um 13:33 Uhr</b>. Unterkunft = das Günstigere aus Airbnb (Bewertung ≥ 3/5) und Hotel (Bewertung ≥ 6/10). Inkl. 8–10-kg-Handgepäck und Sitze. Gleicher Flughafen für alle 3 Origins. Hinflüge landen zeitnah, wenn das nicht mehr als ~30 € pro Person kostet."
       }
     };
@@ -452,21 +442,20 @@
       return fBytes(f, a);
     }
     function place(code) { return fVar(1, 1).concat(fStr(2, code)); }
-    function leg(date, frm, to, al) {
-      return fStr(2, date).concat(fVar(5, 0)).concat(fStr(6, al))
+    function leg(date, frm, to, air) {
+      const al = AIR[air];
+      return fStr(2, date).concat(fVar(5, 0)).concat(al ? fStr(6, al) : [])
         .concat(fBytes(13, place(frm))).concat(fBytes(14, place(to)));
     }
-    function gf(from, to, air) {
-      const al = AIR[air] || "VY";
+    function gf(from, to, air, backAir) {
       let msg = fVar(1, 28).concat(fVar(2, 2));
-      msg = msg.concat(fBytes(3, leg("2026-12-04", from, to, al)));
-      msg = msg.concat(fBytes(3, leg("2026-12-08", to, from, al)));
+      msg = msg.concat(fBytes(3, leg("2026-12-04", from, to, air)));
+      msg = msg.concat(fBytes(3, leg("2026-12-08", to, from, backAir || air)));
       msg = msg.concat(fVar(8, 1)).concat(fVar(8, 1)).concat(fVar(9, 1));
       msg = msg.concat(fBytes(13, fVar(2, 2).concat(fVar(3, 0))));
       msg = msg.concat(fVar(14, 1)).concat(fVar(19, 1));
       const tfs = btoa(String.fromCharCode.apply(null, msg)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-      const hl = lang === "de" ? "de" : lang === "en" ? "en" : "es";
-      return "https://www.google.com/travel/flights/search?tfs=" + tfs + "&hl=" + hl + "&curr=EUR";
+      return "https://www.google.com/travel/flights/search?tfs=" + tfs + "&hl=" + lang + "&curr=EUR";
     }
     function kayak(from, to, air) {
       const host = lang === "de" ? "www.kayak.de" : lang === "en" ? "www.kayak.com" : "www.kayak.es";
@@ -499,7 +488,7 @@
       });
     }
     function ensureMap() {
-      if (map) return;
+      if (map || !window.L) return;
       map = L.map("map", { scrollWheelZoom: true }).setView([46.2, 8], 4);
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "&copy; OpenStreetMap" }).addTo(map);
       overlay = L.layerGroup().addTo(map);
@@ -508,6 +497,7 @@
     }
     function drawMap() {
       ensureMap();
+      if (!map) return;
       overlay.clearLayers();
       const dest = city();
       Object.keys(ORIGIN).forEach((k) => {
@@ -523,6 +513,10 @@
     }
 
     function euro(n) { return n + " €"; }
+    function span(arr) {
+      const lo = Math.min.apply(null, arr), hi = Math.max.apply(null, arr);
+      return lo === hi ? euro(lo) : lo + "–" + euro(hi);
+    }
     function splitBox(c, t) {
       const bed = bedOf(c);
       const eat = foodDay * NIGHTS;
@@ -546,7 +540,7 @@
         "<div class=\"meta\">" + (f.backAir && f.backAir !== f.air ? f.air + " / " + f.backAir : f.air) + " · <span class=\"price\">" + euro(flyP(f)) + " " + t.each + "</span> · " + euro(flyP(f) * 2) + " " + t.pair + "</div>" +
         "<div class=\"leg\"><em>" + t.out + "</em>" + f.out[0] + " " + o + " → " + f.out[1] + " " + c.iata + " · " + f.out[2] + "</div>" +
         "<div class=\"leg\"><em>" + t.back + "</em>" + f.back[0] + " " + c.iata + " → " + f.back[1] + " " + o + " · " + f.back[2] + "</div>" +
-        "</div><div class=\"btns\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"" + gf(o, c.iata, f.air) + "\">" + t.gf + "</a>" +
+        "</div><div class=\"btns\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"" + gf(o, c.iata, f.air, f.backAir) + "\">" + t.gf + "</a>" +
         "<a class=\"btn ghost\" target=\"_blank\" rel=\"noopener\" href=\"" + kayak(o, c.iata, f.air) + "\">" + t.air + " · " + f.air + "</a></div></div>";
     }
 
@@ -568,15 +562,9 @@
       document.getElementById("list").innerHTML = CITIES.slice().sort((a, b) => a.rank - b.rank).map((x) => {
         const u = stayUrls(x);
         const isOpen = open === x.id;
-        const btn = (kind, label, sub) => {
-          const miss = x.empty && x.empty[kind];
-          const cls = (kind === "airbnb" ? "ab" : "ht") + (miss ? " miss" : "");
-          return "<a class=\"" + cls + "\" data-stay=\"" + kind +
-            "\" data-city=\"" + x.id + "\" target=\"_blank\" rel=\"noopener\" href=\"" + u[kind] + "\"" +
-            (miss ? " title=\"" + t.zero + "\"" : "") + ">" + label +
-            (sub ? "<span class=\"from\">" + sub + "</span>" : "") +
-            (miss ? " · " + t.zero : "") + "</a>";
-        };
+        const btn = (kind, label, sub) => "<a class=\"" + (kind === "airbnb" ? "ab" : "ht") + "\" data-stay=\"" + kind +
+          "\" data-city=\"" + x.id + "\" target=\"_blank\" rel=\"noopener\" href=\"" + u[kind] + "\">" + label +
+          "<span class=\"from\">" + sub + "</span></a>";
         const extra = isOpen
           ? "<div class=\"more\">" + splitBox(x, t) + "<p class=\"why\"><strong>" + t.whyL + ".</strong> " + x.why[lang] + "</p>" +
             ["BCN", "FRA", "HAM"].map((o) => flyRow(x, o, t)).join("") +
@@ -584,17 +572,14 @@
           : "";
         const tots = ["BCN", "FRA", "HAM"].map((o) => pp(x, o));
         const flies = ["BCN", "FRA", "HAM"].map((o) => flyP(x.flights[o]));
-        const lo = Math.min.apply(null, tots);
-        const hi = Math.max.apply(null, tots);
-        const ppAmt = lo === hi ? euro(lo) : lo + "–" + euro(hi);
         const cheapBed = x.stay <= x.hotel
           ? "<span>" + t.ab + " <b>" + euro(x.stay) + "</b></span>"
           : "<span>" + t.ht + " <b>" + euro(x.hotel) + "</b></span>";
         return "<div class=\"city" + (x.id === sel ? " on" : "") + (isOpen ? " open" : "") + "\" data-id=\"" + x.id + "\">" +
         "<b>#" + x.rank + " " + x.name[lang] + "</b><span>" + x.t + " · " + x.area[lang] + "</span>" +
-        "<div class=\"p\"><small>" + t.from + "</small>" + ppAmt + " <small>" + t.each + "</small><span class=\"vary\">" + t.vary + "</span></div>" +
+        "<div class=\"p\"><small>" + t.from + "</small>" + span(tots) + " <small>" + t.each + "</small><span class=\"vary\">" + t.vary + "</span></div>" +
         "<div class=\"grp\">" + t.tot6 + " <b>" + euro(groupOf(x)) + "</b></div>" +
-        "<div class=\"brk\"><span>" + t.fly + " <b>" + Math.min.apply(null, flies) + "–" + euro(Math.max.apply(null, flies)) + "</b></span>" +
+        "<div class=\"brk\"><span>" + t.fly + " <b>" + span(flies) + "</b></span>" +
         cheapBed +
         "<span>" + t.eat + " <b>" + euro(foodDay * NIGHTS) + "</b> <em>" + t.est + "</em></span></div>" +
         "<div class=\"sbtn\">" + btn("airbnb", t.ab, t.from + " " + euro(x.stay)) + btn("hotel", t.ht, t.from + " " + euro(x.hotel)) + "</div>" +
