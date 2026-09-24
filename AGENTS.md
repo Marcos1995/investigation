@@ -13,7 +13,7 @@ Think → Plan → Build → Review → Test.
 4. Done = `git add -A` + short commit + push a `main`. No abras pull requests.
 5. Final reply: max 5 lines. `HECHO`/`FALLO`.
 
-`/review` loads `.cursor/skills/review`. Actualizar precios loads `.cursor/skills/refresh-prices`. Keep context small.
+`/review` loads `.cursor/skills/review`. Actualizar precios loads `.cursor/skills/refresh-prices`: lee `SOUL.md` y `MEMORY.md` y ejecuta `refresh_prices.py`. No improvises el scrape. Keep context small.
 
 Vista: HTML en el repo. Repo público: HECHO **siempre** con `https://<owner>.github.io/<repo>/` (la web en el navegador). `github.com` es el código. Nada de previews de terceros.
 

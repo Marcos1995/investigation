@@ -1,0 +1,11 @@
+---
+description: Price refresh runs one program and does not reinvent the rules
+alwaysApply: true
+---
+
+# Precios
+
+- Actualizar precios es ejecutar `python3 refresh_prices.py`. Lee antes `SOUL.md` y `MEMORY.md`.
+- No crees otro scraper. No cambies umbrales, filtros ni la fórmula en el mismo cambio.
+- `--replay` tiene que imprimir `REPLAY ok` antes de scrapear. Si falla, paras.
+- Un selector roto se parchea en la función que lee esa página y se anota en `MEMORY.md`.
