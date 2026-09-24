@@ -3,7 +3,7 @@
 Una sola lista. Los números están en `refresh_prices.py`. Si este texto y esas constantes no coinciden, mandan las constantes y se corrige este fichero en el mismo cambio. No se inventa un tercer criterio.
 
 1. **Un programa.** `python3 refresh_prices.py`. No hay otro scraper ni scripts en `/tmp`.
-2. **Antes de scrapear**, `--replay` imprime `REPLAY ok`. Si no, se para. **Después**, `--check` imprime `CHECK ok`.
+2. **Antes de scrapear**, `--replay` imprime `REPLAY ok` (reproduce los vuelos del fixture y prueba que reescribir `index.html` no rompe nombres ni ranking). Si no, se para. **Después**, `--check` imprime `CHECK ok`.
 3. **Mismo aeropuerto** para BCN, FRA y HAM: MXP, FCO, CDG, LHR, ATH, LIS, WAW, PMI, VIE, MAD.
 4. **Vuelos.** Ida 2026-12-04, vuelta 2026-12-08, 2 adultos, EUR, solo directos. Tarde = salida ≥ 15:00. Si no hay vuelta de tarde, la más tardía. No se elige las 06:00 habiendo otra más tarde.
 5. **Precio de vuelo.** El mínimo de `Book with` con importe ≥ 80. `p = (total + 1) // 2`. Si el botón esconde el precio, vale el total de esa pareja en la lista. No es precio «cheaper than usual» ni «is typical».

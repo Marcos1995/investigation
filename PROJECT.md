@@ -11,8 +11,8 @@
 
 ## Comandos utiles
 - Instalar: no
-- Test: abrir `index.html`
-- Dev: `python -m http.server`
+- Test: `python3 refresh_prices.py --replay` → `REPLAY ok` y `python3 refresh_prices.py --check` → `CHECK ok`
+- Dev: `python3 -m http.server` y abre `http://localhost:8000/`
 
 ## Viaje
 - 6 personas: 2 BCN, 2 FRA, 2 HAM · viernes 4 – martes 8 dic 2026 · 4 noches
@@ -23,5 +23,5 @@
 No preguntes. Las reglas de oro están solo en `REGLAS.md`. Soul en `SOUL.md`, memoria en `MEMORY.md`, skill `.cursor/skills/refresh-prices` (no duerme). Ejecuta `refresh_prices.py`. No abras otro scraper. Producto: `index.html` + la línea de ranking de este fichero. Commit + push.
 
 ## Notas para el agente
--
+- Hechos y fallos ya vistos: `MEMORY.md`. No los copies aquí.
 

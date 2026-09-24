@@ -11,9 +11,10 @@ Review the current git diff against the default branch. Do not re-read the whole
 ## Check
 
 - Correctness vs the request; edge cases; error handling
-- Tests exist for new behavior (or a single self-check)
+- Precios: el cambio respeta `REGLAS.md`; si toca una constante de `refresh_prices.py`, `REGLAS.md` cambia en el mismo commit
+- Self-check: `python3 refresh_prices.py --replay` → `REPLAY ok` y `--check` → `CHECK ok`; `index.html` abre sin errores de consola
 - No secrets, injection, auth bypass, or unsafe eval
-- No dead code, speculative features, or duplicate helpers
+- No dead code, speculative features, duplicate helpers, probes or a second scraper in the repo
 
 ## Do
 
