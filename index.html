@@ -1,617 +1,371 @@
-﻿<!DOCTYPE html>
-<html lang="de">
+﻿<!doctype html>
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>4.–8. Dezember 2026</title>
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <style>
-    :root {
-      --ink: #17202a; --mute: #5a6570; --line: #e4d8c8; --paper: #f3ebe0;
-      --card: #fffcf7; --sea: #1f4e68; --clay: #c24b1f;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.4; }
-    .bar {
-      position: sticky; top: 0; z-index: 2000;
-      display: flex; justify-content: space-between; align-items: center; gap: .6rem; flex-wrap: wrap;
-      padding: .65rem 1.1rem; background: #efe6d8; border-bottom: 1px solid var(--line);
-    }
-    .brand { font-weight: 800; font-size: 1.05rem; }
-    .langs { display: flex; gap: .3rem; }
-    button.pill, a.btn {
-      font: inherit; cursor: pointer; border-radius: 999px; border: 1px solid var(--line);
-      background: var(--card); color: var(--ink); padding: .3rem .7rem;
-    }
-    button.pill[aria-pressed="true"] { background: var(--sea); color: #fff; border-color: var(--sea); }
-    a.btn { text-decoration: none; background: var(--ink); color: #fff; border: 0; display: inline-block; border-radius: 8px; padding: .42rem .72rem; }
-    a.btn.alt { background: var(--sea); }
-    a.btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
-    .wrap { max-width: 74rem; margin: 0 auto; padding: .85rem 1.1rem 1.6rem; }
-    h1 { font-family: Georgia, serif; font-size: clamp(1.35rem, 2.6vw, 1.85rem); margin: 0 0 .35rem; font-weight: 600; }
-    .lead { max-width: 46rem; margin: 0 0 .7rem; font-size: .98rem; }
-    .lead b { color: var(--clay); }
-    .mapbox { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-    #map { height: 280px; width: 100%; }
-    .legend { font-size: .78rem; color: var(--mute); padding: .4rem .7rem; display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
-    .legend i { display: inline-block; width: .65rem; height: .65rem; border-radius: 50%; margin: 0 .25rem 0 .5rem; vertical-align: -1px; }
-    .cities { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin: .75rem 0 .8rem; }
-    .city {
-      background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-      padding: .7rem .75rem; cursor: pointer; text-align: left;
-    }
-    .city.on { outline: 2px solid var(--clay); }
-    .city.open { grid-column: 1 / -1; }
-    .city > b { display: block; }
-    .city > span { color: var(--mute); font-size: .8rem; }
-    .city .p {
-      display: flex; flex-wrap: wrap; align-items: baseline; gap: .12rem .35rem;
-      color: var(--clay); font-weight: 800; font-size: 1.18rem; letter-spacing: -.02em;
-      margin: .2rem 0 .08rem;
-    }
-    .city .p small { font-weight: 650; font-size: .72rem; color: var(--mute); letter-spacing: 0; }
-    .city .p .vary {
-      font-size: .65rem; font-weight: 750; color: #8a3414;
-      background: #f3d9cc; border-radius: 999px; padding: .1rem .42rem;
-    }
-    .city .grp { color: var(--mute); font-size: .78rem; font-weight: 650; margin: 0 0 .1rem; }
-    .city .grp b { color: var(--ink); font-weight: 750; }
-    .city .brk {
-      display: flex; flex-wrap: wrap; gap: .28rem .55rem;
-      color: var(--mute); font-size: .75rem; margin: .05rem 0 .15rem;
-      padding-top: .4rem; border-top: 1px solid var(--line);
-    }
-    .city .brk b { color: var(--ink); font-weight: 750; }
-    .city .brk em, .split em {
-      font-style: italic; font-weight: 550; color: var(--mute); font-size: .7rem;
-    }
-    .split {
-      display: grid; gap: .45rem; font-size: .84rem; margin: 0 0 .55rem;
-    }
-    .split .bill {
-      background: #f7f1e8; border-radius: 10px; padding: .45rem .6rem .5rem;
-    }
-    .split .bill .o {
-      display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem .4rem;
-      font-weight: 800; color: var(--sea); font-size: .82rem; margin-bottom: .18rem;
-    }
-    .split .bill .o small { font-weight: 650; font-size: .7rem; color: var(--mute); }
-    .split .line {
-      display: grid; grid-template-columns: 1fr auto; gap: .4rem; align-items: baseline;
-      padding: .06rem 0;
-    }
-    .split .line b { color: var(--ink); font-weight: 650; }
-    .split hr {
-      border: 0; border-top: 1px solid var(--line); margin: .2rem 0 .12rem;
-    }
-    .split .totline span { font-weight: 750; }
-    .split .totline strong { color: var(--clay); font-weight: 800; font-size: 1.05rem; }
-    .sbtn { display: flex; flex-wrap: wrap; gap: .28rem; margin-top: .45rem; }
-    .sbtn a {
-      display: inline-flex; flex-direction: row; align-items: baseline; gap: .35rem;
-      font-size: .72rem; padding: .32rem .5rem; border-radius: 7px; text-decoration: none;
-      color: #fff; font-weight: 650; line-height: 1.2;
-    }
-    .sbtn a.ab { background: var(--clay); }
-    .sbtn a.ht { background: var(--sea); }
-    .sbtn a .from { font-size: .72rem; font-weight: 800; opacity: 1; }
-    .tog {
-      margin-top: .4rem; width: 100%; font: inherit; font-size: .72rem; font-weight: 650;
-      cursor: pointer; border: 1px solid var(--line); background: #fff; color: var(--ink);
-      border-radius: 7px; padding: .28rem .45rem;
-    }
-    .city.open .tog { background: var(--sea); color: #fff; border-color: var(--sea); }
-    .more { margin-top: .5rem; border-top: 1px solid var(--line); padding-top: .5rem; }
-    .more .why { color: var(--mute); font-size: .84rem; margin: 0 0 .45rem; }
-    .rowf {
-      display: grid; grid-template-columns: 3.4rem minmax(0, 1fr) auto; gap: .3rem .7rem;
-      align-items: start; font-size: .82rem; background: #f7f1e8; border-radius: 8px;
-      padding: .45rem .55rem; margin: 0 0 .32rem;
-    }
-    .rowf .o { font-weight: 800; color: var(--sea); padding-top: .12rem; }
-    .rowf .meta { color: var(--mute); font-size: .78rem; margin-bottom: .18rem; }
-    .rowf .leg { font-weight: 650; line-height: 1.45; }
-    .rowf .leg em { font-style: normal; font-weight: 750; color: var(--mute); font-size: .72rem; margin-right: .35rem; }
-    .rowf .btns { display: flex; gap: .28rem; flex-wrap: wrap; padding-top: .1rem; }
-    .rowf .btn { padding: .22rem .48rem; font-size: .7rem; border-radius: 7px; }
-    .hint { color: var(--mute); font-size: .8rem; margin: -.1rem 0 .75rem; }
-    .budget { display: grid; grid-template-columns: 1fr; gap: .55rem; margin: .7rem 0 0; max-width: 28rem; }
-    .budget label {
-      display: block; font-size: .8rem; color: var(--mute);
-      background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-      padding: .7rem .75rem;
-    }
-    .budget b { color: var(--clay); font-weight: 750; }
-    .budget input[type="range"] { width: 100%; margin-top: .25rem; accent-color: var(--sea); }
-    .price { color: var(--clay); font-weight: 750; }
-    .pin { background: var(--clay); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: grid; place-items: center; font-size: 10px; font-weight: 800; border: 2px solid #fff; }
-    .pin.origin { background: var(--sea); }
-    .pin.on { transform: scale(1.12); }
-    footer { max-width: 74rem; margin: 0 auto; padding: 0 1.1rem 1.6rem; color: var(--mute); font-size: .8rem; }
-    footer b { color: var(--ink); font-weight: 700; }
-    @media (max-width: 700px) {
-      #map { height: 220px; }
-      .rowf { grid-template-columns: 3.4rem 1fr; }
-      .rowf .btns { grid-column: 1 / -1; }
-    }
-    @media (max-width: 560px) { .cities { grid-template-columns: 1fr; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pelo en Barcelona · Opciones, técnicas, pastillas y clínicas</title>
+<meta name="description" content="Guía para quien empieza a perder pelo en el flequillo y la coronilla: técnicas de injerto, tratamientos con y sin pastillas, alternativas y clínicas en Barcelona.">
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1e222b; --line:#2a2f3a;
+    --txt:#e8eaf0; --mut:#9aa3b2; --acc:#6ee7b7; --acc2:#93c5fd; --warn:#fbbf24; --bad:#f87171;
+    --r:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt)}
+  a{color:var(--acc2)}
+  header{padding:56px 20px 32px;background:radial-gradient(1200px 400px at 20% -10%,#1f3b33 0,transparent 60%),radial-gradient(900px 400px at 90% 0,#1d2b45 0,transparent 60%)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  h1{font-size:clamp(28px,4.5vw,44px);line-height:1.15;margin:0 0 12px}
+  h2{font-size:26px;margin:0 0 6px}
+  h3{margin:0 0 6px;font-size:18px}
+  .lead{color:var(--mut);font-size:18px;max-width:760px;margin:0}
+  nav{position:sticky;top:0;z-index:5;background:rgba(15,17,21,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 20px}
+  nav a{white-space:nowrap;text-decoration:none;color:var(--mut);padding:6px 12px;border-radius:999px;font-size:14px}
+  nav a:hover{background:var(--panel2);color:var(--txt)}
+  section{padding:44px 0;border-bottom:1px solid var(--line)}
+  .sub{color:var(--mut);margin:0 0 22px}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+  .card p{margin:6px 0}
+  .tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;margin:0 4px 4px 0;border:1px solid var(--line);color:var(--mut)}
+  .ok{color:#062;background:var(--acc);border-color:var(--acc)}
+  .mid{color:#3a2600;background:var(--warn);border-color:var(--warn)}
+  .no{color:#3b0000;background:var(--bad);border-color:var(--bad)}
+  .blue{color:#0b2545;background:var(--acc2);border-color:var(--acc2)}
+  .tldr{background:linear-gradient(135deg,#14261f,#172033);border:1px solid #2f4a3f;border-radius:var(--r);padding:22px;margin-top:26px}
+  .tldr ol{margin:8px 0 0;padding-left:20px}
+  .tldr li{margin:6px 0}
+  table{width:100%;border-collapse:collapse;font-size:14.5px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--mut);font-weight:600;background:var(--panel2);position:sticky;top:0}
+  .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+  .filters button{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:14px}
+  .filters button.on{background:var(--acc);color:#062;border-color:var(--acc)}
+  .filters input{flex:1;min-width:200px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px}
+  .clinic .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .price{font-weight:700;color:var(--acc);white-space:nowrap}
+  .mut{color:var(--mut);font-size:14px}
+  .note{border-left:3px solid var(--warn);padding:10px 14px;background:#211d12;border-radius:0 10px 10px 0;margin:16px 0}
+  .scale{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+  .scale .card{padding:14px}
+  .bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 2px}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;margin:10px 0}
+  summary{cursor:pointer;font-weight:600}
+  ul.check{list-style:none;padding:0;margin:0}
+  ul.check li{padding:6px 0 6px 28px;position:relative}
+  ul.check li:before{content:"✓";position:absolute;left:4px;color:var(--acc);font-weight:700}
+  ul.x li:before{content:"✗";color:var(--bad)}
+  footer{padding:32px 0 60px;color:var(--mut);font-size:14px}
+  .small{font-size:13px}
+</style>
 </head>
 <body>
-  <div class="bar">
-    <div class="brand" id="dates"></div>
-    <div class="langs">
-      <button class="pill" type="button" data-lang="de" aria-pressed="true">DE</button>
-      <button class="pill" type="button" data-lang="en" aria-pressed="false">EN</button>
-      <button class="pill" type="button" data-lang="es" aria-pressed="false">ES</button>
-    </div>
-  </div>
+
+<header>
   <div class="wrap">
-    <h1 id="title"></h1>
-    <p class="lead" id="lead"></p>
-    <div class="mapbox">
-      <div id="map"></div>
-      <div class="legend" id="legend"></div>
+    <span class="tag blue">Barcelona · actualizado sep 2026</span>
+    <h1>¿Me pongo pelo o me rapo?</h1>
+    <p class="lead">Guía para alguien que empieza a perder pelo por el <b>flequillo</b> y le <b>clarea la coronilla</b>: qué técnicas existen, qué pelo queda “como el tuyo”, si hay que tomar pastillas (y cada cuánto), qué alternativas hay sin pastillas y dónde hacerlo en Barcelona.</p>
+
+    <div class="tldr">
+      <h3>Resumen en 6 puntos</h3>
+      <ol>
+        <li><b>El único pelo “tuyo de verdad” y permanente es el injerto (FUE / DHI).</b> Se trasladan folículos de la nuca, que son genéticamente resistentes a la calvicie: ese pelo trasplantado <b>no necesita pastillas</b> y dura, en la práctica, toda la vida.</li>
+        <li><b>Pero el pelo que aún tienes en el flequillo y la coronilla sigue cayendo.</b> El injerto no frena la alopecia. Sin tratamiento, en 5–10 años puedes acabar con “islas” de pelo injertado rodeadas de zonas vacías, y la zona donante es limitada.</li>
+        <li><b>No existe hoy una opción sin pastillas con el 100 % de seguridad de conservar tu pelo.</b> Lo más eficaz para frenar la caída son la finasterida o la dutasterida en pastilla (1 al día). Sin pastillas lo que más se acerca es la <b>finasterida tópica</b> (spray) o la <b>mesoterapia con dutasterida</b> (pinchazos cada 3–6 meses), más el minoxidil tópico.</li>
+        <li><b>Estás en fase temprana:</b> muchos cirujanos serios recomiendan <b>estabilizar primero con tratamiento médico 6–12 meses</b> y operar después, sobre todo la coronilla. Quien opera en la primera visita sin hablar de tratamiento es una mala señal.</li>
+        <li><b>Si no quieres ningún fármaco, las opciones 100 % seguras son rapar</b> (y opcionalmente micropigmentación, que simula el pelo rapado) <b>o una prótesis capilar</b>. El injerto sin tratamiento es posible, pero asumiendo que la calvicie avanzará alrededor.</li>
+        <li><b>Precio orientativo en Barcelona:</b> injerto 2.500–7.500 € (packs desde ~3.000 €), micropigmentación 500–2.000 €, prótesis 215–280 €/mes, dermatólogo tricólogo ~100–150 € la visita.</li>
+      </ol>
     </div>
-    <div class="budget">
-      <label><span id="foodLbl"></span> <b id="foodVal"></b>
-        <input id="foodIn" type="range" min="15" max="80" step="5" value="30">
-      </label>
-    </div>
-    <div class="cities" id="list"></div>
-    <p class="hint" id="stayhint"></p>
   </div>
-  <footer id="updated"></footer>
-  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script>
-    const T = {
-      es: {
-        dates: "4–8 de diciembre de 2026",
-        title: "Top 10 destinos baratos · 4 noches · 6 personas",
-        lead: "Del <b>viernes 4</b> al <b>martes 8 de diciembre de 2026</b>. Cumpleaños en ciudad: 2 desde Barcelona (BCN), 2 desde Frankfurt (FRA) y 2 desde Hamburgo (HAM). Solo <b>directos</b> de tarde (ida <b>y vuelta</b> desde ~15:00) al <b>mismo aeropuerto</b>. El precio del vuelo incluye <b>cabina ~8–10 kg</b> y <b>2 asientos juntos</b> por origen: si la low-cost lo cobra aparte, el extra ya está sumado. Cada ciudad muestra <b>a partir de</b> cuánto sale por persona y, debajo, el <b>total entre los 6</b>.",
-        mapO: "Salís de aquí", mapD: "Destinos",
-        whyL: "Por qué", each: "por persona", ppx: "precios por persona", out: "Ida", back: "Vuelta",
-        det: "Ciudad y vuelos", hide: "Cerrar",
-        pair: "las 2",
-        stay: "El ranking y el desglose usan el más barato entre Airbnb y hotel. El piso es 3 hab. + 2 baños en el mapa del centro, con nota de al menos 3/5; el hotel son 3 hab. con baño y nota de al menos 6/10. Airbnb siempre naranja, hotel siempre azul. Si haces zoom en Airbnb, puede vaciarse: aleja o pulsa la ciudad.",
-        foodL: "Comida estimada / persona / día",
-        bud: "El número grande es a partir de por persona (tu vuelo + el más barato entre piso y hotel /6 + comida × 4). Debajo, el total entre los 6. Kayak abre la aerolínea con fechas y 2 adultos.",
-        from: "a partir de", fly: "Vuelo", bed: "Alojamiento", eat: "Comida", est: "estimada", tot: "Total",
-        tot6: "Total entre los 6", vary: "según el vuelo",
-        ab: "Airbnb", ht: "Hotel",
-        gf: "Google Flights", air: "Kayak", bag: "cabina 8–10 kg y 2 asientos juntos · 2 adultos",
-        upd: "Precios consultados el <b>24 de septiembre de 2026 a las 17:23</b>. Alojamiento = el más barato entre Airbnb (nota ≥ 3/5) y hotel (nota ≥ 6/10). Incluye cabina 8–10 kg y asientos juntos. Mismo aeropuerto para los 3 orígenes. La ida llega a una hora parecida si no cuesta más de ~30 € por persona."
-      },
-      en: {
-        dates: "4–8 December 2026",
-        title: "Top 10 cheap cities · 4 nights · 6 people",
-        lead: "From <b>Friday 4</b> to <b>Tuesday 8 December 2026</b>. Birthday-city trip: 2 from Barcelona (BCN), 2 from Frankfurt (FRA), 2 from Hamburg (HAM). <b>Direct</b> evenings only (out <b>and back</b> from ~15:00) to the <b>same airport</b>. The flight price includes an <b>~8–10 kg cabin bag</b> and <b>2 seats together</b> per origin: if the low-cost airline charges extra, that add-on is already in the number. Each city shows <b>from</b> what it costs per person and, below, the <b>total for all 6</b>.",
-        mapO: "You leave from here", mapD: "Destinations",
-        whyL: "Why", each: "per person", ppx: "prices per person", out: "Out", back: "Back",
-        det: "City & flights", hide: "Close",
-        pair: "for 2",
-        stay: "Ranking and the split use the cheaper of Airbnb vs hotel. The flat is 3 bed + 2 bath on the centre map, rated at least 3/5; the hotel is 3 rooms with a bathroom, rated at least 6/10. Airbnb is always orange, hotel always blue. Zooming Airbnb’s map can empty results: zoom out or tap the city.",
-        foodL: "Estimated food / person / day",
-        bud: "The big number is from-per-person (your flight + the cheaper of flat vs hotel /6 + food × 4). Below is the total for all 6. Kayak opens that airline with dates and 2 adults.",
-        from: "from", fly: "Flight", bed: "Stay", eat: "Food", est: "estimated", tot: "Total",
-        tot6: "Total for all 6", vary: "depends on the flight",
-        ab: "Airbnb", ht: "Hotel",
-        gf: "Google Flights", air: "Kayak", bag: "8–10 kg cabin bag and 2 seats together · 2 adults",
-        upd: "Prices checked on <b>24 September 2026 at 17:23</b>. Stay = the cheaper of Airbnb (rating ≥ 3/5) vs hotel (rating ≥ 6/10). Includes 8–10 kg cabin bag and seats together. Same airport for all 3 origins. Outbound landings are kept close when that costs no more than ~30 € per person."
-      },
-      de: {
-        dates: "4.–8. Dezember 2026",
-        title: "Top 10 günstige Städte · 4 Nächte · 6 Personen",
-        lead: "Von <b>Freitag 4.</b> bis <b>Dienstag 8. Dezember 2026</b>. Städtetrip zum Geburtstag: 2 ab Barcelona (BCN), 2 ab Frankfurt (FRA), 2 ab Hamburg (HAM). Nur <b>Abend-Direktflüge</b> (hin <b>und zurück</b> ab ~15:00) zum <b>selben Flughafen</b>. Der Flugpreis enthält <b>8–10-kg-Handgepäck</b> und <b>2 Sitze nebeneinander</b> pro Origin: Wenn die Billigairline extra nimmt, ist der Zuschlag schon drin. Jede Stadt zeigt <b>ab</b> welchem Preis es pro Person liegt und darunter die <b>Summe für alle 6</b>.",
-        mapO: "Abflug", mapD: "Ziele",
-        whyL: "Warum", each: "pro Person", ppx: "Preise pro Person", out: "Hin", back: "Rück",
-        det: "Stadt und Flüge", hide: "Schließen",
-        pair: "für 2",
-        stay: "Ranking und Aufschlüsselung nehmen das Günstigere aus Airbnb und Hotel. Die Wohnung ist 3 SZ + 2 Bäder auf der Zentrumskarte, Bewertung mindestens 3/5; das Hotel sind 3 Zimmer mit Bad und mindestens 6/10. Airbnb immer orange, Hotel immer blau. Zoom auf der Airbnb-Karte kann Treffer leeren: rauszoomen oder Stadt antippen.",
-        foodL: "Essen geschätzt / Person / Tag",
-        bud: "Die große Zahl ist der Preis ab pro Person (dein Flug + das Günstigere aus Wohnung und Hotel /6 + Essen × 4). Darunter die Summe für alle 6. Kayak öffnet die Airline mit Daten und 2 Erwachsenen.",
-        from: "ab", fly: "Flug", bed: "Unterkunft", eat: "Essen", est: "geschätzt", tot: "Summe",
-        tot6: "Summe für alle 6", vary: "je nach Flug",
-        ab: "Airbnb", ht: "Hotel",
-        gf: "Google Flights", air: "Kayak", bag: "8–10-kg-Handgepäck und 2 Sitze nebeneinander · 2 Personen",
-        upd: "Preise geprüft am <b>24. September 2026 um 17:23 Uhr</b>. Unterkunft = das Günstigere aus Airbnb (Bewertung ≥ 3/5) und Hotel (Bewertung ≥ 6/10). Inkl. 8–10-kg-Handgepäck und Sitze. Gleicher Flughafen für alle 3 Origins. Hinflüge landen zeitnah, wenn das nicht mehr als ~30 € pro Person kostet."
-      }
-    };
+</header>
 
-    const CITIES = [
-      {
-        id: "MXP", iata: "MXP", rank: 4, ll: [45.4642, 9.1900], stay: 1180, hotel: 913, max: 1180,
-        name: { es: "Milán", en: "Milan", de: "Mailand" },
-        t: "7–10 °C",
-        why: {
-          es: "BCN easyJet 18:40–20:25, FRA Lufthansa 20:50–22:05, HAM easyJet 21:40–23:25. horarios ya alineados o la diferencia pasa de 30 €. Entra el hotel: hotel 913 €, Airbnb 1.180 €.",
-          en: "BCN easyJet 18:40–20:25, FRA Lufthansa 20:50–22:05, HAM easyJet 21:40–23:25. times already close or aligning costs over 30 €. Cheaper stay is the hotel: hotel 913 €, Airbnb 1,180 €.",
-          de: "BCN easyJet 18:40–20:25, FRA Lufthansa 20:50–22:05, HAM easyJet 21:40–23:25. Zeiten schon nah oder Angleichen kostet über 30 €. Günstiger ist das Hotel: Hotel 913 €, Airbnb 1.180 €.",
-        },
-        area: { es: "Duomo · metro", en: "Duomo · metro", de: "Dom · Metro" },
-        q: { airbnb: "Milan--Italy", ss: "Milan", dest: "-121726", bb: [45.445, 9.155, 45.495, 9.230] },
-        flights: {
-          BCN: { air: "easyJet", p: 160, out: ["18:40", "20:25", "1h 45m"], back: ["21:30", "23:10", "1h 40m"] },
-          FRA: { air: "Lufthansa", p: 204, out: ["20:50", "22:05", "1h 15m"], back: ["18:35", "19:55", "1h 20m"] },
-          HAM: { air: "easyJet", p: 64, out: ["21:40", "23:25", "1h 45m"], back: ["06:15", "08:05", "1h 50m"] }
-        }
-      },
-      {
-        id: "ATH", iata: "ATH", rank: 1, ll: [37.9838, 23.7275], stay: 374, hotel: 352, max: 374,
-        name: { es: "Atenas", en: "Athens", de: "Athen" },
-        t: "12–16 °C",
-        why: {
-          es: "BCN SKY express 22:45–02:40, FRA Aegean 18:50–22:40, HAM SKY express 18:15–22:15. horarios ya alineados o la diferencia pasa de 30 €. Entra el hotel: hotel 352 €, Airbnb 374 €.",
-          en: "BCN SKY express 22:45–02:40, FRA Aegean 18:50–22:40, HAM SKY express 18:15–22:15. times already close or aligning costs over 30 €. Cheaper stay is the hotel: hotel 352 €, Airbnb 374 €.",
-          de: "BCN SKY express 22:45–02:40, FRA Aegean 18:50–22:40, HAM SKY express 18:15–22:15. Zeiten schon nah oder Angleichen kostet über 30 €. Günstiger ist das Hotel: Hotel 352 €, Airbnb 374 €.",
-        },
-        area: { es: "Monastiraki · Plaka · metro", en: "Monastiraki · Plaka · metro", de: "Monastiraki · Plaka · Metro" },
-        q: { airbnb: "Athens--Greece", ss: "Athens", dest: "-814876", bb: [37.958, 23.705, 38.000, 23.755] },
-        flights: {
-          BCN: { air: "SKY express", backAir: "Aegean", p: 289, out: ["22:45", "02:40", "2h 55m"], back: ["16:40", "18:45", "3h 05m"] },
-          FRA: { air: "Aegean", p: 141, out: ["18:50", "22:40", "2h 50m"], back: ["15:55", "18:00", "3h 05m"] },
-          HAM: { air: "SKY express", p: 157, out: ["18:15", "22:15", "3h 00m"], back: ["08:15", "10:30", "3h 15m"] }
-        }
-      },
-      {
-        id: "LIS", iata: "LIS", rank: 5, ll: [38.7308, -9.1485], stay: 694, hotel: 757, max: 694,
-        name: { es: "Lisboa", en: "Lisbon", de: "Lissabon" },
-        t: "15–17 °C",
-        why: {
-          es: "BCN TAP 18:05–19:10, FRA TAP 17:45–20:00, HAM TAP 17:00–19:45. BCN alinea 18:05→18:05 vuelta 19:00→17:40 +21 €. Entra el Airbnb: hotel 757 €, Airbnb 694 €.",
-          en: "BCN TAP 18:05–19:10, FRA TAP 17:45–20:00, HAM TAP 17:00–19:45. BCN aligns 18:05→18:05, return 19:00→17:40, +21 €. Cheaper stay is the Airbnb: hotel 757 €, Airbnb 694 €.",
-          de: "BCN TAP 18:05–19:10, FRA TAP 17:45–20:00, HAM TAP 17:00–19:45. BCN gleicht an 18:05→18:05, Rückflug 19:00→17:40, +21 €. Günstiger ist Airbnb: Hotel 757 €, Airbnb 694 €.",
-        },
-        area: { es: "Saldanha · metro Parque", en: "Saldanha · Parque metro", de: "Saldanha · Metro Parque" },
-        q: { airbnb: "Lisbon--Portugal", ss: "Lisbon", dest: "-2167973", bb: [38.705, -9.170, 38.745, -9.130] },
-        flights: {
-          BCN: { air: "TAP", backAir: "Vueling", p: 256, out: ["18:05", "19:10", "2h 05m"], back: ["17:40", "20:35", "1h 55m"] },
-          FRA: { air: "TAP", p: 242, out: ["17:45", "20:00", "3h 15m"], back: ["18:25", "22:40", "3h 15m"] },
-          HAM: { air: "TAP", p: 250, out: ["17:00", "19:45", "3h 45m"], back: ["11:40", "16:10", "3h 30m"] }
-        }
-      },
-      {
-        id: "FCO", iata: "FCO", rank: 3, ll: [41.8986, 12.4768], stay: 891, hotel: 685, max: 891,
-        name: { es: "Roma", en: "Rome", de: "Rom" },
-        t: "12–14 °C",
-        why: {
-          es: "BCN Ryanair 16:45–18:40, FRA Lufthansa 15:55–17:45, HAM easyJet 15:00–17:20. horarios ya alineados o la diferencia pasa de 30 €. Entra el hotel: hotel 685 €, Airbnb 891 €.",
-          en: "BCN Ryanair 16:45–18:40, FRA Lufthansa 15:55–17:45, HAM easyJet 15:00–17:20. times already close or aligning costs over 30 €. Cheaper stay is the hotel: hotel 685 €, Airbnb 891 €.",
-          de: "BCN Ryanair 16:45–18:40, FRA Lufthansa 15:55–17:45, HAM easyJet 15:00–17:20. Zeiten schon nah oder Angleichen kostet über 30 €. Günstiger ist das Hotel: Hotel 685 €, Airbnb 891 €.",
-        },
-        area: { es: "Centro histórico · Panteón", en: "Historic centre · Pantheon", de: "Historisches Zentrum · Pantheon" },
-        q: { airbnb: "Rome--Italy", ss: "Rome", dest: "-126693", bb: [41.860, 12.445, 41.925, 12.535] },
-        flights: {
-          BCN: { air: "Ryanair", p: 242, out: ["16:45", "18:40", "1h 55m"], back: ["08:30", "10:20", "1h 50m"] },
-          FRA: { air: "Lufthansa", backAir: "ITA", p: 191, out: ["15:55", "17:45", "1h 50m"], back: ["15:20", "17:25", "2h 05m"] },
-          HAM: { air: "easyJet", p: 84, out: ["15:00", "17:20", "2h 20m"], back: ["12:00", "14:30", "2h 30m"] }
-        }
-      },
-      {
-        id: "CDG", iata: "CDG", rank: 2, ll: [48.8566, 2.3522], stay: 820, hotel: 834, max: 820,
-        name: { es: "París", en: "Paris", de: "Paris" },
-        t: "5–8 °C",
-        why: {
-          es: "BCN Air France 15:00–17:00, FRA Air France 15:05–16:35, HAM Air France 16:00–17:40. BCN alinea 15:00→15:00 vuelta 21:00→15:15 +5 €. Entra el Airbnb: hotel 834 €, Airbnb 820 €.",
-          en: "BCN Air France 15:00–17:00, FRA Air France 15:05–16:35, HAM Air France 16:00–17:40. BCN aligns 15:00→15:00, return 21:00→15:15, +5 €. Cheaper stay is the Airbnb: hotel 834 €, Airbnb 820 €.",
-          de: "BCN Air France 15:00–17:00, FRA Air France 15:05–16:35, HAM Air France 16:00–17:40. BCN gleicht an 15:00→15:00, Rückflug 21:00→15:15, +5 €. Günstiger ist Airbnb: Hotel 834 €, Airbnb 820 €.",
-        },
-        area: { es: "Intramuros · metro", en: "Inside Paris · metro", de: "Innerhalb Paris · Metro" },
-        q: { airbnb: "Paris--France", ss: "Paris", dest: "-1456928", bb: [48.830, 2.265, 48.895, 2.410] },
-        flights: {
-          BCN: { air: "Air France", p: 302, out: ["15:00", "17:00", "2h 00m"], back: ["15:15", "17:00", "1h 45m"] },
-          FRA: { air: "Air France", p: 135, out: ["15:05", "16:35", "1h 30m"], back: ["15:25", "16:45", "1h 20m"] },
-          HAM: { air: "Air France", p: 147, out: ["16:00", "17:40", "1h 40m"], back: ["16:05", "17:45", "1h 40m"] }
-        }
-      },
-      {
-        id: "LHR", iata: "LHR", rank: 9, ll: [51.5074, -0.1278], stay: 1581, hotel: 1492, max: 1581,
-        name: { es: "Londres", en: "London", de: "London" },
-        t: "6–9 °C",
-        why: {
-          es: "BCN British Airways 15:30–16:50, FRA Lufthansa 16:10–16:50, HAM British Airways 18:55–19:35. FRA alinea 16:10→16:10 vuelta 15:30→19:30 +0 €. Entra el hotel: hotel 1.492 €, Airbnb 1.581 €.",
-          en: "BCN British Airways 15:30–16:50, FRA Lufthansa 16:10–16:50, HAM British Airways 18:55–19:35. FRA aligns 16:10→16:10, return 15:30→19:30, +0 €. Cheaper stay is the hotel: hotel 1,492 €, Airbnb 1,581 €.",
-          de: "BCN British Airways 15:30–16:50, FRA Lufthansa 16:10–16:50, HAM British Airways 18:55–19:35. FRA gleicht an 16:10→16:10, Rückflug 15:30→19:30, +0 €. Günstiger ist das Hotel: Hotel 1.492 €, Airbnb 1.581 €.",
-        },
-        area: { es: "Zone 1–2 · Tube", en: "Zone 1–2 · Tube", de: "Zone 1–2 · Tube" },
-        q: { airbnb: "London--United-Kingdom", ss: "London", dest: "-2601889", bb: [51.480, -0.195, 51.545, -0.055] },
-        flights: {
-          BCN: { air: "British Airways", p: 460, out: ["15:30", "16:50", "2h 20m"], back: ["19:20", "22:30", "2h 10m"] },
-          FRA: { air: "Lufthansa", p: 141, out: ["16:10", "16:50", "1h 40m"], back: ["19:30", "22:05", "1h 35m"] },
-          HAM: { air: "British Airways", p: 193, out: ["18:55", "19:35", "1h 40m"], back: ["19:35", "22:15", "1h 40m"] }
-        }
-      },
-      {
-        id: "WAW", iata: "WAW", rank: 7, ll: [52.2297, 21.0122], stay: 929, hotel: 636, max: 929,
-        name: { es: "Varsovia", en: "Warsaw", de: "Warschau" },
-        t: "0–3 °C",
-        why: {
-          es: "BCN Wizz Air 19:00–22:10, FRA LOT 19:55–21:40, HAM LOT 19:40–21:10. FRA alinea 16:00→19:55 vuelta 18:25→17:00 +12 €. Entra el hotel: hotel 636 €, Airbnb 929 €.",
-          en: "BCN Wizz Air 19:00–22:10, FRA LOT 19:55–21:40, HAM LOT 19:40–21:10. FRA aligns 16:00→19:55, return 18:25→17:00, +12 €. Cheaper stay is the hotel: hotel 636 €, Airbnb 929 €.",
-          de: "BCN Wizz Air 19:00–22:10, FRA LOT 19:55–21:40, HAM LOT 19:40–21:10. FRA gleicht an 16:00→19:55, Rückflug 18:25→17:00, +12 €. Günstiger ist das Hotel: Hotel 636 €, Airbnb 929 €.",
-        },
-        area: { es: "Stare Miasto · metro", en: "Old Town · metro", de: "Altstadt · Metro" },
-        q: { airbnb: "Warsaw--Poland", ss: "Warsaw", dest: "-534433", bb: [52.215, 20.970, 52.265, 21.055] },
-        flights: {
-          BCN: { air: "Wizz Air", p: 331, out: ["19:00", "22:10", "3h 10m"], back: ["15:05", "18:15", "3h 10m"] },
-          FRA: { air: "LOT", p: 165, out: ["19:55", "21:40", "1h 45m"], back: ["17:00", "19:00", "2h 00m"] },
-          HAM: { air: "LOT", p: 243, out: ["19:40", "21:10", "1h 30m"], back: ["17:10", "18:55", "1h 45m"] }
-        }
-      },
-      {
-        id: "PMI", iata: "PMI", rank: 6, ll: [39.5696, 2.6502], stay: 1054, hotel: 874, max: 1054,
-        name: { es: "Palma", en: "Palma", de: "Palma" },
-        t: "16–18 °C",
-        why: {
-          es: "BCN Air Europa 18:45–19:30, FRA Lufthansa 16:00–18:05, HAM Eurowings 18:05–20:40. BCN alinea 22:00→18:45 vuelta 20:20→20:20 +10 €; FRA alinea 15:15→16:00 vuelta 18:35→18:35 +0 €. Entra el hotel: hotel 874 €, Airbnb 1.054 €.",
-          en: "BCN Air Europa 18:45–19:30, FRA Lufthansa 16:00–18:05, HAM Eurowings 18:05–20:40. BCN aligns 22:00→18:45, return 20:20→20:20, +10 €; FRA aligns 15:15→16:00, return 18:35→18:35, +0 €. Cheaper stay is the hotel: hotel 874 €, Airbnb 1,054 €.",
-          de: "BCN Air Europa 18:45–19:30, FRA Lufthansa 16:00–18:05, HAM Eurowings 18:05–20:40. BCN gleicht an 22:00→18:45, Rückflug 20:20→20:20, +10 €; FRA gleicht an 15:15→16:00, Rückflug 18:35→18:35, +0 €. Günstiger ist das Hotel: Hotel 874 €, Airbnb 1.054 €.",
-        },
-        area: { es: "Casco antiguo · Plaça Major", en: "Old town · Plaça Major", de: "Altstadt · Plaça Major" },
-        q: { airbnb: "Palma-de-Mallorca--Spain", ss: "Palma de Mallorca", dest: "-395224", bb: [39.562, 2.625, 39.585, 2.668] },
-        flights: {
-          BCN: { air: "Air Europa", p: 149, out: ["18:45", "19:30", "0h 45m"], back: ["20:20", "21:10", "0h 50m"] },
-          FRA: { air: "Lufthansa", backAir: "Discover Airlines", p: 148, out: ["16:00", "18:05", "2h 05m"], back: ["18:35", "20:55", "2h 20m"] },
-          HAM: { air: "Eurowings", p: 318, out: ["18:05", "20:40", "2h 35m"], back: ["14:05", "16:45", "2h 40m"] }
-        }
-      },
-      {
-        id: "VIE", iata: "VIE", rank: 10, ll: [48.2082, 16.3738], stay: 1927, hotel: 1572, max: 1927,
-        name: { es: "Viena", en: "Vienna", de: "Wien" },
-        t: "1–4 °C",
-        why: {
-          es: "BCN Austrian 20:30–22:50, FRA Austrian 20:50–22:15, HAM Austrian 20:10–21:40. FRA alinea 16:15→20:50 vuelta 15:05→17:10 +0 €. Entra el hotel: hotel 1.572 €, Airbnb 1.927 €.",
-          en: "BCN Austrian 20:30–22:50, FRA Austrian 20:50–22:15, HAM Austrian 20:10–21:40. FRA aligns 16:15→20:50, return 15:05→17:10, +0 €. Cheaper stay is the hotel: hotel 1,572 €, Airbnb 1,927 €.",
-          de: "BCN Austrian 20:30–22:50, FRA Austrian 20:50–22:15, HAM Austrian 20:10–21:40. FRA gleicht an 16:15→20:50, Rückflug 15:05→17:10, +0 €. Günstiger ist das Hotel: Hotel 1.572 €, Airbnb 1.927 €.",
-        },
-        area: { es: "Innere Stadt · U-Bahn", en: "Innere Stadt · U-Bahn", de: "Innere Stadt · U-Bahn" },
-        q: { airbnb: "Vienna--Austria", ss: "Vienna", dest: "-1995499", bb: [48.185, 16.335, 48.235, 16.410] },
-        flights: {
-          BCN: { air: "Austrian", p: 515, out: ["20:30", "22:50", "2h 20m"], back: ["17:25", "19:45", "2h 20m"] },
-          FRA: { air: "Austrian", p: 131, out: ["20:50", "22:15", "1h 25m"], back: ["17:10", "18:40", "1h 30m"] },
-          HAM: { air: "Austrian", p: 138, out: ["20:10", "21:40", "1h 30m"], back: ["17:45", "19:20", "1h 35m"] }
-        }
-      },
-      {
-        id: "MAD", iata: "MAD", rank: 8, ll: [40.4168, -3.7038], stay: 1413, hotel: 1126, max: 1413,
-        name: { es: "Madrid", en: "Madrid", de: "Madrid" },
-        t: "11–13 °C",
-        why: {
-          es: "BCN Air Europa 20:30–22:00, FRA Lufthansa 21:15–23:55, HAM Iberia 15:50–18:55. horarios ya alineados o la diferencia pasa de 30 €. Entra el hotel: hotel 1.126 €, Airbnb 1.413 €.",
-          en: "BCN Air Europa 20:30–22:00, FRA Lufthansa 21:15–23:55, HAM Iberia 15:50–18:55. times already close or aligning costs over 30 €. Cheaper stay is the hotel: hotel 1,126 €, Airbnb 1,413 €.",
-          de: "BCN Air Europa 20:30–22:00, FRA Lufthansa 21:15–23:55, HAM Iberia 15:50–18:55. Zeiten schon nah oder Angleichen kostet über 30 €. Günstiger ist das Hotel: Hotel 1.126 €, Airbnb 1.413 €.",
-        },
-        area: { es: "Sol · Gran Vía · metro", en: "Sol · Gran Vía · metro", de: "Sol · Gran Vía · Metro" },
-        q: { airbnb: "Madrid--Spain", ss: "Madrid", dest: "-390625", bb: [40.400, -3.725, 40.440, -3.680] },
-        flights: {
-          BCN: { air: "Air Europa", p: 163, out: ["20:30", "22:00", "1h 30m"], back: ["15:15", "16:40", "1h 25m"] },
-          FRA: { air: "Lufthansa", p: 180, out: ["21:15", "23:55", "2h 40m"], back: ["17:15", "19:45", "2h 30m"] },
-          HAM: { air: "Iberia", p: 300, out: ["15:50", "18:55", "3h 05m"], back: ["19:45", "22:40", "2h 55m"] }
-        }
-      }
-    ];
+<nav><div class="wrap">
+  <a href="#tu-caso">Tu caso</a>
+  <a href="#tecnicas">Técnicas de injerto</a>
+  <a href="#farmacos">Pastillas y tratamientos</a>
+  <a href="#sin-pastillas">Sin pastillas</a>
+  <a href="#alternativas">Rapar / otras</a>
+  <a href="#clinicas">Clínicas BCN</a>
+  <a href="#consulta">Qué preguntar</a>
+  <a href="#fuentes">Fuentes</a>
+</div></nav>
 
-    const ORIGIN = {
-      BCN: { ll: [41.2974, 2.0833], name: { es: "Barcelona", en: "Barcelona", de: "Barcelona" } },
-      FRA: { ll: [50.0379, 8.5622], name: { es: "Frankfurt", en: "Frankfurt", de: "Frankfurt" } },
-      HAM: { ll: [53.6304, 9.9882], name: { es: "Hamburgo", en: "Hamburg", de: "Hamburg" } }
-    };
+<main class="wrap">
 
-    function langFromUrl() {
-      const q = new URLSearchParams(location.search).get("lang");
-      return q === "es" || q === "en" || q === "de" ? q : "de";
-    }
-    function setLangUrl(code) {
-      const u = new URL(location.href);
-      u.searchParams.set("lang", code);
-      history.replaceState(null, "", u.pathname + u.search + u.hash);
-    }
-    let lang = langFromUrl();
-    setLangUrl(lang);
-    let sel = "ATH";
-    let open = "";
-    let foodDay = 30;
-    let map, overlay;
-    const NIGHTS = 4;
-    const AIR = { Vueling: "VY", TAP: "TP", Eurowings: "EW", Lufthansa: "LH", Iberia: "IB", "Air Europa": "UX", easyJet: "U2", Condor: "DE", ITA: "AZ", "Wizz Air": "W6", Ryanair: "FR", Aegean: "A3", "SKY express": "GQ", Austrian: "OS", LOT: "LO", "Air France": "AF", "British Airways": "BA", "Discover Airlines": "4Y" };
-    const BAG_RT = { "Wizz Air": 64, Ryanair: 56, easyJet: 64, Vueling: 56, Eurowings: 44, Iberia: 50, Condor: 44 };
-    const SEAT_RT = { "Wizz Air": 18, Ryanair: 18, easyJet: 16, Vueling: 16, Eurowings: 18, Iberia: 20, Condor: 16 };
-    const extras = (air) => (BAG_RT[air] || 0) + (SEAT_RT[air] || 0);
-    const flyP = (f) => f.p + extras(f.air);
+<section id="tu-caso">
+  <h2>Tu caso: flequillo + coronilla empezando</h2>
+  <p class="sub">Es el patrón típico de alopecia androgenética (calvicie común masculina), probablemente un Norwood 2–3 con inicio en vértex. Lo decide un médico con tricoscopia.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>Lo que suele pasar si no haces nada</h3>
+      <p>La alopecia androgenética es <b>progresiva</b>: la hormona DHT va miniaturizando los folículos del frontal y la coronilla. La velocidad varía mucho por genética (mira a tu padre, abuelos, tíos maternos).</p>
+    </div>
+    <div class="card">
+      <h3>Por qué el injerto aguanta</h3>
+      <p>El pelo de la nuca y los laterales (“zona donante”) no tiene sensibilidad a la DHT. Al moverlo al frontal <b>conserva esa resistencia</b>. Por eso el pelo injertado no necesita pastillas.</p>
+    </div>
+    <div class="card">
+      <h3>El problema de operarse joven y pronto</h3>
+      <p>Si la calvicie sigue avanzando, necesitarás más injertos más adelante. La zona donante da para unas <b>4.000–7.000 unidades foliculares en toda la vida</b>: hay que planificar para el “tú” de 50 años, no solo para hoy.</p>
+    </div>
+    <div class="card">
+      <h3>Coronilla: la zona difícil</h3>
+      <p>La coronilla gasta muchos injertos (el pelo sale en remolino) y es donde mejor funcionan los fármacos. Muchos médicos tratan primero la coronilla con medicación y dejan el injerto para el flequillo/entradas.</p>
+    </div>
+  </div>
+</section>
 
-    const stayCost = (c) => Math.min(c.stay, c.hotel);
-    const bedOf = (c) => Math.round(stayCost(c) / 6);
-    const pp = (c, o) => flyP(c.flights[o]) + bedOf(c) + foodDay * NIGHTS;
-    const groupOf = (c) => 2 * ["BCN", "FRA", "HAM"].reduce((s, o) => s + flyP(c.flights[o]), 0)
-      + stayCost(c) + foodDay * NIGHTS * 6;
-    const city = () => CITIES.find((c) => c.id === sel);
+<section id="tecnicas">
+  <h2>Técnicas para ponerse pelo propio (injerto)</h2>
+  <p class="sub">Todas mueven tu propio pelo. Cambia cómo se extrae y cómo se implanta. El resultado depende mucho más del <b>equipo y de quién hace cada paso</b> que del nombre comercial de la técnica.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Técnica</th><th>Cómo funciona</th><th>Ventajas</th><th>Contras</th><th>Precio BCN</th></tr></thead>
+    <tbody>
+      <tr><td><b>FUE</b><br><span class="mut">Follicular Unit Extraction</span></td><td>Se extraen folículos uno a uno de la nuca con micropunch (0,7–1 mm) y se implantan en incisiones.</td><td>La técnica estándar. Sin cicatriz lineal, puedes llevar el pelo corto detrás. Recuperación de 7–10 días.</td><td>Hay que rapar la zona donante. Si se sobreexplota la nuca, queda clareada.</td><td>2.500–7.500 €</td></tr>
+      <tr><td><b>FUE Zafiro</b></td><td>FUE en la que las incisiones de la zona receptora se hacen con cuchillas de zafiro en lugar de acero.</td><td>Incisiones más finas y limpias, se cura algo antes. Permite más densidad.</td><td>En la práctica es sobre todo un nombre comercial: la diferencia con FUE bien hecha es pequeña.</td><td>2.900–6.000 €</td></tr>
+      <tr><td><b>DHI</b><br><span class="mut">Direct Hair Implantation, “Choi pen”</span></td><td>Extracción FUE, pero el implante se hace con un bolígrafo implantador que abre y coloca a la vez.</td><td>Mucho control sobre ángulo y dirección. Útil para densificar entre pelo existente sin rapar (bueno para tu flequillo).</td><td>Más lenta y cara. Se implantan menos injertos por sesión.</td><td>3.000–8.500 €</td></tr>
+      <tr><td><b>FUE sin rapar / Long Hair FUE</b></td><td>Se extraen folículos o se implanta sin afeitar la cabeza.</td><td>Discreto: se nota mucho menos que te has operado.</td><td>Más caro, sesiones más pequeñas. No todas las clínicas lo hacen bien.</td><td>+20–40 %</td></tr>
+      <tr><td><b>FUT / FUSS</b><br><span class="mut">técnica de tira</span></td><td>Se extrae una tira de piel de la nuca y se diseca al microscopio.</td><td>Folículos muy bien conservados y muchos injertos en una sesión. Ahorra “capital” donante para el futuro.</td><td>Deja una cicatriz lineal que se ve si te rapas al 0–1. Hoy poco usada (en BCN, p. ej., IQC Teknon).</td><td>Similar a FUE</td></tr>
+      <tr><td><b>FUE robótica</b><br><span class="mut">ARTAS, BotHair (Insparya)</span></td><td>Un robot asiste la extracción.</td><td>Consistencia en la extracción.</td><td>No es mejor por sí misma: el diseño y la implantación siguen siendo manuales.</td><td>4.000–8.000 €</td></tr>
+      <tr><td><b>BHT</b><br><span class="mut">Body Hair Transplant</span></td><td>Se extrae pelo de barba o pecho.</td><td>Recurso cuando la nuca está agotada.</td><td>El pelo corporal es distinto (más grueso o más corto). Solo como complemento.</td><td>Variable</td></tr>
+    </tbody>
+  </table></div>
 
-    function uvar(n) {
-      const o = [];
-      while (n > 127) { o.push((n & 127) | 128); n = Math.floor(n / 128); }
-      o.push(n);
-      return o;
-    }
-    function tag(f, w) { return uvar((f << 3) | w); }
-    function fVar(f, n) { return tag(f, 0).concat(uvar(n)); }
-    function fBytes(f, arr) { return tag(f, 2).concat(uvar(arr.length)).concat(arr); }
-    function fStr(f, s) {
-      const a = [];
-      for (let i = 0; i < s.length; i++) a.push(s.charCodeAt(i));
-      return fBytes(f, a);
-    }
-    function place(code) { return fVar(1, 1).concat(fStr(2, code)); }
-    function leg(date, frm, to, air) {
-      const al = AIR[air];
-      return fStr(2, date).concat(fVar(5, 0)).concat(al ? fStr(6, al) : [])
-        .concat(fBytes(13, place(frm))).concat(fBytes(14, place(to)));
-    }
-    function gf(from, to, air, backAir) {
-      let msg = fVar(1, 28).concat(fVar(2, 2));
-      msg = msg.concat(fBytes(3, leg("2026-12-04", from, to, air)));
-      msg = msg.concat(fBytes(3, leg("2026-12-08", to, from, backAir || air)));
-      msg = msg.concat(fVar(8, 1)).concat(fVar(8, 1)).concat(fVar(9, 1));
-      msg = msg.concat(fBytes(13, fVar(2, 2).concat(fVar(3, 0))));
-      msg = msg.concat(fVar(14, 1)).concat(fVar(19, 1));
-      const tfs = btoa(String.fromCharCode.apply(null, msg)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-      return "https://www.google.com/travel/flights/search?tfs=" + tfs + "&hl=" + lang + "&curr=EUR";
-    }
-    function kayak(from, to, air) {
-      const host = lang === "de" ? "www.kayak.de" : lang === "en" ? "www.kayak.com" : "www.kayak.es";
-      const code = AIR[air] || "VY";
-      return "https://" + host + "/flights/" + from + "-" + to + "/2026-12-04/2026-12-08/2adults?sort=bestflight_a&fs=stops=~0;airlines=~" + code + ";cabin=~e";
-    }
-    function stayUrls(c) {
-      const max = c.max;
-      const bb = c.q.bb;
-      const ab = (lang === "de" ? "https://www.airbnb.de" : lang === "en" ? "https://www.airbnb.com" : "https://www.airbnb.es") +
-        "/s/" + c.q.airbnb + "/homes?query=" + encodeURIComponent(c.q.ss) +
-        "&checkin=2026-12-04&checkout=2026-12-08&adults=6&min_bedrooms=3&min_beds=3&min_bathrooms=2" +
-        "&room_types%5B%5D=Entire%20home%2Fapt&price_max=" + max +
-        "&price_filter_num_nights=4&date_picker_type=calendar&search_type=user_map_move&source=structured_search_input_header&refinement_paths%5B%5D=%2Fhomes&tab_id=home_tab" +
-        "&search_by_map=true&sw_lat=" + bb[0] + "&sw_lng=" + bb[1] + "&ne_lat=" + bb[2] + "&ne_lng=" + bb[3];
-      const page = lang === "de" ? "de.html" : lang === "en" ? "html" : "es.html";
-      const ss = encodeURIComponent(c.q.ss);
-      const occ = "&checkin=2026-12-04&checkout=2026-12-08&group_adults=6&req_adults=6&no_rooms=3&req_rooms=3&group_children=0&req_children=0&selected_currency=EUR";
-      const where = "?ss=" + ss + "&ssne=" + ss + "&ssne_untouched=" + ss + "&dest_id=" + c.q.dest + "&dest_type=city" + occ;
-      const nfltHt = "ht_id%3D204%3Broomfacility%3D38%3Breview_score%3D60";
-      const ht = "https://www.booking.com/searchresults." + page + where + "&nflt=" + nfltHt + "&order=price&sb=1";
-      return { airbnb: ab, hotel: ht };
-    }
+  <div class="grid" style="margin-top:16px">
+    <div class="card">
+      <h3>Cómo va el proceso</h3>
+      <p><b>Día 0:</b> 6–9 h con anestesia local. <b>Días 1–10:</b> costras y enrojecimiento. <b>Semanas 2–8:</b> el pelo injertado se cae (“shock loss”, es normal). <b>Meses 3–4:</b> empieza a salir. <b>Meses 12–18:</b> resultado final.</p>
+    </div>
+    <div class="card">
+      <h3>Riesgos reales</h3>
+      <p>Infección (rara), foliculitis, entumecimiento temporal, caída del pelo nativo por el estrés de la cirugía, zona donante sobreexplotada y, sobre todo, <b>una línea frontal mal diseñada</b> (demasiado baja o recta) que no envejecerá bien.</p>
+    </div>
+    <div class="card">
+      <h3>Supervivencia de injertos</h3>
+      <p>Con un buen equipo, el 85–95 % de los injertos prende. El pelo que prende es permanente. Pide que te den por escrito el número de unidades foliculares implantadas.</p>
+    </div>
+  </div>
+</section>
 
-    function pinIcon(txt, origin, on) {
-      return L.divIcon({
-        className: "",
-        html: "<div class=\"pin" + (origin ? " origin" : "") + (on ? " on" : "") + "\">" + txt + "</div>",
-        iconSize: [28, 28], iconAnchor: [14, 14]
-      });
-    }
-    function ensureMap() {
-      if (map || !window.L) return;
-      map = L.map("map", { scrollWheelZoom: true }).setView([46.2, 8], 4);
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "&copy; OpenStreetMap" }).addTo(map);
-      overlay = L.layerGroup().addTo(map);
-      const pts = Object.values(ORIGIN).map((o) => o.ll).concat(CITIES.map((c) => c.ll));
-      map.fitBounds(pts, { padding: [28, 28], maxZoom: 4 });
-    }
-    function drawMap() {
-      ensureMap();
-      if (!map) return;
-      overlay.clearLayers();
-      const dest = city();
-      Object.keys(ORIGIN).forEach((k) => {
-        L.marker(ORIGIN[k].ll, { icon: pinIcon(k, true, false) }).addTo(overlay).bindTooltip(k);
-        L.polyline([ORIGIN[k].ll, dest.ll], { color: "#c24b1f", weight: 2, opacity: .7, dashArray: "6 6" }).addTo(overlay);
-      });
-      CITIES.forEach((c) => {
-        L.marker(c.ll, { icon: pinIcon(c.iata, false, c.id === sel) })
-          .addTo(overlay).bindTooltip(c.name[lang])
-          .on("click", () => { sel = c.id; open = c.id; render(); });
-      });
-      setTimeout(() => map.invalidateSize(), 80);
-    }
+<section id="farmacos">
+  <h2>Pastillas y tratamientos: qué hay, cada cuánto y qué tal funcionan</h2>
+  <p class="sub">Frenan la caída de tu pelo nativo y a veces hacen que vuelva a crecer. <b>Solo funcionan mientras los usas</b>: si paras, en 6–12 meses pierdes lo ganado. Todo requiere receta y control médico.</p>
 
-    function euro(n) { return n + " €"; }
-    function span(arr) {
-      const lo = Math.min.apply(null, arr), hi = Math.max.apply(null, arr);
-      return lo === hi ? euro(lo) : lo + "–" + euro(hi);
-    }
-    function splitBox(c, t) {
-      const bed = bedOf(c);
-      const eat = foodDay * NIGHTS;
-      const bedLbl = c.stay <= c.hotel ? t.ab : t.ht;
-      return "<div class=\"split\">" + ["BCN", "FRA", "HAM"].map((o) => {
-        const fly = flyP(c.flights[o]);
-        return "<div class=\"bill\">" +
-          "<div class=\"o\">" + ORIGIN[o].name[lang] + " · " + o + "<small>" + t.ppx + "</small></div>" +
-          "<div class=\"line\"><span>" + t.fly + "</span><b>" + euro(fly) + "</b></div>" +
-          "<hr>" +
-          "<div class=\"line\"><span>" + t.bed + " · " + bedLbl + "</span><b>" + t.from + " " + euro(bed) + "</b></div>" +
-          "<div class=\"line\"><span>" + t.eat + " <em>" + t.est + "</em></span><b>" + euro(eat) + "</b></div>" +
-          "<hr>" +
-          "<div class=\"line totline\"><span>" + t.tot + " · " + t.each + "</span><strong>" + t.from + " " + euro(fly + bed + eat) + "</strong></div>" +
-          "</div>";
-      }).join("") + "</div>";
-    }
-    function flyRow(c, o, t) {
-      const f = c.flights[o];
-      return "<div class=\"rowf\"><div class=\"o\">" + o + "</div><div>" +
-        "<div class=\"meta\">" + (f.backAir && f.backAir !== f.air ? f.air + " / " + f.backAir : f.air) + " · <span class=\"price\">" + euro(flyP(f)) + " " + t.each + "</span> · " + euro(flyP(f) * 2) + " " + t.pair + "</div>" +
-        "<div class=\"leg\"><em>" + t.out + "</em>" + f.out[0] + " " + o + " → " + f.out[1] + " " + c.iata + " · " + f.out[2] + "</div>" +
-        "<div class=\"leg\"><em>" + t.back + "</em>" + f.back[0] + " " + c.iata + " → " + f.back[1] + " " + o + " · " + f.back[2] + "</div>" +
-        "</div><div class=\"btns\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"" + gf(o, c.iata, f.air, f.backAir) + "\">" + t.gf + "</a>" +
-        "<a class=\"btn ghost\" target=\"_blank\" rel=\"noopener\" href=\"" + kayak(o, c.iata, f.air) + "\">" + t.air + " · " + f.air + "</a></div></div>";
-    }
+  <div class="tbl"><table>
+    <thead><tr><th>Tratamiento</th><th>¿Pastilla?</th><th>Frecuencia</th><th>Eficacia</th><th>Efectos secundarios / notas</th></tr></thead>
+    <tbody>
+      <tr><td><b>Finasterida oral 1 mg</b></td><td><span class="tag no">Sí</span></td><td>1 al día, de por vida</td><td>Alta. Frena la caída en ~80–90 % de los hombres y ~60 % recupera algo. Es el tratamiento de referencia aprobado.</td><td>Disfunción sexual en ~1–4 % (reversible al dejarla en la mayoría). En 2025 la Agencia Europea del Medicamento añadió las <b>ideas suicidas</b> como efecto adverso confirmado (frecuencia desconocida; hay que dejarla si cambia el ánimo) y ahora se entrega una tarjeta de información al paciente. Existe un “síndrome post-finasterida”, raro y discutido.</td></tr>
+      <tr><td><b>Dutasterida oral 0,5 mg</b></td><td><span class="tag no">Sí</span></td><td>1 al día (a veces 3–7 por semana)</td><td>La más eficaz en los metaanálisis (más que la finasterida).</td><td>Uso “fuera de ficha técnica” en España para el pelo. Efectos parecidos a la finasterida y se elimina muy lentamente del cuerpo.</td></tr>
+      <tr><td><b>Minoxidil oral dosis baja</b><br><span class="mut">2,5–5 mg</span></td><td><span class="tag no">Sí</span></td><td>1 al día</td><td>Similar al minoxidil tópico al 5 %, algo mejor en la coronilla. Mucha mejor adherencia.</td><td>Vello en cara y cuerpo (hasta ~1 de cada 2), taquicardia, retención de líquidos. No frena la causa hormonal.</td></tr>
+      <tr><td><b>Finasterida tópica</b><br><span class="mut">spray 0,25 %, o fórmula magistral</span></td><td><span class="tag ok">No</span></td><td>1 al día en el cuero cabelludo</td><td>A las 24 semanas, parecida a la pastilla.</td><td>Absorción al cuerpo mucho menor, aunque no nula. Menos datos a largo plazo. Es la mejor opción “antihormonal sin pastilla”.</td></tr>
+      <tr><td><b>Minoxidil tópico 5 %</b></td><td><span class="tag ok">No</span></td><td>1–2 al día</td><td>Moderada. El tópico aprobado más eficaz.</td><td>Irritación, caída inicial transitoria. Es pesado de mantener (loción o espuma cada día).</td></tr>
+      <tr><td><b>Mesoterapia con dutasterida</b></td><td><span class="tag ok">No</span> <span class="mut">(pinchazos)</span></td><td>Sesiones cada 3–6 meses tras la fase inicial</td><td>Moderada, bastante menor que la oral.</td><td>Sin protocolo estandarizado. Útil para quien no quiere pastilla diaria. Se hace en clínica.</td></tr>
+      <tr><td><b>PRP</b><br><span class="mut">plasma rico en plaquetas</span></td><td><span class="tag ok">No</span></td><td>3–4 sesiones mensuales y luego cada 4–6 meses</td><td>Leve–moderada, evidencia irregular.</td><td>Complemento, no tratamiento principal. 250–500 €/sesión. Las clínicas lo venden mucho.</td></tr>
+      <tr><td><b>Láser de baja potencia</b><br><span class="mut">casco / gorra</span></td><td><span class="tag ok">No</span></td><td>20–30 min, 3 veces por semana</td><td>Leve.</td><td>Seguro, pero de efecto modesto. Solo como complemento.</td></tr>
+      <tr><td><b>Exosomas, “células madre”, factores de crecimiento</b></td><td><span class="tag ok">No</span></td><td>—</td><td>Sin evidencia sólida.</td><td>Caros y de marketing. No sustituyen lo anterior.</td></tr>
+      <tr><td><b>Clascoterona 5 % (Breezula)</b></td><td><span class="tag ok">No</span></td><td>Loción diaria</td><td>Prometedora: la fase III (1.465 hombres) fue positiva y seguía ganando pelo a los 12 meses.</td><td><b>Aún no está aprobada.</b> Se prevé pedir la aprobación en EE. UU. y la UE a principios de 2027, así que en España llegaría probablemente en 2028. Antiandrógeno tópico sin efecto sistémico relevante. Encaja con lo que buscas: vigílala.</td></tr>
+    </tbody>
+  </table></div>
+</section>
 
-    function render() {
-      const t = T[lang];
-      document.documentElement.lang = lang;
-      document.title = t.dates;
-      document.getElementById("dates").textContent = t.dates;
-      document.getElementById("title").textContent = t.title;
-      document.getElementById("lead").innerHTML = t.lead;
-      document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
-      document.getElementById("legend").innerHTML =
-        "<span><i style=\"background:#1f4e68\"></i>" + t.mapO + "<i style=\"background:#c24b1f\"></i>" + t.mapD + "</span>";
-      document.getElementById("foodLbl").textContent = t.foodL;
-      document.getElementById("foodVal").textContent = foodDay + " €";
-      document.getElementById("stayhint").textContent = t.bud + " " + t.stay;
-      document.getElementById("updated").innerHTML = t.upd;
+<section id="sin-pastillas">
+  <h2>Tu prioridad: sin pastillas pero con máxima seguridad</h2>
+  <p class="sub">Seguridad estimada de mantener un aspecto con pelo a largo plazo (orientativo, a partir de la evidencia y el consenso clínico; no es un dato de un estudio concreto).</p>
+  <div class="scale">
+    <div class="card"><b>Injerto + finasterida o dutasterida oral</b><div class="bar"><i style="width:92%"></i></div><span class="mut">La opción más segura. Implica pastilla diaria.</span></div>
+    <div class="card"><b>Injerto + finasterida tópica + minoxidil tópico</b><div class="bar"><i style="width:80%"></i></div><span class="mut">La mejor opción sin pastillas. Requiere constancia diaria.</span></div>
+    <div class="card"><b>Injerto + mesoterapia con dutasterida + minoxidil tópico</b><div class="bar"><i style="width:72%"></i></div><span class="mut">Sin pastillas y sin rutina diaria del antiandrógeno.</span></div>
+    <div class="card"><b>Injerto sin ningún tratamiento</b><div class="bar"><i style="width:45%"></i></div><span class="mut">Lo injertado se queda, pero el pelo nativo sigue cayendo. Probablemente harán falta más cirugías.</span></div>
+    <div class="card"><b>Rapado (+ micropigmentación opcional)</b><div class="bar"><i style="width:100%"></i></div><span class="mut">100 % predecible y sin fármacos. No es “tener pelo”.</span></div>
+    <div class="card"><b>Prótesis / integración capilar</b><div class="bar"><i style="width:95%"></i></div><span class="mut">Pelo inmediato sin fármacos. Coste mensual y mantenimiento de por vida.</span></div>
+  </div>
+  <div class="note"><b>Clave:</b> las pastillas no hacen falta para el pelo injertado; hacen falta para <b>no perder el que tienes</b>. Con pérdida temprana como la tuya, el pelo que aún tienes vale mucho: conservarlo es lo que evita necesitar 2–3 cirugías.</div>
+  <div class="grid">
+    <div class="card">
+      <h3>Plan “sin pastillas” razonable para hablar con el médico</h3>
+      <ul class="check">
+        <li>Finasterida tópica diaria + minoxidil tópico 5 %.</li>
+        <li>Fotos estandarizadas cada 6 meses y tricoscopia.</li>
+        <li>Si se estabiliza a los 6–12 meses: injerto en el flequillo/entradas con línea conservadora.</li>
+        <li>Si sigue avanzando: valorar la mesoterapia con dutasterida o reconsiderar la vía oral.</li>
+        <li>Seguir la clascoterona (posible aprobación 2027–2028).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Cuándo tiene más sentido rapar</h3>
+      <ul class="check">
+        <li>No quieres ningún fármaco y tu familia tiene calvicie avanzada.</li>
+        <li>La zona donante es pobre (poca densidad en la nuca).</li>
+        <li>Tienes buena forma de cráneo y te gusta cómo te ves con el pelo muy corto (pruébalo al 1–2 antes de decidir).</li>
+        <li>No quieres gastar 3.000–10.000 € + mantenimiento.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-      document.getElementById("list").innerHTML = CITIES.slice().sort((a, b) => a.rank - b.rank).map((x) => {
-        const u = stayUrls(x);
-        const isOpen = open === x.id;
-        const btn = (kind, label, sub) => "<a class=\"" + (kind === "airbnb" ? "ab" : "ht") + "\" data-stay=\"" + kind +
-          "\" data-city=\"" + x.id + "\" target=\"_blank\" rel=\"noopener\" href=\"" + u[kind] + "\">" + label +
-          "<span class=\"from\">" + sub + "</span></a>";
-        const extra = isOpen
-          ? "<div class=\"more\">" + splitBox(x, t) + "<p class=\"why\"><strong>" + t.whyL + ".</strong> " + x.why[lang] + "</p>" +
-            ["BCN", "FRA", "HAM"].map((o) => flyRow(x, o, t)).join("") +
-            "<div style=\"font-size:.72rem;color:var(--mute)\">" + t.bag + "</div></div>"
-          : "";
-        const tots = ["BCN", "FRA", "HAM"].map((o) => pp(x, o));
-        const flies = ["BCN", "FRA", "HAM"].map((o) => flyP(x.flights[o]));
-        const cheapBed = x.stay <= x.hotel
-          ? "<span>" + t.ab + " <b>" + euro(x.stay) + "</b></span>"
-          : "<span>" + t.ht + " <b>" + euro(x.hotel) + "</b></span>";
-        return "<div class=\"city" + (x.id === sel ? " on" : "") + (isOpen ? " open" : "") + "\" data-id=\"" + x.id + "\">" +
-        "<b>#" + x.rank + " " + x.name[lang] + "</b><span>" + x.t + " · " + x.area[lang] + "</span>" +
-        "<div class=\"p\"><small>" + t.from + "</small>" + span(tots) + " <small>" + t.each + "</small><span class=\"vary\">" + t.vary + "</span></div>" +
-        "<div class=\"grp\">" + t.tot6 + " <b>" + euro(groupOf(x)) + "</b></div>" +
-        "<div class=\"brk\"><span>" + t.fly + " <b>" + span(flies) + "</b></span>" +
-        cheapBed +
-        "<span>" + t.eat + " <b>" + euro(foodDay * NIGHTS) + "</b> <em>" + t.est + "</em></span></div>" +
-        "<div class=\"sbtn\">" + btn("airbnb", t.ab, t.from + " " + euro(x.stay)) + btn("hotel", t.ht, t.from + " " + euro(x.hotel)) + "</div>" +
-        "<button type=\"button\" class=\"tog\" data-open=\"" + x.id + "\" aria-expanded=\"" + isOpen + "\">" +
-        (isOpen ? t.hide : t.det) + "</button>" + extra + "</div>";
-      }).join("");
+<section id="alternativas">
+  <h2>Alternativas no quirúrgicas</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="tag ok">Sin fármacos</span>
+      <h3>Micropigmentación capilar (SMP)</h3>
+      <p>Microtatuaje que simula el pelo rapado o da sensación de densidad donde clarea. 2–3 sesiones con 10+ días entre ellas. Dura 3–5 años con retoques.</p>
+      <p class="price">330 €/sesión · 500–2.000 € total</p>
+      <p class="mut">Ideal combinada con el rapado o para disimular la coronilla clara.</p>
+    </div>
+    <div class="card">
+      <span class="tag ok">Sin fármacos</span>
+      <h3>Prótesis / sistema de integración</h3>
+      <p>Una membrana con pelo natural que se integra con tu pelo o se adhiere al cuero cabelludo. Resultado inmediato y denso.</p>
+      <p class="price">215–280 €/mes (hombre)</p>
+      <p class="mut">Reajustes cada 3–5 semanas. Coste de por vida (~2.500–3.400 €/año).</p>
+    </div>
+    <div class="card">
+      <span class="tag ok">Sin fármacos</span>
+      <h3>Rapado</h3>
+      <p>La opción más honesta y barata. Muchos hombres con pérdida temprana se ven mejor rapados que con un pelo que clarea.</p>
+      <p class="price">0 €</p>
+      <p class="mut">Pruébalo un mes antes de gastar nada: la decisión es reversible.</p>
+    </div>
+    <div class="card">
+      <span class="tag mid">Cosmético</span>
+      <h3>Fibras capilares y corte estratégico</h3>
+      <p>Fibras de queratina (tipo Toppik) para disimular la coronilla día a día y un corte más corto para el flequillo.</p>
+      <p class="price">~20–30 €/mes</p>
+      <p class="mut">Puente mientras decides.</p>
+    </div>
+  </div>
+</section>
 
-      document.querySelectorAll(".city").forEach((el) => el.onclick = () => { sel = el.dataset.id; render(); });
-      document.querySelectorAll(".tog").forEach((b) => {
-        b.onclick = (e) => {
-          e.stopPropagation();
-          const id = b.dataset.open;
-          open = open === id ? "" : id;
-          sel = id;
-          render();
-        };
-      });
-      document.querySelectorAll(".more").forEach((el) => { el.onclick = (e) => e.stopPropagation(); });
-      document.querySelectorAll(".sbtn a, .more a").forEach((a) => {
-        a.onclick = (e) => {
-          e.stopPropagation();
-          if (a.dataset.stay) sel = a.dataset.city;
-        };
-      });
-      drawMap();
-    }
+<section id="clinicas">
+  <h2>Clínicas y consultas en Barcelona</h2>
+  <p class="sub">Precios “desde” publicados por cada centro en 2026: el presupuesto real se da tras la valoración. Las listas de “mejores clínicas” de internet suelen ser SEO o patrocinadas: úsalas solo como directorio.</p>
+  <div class="filters" id="filters">
+    <button data-f="all" class="on">Todas</button>
+    <button data-f="cirugia">Injerto</button>
+    <button data-f="derma">Dermatología / tricología</button>
+    <button data-f="nocir">Sin cirugía</button>
+    <input id="q" type="search" placeholder="Buscar por nombre, zona, técnica…">
+  </div>
+  <div class="grid" id="clinics"></div>
+  <div class="note"><b>Recomendación de orden de visitas:</b> 1) un <b>dermatólogo tricólogo independiente</b> (IDERMA Dexeus, Dr. Grimalt, López Gil Teknon), que no vive de venderte la cirugía; 2) <b>2–3 clínicas de injerto</b> para comparar diseños y presupuestos. Las primeras consultas en clínicas capilares suelen ser gratuitas.</div>
+</section>
 
-    document.getElementById("foodIn").oninput = function () { foodDay = +this.value; render(); };
-    document.querySelectorAll("[data-lang]").forEach((b) => {
-      b.onclick = () => { lang = b.dataset.lang; setLangUrl(lang); render(); };
-    });
-    render();
-  </script>
+<section id="consulta">
+  <h2>Qué preguntar en la consulta</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Al dermatólogo</h3>
+      <ul class="check">
+        <li>¿Es alopecia androgenética? ¿Qué grado? Pide tricoscopia y analítica (hierro/ferritina, tiroides, vitamina D).</li>
+        <li>¿Qué velocidad de progresión espera en mi caso?</li>
+        <li>Quiero evitar pastillas: ¿finasterida tópica o mesoterapia? ¿Con qué frecuencia y durante cuánto tiempo?</li>
+        <li>¿Soy buen candidato a injerto ahora o me conviene esperar?</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>A la clínica de injerto</h3>
+      <ul class="check">
+        <li>¿Quién hace las incisiones y la extracción: el médico o técnicos? ¿Cómo se llama el cirujano y cuál es su número de colegiado?</li>
+        <li>¿Cuántas unidades foliculares necesito y cuántas me quedarán en la zona donante para el futuro?</li>
+        <li>¿Cómo diseñaríais la línea frontal pensando en mí con 50 años?</li>
+        <li>¿Qué incluye el precio (revisiones, PRP, medicación, retoque)? ¿Hay garantía por escrito?</li>
+        <li>¿Puedo ver fotos de casos a los 12 meses de pacientes parecidos a mí?</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Señales de alarma</h3>
+      <ul class="check x">
+        <li>“Folículos ilimitados” o precio cerrado sin examinarte.</li>
+        <li>No te hablan de tratamiento médico ni de la progresión.</li>
+        <li>Te proponen rellenar toda la coronilla y una línea frontal baja a los 25–30 años.</li>
+        <li>No sabes qué médico te opera, o solo ves a un comercial.</li>
+        <li>Presión para reservar hoy con descuento.</li>
+      </ul>
+    </div>
+  </div>
+  <details>
+    <summary>Cómo verificar clínica y médico</summary>
+    <p>Médico: búsqueda de colegiados en el <a href="https://www.comb.cat/" target="_blank" rel="noopener">Col·legi de Metges de Barcelona (COMB)</a>. Centro: debe estar autorizado como centro sanitario en el registro de la Generalitat de Catalunya (Departament de Salut). Formación en cirugía capilar: miembro de la <a href="https://ishrs.org/" target="_blank" rel="noopener">ISHRS</a> o de la Sociedad Española de Medicina y Cirugía Capilar.</p>
+  </details>
+  <details>
+    <summary>¿Y Turquía?</summary>
+    <p>Sale por 2.000–3.500 € todo incluido, pero hay mucha variabilidad: en muchas clínicas operan técnicos sin médico y el seguimiento posterior es difícil. Si vas, elige un cirujano identificado que haga él mismo los pasos clave. Para un caso temprano como el tuyo, la planificación a largo plazo pesa más que ahorrar 1.500 €.</p>
+  </details>
+</section>
+
+<section id="fuentes">
+  <h2>Fuentes</h2>
+  <ul class="small">
+    <li><a href="https://www.actasdermo.org/es-androgenetic-alopecia-narrative-review-current-articulo-S0001731026000979" target="_blank" rel="noopener">Actas Dermo-Sifiliográficas 2026: revisión y algoritmo de tratamiento de la alopecia androgenética</a></li>
+    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12207719/" target="_blank" rel="noopener">Metaanálisis en red de minoxidil vs finasterida vs dutasterida (2025)</a></li>
+    <li><a href="https://repositorio.unesp.br/entities/publication/efd29987-c1ad-42e5-a974-1f88c130ca50/full" target="_blank" rel="noopener">Ensayo aleatorizado: minoxidil oral 5 mg vs tópico 5 %</a></li>
+    <li><a href="https://www.actasdermo.org/en-minoxidil-oral-altas-dosis-el-articulo-S0001731025001280" target="_blank" rel="noopener">Actas Dermo: minoxidil oral a dosis altas</a></li>
+    <li><a href="https://www.healio.com/news/dermatology/20260422/male-pattern-hair-loss-drug-regrows-hair-up-to-1-year-without-plateau" target="_blank" rel="noopener">Healio (abr 2026): clascoterona, datos de fase III a 12 meses</a> · <a href="https://www.genengnews.com/topics/translational-medicine/cosmo-pharma-eyes-2027-nda-for-baldness-candidate-after-positive-phase-iii-12-month-data/" target="_blank" rel="noopener">GEN: solicitud de aprobación prevista para 2027</a></li>
+    <li><a href="https://www.ema.europa.eu/en/news/measures-minimise-risk-suicidal-thoughts-finasteride-dutasteride-medicines" target="_blank" rel="noopener">EMA 2025: ideas suicidas, posible efecto adverso de la finasterida</a></li>
+    <li><a href="https://martinezsimon.com/medicacion-post-injerto-es-necesaria/" target="_blank" rel="noopener">Medicación después del injerto: por qué se trata el pelo nativo</a></li>
+    <li><a href="https://www.elegirclinica.com/mejores-cirujanos-capilares-barcelona/" target="_blank" rel="noopener">Rangos de precio de FUE/DHI en Barcelona</a> · <a href="https://toyoutome.barcelona/clinicas-injerto-capilar/" target="_blank" rel="noopener">Directorio de clínicas de BCN</a></li>
+    <li>Webs oficiales de cada clínica (enlazadas en su ficha) para las direcciones y los precios publicados.</li>
+  </ul>
+  <p class="note small">Esto es una investigación informativa, no consejo médico. Los precios y datos pueden cambiar: confírmalos siempre en consulta y por escrito.</p>
+</section>
+
+</main>
+
+<footer><div class="wrap">Investigación personal · Barcelona · septiembre 2026</div></footer>
+
+<script>
+const C = [
+  {n:"Capilclinic", t:"cirugia", z:"Sant Gervasi · C/ d'Amigó 11", w:"https://www.capilclinic.es/", p:"desde 2.990 €", tech:["FUE Zafiro","DHI"], d:"Packs cerrados según el caso (M/L/XL) que incluyen analítica, revisiones y 1 sesión de PRP. Dra. Diana Villegas. También tiene sede en Madrid."},
+  {n:"Insparya", t:"cirugia", z:"Les Corts · Av. Diagonal 605, pl. 2", w:"https://www.insparya.es/", p:"presupuesto tras valoración", tech:["FUE","BotHair robótico"], d:"Grupo grande (España, Portugal, Italia). 830 m² dedicados a la alopecia, parking gratuito. Consulta de valoración gratuita."},
+  {n:"Instituto Quirúrgico Capilar · Dr. Paloma (Gournay)", t:"cirugia", z:"Centro Médico Teknon · Vilana 12, desp. 181", w:"https://institutoquirurgicocapilar.com/", p:"2.500–6.500 €", tech:["FUE","FUSS"], d:"Dentro del hospital Teknon. Dr. Vicente Paloma y Dr. José Luis Martínez Meseguer. 1.ª consulta gratuita y financiación. Tel. 932 906 430."},
+  {n:"CCCI · Centro de Cirugía Capilar", t:"cirugia", z:"Sant Gervasi · Via Augusta 281, 3.ª", w:"https://cccibarcelona.com/", p:"presupuesto tras valoración", tech:["FUE","DHI"], d:"Clínica especializada en cirugía capilar y tratamientos médicos."},
+  {n:"Clínica Planas", t:"cirugia", z:"Pedralbes · Pere II de Montcada 16", w:"https://www.clinicaplanas.com/", p:"presupuesto tras valoración", tech:["FUE"], d:"Clínica de cirugía plástica veterana y conocida, con unidad capilar. Entorno hospitalario."},
+  {n:"Keller Hair Center", t:"cirugia", z:"Sant Gervasi · Via Augusta 223", w:"https://kellerhair.es/", p:"presupuesto tras valoración", tech:["FUE Zafiro","Dermatología"], d:"Injerto más dermatología en el mismo centro."},
+  {n:"Medical Hair", t:"cirugia", z:"Sant Gervasi · C. Dr. Fleming 6", w:"https://www.medicalhair.es/", p:"presupuesto tras valoración", tech:["Microtrasplante","Tricología"], d:"Microinjerto y tratamientos de tricología."},
+  {n:"Eternal Hair Clinic", t:"cirugia", z:"Eixample · Av. Diagonal 402", w:"https://eternalhairclinic.es/", p:"2.900–6.000 €", tech:["FUE Zafiro","DHI"], d:"Rango orientativo publicado de 2.900 a 6.000 €."},
+  {n:"Dr. Hans Heinicke", t:"cirugia", z:"Sant Gervasi · General Vives 29", w:"https://www.google.com/search?q=Dr+Hans+Heinicke+injerto+capilar+Barcelona", p:"presupuesto tras valoración", tech:["FUE manual"], d:"Consulta de un cirujano con FUE manual y trato personalizado: sabes exactamente quién te opera."},
+  {n:"Kuntur Clinic", t:"cirugia", z:"Eixample · Còrsega 184", w:"https://kunturclinic.com/", p:"presupuesto tras valoración", tech:["FUE","Mesoterapia"], d:"Implante capilar y mesoterapia."},
+  {n:"Instituto Capilar Saint Antoine", t:"cirugia", z:"Eixample · Balmes 129 bis, 4-2", w:"https://capilarsaintantoine.com/", p:"presupuesto tras valoración", tech:["FUE","DHI"], d:"Trasplante y salud capilar integral."},
+  {n:"Pilhair", t:"cirugia", z:"Barcelona y Girona", w:"https://trasplantecapilarbcn.es/", p:"3.200 € (IVA incl.)", tech:["FUE Zafiro","DHI","Long Hair"], d:"Precio publicado transparente. Incluye revisiones a los 7, 30 y 90 días y la medicación postoperatoria."},
+  {n:"Mooemclinic", t:"cirugia", z:"Barcelona", w:"https://www.mooemclinic.es/", p:"presupuesto tras valoración", tech:["FUE"], d:"Microinjerto y medicina estética."},
+  {n:"IDERMA · Hospital Universitari Dexeus", t:"derma", z:"Les Corts · Hospital Universitari Dexeus", w:"https://www.iderma.es/es/unidades.cfm/id/17371/ESP/unidad-capilar.htm", p:"visita ~100–150 €", tech:["Tricología","Formulación magistral","Cirugía"], d:"Unidad médico-quirúrgica de dermatólogos. Buena primera parada para el diagnóstico y el plan médico, y operan en el propio hospital si hace falta."},
+  {n:"Dr. Ramon Grimalt (dermatólogo tricólogo)", t:"derma", z:"Eixample · C/ Villarroel 170 (barnaclínic+)", w:"https://grimalt.net/dr-ramon-grimalt/", p:"visita privada", tech:["Tricología"], d:"Dermatólogo, profesor universitario (UIC) y con investigación en tricología. Enfoque médico, no vende cirugía. También pasa consulta en Terrassa y Sabadell."},
+  {n:"Clínica Dermatológica López Gil", t:"derma", z:"Centro Médico Teknon / Quirónsalud Barcelona", w:"https://teknon.quironsalud.com/es/especialidades/lopez-gil-francisco-jose/dermatologia-clinica", p:"visita privada / mutuas", tech:["Dermatología capilar","Trasplante"], d:"Dermatología del pelo dentro de Teknon. Útil si tienes seguro privado."},
+  {n:"Svenson", t:"nocir", z:"Sant Gervasi · Muntaner", w:"https://www.svenson.es/servicios-centros-cabello/hair-and-hair/", p:"215–280 €/mes", tech:["Prótesis","Integración","Tratamientos"], d:"Sistemas de integración capilar con mantenimiento incluido. También ofrece injerto."},
+  {n:"Micropigmentación · Dr. Rubén Bermejo", t:"nocir", z:"Clínica Sagrada Família · Torras i Pujalt", w:"https://www.doctorbermejo.com/micropigmentacion-capilar/", p:"330 €/sesión", tech:["SMP"], d:"Médico colegiado. 2–3 sesiones de 90 min. Efecto rapado o de redensificación. Valoración gratuita."},
+  {n:"Clínica Capilar BCI", t:"nocir", z:"Barcelona", w:"https://clinicacapilarbci.com/micropigmentacion-capilar-barcelona/", p:"500–2.000 €", tech:["SMP","Injerto"], d:"Micropigmentación como opción independiente o para complementar un injerto. Dura hasta 5 años con mantenimiento."}
+];
+const L = {cirugia:["Injerto","blue"], derma:["Dermatología","ok"], nocir:["Sin cirugía","mid"]};
+const box = document.getElementById("clinics"), q = document.getElementById("q");
+let f = "all";
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function render(){
+  const s = q.value.trim().toLowerCase();
+  box.innerHTML = C.filter(c => (f==="all"||c.t===f) && (!s || JSON.stringify(c).toLowerCase().includes(s))).map(c => `
+    <div class="card clinic">
+      <div class="top"><h3>${esc(c.n)}</h3><span class="tag ${L[c.t][1]}">${L[c.t][0]}</span></div>
+      <p class="mut">${esc(c.z)}</p>
+      <p>${c.tech.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</p>
+      <p>${esc(c.d)}</p>
+      <p><span class="price">${esc(c.p)}</span> · <a href="${c.w}" target="_blank" rel="noopener">web</a></p>
+    </div>`).join("") || '<p class="mut">Sin resultados.</p>';
+}
+document.getElementById("filters").addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  f = b.dataset.f;
+  document.querySelectorAll("#filters button").forEach(x => x.classList.toggle("on", x===b));
+  render();
+});
+q.addEventListener("input", render);
+render();
+</script>
 </body>
 </html>
