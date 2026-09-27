@@ -7,7 +7,10 @@
 - Vista local: `index.html`
 
 ## Stack
-- HTML + CSS + JS en un solo `index.html` (clínicas en el array `C` del script)
+- Un solo `index.html`: HTML + CSS + JS (clínicas en el array `C`)
+- Fraunces (títulos) + Geist (texto)
+- Claro/oscuro automático con `light-dark()`
+- Barras de precio en técnicas de injerto (escala común 0–9.000 €)
 
 ## Comandos utiles
 - Instalar: no

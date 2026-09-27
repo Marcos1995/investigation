@@ -3,77 +3,371 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Pelo en Barcelona · Opciones, técnicas, pastillas y clínicas</title>
 <meta name="description" content="Guía para quien empieza a perder pelo en el flequillo y la coronilla: técnicas de injerto, tratamientos con y sin pastillas, alternativas y clínicas en Barcelona.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Geist:wght@400..600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0f1115; --panel:#171a21; --panel2:#1e222b; --line:#2a2f3a;
-    --txt:#e8eaf0; --mut:#9aa3b2; --acc:#6ee7b7; --acc2:#93c5fd; --warn:#fbbf24; --bad:#f87171;
-    --r:14px;
+  @property --bg { syntax: "<color>"; inherits: true; initial-value: oklch(0.97 0.008 85); }
+  @property --surface { syntax: "<color>"; inherits: true; initial-value: oklch(0.995 0.004 85); }
+  @property --ink { syntax: "<color>"; inherits: true; initial-value: oklch(0.27 0.015 60); }
+  @property --muted { syntax: "<color>"; inherits: true; initial-value: oklch(0.40 0.015 60); }
+  @property --line { syntax: "<color>"; inherits: true; initial-value: oklch(0.88 0.01 85); }
+  @property --accent { syntax: "<color>"; inherits: true; initial-value: oklch(0.37 0.07 168); }
+  @property --accent-soft { syntax: "<color>"; inherits: true; initial-value: oklch(0.94 0.02 168); }
+  @property --on-accent { syntax: "<color>"; inherits: true; initial-value: oklch(0.98 0.01 168); }
+
+  :root {
+    color-scheme: light dark;
+    --bg: light-dark(oklch(0.97 0.008 85), oklch(0.20 0.01 75));
+    --surface: light-dark(oklch(0.995 0.004 85), oklch(0.25 0.012 75));
+    --ink: light-dark(oklch(0.27 0.015 60), oklch(0.94 0.008 85));
+    --muted: light-dark(oklch(0.40 0.015 60), oklch(0.78 0.012 80));
+    --line: light-dark(oklch(0.88 0.01 85), oklch(0.36 0.012 75));
+    --accent: light-dark(oklch(0.37 0.07 168), oklch(0.82 0.08 168));
+    --accent-soft: light-dark(oklch(0.94 0.02 168), oklch(0.30 0.03 168));
+    --on-accent: light-dark(oklch(0.98 0.01 168), oklch(0.22 0.03 168));
+    --r: 8px;
+    --ease: 200ms ease-out;
   }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt)}
-  a{color:var(--acc2)}
-  header{padding:56px 20px 32px;background:radial-gradient(1200px 400px at 20% -10%,#1f3b33 0,transparent 60%),radial-gradient(900px 400px at 90% 0,#1d2b45 0,transparent 60%)}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-  h1{font-size:clamp(28px,4.5vw,44px);line-height:1.15;margin:0 0 12px}
-  h2{font-size:26px;margin:0 0 6px}
-  h3{margin:0 0 6px;font-size:18px}
-  .lead{color:var(--mut);font-size:18px;max-width:760px;margin:0}
-  nav{position:sticky;top:0;z-index:5;background:rgba(15,17,21,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 20px}
-  nav a{white-space:nowrap;text-decoration:none;color:var(--mut);padding:6px 12px;border-radius:999px;font-size:14px}
-  nav a:hover{background:var(--panel2);color:var(--txt)}
-  section{padding:44px 0;border-bottom:1px solid var(--line)}
-  .sub{color:var(--mut);margin:0 0 22px}
-  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px}
-  .card p{margin:6px 0}
-  .tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;margin:0 4px 4px 0;border:1px solid var(--line);color:var(--mut)}
-  .ok{color:#062;background:var(--acc);border-color:var(--acc)}
-  .mid{color:#3a2600;background:var(--warn);border-color:var(--warn)}
-  .no{color:#3b0000;background:var(--bad);border-color:var(--bad)}
-  .blue{color:#0b2545;background:var(--acc2);border-color:var(--acc2)}
-  .tldr{background:linear-gradient(135deg,#14261f,#172033);border:1px solid #2f4a3f;border-radius:var(--r);padding:22px;margin-top:26px}
-  .tldr ol{margin:8px 0 0;padding-left:20px}
-  .tldr li{margin:6px 0}
-  table{width:100%;border-collapse:collapse;font-size:14.5px}
-  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{color:var(--mut);font-weight:600;background:var(--panel2);position:sticky;top:0}
-  .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
-  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
-  .filters button{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:14px}
-  .filters button.on{background:var(--acc);color:#062;border-color:var(--acc)}
-  .filters input{flex:1;min-width:200px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px}
-  .clinic .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-  .price{font-weight:700;color:var(--acc);white-space:nowrap}
-  .mut{color:var(--mut);font-size:14px}
-  .note{border-left:3px solid var(--warn);padding:10px 14px;background:#211d12;border-radius:0 10px 10px 0;margin:16px 0}
-  .scale{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
-  .scale .card{padding:14px}
-  .bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 2px}
-  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2))}
-  details{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;margin:10px 0}
-  summary{cursor:pointer;font-weight:600}
-  ul.check{list-style:none;padding:0;margin:0}
-  ul.check li{padding:6px 0 6px 28px;position:relative}
-  ul.check li:before{content:"✓";position:absolute;left:4px;color:var(--acc);font-weight:700}
-  ul.x li:before{content:"✗";color:var(--bad)}
-  footer{padding:32px 0 60px;color:var(--mut);font-size:14px}
-  .small{font-size:13px}
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; color-scheme: light dark; }
+  body {
+    margin: 0;
+    font-family: Geist, "Segoe UI", sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3 {
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 560;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    font-optical-sizing: auto;
+  }
+  h1 { font-size: clamp(2.15rem, 1.4rem + 3vw, 4.15rem); margin: 0 0 16px; line-height: 1.05; text-wrap: balance; }
+  h2 { font-size: clamp(1.55rem, 1.2rem + 1.1vw, 2.1rem); margin: 0 0 8px; max-width: 22em; text-wrap: balance; }
+  h3 { font-size: clamp(1.15rem, 1.05rem + 0.35vw, 1.35rem); margin: 0 0 8px; line-height: 1.25; }
+  p, li, dd { overflow-wrap: break-word; }
+  p { margin: 0; text-wrap: pretty; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { width: min(100% - 2rem, 72rem); margin-inline: auto; }
+  .mark { width: 48px; height: 2px; background: var(--accent); margin: 0 0 20px; }
+  .kicker { margin: 0 0 16px; color: var(--accent); font-size: 0.875rem; font-weight: 600; }
+  .lead { font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem); max-width: 70ch; margin: 0; }
+  .sub { color: var(--muted); margin: 8px 0 32px; max-width: 70ch; }
+  .mut, .aka { color: var(--muted); font-size: 0.875rem; }
+  .aka { margin: 4px 0 0; }
+  .lbl { display: block; color: var(--muted); font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px; }
+  .price { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  header { padding: 32px 0 24px; }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--bg);
+    background: color-mix(in oklch, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-block: 8px;
+    scrollbar-width: thin;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 8px 12px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--r);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color var(--ease), color var(--ease);
+  }
+  section { padding: 48px 0; scroll-margin-top: 72px; }
+  section + section { border-top: 1px solid var(--line); }
+
+  .tldr { margin-top: 48px; }
+  .tldr h2 { margin-bottom: 8px; }
+  .tldr ol { list-style: none; margin: 0; padding: 0; counter-reset: punto; }
+  .tldr li {
+    counter-increment: punto;
+    position: relative;
+    max-width: 74ch;
+    padding: 16px 0 16px 2.75rem;
+    border-top: 1px solid var(--line);
+  }
+  .tldr li:last-child { border-bottom: 1px solid var(--line); }
+  .tldr li::before {
+    content: counter(punto);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 560;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+
+  .cases, .pair, .ask { display: grid; gap: 32px; }
+  .note {
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 16px;
+    margin: 24px 0;
+    max-width: 70ch;
+  }
+  .small { font-size: 0.875rem; }
+
+  .axis {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.8125rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 4px;
+  }
+  .tech { padding: 28px 0; border-top: 1px solid var(--line); }
+  .tech-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px 24px; flex-wrap: wrap; }
+  .tech-price { margin-left: auto; text-align: right; }
+  .range {
+    position: relative;
+    height: 4px;
+    margin: 16px 0 0;
+    background: color-mix(in oklch, var(--ink) 16%, var(--bg));
+    border-radius: var(--r);
+  }
+  .range > span {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: var(--lo);
+    width: calc(var(--hi) - var(--lo));
+    background: var(--accent);
+    border-radius: var(--r);
+  }
+  dl { margin: 16px 0 0; }
+  .drug dl { margin-top: 0; }
+  .tech-head h3 { margin: 0; }
+  .drug > *, .clinic > *, .alt > * { min-width: 0; }
+  dt { color: var(--muted); font-size: 0.8125rem; font-weight: 600; margin-bottom: 4px; }
+  dd { margin: 0; max-width: 70ch; }
+  .tech dl, .drug dl { display: grid; gap: 16px; }
+  .stack { margin-top: 32px; display: grid; gap: 24px; }
+  .stack article { max-width: 70ch; }
+
+  .drug { padding: 24px 0; border-top: 1px solid var(--line); display: grid; gap: 12px 32px; }
+  .drug:last-child { border-bottom: 1px solid var(--line); }
+
+  .safety { list-style: none; margin: 0; padding: 0; }
+  .safety li { padding: 16px 0; border-top: 1px solid var(--line); }
+  .safety li:last-child { border-bottom: 1px solid var(--line); }
+  .bar { height: 4px; margin: 8px 0; background: color-mix(in oklch, var(--ink) 16%, var(--bg)); border-radius: var(--r); }
+  .bar i { display: block; height: 100%; background: var(--accent); border-radius: var(--r); }
+  .safety .mut { display: block; max-width: 70ch; margin-top: 4px; }
+
+  .alt {
+    display: grid;
+    gap: 8px 32px;
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+  }
+  .alt:first-of-type { margin-top: 24px; }
+  .alt:last-child { border-bottom: 1px solid var(--line); }
+  .alt p { max-width: 70ch; }
+  .alt .price { margin-top: 8px; }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+  .filters button, .filters input {
+    font: inherit;
+    font-size: 0.875rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    min-height: 40px;
+    transition: background-color var(--ease), color var(--ease), border-color var(--ease);
+  }
+  .filters button { padding: 8px 12px; cursor: pointer; }
+  .filters button.on {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-color: var(--accent);
+  }
+  .filters button:active { background: var(--accent-soft); color: var(--ink); }
+  .filters button.on:active { background: var(--accent); color: var(--on-accent); }
+  .filters input { flex: 1 1 12rem; min-width: 0; padding: 8px 12px; }
+  @media (max-width: 600px) {
+    .filters input { flex-basis: 100%; }
+  }
+  .filters input:hover, .filters button:hover { border-color: var(--accent); }
+
+  .clinic {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px 24px;
+    padding: 16px 8px;
+    border-top: 1px solid var(--line);
+    border-radius: var(--r);
+    transition: background-color var(--ease);
+  }
+  .clinic:last-child { border-bottom: 1px solid var(--line); }
+  .clinic-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+  .clinic-top h3 { margin: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0; }
+  .desc { max-width: 70ch; margin-top: 4px; }
+  .tag {
+    display: inline-block;
+    font-family: Geist, "Segoe UI", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.4;
+    padding: 2px 8px;
+    border-radius: var(--r);
+    border: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .tag.ok { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+  .tag.no { background: var(--ink); color: var(--bg); border-color: transparent; }
+  .tag.mid { color: var(--ink); }
+  .tag.blue { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+  .empty {
+    margin: 8px 0 0;
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    color: var(--muted);
+  }
+
+  ul.check { list-style: none; padding: 0; margin: 8px 0 0; }
+  ul.check li { padding: 6px 0 6px 20px; position: relative; max-width: 70ch; }
+  ul.check li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--r);
+    background: var(--accent);
+  }
+  ul.x li::before {
+    width: 8px;
+    height: 2px;
+    top: 0.85em;
+    border-radius: 0;
+    background: var(--ink);
+  }
+
+  details { border-top: 1px solid var(--line); padding: 16px 0; }
+  details + details { border-top: 1px solid var(--line); }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    transform: rotate(45deg) translateY(-2px);
+    flex: none;
+    transition: transform var(--ease);
+  }
+  details[open] summary::after { transform: rotate(225deg) translateY(-2px); }
+  details p { margin-top: 12px; max-width: 70ch; }
+
+  .sources { list-style: none; margin: 0; padding: 0; }
+  .sources li { padding: 12px 0; border-top: 1px solid var(--line); max-width: 70ch; }
+  .sources li:last-child { border-bottom: 1px solid var(--line); }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 64px; color: var(--muted); font-size: 0.875rem; }
+
+  @media (min-width: 720px) {
+    .clinic { grid-template-columns: minmax(0, 1fr) auto; align-items: start; }
+    .clinic .meta { grid-column: 2; grid-row: 1; text-align: right; justify-self: end; padding-top: 4px; white-space: nowrap; }
+    .clinic .mut, .clinic .tags, .clinic .desc { grid-column: 1; }
+    .alt { grid-template-columns: minmax(0, 1fr) auto; align-items: start; }
+    .alt .price { grid-column: 2; grid-row: 1; margin-top: 28px; text-align: right; white-space: nowrap; }
+  }
+  @media (min-width: 800px) {
+    header { padding: 48px 0 32px; }
+    section { padding: 72px 0; }
+    .cases, .pair { grid-template-columns: 1fr 1fr; gap: 32px 48px; }
+    .tech dl { grid-template-columns: 1.25fr 1fr 1fr; }
+    .drug { grid-template-columns: minmax(0, 16rem) minmax(0, 1fr); align-items: start; }
+    .drug dl { grid-template-columns: 1fr 1fr; }
+    .drug dl div:nth-child(n+3) { grid-column: 1 / -1; }
+  }
+  @media (min-width: 860px) {
+    .ask { grid-template-columns: 1fr 1fr; gap: 40px 56px; }
+    .ask .span { grid-column: 1 / -1; }
+  }
+  @media (hover: hover) {
+    .nav-links a:hover { color: var(--ink); background: var(--accent-soft); }
+    .filters button:hover { background: var(--accent-soft); }
+    .filters button.on:hover { background: var(--accent); color: var(--on-accent); }
+    .clinic:hover { background: var(--accent-soft); }
+  }
+  .clinic:focus-within { background: var(--accent-soft); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
 </style>
 </head>
 <body>
 
+<nav aria-label="Secciones"><div class="wrap nav-links">
+  <a href="#tu-caso">Tu caso</a>
+  <a href="#tecnicas">Técnicas de injerto</a>
+  <a href="#farmacos">Pastillas y tratamientos</a>
+  <a href="#sin-pastillas">Sin pastillas</a>
+  <a href="#alternativas">Rapar / otras</a>
+  <a href="#clinicas">Clínicas BCN</a>
+  <a href="#consulta">Qué preguntar</a>
+  <a href="#fuentes">Fuentes</a>
+</div></nav>
+
 <header>
   <div class="wrap">
-    <span class="tag blue">Barcelona · actualizado sep 2026</span>
+    <p class="kicker">Barcelona · actualizado sep 2026</p>
     <h1>¿Me pongo pelo o me rapo?</h1>
+    <div class="mark" aria-hidden="true"></div>
     <p class="lead">Guía para alguien que empieza a perder pelo por el <b>flequillo</b> y le <b>clarea la coronilla</b>: qué técnicas existen, qué pelo queda “como el tuyo”, si hay que tomar pastillas (y cada cuánto), qué alternativas hay sin pastillas y dónde hacerlo en Barcelona.</p>
 
     <div class="tldr">
-      <h3>Resumen en 6 puntos</h3>
+      <h2>Resumen en 6 puntos</h2>
       <ol>
         <li><b>El único pelo “tuyo de verdad” y permanente es el injerto (FUE / DHI).</b> Se trasladan folículos de la nuca, que son genéticamente resistentes a la calvicie: ese pelo trasplantado <b>no necesita pastillas</b> y dura, en la práctica, toda la vida.</li>
         <li><b>Pero el pelo que aún tienes en el flequillo y la coronilla sigue cayendo.</b> El injerto no frena la alopecia. Sin tratamiento, en 5–10 años puedes acabar con “islas” de pelo injertado rodeadas de zonas vacías, y la zona donante es limitada.</li>
@@ -86,109 +380,244 @@
   </div>
 </header>
 
-<nav><div class="wrap">
-  <a href="#tu-caso">Tu caso</a>
-  <a href="#tecnicas">Técnicas de injerto</a>
-  <a href="#farmacos">Pastillas y tratamientos</a>
-  <a href="#sin-pastillas">Sin pastillas</a>
-  <a href="#alternativas">Rapar / otras</a>
-  <a href="#clinicas">Clínicas BCN</a>
-  <a href="#consulta">Qué preguntar</a>
-  <a href="#fuentes">Fuentes</a>
-</div></nav>
-
 <main class="wrap">
 
 <section id="tu-caso">
   <h2>Tu caso: flequillo + coronilla empezando</h2>
   <p class="sub">Es el patrón típico de alopecia androgenética (calvicie común masculina), probablemente un Norwood 2–3 con inicio en vértex. Lo decide un médico con tricoscopia.</p>
-  <div class="grid">
-    <div class="card">
+  <div class="cases">
+    <article>
       <h3>Lo que suele pasar si no haces nada</h3>
       <p>La alopecia androgenética es <b>progresiva</b>: la hormona DHT va miniaturizando los folículos del frontal y la coronilla. La velocidad varía mucho por genética (mira a tu padre, abuelos, tíos maternos).</p>
-    </div>
-    <div class="card">
+    </article>
+    <article>
       <h3>Por qué el injerto aguanta</h3>
       <p>El pelo de la nuca y los laterales (“zona donante”) no tiene sensibilidad a la DHT. Al moverlo al frontal <b>conserva esa resistencia</b>. Por eso el pelo injertado no necesita pastillas.</p>
-    </div>
-    <div class="card">
+    </article>
+    <article>
       <h3>El problema de operarse joven y pronto</h3>
       <p>Si la calvicie sigue avanzando, necesitarás más injertos más adelante. La zona donante da para unas <b>4.000–7.000 unidades foliculares en toda la vida</b>: hay que planificar para el “tú” de 50 años, no solo para hoy.</p>
-    </div>
-    <div class="card">
+    </article>
+    <article>
       <h3>Coronilla: la zona difícil</h3>
       <p>La coronilla gasta muchos injertos (el pelo sale en remolino) y es donde mejor funcionan los fármacos. Muchos médicos tratan primero la coronilla con medicación y dejan el injerto para el flequillo/entradas.</p>
-    </div>
+    </article>
   </div>
 </section>
 
 <section id="tecnicas">
   <h2>Técnicas para ponerse pelo propio (injerto)</h2>
   <p class="sub">Todas mueven tu propio pelo. Cambia cómo se extrae y cómo se implanta. El resultado depende mucho más del <b>equipo y de quién hace cada paso</b> que del nombre comercial de la técnica.</p>
-  <div class="tbl"><table>
-    <thead><tr><th>Técnica</th><th>Cómo funciona</th><th>Ventajas</th><th>Contras</th><th>Precio BCN</th></tr></thead>
-    <tbody>
-      <tr><td><b>FUE</b><br><span class="mut">Follicular Unit Extraction</span></td><td>Se extraen folículos uno a uno de la nuca con micropunch (0,7–1 mm) y se implantan en incisiones.</td><td>La técnica estándar. Sin cicatriz lineal, puedes llevar el pelo corto detrás. Recuperación de 7–10 días.</td><td>Hay que rapar la zona donante. Si se sobreexplota la nuca, queda clareada.</td><td>2.500–7.500 €</td></tr>
-      <tr><td><b>FUE Zafiro</b></td><td>FUE en la que las incisiones de la zona receptora se hacen con cuchillas de zafiro en lugar de acero.</td><td>Incisiones más finas y limpias, se cura algo antes. Permite más densidad.</td><td>En la práctica es sobre todo un nombre comercial: la diferencia con FUE bien hecha es pequeña.</td><td>2.900–6.000 €</td></tr>
-      <tr><td><b>DHI</b><br><span class="mut">Direct Hair Implantation, “Choi pen”</span></td><td>Extracción FUE, pero el implante se hace con un bolígrafo implantador que abre y coloca a la vez.</td><td>Mucho control sobre ángulo y dirección. Útil para densificar entre pelo existente sin rapar (bueno para tu flequillo).</td><td>Más lenta y cara. Se implantan menos injertos por sesión.</td><td>3.000–8.500 €</td></tr>
-      <tr><td><b>FUE sin rapar / Long Hair FUE</b></td><td>Se extraen folículos o se implanta sin afeitar la cabeza.</td><td>Discreto: se nota mucho menos que te has operado.</td><td>Más caro, sesiones más pequeñas. No todas las clínicas lo hacen bien.</td><td>+20–40 %</td></tr>
-      <tr><td><b>FUT / FUSS</b><br><span class="mut">técnica de tira</span></td><td>Se extrae una tira de piel de la nuca y se diseca al microscopio.</td><td>Folículos muy bien conservados y muchos injertos en una sesión. Ahorra “capital” donante para el futuro.</td><td>Deja una cicatriz lineal que se ve si te rapas al 0–1. Hoy poco usada (en BCN, p. ej., IQC Teknon).</td><td>Similar a FUE</td></tr>
-      <tr><td><b>FUE robótica</b><br><span class="mut">ARTAS, BotHair (Insparya)</span></td><td>Un robot asiste la extracción.</td><td>Consistencia en la extracción.</td><td>No es mejor por sí misma: el diseño y la implantación siguen siendo manuales.</td><td>4.000–8.000 €</td></tr>
-      <tr><td><b>BHT</b><br><span class="mut">Body Hair Transplant</span></td><td>Se extrae pelo de barba o pecho.</td><td>Recurso cuando la nuca está agotada.</td><td>El pelo corporal es distinto (más grueso o más corto). Solo como complemento.</td><td>Variable</td></tr>
-    </tbody>
-  </table></div>
-
-  <div class="grid" style="margin-top:16px">
-    <div class="card">
+  <div class="chart">
+    <div class="axis" aria-hidden="true"><span>0 €</span><span>3.000 €</span><span>6.000 €</span><span>9.000 €</span></div>
+    <article class="tech">
+      <div class="tech-head">
+        <div><h3>FUE</h3><p class="aka">Follicular Unit Extraction</p></div>
+        <p class="tech-price"><span class="lbl">Precio BCN</span><span class="price">2.500–7.500 €</span></p>
+      </div>
+      <div class="range" style="--lo:27.7778%;--hi:83.3333%" aria-hidden="true"><span></span></div>
+      <dl>
+        <div><dt>Cómo funciona</dt><dd>Se extraen folículos uno a uno de la nuca con micropunch (0,7–1 mm) y se implantan en incisiones.</dd></div>
+        <div><dt>Ventajas</dt><dd>La técnica estándar. Sin cicatriz lineal, puedes llevar el pelo corto detrás. Recuperación de 7–10 días.</dd></div>
+        <div><dt>Contras</dt><dd>Hay que rapar la zona donante. Si se sobreexplota la nuca, queda clareada.</dd></div>
+      </dl>
+    </article>
+    <article class="tech">
+      <div class="tech-head">
+        <div><h3>FUE Zafiro</h3></div>
+        <p class="tech-price"><span class="lbl">Precio BCN</span><span class="price">2.900–6.000 €</span></p>
+      </div>
+      <div class="range" style="--lo:32.2222%;--hi:66.6667%" aria-hidden="true"><span></span></div>
+      <dl>
+        <div><dt>Cómo funciona</dt><dd>FUE en la que las incisiones de la zona receptora se hacen con cuchillas de zafiro en lugar de acero.</dd></div>
+        <div><dt>Ventajas</dt><dd>Incisiones más finas y limpias, se cura algo antes. Permite más densidad.</dd></div>
+        <div><dt>Contras</dt><dd>En la práctica es sobre todo un nombre comercial: la diferencia con FUE bien hecha es pequeña.</dd></div>
+      </dl>
+    </article>
+    <article class="tech">
+      <div class="tech-head">
+        <div><h3>DHI</h3><p class="aka">Direct Hair Implantation, “Choi pen”</p></div>
+        <p class="tech-price"><span class="lbl">Precio BCN</span><span class="price">3.000–8.500 €</span></p>
+      </div>
+      <div class="range" style="--lo:33.3333%;--hi:94.4444%" aria-hidden="true"><span></span></div>
+      <dl>
+        <div><dt>Cómo funciona</dt><dd>Extracción FUE, pero el implante se hace con un bolígrafo implantador que abre y coloca a la vez.</dd></div>
+        <div><dt>Ventajas</dt><dd>Mucho control sobre ángulo y dirección. Útil para densificar entre pelo existente sin rapar (bueno para tu flequillo).</dd></div>
+        <div><dt>Contras</dt><dd>Más lenta y cara. Se implantan menos injertos por sesión.</dd></div>
+      </dl>
+    </article>
+    <article class="tech">
+      <div class="tech-head">
+        <div><h3>FUE sin rapar / Long Hair FUE</h3></div>
+        <p class="tech-price"><span class="lbl">Precio BCN</span><span class="price">+20–40 %</span></p>
+      </div>
+      <dl>
+        <div><dt>Cómo funciona</dt><dd>Se extraen folículos o se implanta sin afeitar la cabeza.</dd></div>
+        <div><dt>Ventajas</dt><dd>Discreto: se nota mucho menos que te has operado.</dd></div>
+        <div><dt>Contras</dt><dd>Más caro, sesiones más pequeñas. No todas las clínicas lo hacen bien.</dd></div>
+      </dl>
+    </article>
+    <article class="tech">
+      <div class="tech-head">
+        <div><h3>FUT / FUSS</h3><p class="aka">técnica de tira</p></div>
+        <p class="tech-price"><span class="lbl">Precio BCN</span><span class="price">Similar a FUE</span></p>
+      </div>
+      <dl>
+        <div><dt>Cómo funciona</dt><dd>Se extrae una tira de piel de la nuca y se diseca al microscopio.</dd></div>
+        <div><dt>Ventajas</dt><dd>Folículos muy bien conservados y muchos injertos en una sesión. Ahorra “capital” donante para el futuro.</dd></div>
+        <div><dt>Contras</dt><dd>Deja una cicatriz lineal que se ve si te rapas al 0–1. Hoy poco usada (en BCN, p. ej., IQC Teknon).</dd></div>
+      </dl>
+    </article>
+    <article class="tech">
+      <div class="tech-head">
+        <div><h3>FUE robótica</h3><p class="aka">ARTAS, BotHair (Insparya)</p></div>
+        <p class="tech-price"><span class="lbl">Precio BCN</span><span class="price">4.000–8.000 €</span></p>
+      </div>
+      <div class="range" style="--lo:44.4444%;--hi:88.8889%" aria-hidden="true"><span></span></div>
+      <dl>
+        <div><dt>Cómo funciona</dt><dd>Un robot asiste la extracción.</dd></div>
+        <div><dt>Ventajas</dt><dd>Consistencia en la extracción.</dd></div>
+        <div><dt>Contras</dt><dd>No es mejor por sí misma: el diseño y la implantación siguen siendo manuales.</dd></div>
+      </dl>
+    </article>
+    <article class="tech">
+      <div class="tech-head">
+        <div><h3>BHT</h3><p class="aka">Body Hair Transplant</p></div>
+        <p class="tech-price"><span class="lbl">Precio BCN</span><span class="price">Variable</span></p>
+      </div>
+      <dl>
+        <div><dt>Cómo funciona</dt><dd>Se extrae pelo de barba o pecho.</dd></div>
+        <div><dt>Ventajas</dt><dd>Recurso cuando la nuca está agotada.</dd></div>
+        <div><dt>Contras</dt><dd>El pelo corporal es distinto (más grueso o más corto). Solo como complemento.</dd></div>
+      </dl>
+    </article>
+  </div>
+  <div class="stack">
+    <article>
       <h3>Cómo va el proceso</h3>
       <p><b>Día 0:</b> 6–9 h con anestesia local. <b>Días 1–10:</b> costras y enrojecimiento. <b>Semanas 2–8:</b> el pelo injertado se cae (“shock loss”, es normal). <b>Meses 3–4:</b> empieza a salir. <b>Meses 12–18:</b> resultado final.</p>
-    </div>
-    <div class="card">
+    </article>
+    <article>
       <h3>Riesgos reales</h3>
       <p>Infección (rara), foliculitis, entumecimiento temporal, caída del pelo nativo por el estrés de la cirugía, zona donante sobreexplotada y, sobre todo, <b>una línea frontal mal diseñada</b> (demasiado baja o recta) que no envejecerá bien.</p>
-    </div>
-    <div class="card">
+    </article>
+    <article>
       <h3>Supervivencia de injertos</h3>
       <p>Con un buen equipo, el 85–95 % de los injertos prende. El pelo que prende es permanente. Pide que te den por escrito el número de unidades foliculares implantadas.</p>
-    </div>
+    </article>
   </div>
 </section>
 
 <section id="farmacos">
   <h2>Pastillas y tratamientos: qué hay, cada cuánto y qué tal funcionan</h2>
   <p class="sub">Frenan la caída de tu pelo nativo y a veces hacen que vuelva a crecer. <b>Solo funcionan mientras los usas</b>: si paras, en 6–12 meses pierdes lo ganado. Todo requiere receta y control médico.</p>
-
-  <div class="tbl"><table>
-    <thead><tr><th>Tratamiento</th><th>¿Pastilla?</th><th>Frecuencia</th><th>Eficacia</th><th>Efectos secundarios / notas</th></tr></thead>
-    <tbody>
-      <tr><td><b>Finasterida oral 1 mg</b></td><td><span class="tag no">Sí</span></td><td>1 al día, de por vida</td><td>Alta. Frena la caída en ~80–90 % de los hombres y ~60 % recupera algo. Es el tratamiento de referencia aprobado.</td><td>Disfunción sexual en ~1–4 % (reversible al dejarla en la mayoría). En 2025 la Agencia Europea del Medicamento añadió las <b>ideas suicidas</b> como efecto adverso confirmado (frecuencia desconocida; hay que dejarla si cambia el ánimo) y ahora se entrega una tarjeta de información al paciente. Existe un “síndrome post-finasterida”, raro y discutido.</td></tr>
-      <tr><td><b>Dutasterida oral 0,5 mg</b></td><td><span class="tag no">Sí</span></td><td>1 al día (a veces 3–7 por semana)</td><td>La más eficaz en los metaanálisis (más que la finasterida).</td><td>Uso “fuera de ficha técnica” en España para el pelo. Efectos parecidos a la finasterida y se elimina muy lentamente del cuerpo.</td></tr>
-      <tr><td><b>Minoxidil oral dosis baja</b><br><span class="mut">2,5–5 mg</span></td><td><span class="tag no">Sí</span></td><td>1 al día</td><td>Similar al minoxidil tópico al 5 %, algo mejor en la coronilla. Mucha mejor adherencia.</td><td>Vello en cara y cuerpo (hasta ~1 de cada 2), taquicardia, retención de líquidos. No frena la causa hormonal.</td></tr>
-      <tr><td><b>Finasterida tópica</b><br><span class="mut">spray 0,25 %, o fórmula magistral</span></td><td><span class="tag ok">No</span></td><td>1 al día en el cuero cabelludo</td><td>A las 24 semanas, parecida a la pastilla.</td><td>Absorción al cuerpo mucho menor, aunque no nula. Menos datos a largo plazo. Es la mejor opción “antihormonal sin pastilla”.</td></tr>
-      <tr><td><b>Minoxidil tópico 5 %</b></td><td><span class="tag ok">No</span></td><td>1–2 al día</td><td>Moderada. El tópico aprobado más eficaz.</td><td>Irritación, caída inicial transitoria. Es pesado de mantener (loción o espuma cada día).</td></tr>
-      <tr><td><b>Mesoterapia con dutasterida</b></td><td><span class="tag ok">No</span> <span class="mut">(pinchazos)</span></td><td>Sesiones cada 3–6 meses tras la fase inicial</td><td>Moderada, bastante menor que la oral.</td><td>Sin protocolo estandarizado. Útil para quien no quiere pastilla diaria. Se hace en clínica.</td></tr>
-      <tr><td><b>PRP</b><br><span class="mut">plasma rico en plaquetas</span></td><td><span class="tag ok">No</span></td><td>3–4 sesiones mensuales y luego cada 4–6 meses</td><td>Leve–moderada, evidencia irregular.</td><td>Complemento, no tratamiento principal. 250–500 €/sesión. Las clínicas lo venden mucho.</td></tr>
-      <tr><td><b>Láser de baja potencia</b><br><span class="mut">casco / gorra</span></td><td><span class="tag ok">No</span></td><td>20–30 min, 3 veces por semana</td><td>Leve.</td><td>Seguro, pero de efecto modesto. Solo como complemento.</td></tr>
-      <tr><td><b>Exosomas, “células madre”, factores de crecimiento</b></td><td><span class="tag ok">No</span></td><td>—</td><td>Sin evidencia sólida.</td><td>Caros y de marketing. No sustituyen lo anterior.</td></tr>
-      <tr><td><b>Clascoterona 5 % (Breezula)</b></td><td><span class="tag ok">No</span></td><td>Loción diaria</td><td>Prometedora: la fase III (1.465 hombres) fue positiva y seguía ganando pelo a los 12 meses.</td><td><b>Aún no está aprobada.</b> Se prevé pedir la aprobación en EE. UU. y la UE a principios de 2027, así que en España llegaría probablemente en 2028. Antiandrógeno tópico sin efecto sistémico relevante. Encaja con lo que buscas: vigílala.</td></tr>
-    </tbody>
-  </table></div>
+  <p class="lbl">Tratamiento</p>
+  <article class="drug">
+    <div><h3>Finasterida oral 1 mg</h3></div>
+    <dl>
+      <div><dt>¿Pastilla?</dt><dd><span class="tag no">Sí</span></dd></div>
+      <div><dt>Frecuencia</dt><dd>1 al día, de por vida</dd></div>
+      <div><dt>Eficacia</dt><dd>Alta. Frena la caída en ~80–90 % de los hombres y ~60 % recupera algo. Es el tratamiento de referencia aprobado.</dd></div>
+      <div><dt>Efectos secundarios / notas</dt><dd>Disfunción sexual en ~1–4 % (reversible al dejarla en la mayoría). En 2025 la Agencia Europea del Medicamento añadió las <b>ideas suicidas</b> como efecto adverso confirmado (frecuencia desconocida; hay que dejarla si cambia el ánimo) y ahora se entrega una tarjeta de información al paciente. Existe un “síndrome post-finasterida”, raro y discutido.</dd></div>
+    </dl>
+  </article>
+  <article class="drug">
+    <div><h3>Dutasterida oral 0,5 mg</h3></div>
+    <dl>
+      <div><dt>¿Pastilla?</dt><dd><span class="tag no">Sí</span></dd></div>
+      <div><dt>Frecuencia</dt><dd>1 al día (a veces 3–7 por semana)</dd></div>
+      <div><dt>Eficacia</dt><dd>La más eficaz en los metaanálisis (más que la finasterida).</dd></div>
+      <div><dt>Efectos secundarios / notas</dt><dd>Uso “fuera de ficha técnica” en España para el pelo. Efectos parecidos a la finasterida y se elimina muy lentamente del cuerpo.</dd></div>
+    </dl>
+  </article>
+  <article class="drug">
+    <div><h3>Minoxidil oral dosis baja</h3><p class="aka">2,5–5 mg</p></div>
+    <dl>
+      <div><dt>¿Pastilla?</dt><dd><span class="tag no">Sí</span></dd></div>
+      <div><dt>Frecuencia</dt><dd>1 al día</dd></div>
+      <div><dt>Eficacia</dt><dd>Similar al minoxidil tópico al 5 %, algo mejor en la coronilla. Mucha mejor adherencia.</dd></div>
+      <div><dt>Efectos secundarios / notas</dt><dd>Vello en cara y cuerpo (hasta ~1 de cada 2), taquicardia, retención de líquidos. No frena la causa hormonal.</dd></div>
+    </dl>
+  </article>
+  <article class="drug">
+    <div><h3>Finasterida tópica</h3><p class="aka">spray 0,25 %, o fórmula magistral</p></div>
+    <dl>
+      <div><dt>¿Pastilla?</dt><dd><span class="tag ok">No</span></dd></div>
+      <div><dt>Frecuencia</dt><dd>1 al día en el cuero cabelludo</dd></div>
+      <div><dt>Eficacia</dt><dd>A las 24 semanas, parecida a la pastilla.</dd></div>
+      <div><dt>Efectos secundarios / notas</dt><dd>Absorción al cuerpo mucho menor, aunque no nula. Menos datos a largo plazo. Es la mejor opción “antihormonal sin pastilla”.</dd></div>
+    </dl>
+  </article>
+  <article class="drug">
+    <div><h3>Minoxidil tópico 5 %</h3></div>
+    <dl>
+      <div><dt>¿Pastilla?</dt><dd><span class="tag ok">No</span></dd></div>
+      <div><dt>Frecuencia</dt><dd>1–2 al día</dd></div>
+      <div><dt>Eficacia</dt><dd>Moderada. El tópico aprobado más eficaz.</dd></div>
+      <div><dt>Efectos secundarios / notas</dt><dd>Irritación, caída inicial transitoria. Es pesado de mantener (loción o espuma cada día).</dd></div>
+    </dl>
+  </article>
+  <article class="drug">
+    <div><h3>Mesoterapia con dutasterida</h3></div>
+    <dl>
+      <div><dt>¿Pastilla?</dt><dd><span class="tag ok">No</span> <span class="mut">(pinchazos)</span></dd></div>
+      <div><dt>Frecuencia</dt><dd>Sesiones cada 3–6 meses tras la fase inicial</dd></div>
+      <div><dt>Eficacia</dt><dd>Moderada, bastante menor que la oral.</dd></div>
+      <div><dt>Efectos secundarios / notas</dt><dd>Sin protocolo estandarizado. Útil para quien no quiere pastilla diaria. Se hace en clínica.</dd></div>
+    </dl>
+  </article>
+  <article class="drug">
+    <div><h3>PRP</h3><p class="aka">plasma rico en plaquetas</p></div>
+    <dl>
+      <div><dt>¿Pastilla?</dt><dd><span class="tag ok">No</span></dd></div>
+      <div><dt>Frecuencia</dt><dd>3–4 sesiones mensuales y luego cada 4–6 meses</dd></div>
+      <div><dt>Eficacia</dt><dd>Leve–moderada, evidencia irregular.</dd></div>
+      <div><dt>Efectos secundarios / notas</dt><dd>Complemento, no tratamiento principal. 250–500 €/sesión. Las clínicas lo venden mucho.</dd></div>
+    </dl>
+  </article>
+  <article class="drug">
+    <div><h3>Láser de baja potencia</h3><p class="aka">casco / gorra</p></div>
+    <dl>
+      <div><dt>¿Pastilla?</dt><dd><span class="tag ok">No</span></dd></div>
+      <div><dt>Frecuencia</dt><dd>20–30 min, 3 veces por semana</dd></div>
+      <div><dt>Eficacia</dt><dd>Leve.</dd></div>
+      <div><dt>Efectos secundarios / notas</dt><dd>Seguro, pero de efecto modesto. Solo como complemento.</dd></div>
+    </dl>
+  </article>
+  <article class="drug">
+    <div><h3>Exosomas, “células madre”, factores de crecimiento</h3></div>
+    <dl>
+      <div><dt>¿Pastilla?</dt><dd><span class="tag ok">No</span></dd></div>
+      <div><dt>Frecuencia</dt><dd>—</dd></div>
+      <div><dt>Eficacia</dt><dd>Sin evidencia sólida.</dd></div>
+      <div><dt>Efectos secundarios / notas</dt><dd>Caros y de marketing. No sustituyen lo anterior.</dd></div>
+    </dl>
+  </article>
+  <article class="drug">
+    <div><h3>Clascoterona 5 % (Breezula)</h3></div>
+    <dl>
+      <div><dt>¿Pastilla?</dt><dd><span class="tag ok">No</span></dd></div>
+      <div><dt>Frecuencia</dt><dd>Loción diaria</dd></div>
+      <div><dt>Eficacia</dt><dd>Prometedora: la fase III (1.465 hombres) fue positiva y seguía ganando pelo a los 12 meses.</dd></div>
+      <div><dt>Efectos secundarios / notas</dt><dd><b>Aún no está aprobada.</b> Se prevé pedir la aprobación en EE. UU. y la UE a principios de 2027, así que en España llegaría probablemente en 2028. Antiandrógeno tópico sin efecto sistémico relevante. Encaja con lo que buscas: vigílala.</dd></div>
+    </dl>
+  </article>
 </section>
 
 <section id="sin-pastillas">
   <h2>Tu prioridad: sin pastillas pero con máxima seguridad</h2>
   <p class="sub">Seguridad estimada de mantener un aspecto con pelo a largo plazo (orientativo, a partir de la evidencia y el consenso clínico; no es un dato de un estudio concreto).</p>
-  <div class="scale">
-    <div class="card"><b>Injerto + finasterida o dutasterida oral</b><div class="bar"><i style="width:92%"></i></div><span class="mut">La opción más segura. Implica pastilla diaria.</span></div>
-    <div class="card"><b>Injerto + finasterida tópica + minoxidil tópico</b><div class="bar"><i style="width:80%"></i></div><span class="mut">La mejor opción sin pastillas. Requiere constancia diaria.</span></div>
-    <div class="card"><b>Injerto + mesoterapia con dutasterida + minoxidil tópico</b><div class="bar"><i style="width:72%"></i></div><span class="mut">Sin pastillas y sin rutina diaria del antiandrógeno.</span></div>
-    <div class="card"><b>Injerto sin ningún tratamiento</b><div class="bar"><i style="width:45%"></i></div><span class="mut">Lo injertado se queda, pero el pelo nativo sigue cayendo. Probablemente harán falta más cirugías.</span></div>
-    <div class="card"><b>Rapado (+ micropigmentación opcional)</b><div class="bar"><i style="width:100%"></i></div><span class="mut">100 % predecible y sin fármacos. No es “tener pelo”.</span></div>
-    <div class="card"><b>Prótesis / integración capilar</b><div class="bar"><i style="width:95%"></i></div><span class="mut">Pelo inmediato sin fármacos. Coste mensual y mantenimiento de por vida.</span></div>
-  </div>
+  <ol class="safety">
+    <li><b>Injerto + finasterida o dutasterida oral</b><div class="bar"><i style="width:92%"></i></div><span class="mut">La opción más segura. Implica pastilla diaria.</span></li>
+    <li><b>Injerto + finasterida tópica + minoxidil tópico</b><div class="bar"><i style="width:80%"></i></div><span class="mut">La mejor opción sin pastillas. Requiere constancia diaria.</span></li>
+    <li><b>Injerto + mesoterapia con dutasterida + minoxidil tópico</b><div class="bar"><i style="width:72%"></i></div><span class="mut">Sin pastillas y sin rutina diaria del antiandrógeno.</span></li>
+    <li><b>Injerto sin ningún tratamiento</b><div class="bar"><i style="width:45%"></i></div><span class="mut">Lo injertado se queda, pero el pelo nativo sigue cayendo. Probablemente harán falta más cirugías.</span></li>
+    <li><b>Rapado (+ micropigmentación opcional)</b><div class="bar"><i style="width:100%"></i></div><span class="mut">100 % predecible y sin fármacos. No es “tener pelo”.</span></li>
+    <li><b>Prótesis / integración capilar</b><div class="bar"><i style="width:95%"></i></div><span class="mut">Pelo inmediato sin fármacos. Coste mensual y mantenimiento de por vida.</span></li>
+  </ol>
   <div class="note"><b>Clave:</b> las pastillas no hacen falta para el pelo injertado; hacen falta para <b>no perder el que tienes</b>. Con pérdida temprana como la tuya, el pelo que aún tienes vale mucho: conservarlo es lo que evita necesitar 2–3 cirugías.</div>
-  <div class="grid">
-    <div class="card">
+  <div class="pair">
+    <article>
       <h3>Plan “sin pastillas” razonable para hablar con el médico</h3>
       <ul class="check">
         <li>Finasterida tópica diaria + minoxidil tópico 5 %.</li>
@@ -197,8 +626,8 @@
         <li>Si sigue avanzando: valorar la mesoterapia con dutasterida o reconsiderar la vía oral.</li>
         <li>Seguir la clascoterona (posible aprobación 2027–2028).</li>
       </ul>
-    </div>
-    <div class="card">
+    </article>
+    <article>
       <h3>Cuándo tiene más sentido rapar</h3>
       <ul class="check">
         <li>No quieres ningún fármaco y tu familia tiene calvicie avanzada.</li>
@@ -206,62 +635,68 @@
         <li>Tienes buena forma de cráneo y te gusta cómo te ves con el pelo muy corto (pruébalo al 1–2 antes de decidir).</li>
         <li>No quieres gastar 3.000–10.000 € + mantenimiento.</li>
       </ul>
-    </div>
+    </article>
   </div>
 </section>
 
 <section id="alternativas">
   <h2>Alternativas no quirúrgicas</h2>
-  <div class="grid">
-    <div class="card">
+  <article class="alt">
+    <div>
       <span class="tag ok">Sin fármacos</span>
       <h3>Micropigmentación capilar (SMP)</h3>
       <p>Microtatuaje que simula el pelo rapado o da sensación de densidad donde clarea. 2–3 sesiones con 10+ días entre ellas. Dura 3–5 años con retoques.</p>
-      <p class="price">330 €/sesión · 500–2.000 € total</p>
       <p class="mut">Ideal combinada con el rapado o para disimular la coronilla clara.</p>
     </div>
-    <div class="card">
+    <p class="price">330 €/sesión · 500–2.000 € total</p>
+  </article>
+  <article class="alt">
+    <div>
       <span class="tag ok">Sin fármacos</span>
       <h3>Prótesis / sistema de integración</h3>
       <p>Una membrana con pelo natural que se integra con tu pelo o se adhiere al cuero cabelludo. Resultado inmediato y denso.</p>
-      <p class="price">215–280 €/mes (hombre)</p>
       <p class="mut">Reajustes cada 3–5 semanas. Coste de por vida (~2.500–3.400 €/año).</p>
     </div>
-    <div class="card">
+    <p class="price">215–280 €/mes (hombre)</p>
+  </article>
+  <article class="alt">
+    <div>
       <span class="tag ok">Sin fármacos</span>
       <h3>Rapado</h3>
       <p>La opción más honesta y barata. Muchos hombres con pérdida temprana se ven mejor rapados que con un pelo que clarea.</p>
-      <p class="price">0 €</p>
       <p class="mut">Pruébalo un mes antes de gastar nada: la decisión es reversible.</p>
     </div>
-    <div class="card">
+    <p class="price">0 €</p>
+  </article>
+  <article class="alt">
+    <div>
       <span class="tag mid">Cosmético</span>
       <h3>Fibras capilares y corte estratégico</h3>
       <p>Fibras de queratina (tipo Toppik) para disimular la coronilla día a día y un corte más corto para el flequillo.</p>
-      <p class="price">~20–30 €/mes</p>
       <p class="mut">Puente mientras decides.</p>
     </div>
-  </div>
+    <p class="price">~20–30 €/mes</p>
+  </article>
 </section>
 
 <section id="clinicas">
   <h2>Clínicas y consultas en Barcelona</h2>
   <p class="sub">Precios “desde” publicados por cada centro en 2026: el presupuesto real se da tras la valoración. Las listas de “mejores clínicas” de internet suelen ser SEO o patrocinadas: úsalas solo como directorio.</p>
   <div class="filters" id="filters">
-    <button data-f="all" class="on">Todas</button>
-    <button data-f="cirugia">Injerto</button>
-    <button data-f="derma">Dermatología / tricología</button>
-    <button data-f="nocir">Sin cirugía</button>
-    <input id="q" type="search" placeholder="Buscar por nombre, zona, técnica…">
+    <button type="button" data-f="all" class="on" aria-pressed="true">Todas</button>
+    <button type="button" data-f="cirugia" aria-pressed="false">Injerto</button>
+    <button type="button" data-f="derma" aria-pressed="false">Dermatología / tricología</button>
+    <button type="button" data-f="nocir" aria-pressed="false">Sin cirugía</button>
+    <input id="q" type="search" placeholder="Buscar por nombre, zona, técnica…" aria-label="Buscar por nombre, zona, técnica…" autocomplete="off">
   </div>
-  <div class="grid" id="clinics"></div>
+  <div id="clinics" aria-live="polite"></div>
   <div class="note"><b>Recomendación de orden de visitas:</b> 1) un <b>dermatólogo tricólogo independiente</b> (IDERMA Dexeus, Dr. Grimalt, López Gil Teknon), que no vive de venderte la cirugía; 2) <b>2–3 clínicas de injerto</b> para comparar diseños y presupuestos. Las primeras consultas en clínicas capilares suelen ser gratuitas.</div>
 </section>
 
 <section id="consulta">
   <h2>Qué preguntar en la consulta</h2>
-  <div class="grid">
-    <div class="card">
+  <div class="ask">
+    <article>
       <h3>Al dermatólogo</h3>
       <ul class="check">
         <li>¿Es alopecia androgenética? ¿Qué grado? Pide tricoscopia y analítica (hierro/ferritina, tiroides, vitamina D).</li>
@@ -269,8 +704,8 @@
         <li>Quiero evitar pastillas: ¿finasterida tópica o mesoterapia? ¿Con qué frecuencia y durante cuánto tiempo?</li>
         <li>¿Soy buen candidato a injerto ahora o me conviene esperar?</li>
       </ul>
-    </div>
-    <div class="card">
+    </article>
+    <article>
       <h3>A la clínica de injerto</h3>
       <ul class="check">
         <li>¿Quién hace las incisiones y la extracción: el médico o técnicos? ¿Cómo se llama el cirujano y cuál es su número de colegiado?</li>
@@ -279,8 +714,8 @@
         <li>¿Qué incluye el precio (revisiones, PRP, medicación, retoque)? ¿Hay garantía por escrito?</li>
         <li>¿Puedo ver fotos de casos a los 12 meses de pacientes parecidos a mí?</li>
       </ul>
-    </div>
-    <div class="card">
+    </article>
+    <article class="span">
       <h3>Señales de alarma</h3>
       <ul class="check x">
         <li>“Folículos ilimitados” o precio cerrado sin examinarte.</li>
@@ -289,7 +724,7 @@
         <li>No sabes qué médico te opera, o solo ves a un comercial.</li>
         <li>Presión para reservar hoy con descuento.</li>
       </ul>
-    </div>
+    </article>
   </div>
   <details>
     <summary>Cómo verificar clínica y médico</summary>
@@ -303,7 +738,7 @@
 
 <section id="fuentes">
   <h2>Fuentes</h2>
-  <ul class="small">
+  <ul class="sources small">
     <li><a href="https://www.actasdermo.org/es-androgenetic-alopecia-narrative-review-current-articulo-S0001731026000979" target="_blank" rel="noopener">Actas Dermo-Sifiliográficas 2026: revisión y algoritmo de tratamiento de la alopecia androgenética</a></li>
     <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12207719/" target="_blank" rel="noopener">Metaanálisis en red de minoxidil vs finasterida vs dutasterida (2025)</a></li>
     <li><a href="https://repositorio.unesp.br/entities/publication/efd29987-c1ad-42e5-a974-1f88c130ca50/full" target="_blank" rel="noopener">Ensayo aleatorizado: minoxidil oral 5 mg vs tópico 5 %</a></li>
@@ -319,7 +754,7 @@
 
 </main>
 
-<footer><div class="wrap">Investigación personal · Barcelona · septiembre 2026</div></footer>
+<footer><div class="wrap"><p>Investigación personal · Barcelona · septiembre 2026</p></div></footer>
 
 <script>
 const C = [
@@ -350,18 +785,22 @@ function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;
 function render(){
   const s = q.value.trim().toLowerCase();
   box.innerHTML = C.filter(c => (f==="all"||c.t===f) && (!s || JSON.stringify(c).toLowerCase().includes(s))).map(c => `
-    <div class="card clinic">
-      <div class="top"><h3>${esc(c.n)}</h3><span class="tag ${L[c.t][1]}">${L[c.t][0]}</span></div>
+    <article class="clinic">
+      <div class="clinic-top"><h3>${esc(c.n)}</h3><span class="tag ${L[c.t][1]}">${L[c.t][0]}</span></div>
+      <p class="meta"><span class="price">${esc(c.p)}</span> · <a href="${c.w}" target="_blank" rel="noopener">web</a></p>
       <p class="mut">${esc(c.z)}</p>
-      <p>${c.tech.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</p>
-      <p>${esc(c.d)}</p>
-      <p><span class="price">${esc(c.p)}</span> · <a href="${c.w}" target="_blank" rel="noopener">web</a></p>
-    </div>`).join("") || '<p class="mut">Sin resultados.</p>';
+      <p class="tags">${c.tech.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</p>
+      <p class="desc">${esc(c.d)}</p>
+    </article>`).join("") || '<p class="empty">Sin resultados.</p>';
 }
 document.getElementById("filters").addEventListener("click", e => {
   const b = e.target.closest("button"); if(!b) return;
   f = b.dataset.f;
-  document.querySelectorAll("#filters button").forEach(x => x.classList.toggle("on", x===b));
+  document.querySelectorAll("#filters button").forEach(x => {
+    const on = x===b;
+    x.classList.toggle("on", on);
+    x.setAttribute("aria-pressed", on ? "true" : "false");
+  });
   render();
 });
 q.addEventListener("input", render);
